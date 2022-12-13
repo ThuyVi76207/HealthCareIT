@@ -11,11 +11,11 @@ import { withNamespaces } from 'react-i18next';
 
 
 const Navbar = ({ t }) => {
-    const changeLanguage = (lng) => {
-        i18n.changeLanguage(lng);
-    }
+
+    const [language, setLanguage] = useState('vi');
 
     const [start, setStart] = useState(false);
+
     // const secRef = useRef();
     useEffect(() => {
         // Define the on-scroll callback
@@ -35,29 +35,37 @@ const Navbar = ({ t }) => {
         // Detach the callback before the component unmounts
         return () => window.removeEventListener("scroll", callback);
     }, []);
-    console.log(start)
+
+    //changeLanguage
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+        setLanguage(lng);
+    }
+
 
     return (
         <div className='navbar-common'>
             <div className='navbar-up'>
                 <div className='header-up'>
                     <img className='h-[3.125rem]' src='/logo/Hcare.svg' alt='' />
-                    <a href="mailto:healthcare@gmail.com" className='content-item'>
-                        <i className='fa fa-envelope'></i>
-                        <div className='text-item'>healthcare@gmail.com</div>
-                    </a>
+                    <div className='flex w-[42%] justify-between'>
+                        <a href="mailto:healthcare@gmail.com" className='content-item'>
+                            <i className='fa fa-envelope'></i>
+                            <div className='text-item'>healthcare@gmail.com</div>
+                        </a>
 
-                    <a href="tel:0123456894" className='content-item'>
-                        <i className='fa fa-phone'></i>
-                        <div className='text-item'>0123456894</div>
-                    </a>
-                    <div className='content-item'>
-                        <i className='fa fa-registered'></i>
-                        <div className='text-item'>{t('navbar.register')}</div>
-                    </div>
-                    <div className='content-item'>
-                        <i className='fa fa-user'></i>
-                        <div className='text-item'>{t('navbar.login')}</div>
+                        <a href="tel:0123456894" className='content-item'>
+                            <i className='fa fa-phone'></i>
+                            <div className='text-item'>0123456894</div>
+                        </a>
+                        <div className='content-item'>
+                            <i className='fa fa-registered'></i>
+                            <div className='text-item'>{t('navbar.register')}</div>
+                        </div>
+                        <div className='content-item'>
+                            <i className='fa fa-user'></i>
+                            <div className='text-item'>{t('navbar.login')}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,12 +90,13 @@ const Navbar = ({ t }) => {
 
                     </div>
                     <div className='change-language'>
-                        <i className='text-[20px]'>
+                        <i className='text-[20px] mr-[5px] mt-[5px]'>
                             <ion-icon name="earth-outline"></ion-icon>
                         </i>
 
-                        <div><span onClick={() => changeLanguage('vi')}>VN /</span></div>
-                        <div><span onClick={() => changeLanguage('en')}>EN</span></div>
+                        <div className={`cursor-pointer hover:text-orange-400 ${language === 'vi' ? 'text-orange-400' : 'text-black'}`}><span onClick={() => changeLanguage('vi')}>VN</span></div>
+                        <div className='mx-1'>/</div>
+                        <div className={`cursor-pointer hover:text-blue-500 ${language === 'en' ? 'text-blue-600' : 'text-black'}`}><span onClick={() => changeLanguage('en')}>EN</span></div>
                     </div>
 
                 </div>

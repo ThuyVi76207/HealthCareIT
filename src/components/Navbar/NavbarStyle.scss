@@ -1,14 +1,13 @@
 .navbar-common {
-    box-shadow: 1px 2px 0px #e0e0e0;
+    // box-shadow: 1px 2px 0px #e0e0e0;
 
     .navbar-up {
         padding: 10px 0 0 0;
 
         .header-up {
             display: flex;
-            margin: auto;
             justify-content: space-evenly;
-            border-bottom: 1px solid #f2eded;
+            border-bottom: 1px solid #f3f3f3;
 
             .content-item {
                 display: flex;
@@ -29,11 +28,13 @@
             justify-content: space-around;
             height: 50px;
             align-items: center;
+            width: 85%;
 
             .left-content {
                 display: flex;
-                justify-content: space-evenly;
-                width: 70%;
+                width: 100%;
+                margin-left: 100px;
+                justify-content: space-around;
 
                 .child-content {
                     font-size: 1.2rem;
@@ -42,44 +43,12 @@
 
             .change-language {
                 display: flex;
+                align-items: center;
 
-                .language-vi {
-                    margin: 0 5px;
-                    cursor: pointer;
-                    opacity: 0.3;
 
-                    &.action {
-                        opacity: 1;
 
-                        span {
-                            color: orange;
-
-                        }
-
-                    }
-
-                    &:hover {
-                        opacity: 0.8;
-                    }
-                }
-
-                .language-en {
-                    cursor: pointer;
-                    opacity: 0.3;
-
-                    &.action {
-                        opacity: 1;
-
-                        span {
-                            color: rgb(33, 190, 230);
-                        }
-                    }
-
-                    &:hover {
-                        opacity: 0.8;
-                    }
-                }
             }
+
         }
     }
 
