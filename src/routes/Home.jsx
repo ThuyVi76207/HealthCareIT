@@ -1,18 +1,22 @@
 import React from "react";
 // import i18n from '../function/i18n/i18n';
 // import { withNamespaces } from 'react-i18next';
-import Navbar from "../components/Navbar/Navbar";
-import { withNamespaces } from "react-i18next";
+import MainLayout from "../layouts/MainLayout";
 
-const Home = ({ t }) => {
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Banner from "../components/Banner/Banner";
+
+const Home = () => {
     // const changeLanguage = (lng) => {
     //     i18n.changeLanguage(lng);
     // }
-    return (
-        <>
-            <Navbar />
 
-        </>
+    return (
+        <MainLayout>
+            <Banner />
+        </MainLayout>
+
 
 
         // <div>
@@ -23,4 +27,4 @@ const Home = ({ t }) => {
     )
 }
 
-export default withNamespaces()(Home)
+export default Home

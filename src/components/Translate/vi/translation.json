@@ -7,5 +7,12 @@
         "contact": "Liên hệ",
         "register": "Đăng ký",
         "login": "Đăng nhập"
+    },
+    "banner": {
+        "bntitle1": "Không chỉ chăm sóc",
+        "bntitle2": "sức khỏe",
+        "bncontent": "Tại HCare, chúng tôi cung cấp các dịch vụ chăm sóc sức khỏe chất lượng cao với chi phí phải chăng, lấy bạn làm trung tâm chăm sóc.",
+        "btn1": "Xem Thêm",
+        "btn2": "Đăng Ký Ngay"
     }
 }
