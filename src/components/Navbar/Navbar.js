@@ -56,7 +56,7 @@ const Navbar = ({ t }) => {
 
                         <a href="tel:0123456894" className='content-item'>
                             <i className='fa fa-phone'></i>
-                            <div className='text-item'>0123456894</div>
+                            <div className='text-item font-sans'>0123456894</div>
                         </a>
                         <div className='content-item'>
                             <i className='fa fa-registered'></i>
@@ -69,7 +69,7 @@ const Navbar = ({ t }) => {
                     </div>
                 </div>
             </div>
-            <div className={start ? 'navbar-down sticky' : 'navbar-down'} id='menuHeader'>
+            <div className={start ? 'navbar-down ' : 'navbar-down'} id='menuHeader'>
                 <div className='header-down'>
                     <div className='left-content'>
                         <div className='child-content'>
