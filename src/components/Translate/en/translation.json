@@ -1,0 +1,11 @@
+{
+    "navbar": {
+        "homepage": "Home page",
+        "onlinemedica": "Online medical examination",
+        "forum": "Health Forum",
+        "healthnews": "Health News",
+        "contact": "Contact",
+        "register": "Register",
+        "login": "Login"
+    }
+}
