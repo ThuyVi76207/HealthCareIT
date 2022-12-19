@@ -1,25 +1,27 @@
 import React from "react";
-import Slider from "react-slick";
+import { withNamespaces } from "react-i18next";
+// import Slider from "react-slick";
+import './SpecialtyStyle.scss';
 
-const Specialty = () => {
-    let settings = {
-        dots: false,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        // nextArrow: <SampleNextArrow />,
-        // prevArrow: <SamplePrevArrow />
-    };
+
+const Specialty = ({ t }) => {
+    // let settings = {
+    //     dots: false,
+    //     infinite: false,
+    //     speed: 500,
+    //     slidesToShow: 4,
+    //     slidesToScroll: 4,
+
+    // };
     return (
         <div className='section-specialty'>
             <div className='share-container'>
                 <div className='specialty-header'>
-                    <span className='tilte-spec text-center'><FormattedMessage id="homeheader.specialties" /></span>
-                    <button className='text-center bg-zinc-300 p-2'><FormattedMessage id="homeheader.see" /></button>
+                    <span className='tilte-spec text-center'>{t('specialty.title')}</span>
+                    <button className='text-center bg-zinc-300 p-2'>{t('specialty.see')}</button>
                 </div>
                 <div className='specialty-body'></div>
-                <Slider {...settings}>
+                {/* <Slider {...settings}>
                     {
                         dataSpecialty && dataSpecialty.length > 0 &&
                         dataSpecialty.map((item, index) => {
@@ -30,17 +32,18 @@ const Specialty = () => {
                                 >
                                     <img className='img-sp' src={item.image} alt='' />
                                     <div className='text-specialty'>
-                                        {/* <FormattedMessage id="homeheader.musculoskeletal" /> */}
+                                        
                                         {item.name}
                                     </div>
                                 </div>
                             )
                         })
                     }
-                </Slider>
+                </Slider> */}
+                {/* <FormattedMessage id="homeheader.musculoskeletal" /> */}
             </div>
         </div>
     )
 }
 
-export default Specialty
+export default withNamespaces()(Specialty)
