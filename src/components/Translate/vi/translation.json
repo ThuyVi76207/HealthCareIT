@@ -14,5 +14,9 @@
         "bncontent": "Tại HCare, chúng tôi cung cấp các dịch vụ chăm sóc sức khỏe chất lượng cao với chi phí phải chăng, lấy bạn làm trung tâm chăm sóc.",
         "btn1": "Xem Thêm",
         "btn2": "Đăng Ký Ngay"
+    },
+    "specialty": {
+        "title": "Chuyên khoa phổ biến",
+        "see": "XEM THÊM"
     }
 }

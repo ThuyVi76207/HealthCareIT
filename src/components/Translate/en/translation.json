@@ -14,5 +14,9 @@
         "bncontent": "At HCare, we offer high quality self-pay health and wellbeing services that put you at the centre of your care.",
         "btn1": "See More",
         "btn2": "Register"
+    },
+    "specialty": {
+        "title": "Popular specialties",
+        "see": "SEE MORE"
     }
 }

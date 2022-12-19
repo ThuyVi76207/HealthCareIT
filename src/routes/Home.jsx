@@ -6,6 +6,7 @@ import MainLayout from "../layouts/MainLayout";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Banner from "../components/Banner/Banner";
+import Specialty from "../components/Section/Specialty/Specialty";
 
 const Home = () => {
     // const changeLanguage = (lng) => {
@@ -15,6 +16,7 @@ const Home = () => {
     return (
         <MainLayout>
             <Banner />
+            <Specialty />
         </MainLayout>
 
 
