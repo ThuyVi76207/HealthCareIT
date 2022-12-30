@@ -1,12 +1,13 @@
 import React from "react";
 // import i18n from '../function/i18n/i18n';
 // import { withNamespaces } from 'react-i18next';
-import MainLayout from "../layouts/MainLayout";
+
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Banner from "../components/Banner/Banner";
-import Specialty from "../components/Section/Specialty/Specialty";
+import Banner from "../../../components/Banner/Banner";
+import MainLayout from "features/User/layouts/MainLayout";
+// import Specialty from "../components/Section/Specialty/Specialty";
 
 const Home = () => {
     // const changeLanguage = (lng) => {
@@ -16,7 +17,7 @@ const Home = () => {
     return (
         <MainLayout>
             <Banner />
-            <Specialty />
+            {/* <Specialty /> */}
         </MainLayout>
 
 
@@ -24,7 +25,7 @@ const Home = () => {
         // <div>
         //     <button onClick={() => changeLanguage('vi')}>vi</button>
         //     <button onClick={() => changeLanguage('en')}>en</button>
-        //     <h1>{t('Welcome to React')}</h1>
+        //     <h1>{t('Welcome to React')}</ h1>
         // </div>
     )
 }
