@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import NotFound from "components/NotFound";
 
 
-const Healthcare = React.lazy(() => import("features/User/pages/Home"));
+const HealthCare = React.lazy(() => import("features/User"));
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Navigate to='/healthcare' />}></Route>
-            <Route path="/healthcare/*" element={<Healthcare />}></Route>
+            <Route path="/healthcare/*" element={<HealthCare />}></Route>
             <Route path="*" element={<NotFound />}></Route>
           </Routes>
         </BrowserRouter>
