@@ -73,19 +73,19 @@ const Navbar = ({ t }) => {
                 <div className='header-down'>
                     <div className='left-content'>
                         <div className='child-content'>
-                            <Link to={"/home"}><b>{t('navbar.homepage')}</b></Link>
+                            <Link to={"/healthcare"}><b>{t('navbar.homepage')}</b></Link>
                         </div>
                         <div className='child-content'>
-                            <Link to={"/room"}><b>{t('navbar.onlinemedica')}</b></Link>
+                            <Link to={"/healthcare/online-examination"}><b>{t('navbar.onlinemedica')}</b></Link>
                         </div>
                         <div className='child-content'>
-                            <Link to="#"><b>{t('navbar.forum')}</b></Link>
+                            <Link to={"/healthcare/forum"}><b>{t('navbar.forum')}</b></Link>
                         </div>
                         <div className='child-content'>
-                            <Link to="#"><b>{t('navbar.healthnews')}</b></Link>
+                            <Link to={"/healthcare/news"}><b>{t('navbar.healthnews')}</b></Link>
                         </div>
                         <div className='child-content'>
-                            <Link to={"/contact"}><b>{t('navbar.contact')}</b></Link>
+                            <Link to={"/healthcare/contact"}><b>{t('navbar.contact')}</b></Link>
                         </div>
 
                     </div>
