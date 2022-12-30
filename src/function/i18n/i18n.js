@@ -1,15 +1,15 @@
 import i18n from "i18next";
 import { reactI18nextModule } from 'react-i18next'
-import translationEN from '../../components/Translate/en/translation.json';
-import translationVI from '../../components/Translate/vi/translation.json';
+import translationEN from 'Translate/en/translation.json';
+import translationVI from 'Translate/vi/translation.json';
 import detetor from 'i18next-browser-languagedetector';
 // the translations
 const resources = {
     en: {
-        translation: translationEN
+        translation: translationEN,
     },
     vi: {
-        translation: translationVI
+        translation: translationVI,
     }
 };
 
