@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Banner from "../../../components/Banner/Banner";
 import MainLayout from "features/User/layouts/MainLayout";
+import Section1 from "../features/Home/Section/Section1";
 // import Specialty from "../components/Section/Specialty/Specialty";
 
 const Home = () => {
@@ -17,9 +18,7 @@ const Home = () => {
     return (
         <MainLayout>
             <Banner />
-            <div>
-                <i class="fa fa-user-md" aria-hidden="true"></i>
-            </div>
+            <Section1 />
             {/* <Specialty /> */}
         </MainLayout >
 

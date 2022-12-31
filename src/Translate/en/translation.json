@@ -15,6 +15,14 @@
         "btn1": "See More",
         "btn2": "Register"
     },
+    "section1": {
+        "title1": "Where to find us",
+        "title2": "Online help center",
+        "title3": "Book an appointment",
+        "description1": "Locate the nearest Provide Wellbeing clinic near you for easy access to a range of healthcare services.",
+        "description2": "Find out the answers to your questions quickly using our intuitive resource centre.",
+        "description3": "Ready to see a clinician? Contact our support team to arrange an appointment."
+    },
     "specialty": {
         "title": "Popular specialties",
         "see": "SEE MORE"

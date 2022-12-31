@@ -15,6 +15,14 @@
         "btn1": "Xem Thêm",
         "btn2": "Đăng Ký Ngay"
     },
+    "section1": {
+        "title1": "Nơi tìm kiếm chúng tôi",
+        "title2": "Trung tâm trợ giúp trực tuyến",
+        "title3": "Đặt lịch",
+        "description1": "Xác định vị trí phòng khám Cung cấp Sức khỏe gần bạn nhất để dễ dàng tiếp cận với một loạt các dịch vụ chăm sóc sức khỏe.",
+        "description2": "Tìm ra câu trả lời cho câu hỏi của bạn một cách nhanh chóng bằng cách sử dụng trung tâm tài nguyên trực quan của chúng tôi.",
+        "description3": "Sẵn sàng để gặp một bác sĩ lâm sàng? Liên hệ với nhóm hỗ trợ của chúng tôi để sắp xếp một cuộc hẹn."
+    },
     "specialty": {
         "title": "Chuyên khoa phổ biến",
         "see": "XEM THÊM"
