@@ -14,26 +14,16 @@ const Navbar = ({ t }) => {
 
     const [language, setLanguage] = useState('vi');
 
-    const [start, setStart] = useState(false);
-
-    // const secRef = useRef();
+    const [activeSroll, setActiveSroll] = useState(false);
     useEffect(() => {
-        // Define the on-scroll callback
-        const callback = function () {
-            // const secTop = secRef.current.offsetTop;
-            if (window.scrollY >= 100) {
-                setStart(true);
-            }
-            else {
-                setStart(false);
-            }
-        };
-
-        // Attach the callback after the component mounts
-        window.addEventListener("scroll", callback);
-
-        // Detach the callback before the component unmounts
-        return () => window.removeEventListener("scroll", callback);
+        const handleSroll = () => {
+            const isSrollFarFromTop = window.scrollY > 50;
+            console.log('isSrollFarFromTop', isSrollFarFromTop);
+            setActiveSroll(isSrollFarFromTop)
+        }
+        window.addEventListener('scroll', handleSroll);
+        return () =>
+            window.removeEventListener('scroll', handleSroll);
     }, []);
 
     //changeLanguage
@@ -69,7 +59,8 @@ const Navbar = ({ t }) => {
                     </div>
                 </div>
             </div>
-            <div className={start ? 'navbar-down ' : 'navbar-down'} id='menuHeader'>
+            {activeSroll && <div className='h-[50px]'></div>}
+            <div className={activeSroll ? 'navbar-down navbar-down__active' : 'navbar-down'} id='menuHeader'>
                 <div className='header-down'>
                     <div className='left-content'>
                         <div className='child-content'>
@@ -101,6 +92,7 @@ const Navbar = ({ t }) => {
 
                 </div>
             </div>
+
 
         </div>
 
