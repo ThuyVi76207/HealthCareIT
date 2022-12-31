@@ -1,23 +1,21 @@
-.banner {
+.section2 {
     background-color: #d8f2f1;
 
-    &-container {
+    &-form {
         width: 80%;
         margin: auto;
 
         display: flex;
-        gap: 2%;
-
         justify-content: center;
         align-items: center;
-        height: 600px;
+        gap: 2%;
+        padding: 50px 0;
 
-
-        &__left {
+        &__content {
             width: 50%;
         }
 
-        &__right {
+        &__image {
             width: 50%;
         }
     }

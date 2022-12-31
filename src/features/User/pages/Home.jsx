@@ -2,12 +2,13 @@ import React from "react";
 // import i18n from '../function/i18n/i18n';
 // import { withNamespaces } from 'react-i18next';
 
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Banner from "../../../components/Banner/Banner";
+
 import MainLayout from "features/User/layouts/MainLayout";
 import Section1 from "../features/Home/Section/Section1";
+import Section2 from "../features/Home/Section/Section2";
+import Banner from "components/Banner/Banner";
 // import Specialty from "../components/Section/Specialty/Specialty";
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
         <MainLayout>
             <Banner />
             <Section1 />
+            <Section2 />
             {/* <Specialty /> */}
         </MainLayout >
 
