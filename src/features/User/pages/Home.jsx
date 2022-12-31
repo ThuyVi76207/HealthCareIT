@@ -18,7 +18,7 @@ const Home = () => {
         <MainLayout>
             <Banner />
             <div>
-                <i class="fa-solid fa-user-doctor"></i>
+                <i class="fa fa-user-md" aria-hidden="true"></i>
             </div>
             {/* <Specialty /> */}
         </MainLayout >
