@@ -17,8 +17,11 @@ const Home = () => {
     return (
         <MainLayout>
             <Banner />
+            <div>
+                <i class="fa-solid fa-user-doctor"></i>
+            </div>
             {/* <Specialty /> */}
-        </MainLayout>
+        </MainLayout >
 
 
 
