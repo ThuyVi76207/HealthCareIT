@@ -20,17 +20,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </Suspense>
-      {/* <Routes>
-        <Route path="/" element={<Home />}></Route>
-      </Routes> */}
     </div>
-
-
-
-    // <Routes>
-    //   <Route path="" element={<Home />}></Route>
-    // </Routes>
-
   );
 }
 
