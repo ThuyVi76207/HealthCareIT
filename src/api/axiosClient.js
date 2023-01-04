@@ -1,6 +1,7 @@
 //api/axiosClient.js
 import axios from "axios";
-import queryString from "query-string";
+import { parse, stringify } from 'qs'
+
 
 //Set up default config for http request here
 //Please have s look at here `https://github.com/axios/axios#request-config`
@@ -11,7 +12,11 @@ const axiosClient = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
-    paramsSerializer: params => queryString.stringify(params),
+    paramsSerializer: {
+        encode: parse,
+        serialize: stringify,
+    },
+    // paramsSerializer: params => queryString.stringify(params),
 });
 
 axiosClient.interceptors.request.use(async (config) => {
@@ -25,6 +30,8 @@ axiosClient.interceptors.response.use((response) => {
     }
 
     return response;
+
+
 
 }, (error) => {
     //Handle errors

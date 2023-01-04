@@ -6,9 +6,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import MainLayout from "features/User/layouts/MainLayout";
-import Section1 from "../features/Home/Section/Section1";
-import Section2 from "../features/Home/Section/Section2";
+import Section1 from "../features/Home/SectionUI/Section1";
+import Section2 from "../features/Home/SectionUI/Section2";
 import Banner from "components/Banner/Banner";
+import SpecialtyHome from "../features/Home/SectionData/SpecialtyHome";
 // import Specialty from "../components/Section/Specialty/Specialty";
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
             <Banner />
             <Section1 />
             <Section2 />
+            <SpecialtyHome />
             {/* <Specialty /> */}
         </MainLayout >
 
