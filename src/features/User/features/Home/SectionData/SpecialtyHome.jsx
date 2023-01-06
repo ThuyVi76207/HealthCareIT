@@ -1,18 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { getAllSpecialty } from "services/userService";
 
 function SpecialtyHome() {
+    const [listSpecialty, setListSpecialty] = useState([])
 
-    let res = getAllSpecialty();
+    useEffect(() => {
+        const printAllSpecialty = async () => {
+            try {
+                const res = await getAllSpecialty();
+                // console.log(res);
+                setListSpecialty(res.data);
+            } catch (error) {
+                console.log("Failed to get list Specialty: ", error);
+            }
+        }
+        printAllSpecialty();
 
-    console.log(res);
-
-
+    }, []);
+    console.log('List Specialty: ', listSpecialty);
 
 
     return (
         <div>
-            Specialty
+
         </div>
     )
 }
