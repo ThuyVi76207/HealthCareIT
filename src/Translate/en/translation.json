@@ -29,8 +29,8 @@
         "description1": "At Health Care, we provide out-of-pocket health care. Our self-pay pathway is to fill the gap where people can't access health care services because they can't afford it, they want to be seen instead of waiting, or they live in areas where certain services are not provided.",
         "description2": "We want all of our customers to be able to say that they feel cared for as individuals and that they feel truly heard and respected. Our friendly support team is available to answer any questions you may have and help you make informed decisions about your medical care. Find out more about the services we offer below."
     },
-    "specialty": {
-        "title": "Popular specialties",
+    "section3": {
+        "title": "Popular specialties and reputable doctors",
         "see": "SEE MORE"
     }
 }
