@@ -1,16 +1,14 @@
 import React from "react";
-// import i18n from '../function/i18n/i18n';
-// import { withNamespaces } from 'react-i18next';
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+// import i18n from '../function/i18n/i18n';
+// import { withNamespaces } from 'react-i18next';
 
 import MainLayout from "features/User/layouts/MainLayout";
 import Section1 from "../features/Home/SectionUI/Section1";
 import Section2 from "../features/Home/SectionUI/Section2";
 import Banner from "components/Banner/Banner";
-import SpecialtyHome from "../features/Home/SectionData/SpecialtyHome";
-// import Specialty from "../components/Section/Specialty/Specialty";
+import Section3 from "../features/Home/SectionData/Section3";
 
 const Home = () => {
     // const changeLanguage = (lng) => {
@@ -22,7 +20,7 @@ const Home = () => {
             <Banner />
             <Section1 />
             <Section2 />
-            <SpecialtyHome />
+            <Section3 />
             {/* <Specialty /> */}
         </MainLayout >
 
