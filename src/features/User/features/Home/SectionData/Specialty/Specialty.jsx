@@ -44,11 +44,11 @@ function Specialty() {
                         listSpecialty.map((item, index) => {
                             return (
                                 <div
-                                    className=""
+                                    className="specialty-customize"
                                     key={index}
                                 >
-                                    <img src={item.image} alt={index} />
-                                    <div>{item.name}</div>
+                                    <img className='img-sp' src={item.image} alt={index} />
+                                    <div className='text-specialty'>{item.name}</div>
                                 </div>
                             )
                         })

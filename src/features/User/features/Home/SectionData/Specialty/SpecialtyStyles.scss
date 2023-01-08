@@ -1,3 +1,35 @@
+.section-specialty {
+    height: 500px;
+
+    scrollbar-gutter: var(--gutter, auto);
+
+    .share-container {
+        margin: 0 80px;
+        display: flex;
+        flex-direction: column;
+
+        .specialty-customize {
+            cursor: pointer;
+
+            .text-specialty {
+                text-align: center;
+                margin: 10px 0;
+            }
+
+            &:hover {
+                color: rgb(48, 142, 201);
+            }
+        }
+    }
+
+    .img-customize {
+        height: 300px;
+
+    }
+
+}
+
+
 //reset slick slider css
 .share-container {
     .slick-prev {
@@ -21,7 +53,6 @@
     }
 
     .slick-next {
-
         right: -15px !important;
         height: 40px !important;
         width: 40px !important;
