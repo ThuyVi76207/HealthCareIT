@@ -12,6 +12,7 @@
     "i18next": "^22.4.3",
     "i18next-browser-languagedetector": "^7.0.1",
     "node-sass": "^7.0.3",
+    "prop-types": "^15.8.1",
     "qs": "^6.11.0",
     "query-string": "^8.1.0",
     "react": "^18.2.0",

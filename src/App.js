@@ -1,8 +1,7 @@
 
 import React, { Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 import NotFound from "components/NotFound";
 
 
