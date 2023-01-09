@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Slider from "react-slick";
 import { getTopDoctorHomeService } from "services/userService";
+import { Buffer } from "buffer";
+import './DoctorStyles.scss';
 
 function Doctor() {
 
@@ -35,6 +37,8 @@ function Doctor() {
 
     console.log('Top doctor home page', listTopDoctor)
 
+
+
     return (
         <div className='section-doctor'>
             <div className='share-container'>
@@ -42,14 +46,21 @@ function Doctor() {
                 <div className='doctor-body'></div>
                 <Slider {...settings}>
                     {listTopDoctor && listTopDoctor.length > 0 && listTopDoctor.map((item, index) => {
+
+                        let imageBase64 = '';
+                        if (item.image) {
+                            imageBase64 = Buffer.from(item.image, 'base64').toString('binary');
+                        }
+
                         let nameVi = `${item.positionData.value_Vi}, ${item.lastName} ${item.firstName}`;
                         let nameEn = `${item.positionData.value_En}, ${item.firstName} ${item.lastName}`;
+                        console.log('Check image', item.image)
 
                         return (
 
-                            <div key={index}>
-                                <img src={item.image} />
-                                <div>{nameVi}</div>
+                            <div className="doctor-customize" key={index}>
+                                <img className='doctor-image rounded-full m-auto' style={{ height: "140px", width: "140px" }} src={imageBase64} />
+                                <div className='text-doctor'><b>{language === 'vi' ? nameVi : nameEn}</b></div>
                             </div>
                         )
                     })}
