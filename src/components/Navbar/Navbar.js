@@ -7,10 +7,16 @@ import { Link } from "react-router-dom";
 import { useState } from 'react';
 import i18n from '../../function/i18n/i18n';
 import { withNamespaces } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { addLanguage } from 'reducers/userSlice';
 
 
 
 const Navbar = ({ t }) => {
+
+    const dispatch = useDispatch()
+
+
 
     const [language, setLanguage] = useState('vi');
 
@@ -29,8 +35,21 @@ const Navbar = ({ t }) => {
     //changeLanguage
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
+
+        dispatch(addLanguage(lng));
+
         setLanguage(lng);
+
     }
+
+
+
+
+
+
+
+
+
 
 
     return (
