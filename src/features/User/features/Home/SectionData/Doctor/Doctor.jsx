@@ -35,7 +35,7 @@ function Doctor() {
 
     }, [])
 
-    console.log('Top doctor home page', listTopDoctor)
+    // console.log('Top doctor home page', listTopDoctor)
 
 
 
@@ -54,12 +54,12 @@ function Doctor() {
 
                         let nameVi = `${item.positionData.value_Vi}, ${item.lastName} ${item.firstName}`;
                         let nameEn = `${item.positionData.value_En}, ${item.firstName} ${item.lastName}`;
-                        console.log('Check image', item.image)
+                        // console.log('Check image', item.image)
 
                         return (
 
                             <div className="doctor-customize" key={index}>
-                                <img className='doctor-image rounded-full m-auto' style={{ height: "140px", width: "140px" }} src={imageBase64} />
+                                <img className='doctor-image rounded-full m-auto' style={{ height: "140px", width: "140px" }} src={imageBase64} alt={index} />
                                 <div className='text-doctor'><b>{language === 'vi' ? nameVi : nameEn}</b></div>
                             </div>
                         )

@@ -12,7 +12,14 @@ const getTopDoctorHomeService = (limit) => {
 }
 
 
+//News
+const getAllNews = () => {
+    return axiosClient.get('/api/get-news');
+}
+
+
 export {
     getAllSpecialty,
     getTopDoctorHomeService,
+    getAllNews,
 }

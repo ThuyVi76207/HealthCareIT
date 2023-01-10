@@ -1,0 +1,22 @@
+.section4 {
+    background-color: #d8f2f1;
+
+    &-form {
+        width: 80%;
+        margin: auto;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2%;
+        padding: 50px 0;
+
+        &__image {
+            width: 50%;
+        }
+
+        &__content {
+            width: 50%;
+        }
+    }
+}
