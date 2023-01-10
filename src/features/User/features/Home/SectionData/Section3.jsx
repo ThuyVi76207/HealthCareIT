@@ -8,7 +8,7 @@ function Section3({ t }) {
     return (
         <div className="section3">
             <div className="section3-title">
-                <h2>{t('section3.title')}</h2>
+                <h2 className="uppercase">{t('section3.title')}</h2>
             </div>
             <div className="section3-conten">
                 <Specialty />

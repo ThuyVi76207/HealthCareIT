@@ -15,7 +15,7 @@ function Doctor() {
     let settings = {
         dots: false,
         infinite: false,
-        speed: 500,
+        speed: 1000,
         slidesToShow: 4,
         slidesToScroll: 4,
         // nextArrow: <SampleNextArrow />,

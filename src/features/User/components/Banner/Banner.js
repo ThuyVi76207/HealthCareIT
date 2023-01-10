@@ -1,7 +1,7 @@
 import React from "react";
 import { withNamespaces } from "react-i18next";
 import './BannerStyles.scss';
-import bannerImg from "../../assets/Banner/H-banner.svg";
+import bannerImg from "assets/Banner/H-banner.svg";
 
 const Banner = ({ t }) => {
     return (
