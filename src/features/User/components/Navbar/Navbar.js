@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // import LogoImg from '../../assets/Hcare.svg';
 
 import { useState } from 'react';
-import i18n from '../../function/i18n/i18n';
+import i18n from '../../../../function/i18n/i18n';
 import { withNamespaces } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { addLanguage } from 'reducers/userSlice';

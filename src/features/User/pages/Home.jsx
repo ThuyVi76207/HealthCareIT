@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import MainLayout from "features/User/layouts/MainLayout";
 import Section1 from "../features/Home/SectionUI/Section1";
 import Section2 from "../features/Home/SectionUI/Section2";
-import Banner from "components/Banner/Banner";
+import Banner from "features/User/components/Banner/Banner";
 import Section3 from "../features/Home/SectionData/Section3";
 import Section4 from "../features/Home/SectionUI/Section4";
 import Section5 from "../features/Home/SectionData/Section5";
