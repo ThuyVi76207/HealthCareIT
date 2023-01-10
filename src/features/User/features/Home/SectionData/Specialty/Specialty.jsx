@@ -33,7 +33,7 @@ function Specialty() {
         printAllSpecialty();
 
     }, []);
-    console.log('List Specialty: ', listSpecialty);
+    // console.log('List Specialty: ', listSpecialty);
 
     return (
         <div className="section-specialty">
