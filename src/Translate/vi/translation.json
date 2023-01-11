@@ -15,6 +15,12 @@
         "btn1": "Xem Thêm",
         "btn2": "Đăng Ký Ngay"
     },
+    "footer": {
+        "follow": "Theo dõi HCare tại",
+        "titlepolicy": "Chính sách và điều khoản",
+        "policy1": "Chính sách bảo mật",
+        "policy2": "Chính sách thanh toán"
+    },
     "section1": {
         "title1": "Nơi tìm kiếm chúng tôi",
         "title2": "Trung tâm trợ giúp trực tuyến",
