@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 
 import { getAllSpecialty } from "services/userService";
@@ -10,6 +11,8 @@ import './SpecialtyStyles.scss';
 
 function Specialty() {
     const [listSpecialty, setListSpecialty] = useState([]);
+    const navigate = useNavigate();
+
     let settings = {
         dots: false,
         infinite: false,
@@ -35,6 +38,12 @@ function Specialty() {
     }, []);
     // console.log('List Specialty: ', listSpecialty);
 
+    const handleViewDetailSpecialty = (item) => {
+        console.log('Check Special id', item);
+        const itemSpecialtyUrl = `/healthcare/detail-speacilty/${item.id}`
+        navigate(itemSpecialtyUrl);
+    }
+
     return (
         <div className="section-specialty">
             <div className="share-container">
@@ -46,6 +55,7 @@ function Specialty() {
                                 <div
                                     className="specialty-customize"
                                     key={index}
+                                    onClick={() => handleViewDetailSpecialty(item)}
                                 >
                                     <img className='img-sp' src={item.image} alt={index} />
                                     <div className='text-specialty'>{item.name}</div>

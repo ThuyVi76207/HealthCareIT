@@ -1,8 +1,12 @@
 import React from "react";
+import ContactContent from "../features/ContactContent";
+import MainLayout from "../layouts/MainLayout";
 
 function Contact() {
     return (
-        <div>Contact</div>
+        <MainLayout>
+            <ContactContent />
+        </MainLayout>
     )
 }
 

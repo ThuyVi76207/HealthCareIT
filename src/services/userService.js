@@ -4,6 +4,9 @@ import axiosClient from "api/axiosClient";
 const getAllSpecialty = () => {
     return axiosClient.get('/api/get-specialty');
 }
+const getAllSpecialtyById = (data) => {
+    return axiosClient.get(`/api/get-detail-specialty-by-id?id=${data.id}&location=${data.location}`);
+}
 
 
 //Doctor
@@ -22,4 +25,5 @@ export {
     getAllSpecialty,
     getTopDoctorHomeService,
     getAllNews,
+    getAllSpecialtyById
 }
