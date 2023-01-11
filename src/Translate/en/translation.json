@@ -15,6 +15,12 @@
         "btn1": "See More",
         "btn2": "Register"
     },
+    "footer": {
+        "follow": "Follow HCare at",
+        "titlepolicy": "Policy and terms",
+        "policy1": "Privacy policy",
+        "policy2": "Payment policy"
+    },
     "section1": {
         "title1": "Where to find us",
         "title2": "Online help center",
