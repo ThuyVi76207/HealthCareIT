@@ -1,5 +1,6 @@
 import NotFound from "components/NotFound";
 import { Route, Routes } from "react-router-dom";
+import SpecialtyDetail from "./features/Home/SectionData/Specialty/SpecialtyDetail";
 import Contact from "./pages/Contact";
 import Forum from "./pages/Forum";
 import Home from "./pages/Home";
@@ -15,6 +16,7 @@ function HeathCare() {
                 <Route exact path="/forum" element={<Forum />}></Route>
                 <Route exact path="/news" element={<News />}></Route>
                 <Route exact path="/contact" element={<Contact />}></Route>
+                <Route exact path="/detail-speacilty/:id" element={<SpecialtyDetail />}></Route>
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
         </>
