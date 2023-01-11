@@ -1,8 +1,6 @@
 import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import i18n from '../function/i18n/i18n';
-// import { withNamespaces } from 'react-i18next';
 
 import MainLayout from "features/User/layouts/MainLayout";
 import Section1 from "../features/Home/SectionUI/Section1";
@@ -11,6 +9,7 @@ import Banner from "features/User/components/Banner/Banner";
 import Section3 from "../features/Home/SectionData/Section3";
 import Section4 from "../features/Home/SectionUI/Section4";
 import Section5 from "../features/Home/SectionData/Section5";
+import Section6 from "../features/Home/SectionUI/Section6";
 
 const Home = () => {
     // const changeLanguage = (lng) => {
@@ -25,6 +24,7 @@ const Home = () => {
             <Section3 />
             <Section4 />
             <Section5 />
+            <Section6 />
         </MainLayout >
 
 

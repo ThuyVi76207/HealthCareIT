@@ -28,7 +28,7 @@ function News() {
         printAllNews();
     }, [])
 
-    console.log('Check list News', listNews);
+    // console.log('Check list News', listNews);
 
     return (
         <div className="section-news">
