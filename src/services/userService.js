@@ -7,6 +7,9 @@ const getAllSpecialty = () => {
 const getAllSpecialtyById = (data) => {
     return axiosClient.get(`/api/get-detail-specialty-by-id?id=${data.id}&location=${data.location}`);
 }
+const getSettingService = (type) => {
+    return axiosClient.get(`/api/settings?type=${type}`)
+}
 
 
 //Doctor
@@ -25,5 +28,6 @@ export {
     getAllSpecialty,
     getTopDoctorHomeService,
     getAllNews,
-    getAllSpecialtyById
+    getAllSpecialtyById,
+    getSettingService
 }
