@@ -39,7 +39,7 @@ function Specialty() {
     // console.log('List Specialty: ', listSpecialty);
 
     const handleViewDetailSpecialty = (item) => {
-        console.log('Check Special id', item);
+        console.log('Check Special', item);
         const itemSpecialtyUrl = `/healthcare/detail-speacilty/${item.id}`
         navigate(itemSpecialtyUrl);
     }

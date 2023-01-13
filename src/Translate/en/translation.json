@@ -52,5 +52,9 @@
         "title1": "Start your journey towards improved healthcare today. ",
         "title2": "Get in touch with one of our dedicated team.",
         "button": "Get In Touch"
+    },
+    "specialtydetail": {
+        "more": "Read more",
+        "hide": "Hide"
     }
 }
