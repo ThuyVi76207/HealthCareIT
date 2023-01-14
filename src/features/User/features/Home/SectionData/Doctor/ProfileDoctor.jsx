@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getProfileDoctorById } from "services/userService";
 import './ProfileDoctorStyles.scss';
-import ''
 
 const ProfileDoctor = ({ id }) => {
 
