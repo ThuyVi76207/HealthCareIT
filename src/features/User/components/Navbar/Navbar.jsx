@@ -24,7 +24,7 @@ const Navbar = ({ t }) => {
     useEffect(() => {
         const handleSroll = () => {
             const isSrollFarFromTop = window.scrollY > 50;
-            console.log('isSrollFarFromTop', isSrollFarFromTop);
+            // console.log('isSrollFarFromTop', isSrollFarFromTop);
             setActiveSroll(isSrollFarFromTop)
         }
         window.addEventListener('scroll', handleSroll);
