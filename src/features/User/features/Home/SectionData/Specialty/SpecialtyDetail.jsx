@@ -6,6 +6,7 @@ import './SpecialtyDetailStyles.scss';
 import { Buffer } from "buffer";
 import { withNamespaces } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import ProfileDoctor from '../Doctor/ProfileDoctor';
 
 function SpecialtyDetail({ t }) {
 
@@ -13,6 +14,7 @@ function SpecialtyDetail({ t }) {
     // console.log(id);
     const [obSpecialty, setObSpecialty] = useState({});
     const [listProvinces, setListProvinces] = useState([]);
+    const [listDoctorId, setListDoctorId] = useState([]);
     const [overflowHide, setOverflowHide] = useState(true);
     const { language } = useSelector((state) => state.user) || {};
 
@@ -25,6 +27,8 @@ function SpecialtyDetail({ t }) {
                 });
 
                 setObSpecialty(res.data);
+
+                setListDoctorId(res.data.doctorSpecialty);
 
             } catch (err) {
                 console.log('Failed to get specialty with id', err);
@@ -61,13 +65,15 @@ function SpecialtyDetail({ t }) {
         printProvince();
     }, [])
 
-    console.log('Province', listProvinces)
+    // console.log('Province', listProvinces)
 
     console.log('Check specialty id', obSpecialty)
     let imageBase64 = '';
     if (obSpecialty.image) {
         imageBase64 = Buffer.from(obSpecialty.image, 'base64').toString('binary');
     }
+
+    console.log('Check doctor id', listDoctorId)
 
     return (
         <MainLayout>
@@ -113,6 +119,20 @@ function SpecialtyDetail({ t }) {
                                 }
                             </select>
                         </div>
+                        {
+                            listDoctorId &&
+                            listDoctorId.length > 0 &&
+                            listDoctorId.map((item, index) => {
+                                return (
+                                    <div key={index}>
+                                        <ProfileDoctor id={item.doctorId} />
+                                    </div>
+
+                                )
+                            })
+                        }
+
+
                     </div>
 
                 </div>
