@@ -83,7 +83,7 @@ function SpecialtyDetail({ t }) {
                     className={`specialty-detail-header ${overflowHide ? 'h-[15rem] overflow-hidden' : ''}`}
                 >
                     <div className={`header ${overflowHide ? 'h-[15rem]' : ''}`}>
-                        <div className='w-[65%] mx-auto'>
+                        <div className='w-[70%] mx-auto'>
                             <h2 className='text-[20px] font-bold my-2'>{obSpecialty.name}</h2>
                             <div dangerouslySetInnerHTML={{ __html: obSpecialty.descriptionHTML }} className='text-[15px]'></div>
                         </div>
@@ -91,16 +91,16 @@ function SpecialtyDetail({ t }) {
                 </div>
                 {
                     overflowHide ?
-                        <div className='w-[65%] m-auto z-10'>
+                        <div className='w-[70%] m-auto z-10'>
                             <button className='text-[#16917c]' onClick={() => setOverflowHide(false)}>{t('specialtydetail.more')}</button>
                         </div>
                         :
-                        <div className='w-[65%] m-auto'>
+                        <div className='w-[70%] m-auto'>
                             <button className='text-[#16917c]' onClick={() => setOverflowHide(true)}>{t('specialtydetail.hide')}</button>
                         </div>
                 }
                 <div className='specialty-detail-container'>
-                    <div className='w-[65%] mx-auto border border-transparent'>
+                    <div className='w-[70%] mx-auto border border-transparent'>
                         <div className='province-spectialty'>
                             <select className='my-4 h-[40px] focus:outline-none rounded-[5px] px-2'>
                                 {
