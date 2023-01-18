@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { withNamespaces } from "react-i18next";
 import { useSelector } from "react-redux";
 import { getProfileDoctorById } from "services/userService";
 import './ProfileDoctorStyles.scss';
+import ScheduleDoctor from "./ScheduleDoctor";
 
-const ProfileDoctor = ({ id }) => {
+const ProfileDoctor = ({ id, t }) => {
 
     const [profileDoctorId, setProfileDoctorId] = useState({});
     const { language } = useSelector((state) => state.user) || {};
@@ -49,10 +51,10 @@ const ProfileDoctor = ({ id }) => {
                         profileDoctorId &&
                         profileDoctorId.Markdown &&
                         profileDoctorId.Markdown.description &&
-                        <p className="text-[14px]">{profileDoctorId.Markdown.description}</p>
+                        <p className="text-[14px] leading-6">{profileDoctorId.Markdown.description}</p>
                     }
-                    <div>
-                        <i className="fas fa-map-marker-alt item-icon"></i>
+                    <div className="my-2">
+                        <i className="fas fa-map-marker-alt item-icon mr-1"></i>
                         {
                             language === 'vi' ? locationVI : locationEn
                         }
@@ -60,9 +62,15 @@ const ProfileDoctor = ({ id }) => {
 
                 </div>
             </div>
-            <div className="card-profile__right"></div>
+            <div className="card-profile__right">
+                <ScheduleDoctor id={id} />
+                <div className="flex items-center ml-4 mt-2 font-bold">
+                    <i className="mr-1 mt-1"><ion-icon name="calendar-outline"></ion-icon></i>
+                    <h4 className="uppercase text-[15px]">{t('profiledoctor.schedule')}</h4>
+                </div>
+            </div>
         </div>
     )
 }
 
-export default ProfileDoctor
+export default withNamespaces()(ProfileDoctor)
