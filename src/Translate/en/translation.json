@@ -56,5 +56,8 @@
     "specialtydetail": {
         "more": "Read more",
         "hide": "Hide"
+    },
+    "profiledoctor": {
+        "schedule": "Health schedule"
     }
 }

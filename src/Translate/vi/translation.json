@@ -56,5 +56,8 @@
     "specialtydetail": {
         "more": "Đọc thêm",
         "hide": "Ẩn bớt"
+    },
+    "profiledoctor": {
+        "schedule": "Lịch khám"
     }
 }

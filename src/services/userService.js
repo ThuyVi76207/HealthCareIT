@@ -19,6 +19,9 @@ const getTopDoctorHomeService = (limit) => {
 const getProfileDoctorById = (doctorId) => {
     return axiosClient.get(`/api/get-profile-doctor-by-id?doctorId=${doctorId}`)
 }
+const getScheduleDoctorByDate = (doctorId, date) => {
+    return axiosClient.get(`/api/get-schedule-doctor-by-date?doctorId=${doctorId}&date=${date}`)
+}
 
 
 //News
@@ -33,5 +36,6 @@ export {
     getAllNews,
     getAllSpecialtyById,
     getSettingService,
-    getProfileDoctorById
+    getProfileDoctorById,
+    getScheduleDoctorByDate
 }
