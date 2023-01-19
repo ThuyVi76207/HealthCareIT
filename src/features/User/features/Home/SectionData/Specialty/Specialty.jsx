@@ -39,7 +39,7 @@ function Specialty() {
     // console.log('List Specialty: ', listSpecialty);
 
     const handleViewDetailSpecialty = (item) => {
-        console.log('Check Special', item);
+        // console.log('Check Special', item);
         const itemSpecialtyUrl = `/healthcare/detail-speacilty/${item.id}`
         navigate(itemSpecialtyUrl);
     }
@@ -58,7 +58,7 @@ function Specialty() {
                                     onClick={() => handleViewDetailSpecialty(item)}
                                 >
                                     <img className='img-sp' src={item.image} alt={index} />
-                                    <div className='text-specialty'>{item.name}</div>
+                                    <div className='text-specialty font-bold'>{item.name}</div>
                                 </div>
                             )
                         })

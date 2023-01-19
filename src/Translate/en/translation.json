@@ -67,5 +67,8 @@
         "price": "Price:",
         "workaddress": "Work address",
         "more": "See more"
+    },
+    "detaildoctor": {
+        "overview": "Overview"
     }
 }

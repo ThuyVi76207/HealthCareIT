@@ -67,13 +67,14 @@ function SpecialtyDetail({ t }) {
 
     // console.log('Province', listProvinces)
 
-    console.log('Check specialty id', obSpecialty)
+    // console.log('Check specialty id', obSpecialty)
+
     let imageBase64 = '';
     if (obSpecialty.image) {
         imageBase64 = Buffer.from(obSpecialty.image, 'base64').toString('binary');
     }
 
-    console.log('Check doctor id', listDoctorId)
+    // console.log('Check doctor id', listDoctorId)
 
     return (
         <MainLayout>

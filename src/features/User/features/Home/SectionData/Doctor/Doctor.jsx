@@ -4,13 +4,15 @@ import Slider from "react-slick";
 import { getTopDoctorHomeService } from "services/userService";
 import { Buffer } from "buffer";
 import './DoctorStyles.scss';
+import { useNavigate } from "react-router-dom";
 
 function Doctor() {
 
     const [listTopDoctor, setListTopDoctor] = useState([]);
     const { language } = useSelector((state) => state.user) || {};
+    const navigate = useNavigate();
 
-    console.log('Check language', language);
+    // console.log('Check language', language);
 
     let settings = {
         dots: false,
@@ -37,6 +39,10 @@ function Doctor() {
 
     // console.log('Top doctor home page', listTopDoctor)
 
+    const handleViewDetailDoctor = (item) => {
+        const urlDetailDoctor = `/healthcare/detail-doctor/${item.id}`
+        navigate(urlDetailDoctor);
+    }
 
 
     return (
@@ -58,7 +64,11 @@ function Doctor() {
 
                         return (
 
-                            <div className="doctor-customize" key={index}>
+                            <div
+                                className="doctor-customize cursor-pointer hover:text-[#16917c]"
+                                key={index}
+                                onClick={() => handleViewDetailDoctor(item)}
+                            >
                                 <img className='doctor-image rounded-full m-auto' style={{ height: "140px", width: "140px" }} src={imageBase64} alt={index} />
                                 <div className='text-doctor'><b>{language === 'vi' ? nameVi : nameEn}</b></div>
                             </div>

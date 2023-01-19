@@ -67,7 +67,7 @@ const ScheduleDoctor = ({ id, t }) => {
             console.log('Chekc day', getAlldays);
             try {
                 if (getAlldays && getAlldays.length > 0) {
-                    const resSchedule = await getScheduleDoctorByDate(id, getAlldays[0].value);
+                    const resSchedule = await getScheduleDoctorByDate(id, getAlldays[2].value);
                     if (resSchedule && resSchedule.errCode === 0) {
                         //Get all work days doctor
                         setTimeWork(resSchedule.data)
@@ -111,7 +111,7 @@ const ScheduleDoctor = ({ id, t }) => {
                                         return (
                                             <button
                                                 key={index}
-                                                className={`mr-2 mb-2 bg-slate-200 hover:bg-yellow-300 ${language === 'vi' ? 'min-w-[120px] py-2 ' : 'min-w-[170px] py-3'}`}
+                                                className={`mr-2 mb-2 bg-slate-200 hover:bg-yellow-300 ${language === 'vi' ? 'min-w-[110px] py-2 ' : 'min-w-[150px] py-3'}`}
                                             >{timeDisplay}</button>
                                         )
                                     })
