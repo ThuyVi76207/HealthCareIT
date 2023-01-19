@@ -79,7 +79,11 @@ const ProfileDoctor = ({ id, t }) => {
                     }
                 </div>
                 <div className="ml-4">
-                    <h4 className="text-[15px] font-bold uppercase mt-1">{t('profiledoctor.workaddress')}</h4>
+                    <div className="flex items-center">
+                        <i className="mr-1 mt-2 text-[15px]"><ion-icon name="medkit-outline"></ion-icon></i>
+                        <h4 className="text-[15px] font-bold uppercase mt-1">{t('profiledoctor.workaddress')}</h4>
+                    </div>
+
                     {
                         profileDoctorId &&
                         profileDoctorId.Doctor_Infor &&
