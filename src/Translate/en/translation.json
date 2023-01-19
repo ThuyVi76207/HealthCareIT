@@ -57,7 +57,13 @@
         "more": "Read more",
         "hide": "Hide"
     },
+    "scheduledoctor": {
+        "schedule": "Health schedule",
+        "choose": "Choose",
+        "bookfree": "and free appointment",
+        "noschedule": "No schedule"
+    },
     "profiledoctor": {
-        "schedule": "Health schedule"
+        "price": "Price:"
     }
 }

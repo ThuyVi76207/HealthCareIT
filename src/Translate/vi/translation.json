@@ -57,7 +57,13 @@
         "more": "Đọc thêm",
         "hide": "Ẩn bớt"
     },
+    "scheduledoctor": {
+        "schedule": "Lịch khám",
+        "choose": "Chọn",
+        "bookfree": "và đặt lịch miễn phí",
+        "noschedule": "Chưa có lịch trống"
+    },
     "profiledoctor": {
-        "schedule": "Lịch khám"
+        "price": "Giá khám:"
     }
 }
