@@ -64,6 +64,8 @@
         "noschedule": "No schedule"
     },
     "profiledoctor": {
-        "price": "Price:"
+        "price": "Price:",
+        "workaddress": "Work address",
+        "more": "See more"
     }
 }

@@ -50,7 +50,7 @@ const ProfileDoctor = ({ id, t }) => {
             <div className="card-profile__left">
                 <div className="w-[20%] mr-2">
                     <img className="w-[110px] h-[110px] rounded-[50%]" src={profileDoctorId.image} alt="" />
-                    <button>Xem them</button>
+                    <button className="text-[15px] text-[#16917c] mt-2 ml-5">{t('profiledoctor.more')}</button>
                 </div>
                 <div className="w-[80%]">
                     <h2 className="text-[#16917c] text-[20px] font-bold my-1">{language === 'vi' ? nameVi : nameEn}</h2>
@@ -76,6 +76,15 @@ const ProfileDoctor = ({ id, t }) => {
                     <h4 className="uppercase text-[15px] font-bold mr-1">{t('profiledoctor.price')}</h4>
                     {
                         language === 'vi' ? <span>{getFormattedPriceVND(priceVI)}</span> : <span>{getFormattedPriceUSD(priceEn)}</span>
+                    }
+                </div>
+                <div className="ml-4">
+                    <h4 className="text-[15px] font-bold uppercase mt-1">{t('profiledoctor.workaddress')}</h4>
+                    {
+                        profileDoctorId &&
+                        profileDoctorId.Doctor_Infor &&
+                        profileDoctorId.Doctor_Infor.nameClinic &&
+                        <h4 className="text-[15px]">{profileDoctorId.Doctor_Infor.nameClinic}</h4>
                     }
                 </div>
             </div>

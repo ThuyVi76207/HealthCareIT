@@ -64,6 +64,8 @@
         "noschedule": "Chưa có lịch trống"
     },
     "profiledoctor": {
-        "price": "Giá khám:"
+        "price": "Giá khám:",
+        "workaddress": "Địa chỉ làm việc",
+        "more": "Xem thêm"
     }
 }
