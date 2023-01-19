@@ -22,7 +22,9 @@ const getProfileDoctorById = (doctorId) => {
 const getScheduleDoctorByDate = (doctorId, date) => {
     return axiosClient.get(`/api/get-schedule-doctor-by-date?doctorId=${doctorId}&date=${date}`)
 }
-
+const getDetailInforDoctor = (inputId) => {
+    return axiosClient.get(`/api/get-detail-doctor-by-id?id=${inputId}`)
+}
 
 //News
 const getAllNews = () => {
@@ -37,5 +39,6 @@ export {
     getAllSpecialtyById,
     getSettingService,
     getProfileDoctorById,
-    getScheduleDoctorByDate
+    getScheduleDoctorByDate,
+    getDetailInforDoctor
 }

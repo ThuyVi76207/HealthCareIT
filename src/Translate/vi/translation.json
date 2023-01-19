@@ -67,5 +67,8 @@
         "price": "Giá khám:",
         "workaddress": "Địa chỉ làm việc",
         "more": "Xem thêm"
+    },
+    "detaildoctor": {
+        "overview": "Thông tin bác sĩ"
     }
 }
