@@ -1,3 +1,4 @@
+import { getFormattedPriceUSD, getFormattedPriceVND } from "function/formater";
 import React, { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -14,7 +15,7 @@ const ProfileDoctor = ({ id, t }) => {
         const printProfileDoctor = async () => {
             try {
                 const resProfile = await getProfileDoctorById(id);
-                console.log(resProfile.data);
+                console.log('Check profile', resProfile.data);
                 setProfileDoctorId(resProfile.data);
             } catch (err) {
                 console.log('Failed to get profile doctor', err);
@@ -36,7 +37,13 @@ const ProfileDoctor = ({ id, t }) => {
         locationEn = profileDoctorId.Doctor_Infor.provinceTypeData.value_En;
     }
 
-    console.log('Check location', locationVI, locationEn)
+    let priceVI = 0, priceEn = 0;
+    if (profileDoctorId && profileDoctorId.Doctor_Infor && profileDoctorId.Doctor_Infor.priceTypeData) {
+        priceVI = parseInt(profileDoctorId.Doctor_Infor.priceTypeData.value_Vi);
+        priceEn = parseInt(profileDoctorId.Doctor_Infor.priceTypeData.value_En);
+    }
+
+    // console.log('Check location', locationVI, locationEn)
 
     return (
         <div className="card-profile">
@@ -64,9 +71,12 @@ const ProfileDoctor = ({ id, t }) => {
             </div>
             <div className="card-profile__right">
                 <ScheduleDoctor id={id} />
-                <div className="flex items-center ml-4 mt-2 font-bold">
-                    <i className="mr-1 mt-1"><ion-icon name="calendar-outline"></ion-icon></i>
-                    <h4 className="uppercase text-[15px]">{t('profiledoctor.schedule')}</h4>
+                <div className="ml-4 mt-2 flex items-center">
+                    <i className="mr-1 mt-1"><ion-icon name="cash-outline"></ion-icon></i>
+                    <h4 className="uppercase text-[15px] font-bold mr-1">{t('profiledoctor.price')}</h4>
+                    {
+                        language === 'vi' ? <span>{getFormattedPriceVND(priceVI)}</span> : <span>{getFormattedPriceUSD(priceEn)}</span>
+                    }
                 </div>
             </div>
         </div>

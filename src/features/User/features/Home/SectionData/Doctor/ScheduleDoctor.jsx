@@ -3,12 +3,14 @@ import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import 'moment/locale/vi'
 import { getScheduleDoctorByDate } from "services/userService";
+import { withNamespaces } from 'react-i18next';
 
 
-const ScheduleDoctor = ({ id }) => {
+const ScheduleDoctor = ({ id, t }) => {
     const { language } = useSelector((state) => state.user) || {};
     console.log('language', language);
     const [scheduleDoctor, setScheduleDoctor] = useState([]);
+    const [timeWork, setTimeWork] = useState([]);
 
 
 
@@ -66,12 +68,14 @@ const ScheduleDoctor = ({ id }) => {
             try {
                 if (getAlldays && getAlldays.length > 0) {
                     const resSchedule = await getScheduleDoctorByDate(id, getAlldays[0].value);
+                    if (resSchedule && resSchedule.errCode === 0) {
+                        //Get all work days doctor
+                        setTimeWork(resSchedule.data)
+                    }
 
-                    //Get all work days doctor
 
                     console.log('check get all days', resSchedule.data);
                 }
-
             } catch (err) {
                 console.log('Failed to print schedule', err);
             }
@@ -79,10 +83,6 @@ const ScheduleDoctor = ({ id }) => {
         printScheduleDoctor();
 
     }, [id, language, getArrDays])
-
-
-
-
 
     return (
         <div className='ml-2'>
@@ -95,12 +95,43 @@ const ScheduleDoctor = ({ id }) => {
                     })
                 }
             </select>
-            <div>
-
+            <div className="flex items-center ml-2 mt-2 font-bold">
+                <i className="mr-1 mt-1"><ion-icon name="calendar-outline"></ion-icon></i>
+                <h4 className="uppercase text-[15px]">{t('scheduledoctor.schedule')}</h4>
+            </div>
+            <div className='ml-2 mt-2'>
+                {
+                    timeWork && timeWork.length > 0
+                        ?
+                        <div className=''>
+                            <div>
+                                {
+                                    timeWork.map((item, index) => {
+                                        let timeDisplay = language === 'vi' ? item.timeTypeData.value_Vi : item.timeTypeData.value_En
+                                        return (
+                                            <button
+                                                key={index}
+                                                className={`mr-2 mb-2 bg-slate-200 ${language === 'vi' ? 'min-w-[120px] py-2 ' : 'min-w-[170px] py-3'}`}
+                                            >{timeDisplay}</button>
+                                        )
+                                    })
+                                }
+                            </div>
+                            <div className='border-b border-b-[#d4d3d3] pb-1'>
+                                <span>{t('scheduledoctor.choose')}</span>
+                                {" "}
+                                <i className="far fa-hand-point-up"></i>
+                                {" "}
+                                <span>{t('scheduledoctor.bookfree')}</span>
+                            </div>
+                        </div>
+                        :
+                        <h3 className='text-gray-400 border-b border-b-[#d4d3d3] pb-1'>{t('scheduledoctor.noschedule')}</h3>
+                }
             </div>
 
         </div>
     )
 }
 
-export default ScheduleDoctor;
+export default withNamespaces()(ScheduleDoctor);
