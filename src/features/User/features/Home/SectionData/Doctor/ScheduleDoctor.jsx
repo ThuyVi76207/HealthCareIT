@@ -111,7 +111,7 @@ const ScheduleDoctor = ({ id, t }) => {
                                         return (
                                             <button
                                                 key={index}
-                                                className={`mr-2 mb-2 bg-slate-200 ${language === 'vi' ? 'min-w-[120px] py-2 ' : 'min-w-[170px] py-3'}`}
+                                                className={`mr-2 mb-2 bg-slate-200 hover:bg-yellow-300 ${language === 'vi' ? 'min-w-[120px] py-2 ' : 'min-w-[170px] py-3'}`}
                                             >{timeDisplay}</button>
                                         )
                                     })
