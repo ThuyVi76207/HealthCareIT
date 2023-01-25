@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import { getAllNews } from "services/userService";
 import './NewsStyles.scss';
 
 function News() {
     const [listNews, setListNews] = useState([]);
+    const navigate = useNavigate();
 
     let settings = {
         dots: true,
@@ -30,6 +32,12 @@ function News() {
 
     // console.log('Check list News', listNews);
 
+    const handleViewDetailNews = (item) => {
+        console.log('Check News id', item);
+        navigate(`/healthcare/detail-news/${item.id}`)
+
+    }
+
     return (
         <div className="section-news">
             <div className="news-container">
@@ -40,6 +48,7 @@ function News() {
                                 <div
                                     className="mx-2"
                                     key={index}
+                                    onClick={() => handleViewDetailNews(item)}
                                 >
                                     <img className="img-news" src={item.image} alt={index} />
                                     <div className="text-center mt-2">{item.name}</div>
