@@ -70,5 +70,9 @@
     },
     "detaildoctor": {
         "overview": "Thông tin bác sĩ"
+    },
+    "detailnews": {
+        "createdat": "Đã tạo lúc: ",
+        "updatedat": "Cập nhật lúc: "
     }
 }

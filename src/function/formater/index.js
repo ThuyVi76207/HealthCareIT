@@ -16,4 +16,8 @@ const getFormattedPriceUSD = (price = 0, currency = "USD") => {
     return formattedPrice;
 };
 
-export { getFormattedPriceVND, getFormattedPriceUSD };
+const convertDateToDateTime = (date) => {
+    return new Date(date).toLocaleString().split('T')[0];
+};
+
+export { getFormattedPriceVND, getFormattedPriceUSD, convertDateToDateTime };
