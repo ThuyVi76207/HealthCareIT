@@ -70,5 +70,9 @@
     },
     "detaildoctor": {
         "overview": "Overview"
+    },
+    "detailnews": {
+        "createdat": "Created At: ",
+        "updatedat": "Updated At: "
     }
 }

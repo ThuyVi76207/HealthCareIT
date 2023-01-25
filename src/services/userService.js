@@ -30,6 +30,9 @@ const getDetailInforDoctor = (inputId) => {
 const getAllNews = () => {
     return axiosClient.get('/api/get-news');
 }
+const getAllNewsById = (data) => {
+    return axiosClient.get(`/api/get-detail-news-by-id?id=${data.id}`)
+}
 
 
 export {
@@ -40,5 +43,6 @@ export {
     getSettingService,
     getProfileDoctorById,
     getScheduleDoctorByDate,
-    getDetailInforDoctor
+    getDetailInforDoctor,
+    getAllNewsById
 }
