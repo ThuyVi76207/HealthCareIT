@@ -10,7 +10,7 @@ const HealthCare = React.lazy(() => import("features/User"));
 function App() {
   return (
     <div className="health-app">
-      <Suspense fallback={<div>Loading ....</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Navigate to='/healthcare' />}></Route>

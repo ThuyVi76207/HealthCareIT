@@ -74,6 +74,7 @@
     "detailnews": {
         "createdat": "Created At: ",
         "updatedat": "Updated At: ",
-        "more": "Read More"
+        "more": "Read More",
+        "news": "News Health"
     }
 }
