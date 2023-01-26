@@ -73,6 +73,7 @@
     },
     "detailnews": {
         "createdat": "Created At: ",
-        "updatedat": "Updated At: "
+        "updatedat": "Updated At: ",
+        "more": "Read More"
     }
 }
