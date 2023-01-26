@@ -73,6 +73,7 @@
     },
     "detailnews": {
         "createdat": "Đã tạo lúc: ",
-        "updatedat": "Cập nhật lúc: "
+        "updatedat": "Cập nhật lần cuối: ",
+        "more": "Đọc thêm"
     }
 }
