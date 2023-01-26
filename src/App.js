@@ -3,7 +3,6 @@ import React, { Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import NotFound from "components/NotFound";
-import Loading from "components/Loading/loading";
 
 
 const HealthCare = React.lazy(() => import("features/User"));
@@ -11,7 +10,7 @@ const HealthCare = React.lazy(() => import("features/User"));
 function App() {
   return (
     <div className="health-app">
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<div>Loading...</div>}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Navigate to='/healthcare' />}></Route>

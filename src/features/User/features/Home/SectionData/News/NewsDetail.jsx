@@ -7,6 +7,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getAllNews, getAllNewsById } from 'services/userService';
 import './NewsDetailStyles.scss';
 import { Buffer } from 'buffer';
+import Loading from 'components/Loading/loading';
+import LoadingSpinner from 'components/Loading/LoadingSpinner';
 
 const NewsDetail = ({ t }) => {
     const { id } = useParams();
@@ -38,20 +40,30 @@ const NewsDetail = ({ t }) => {
 
     useEffect(() => {
         const printListNews = async () => {
+
             try {
                 setLoading(true);
                 const resListNews = await getAllNews();
-                if (resListNews && resListNews.errCode === 0)
+                if (resListNews && resListNews.errCode === 0) {
                     setDataListNews(resListNews.data);
+                }
 
             } catch (error) {
                 console.log("Failed to get API list News", error);
-                setLoading(false);
+
             }
         }
 
         printListNews();
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        if (dataListNews.length > 0) {
+            setLoading(false);
+        }
+    }, [dataListNews])
+
+
 
     let imageBase64 = '';
     if (dataDetailNews.image) {
@@ -66,11 +78,16 @@ const NewsDetail = ({ t }) => {
 
     }
 
+    console.log('check loading status', loading)
+
     return (
         <MainLayout>
-            <div className='bg-[#f7f7f7] pt-14'>
-                <div className=''>
-
+            <Loading loading={loading} />
+            <div className='bg-[#f7f7f7] py-6'>
+                <div className='w-[70%] mx-auto flex gap-2 mb-3'>
+                    <i className='ml-3'><ion-icon name="home-outline"></ion-icon></i>
+                    /
+                    <h2 className='text-[#16917c] font-medium'>{t('detailnews.news')}</h2>
                 </div>
                 <div className='news-detail'>
                     <div className='flex gap-[3%] p-6'>
@@ -100,10 +117,12 @@ const NewsDetail = ({ t }) => {
                                     dataListNews && dataListNews.length > 0 &&
                                     dataListNews.map((item, index) => {
                                         return (
-                                            <div key={index} className='my-3' onClick={() => handleViewDetailNews(item)}>
-                                                <img src={item.image} alt={index} />
-                                                <h2 className='mt-2 font-bold'>{item.name}</h2>
-                                            </div>
+                                            loading ?
+                                                <LoadingSpinner loading={loading} />
+                                                : <div key={index} className='my-3' onClick={() => handleViewDetailNews(item)}>
+                                                    <img src={item.image} alt={index} />
+                                                    <h2 className='mt-2 font-bold'>{item.name}</h2>
+                                                </div>
                                         )
                                     })
 
