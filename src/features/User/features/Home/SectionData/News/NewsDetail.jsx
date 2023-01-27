@@ -125,8 +125,6 @@ const NewsDetail = ({ t }) => {
                                                 </div>
                                         )
                                     })
-
-
                                 }
                             </div>
 
