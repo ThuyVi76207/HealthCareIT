@@ -1,8 +1,11 @@
 import React from "react";
+import ManagerLayout from "../layouts/ManagerLayout";
 
 const HomeManager = () => {
     return (
-        <div>Hơm manager</div>
+        <ManagerLayout>
+            <div>Home Manager</div>
+        </ManagerLayout>
     )
 }
 
