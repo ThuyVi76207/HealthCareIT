@@ -3,6 +3,7 @@ import React, { Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import NotFound from "components/NotFound";
+import HealthManager from "features/Admin";
 
 
 const HealthCare = React.lazy(() => import("features/User"));
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate to='/healthcare' />}></Route>
             <Route path="/healthcare/*" element={<HealthCare />}></Route>
+            <Route path="/manager/*" element={<HealthManager />}></Route>
             <Route path="*" element={<NotFound />}></Route>
           </Routes>
         </BrowserRouter>
