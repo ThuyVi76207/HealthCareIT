@@ -3,10 +3,10 @@ import React, { Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import NotFound from "components/NotFound";
-import HealthManager from "features/Admin";
 
 
 const HealthCare = React.lazy(() => import("features/User"));
+const HealthManager = React.lazy(() => import("features/Admin"));
 
 function App() {
   return (
