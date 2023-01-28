@@ -76,5 +76,13 @@
         "updatedat": "Cập nhật lần cuối: ",
         "more": "Đọc thêm",
         "news": "Tin tức"
+    },
+    "menu": {
+        "dashboard": "Bảng điều khiển",
+        "usermanager": "Quản lý người dùng",
+        "doctormanager": "Quản lý bác sĩ",
+        "planmanager": "Quản lý kế hoạch khám bệnh",
+        "specialtymanager": "Quản lý chuyên khoa",
+        "newsmanager": "Quản lý bài đăng"
     }
 }

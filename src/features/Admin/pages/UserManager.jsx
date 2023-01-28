@@ -1,12 +1,11 @@
-import React from "react";
 import ManagerLayout from "../layouts/ManagerLayout";
 
-const HomeManager = () => {
+const UserManager = () => {
     return (
         <ManagerLayout>
-            <div>Home manager</div>
+            <div>UserManager</div>
         </ManagerLayout>
     )
 }
 
-export default HomeManager;
+export default UserManager;
