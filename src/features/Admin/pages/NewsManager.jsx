@@ -1,12 +1,11 @@
-import React from "react";
 import ManagerLayout from "../layouts/ManagerLayout";
 
-const HomeManager = () => {
+const NewsManager = () => {
     return (
         <ManagerLayout>
-            <div>Home manager</div>
+            <div>NewsManager</div>
         </ManagerLayout>
     )
 }
 
-export default HomeManager;
+export default NewsManager;

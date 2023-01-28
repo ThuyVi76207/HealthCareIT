@@ -76,5 +76,13 @@
         "updatedat": "Updated At: ",
         "more": "Read More",
         "news": "News Health"
+    },
+    "menu": {
+        "dashboard": "Dashboard",
+        "usermanager": "User Management",
+        "doctormanager": "Doctor Management",
+        "planmanager": "Manage the examination plan",
+        "specialtymanager": "Specialty Management",
+        "newsmanager": "News Management"
     }
 }
