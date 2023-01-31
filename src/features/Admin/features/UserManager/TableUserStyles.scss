@@ -1,0 +1,29 @@
+#tableManageUser {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#tableManageUser td,
+#tableManageUser th {
+    border: 1px solid #ddd;
+    padding: 8px;
+
+
+}
+
+#tableManageUser tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#tableManageUser tr:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+#tableManageUser th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #035795;
+    color: white;
+}
