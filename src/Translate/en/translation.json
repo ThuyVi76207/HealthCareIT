@@ -94,11 +94,15 @@
         "create": "Create New"
     },
     "createuser": {
-        "title": "Create User",
+        "titles": "Create User",
         "phone": "Phone Number",
         "lastname": "Last name",
         "firstname": "First Name",
         "address": "Address",
-        "gender": "Gender"
+        "gender": "Gender",
+        "title": "Title",
+        "role": "Role",
+        "password": "Password",
+        "repassword": "Rewrite password"
     }
 }

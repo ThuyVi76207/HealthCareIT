@@ -94,11 +94,15 @@
         "create": "Tạo mới"
     },
     "createuser": {
-        "title": "Tạo mới người dùng",
+        "titles": "Tạo mới người dùng",
         "phone": "Số điện thoại",
         "lastname": "Họ",
         "firstname": "Tên",
         "address": "Địa chỉ",
-        "gender": "Giới tính"
+        "gender": "Giới tính",
+        "title": "Chức danh",
+        "role": "Vai trò",
+        "password": "Mật khẩu",
+        "repassword": "Nhập lại mật khẩu"
     }
 }
