@@ -28,7 +28,7 @@ export default function CommonInput({
                 placeholder={placeholder}
                 maxLength={maxLength}
 
-                className="w-full rounded-[4px] px-2 border-b-2 border-[#003985] placeholder-shown:border-gray-500 focus:outline-none h-[40px] mt-2"
+                className="w-full rounded-[4px] px-2 border-b-2 border-[#003985] placeholder-shown:border-gray-500 focus:outline-none h-[40px]"
             ></input>
             {error && <p className="text-red-600">{error}</p>}
         </div>
