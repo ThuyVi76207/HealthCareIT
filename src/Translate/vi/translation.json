@@ -84,5 +84,21 @@
         "planmanager": "Quản lý kế hoạch khám bệnh",
         "specialtymanager": "Quản lý chuyên khoa",
         "newsmanager": "Quản lý bài đăng"
+    },
+    "tableuser": {
+        "title": "Quản lý người dùng",
+        "name": "Họ và tên",
+        "address": "Địa chỉ",
+        "phone": "Số điện thoại",
+        "choose": "Tùy chọn",
+        "create": "Tạo mới"
+    },
+    "createuser": {
+        "title": "Tạo mới người dùng",
+        "phone": "Số điện thoại",
+        "lastname": "Họ",
+        "firstname": "Tên",
+        "address": "Địa chỉ",
+        "gender": "Giới tính"
     }
 }

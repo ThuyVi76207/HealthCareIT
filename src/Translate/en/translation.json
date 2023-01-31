@@ -84,5 +84,21 @@
         "planmanager": "Manage the examination plan",
         "specialtymanager": "Specialty Management",
         "newsmanager": "News Management"
+    },
+    "tableuser": {
+        "title": "User Management",
+        "name": "First and last name",
+        "address": "Address",
+        "phone": "Phone",
+        "choose": "Action",
+        "create": "Create New"
+    },
+    "createuser": {
+        "title": "Create User",
+        "phone": "Phone Number",
+        "lastname": "Last name",
+        "firstname": "First Name",
+        "address": "Address",
+        "gender": "Gender"
     }
 }
