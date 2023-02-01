@@ -103,6 +103,15 @@
         "title": "Chức danh",
         "role": "Vai trò",
         "password": "Mật khẩu",
-        "repassword": "Nhập lại mật khẩu"
+        "repassword": "Nhập lại mật khẩu",
+        "upload": "Tải ảnh",
+        "save": "Lưu",
+        "phderlastname": "Vui lòng nhập họ bao gồm tên lót...",
+        "phderfirstname": "Vui lòng nhập tên...",
+        "phderemail": "Vui lòng nhập địa chỉ email...",
+        "phderphonenumber": "Vui lòng nhập số điện thoại...",
+        "phderaddress": "Vui lòng nhập địa chỉ",
+        "phderpassword": "Vui lòng nhập mật khẩu...",
+        "phderrepassword": "Vui lòng nhập lại mật khẩu..."
     }
 }

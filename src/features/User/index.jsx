@@ -1,5 +1,6 @@
 import NotFound from "components/NotFound";
-import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import DoctorDetail from "./features/Home/SectionData/Doctor/DoctorDetail";
 import NewsDetail from "./features/Home/SectionData/News/NewsDetail";
 import SpecialtyDetail from "./features/Home/SectionData/Specialty/SpecialtyDetail";
@@ -10,6 +11,12 @@ import News from "./pages/News";
 import OnlExamination from "./pages/OnlExamination";
 
 function HeathCare() {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
     return (
         <>
             <Routes>
@@ -23,6 +30,7 @@ function HeathCare() {
                 <Route exact path="/detail-news/:id" element={<NewsDetail />}></Route>
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
+
         </>
     )
 }

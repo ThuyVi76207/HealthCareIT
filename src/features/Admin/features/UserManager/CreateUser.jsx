@@ -1,17 +1,25 @@
 
+import Loading from "components/Loading/loading";
 import { TITLE_OPTIONS } from "constants";
 import { ROLE_OPTIONS } from "constants";
 import { GENDER_OPTIONS } from "constants";
 import CommonInput from "features/Admin/components/Input/CommonInput";
 import EmailInput from "features/Admin/components/Input/EmailInput";
 import PasswordInput from "features/Admin/components/Input/PasswordInput";
+import PhoneInput from "features/Admin/components/Input/PhoneInput";
 import ManagerLayout from "features/Admin/layouts/ManagerLayout";
-import { isValidEmail, isValidPhoneNumber } from "function/formater";
+import { isPasswordStrength, isValidEmail, isValidPhoneNumber } from "function/formater";
+import { useRef } from "react";
 import { useState } from "react";
 import { withNamespaces } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
+import { createNewUserService } from "services/adminService";
 
 const CreateUser = ({ t }) => {
+    const formRef = useRef(null);
+
+    const dispatch = useDispatch();
 
     const { language } = useSelector((state) => state.user) || {};
 
@@ -35,13 +43,15 @@ const CreateUser = ({ t }) => {
     const [address, setAddress] = useState("");
     const [selectedGender, setSelectedGender] = useState("M");
     const [optionGenders, setOptionGenders] = useState(GENDER_OPTIONS);
-    const [selectedTitle, setSelectedTitle] = useState("");
+    const [selectedTitle, setSelectedTitle] = useState("P0");
     const [optionTitle, setOptionTitle] = useState(TITLE_OPTIONS);
-    const [selectedRole, setSelectedRole] = useState("");
+    const [selectedRole, setSelectedRole] = useState("R1");
     const [optionRole, setOptionRole] = useState(ROLE_OPTIONS);
     const [password, setPassword] = useState("");
     const [rePassword, setRePassword] = useState("");
     const [showImg, setShowImg] = useState();
+
+    const [loading, setLoading] = useState(false);
 
 
     const isValidated = () => {
@@ -65,7 +75,7 @@ const CreateUser = ({ t }) => {
         if (phoneNumber === "") {
             validated = false;
             _error.phoneNumber = "Vui lòng nhập số điện thoại"
-        } else if (isValidPhoneNumber(phoneNumber)) {
+        } else if (!isValidPhoneNumber(phoneNumber)) {
             validated = false;
             _error.phoneNumber = "Số điện thoại không hợp lệ"
         }
@@ -87,11 +97,18 @@ const CreateUser = ({ t }) => {
         }
         if (password === "") {
             validated = false;
-            _error.password = "Vui lòng chọn nhập mật khẩu";
+            _error.password = "Vui lòng nhập mật khẩu";
+        } else if (!isPasswordStrength(password)) {
+            validated = false;
+            _error.password = "Mật khẩu phải có đủ 8 ký tự bao gồm chữ thường, in hoa và số";
         }
+
         if (rePassword === "") {
             validated = false;
-            _error.rePassword = "Vui lòng chọn nhập mật khẩu";
+            _error.rePassword = "Vui lòng nhập mật khẩu";
+        } else if (rePassword !== password) {
+            validated = false;
+            _error.rePassword = "Vui lòng nhập lại mật khẩu, mật khẩu không đúng";
         }
 
         setError(_error);
@@ -121,20 +138,65 @@ const CreateUser = ({ t }) => {
         }
     };
 
-    console.log('Check gender', selectedGender);
+    const srollToInput = () => {
+        formRef.current.scrollIntoView();
+
+    }
+
+    const handleCreateUserOnClick = () => {
+        if (loading) return;
+        createNewUser();
+    };
+    const createNewUser = async () => {
+        if (!isValidated()) return srollToInput();
+
+        const data = {
+            email: email,
+            password: password,
+            firstName: firstName,
+            lastName: lastName,
+            address: address,
+            gender: selectedGender,
+            phonenumber: phoneNumber,
+            roleId: selectedRole,
+            positionId: selectedTitle,
+            avatar: showImg,
+        };
+
+        console.log('Check body', data)
+        setLoading(true);
+        try {
+            let res = await createNewUserService(data);
+            console.log('Check results', res)
+            if (res && res.errCode === 0) {
+                dispatch(addSuccessMessage({ title: "Tạo thành công", content: "Thêm thành công tài khoản người dùng" }));
+                srollToInput();
+                // handleResetForm();
+            } else if (res && res.errCode === 1) {
+                dispatch(addWarningMessage({ title: "Tài khoản đã tồn tại", content: "Vui lòng nhập email mới!!!" }))
+                setLoading(false);
+            } else {
+                dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
+                setLoading(false);
+            }
+            setLoading(false);
+        } catch (error) {
+            console.log("Error create a new user", error);
+        }
+    }
 
     return (
         <ManagerLayout>
-            {/* <Loading loading={loading} /> */}
-            <div>{t('createuser.titles')}</div>
-            <form>
+            <Loading loading={loading} />
+            <h2 className="text-center text-[25px] font-bold py-12 after:content-[''] after:border-b-4 after:border-b-[#003985] ">{t('createuser.titles')}</h2>
+            <form ref={formRef}>
                 <div className="px-12 grid grid-cols-2 gap-[10%]">
                     <CommonInput
                         field={t('createuser.lastname')}
                         name="lastName"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
-                        placeholder="Vui lòng nhập họ bao gồm tên lót..."
+                        placeholder={t('createuser.phderlastname')}
                         maxLength={50}
                         error={error.lastName}
                         required
@@ -144,7 +206,7 @@ const CreateUser = ({ t }) => {
                         name="firstName"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
-                        placeholder="Vui lòng nhập tên..."
+                        placeholder={t('createuser.phderfirstname')}
                         maxLength={50}
                         error={error.firstName}
                         required
@@ -154,19 +216,19 @@ const CreateUser = ({ t }) => {
                         name="email"
                         email={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Vui lòng nhập địa chỉ email..."
+                        placeholder={t('createuser.phderemail')}
                         maxLength={50}
                         error={error.email}
                         required
                     />
-                    <EmailInput
+                    <PhoneInput
                         field={t('createuser.phone')}
                         name="phoneNumber"
-                        email={phoneNumber}
+                        phoneNumber={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
-                        placeholder="Vui lòng nhập số điện thoại..."
+                        placeholder={t('createuser.phderphonenumber')}
                         maxLength={50}
-                        error={error.email}
+                        error={error.phoneNumber}
                         required
                     />
 
@@ -188,7 +250,7 @@ const CreateUser = ({ t }) => {
                                     <option
                                         value={option.value}
                                         key={option.value}
-                                        selected={option.value === selectedGender}
+                                    // selected={option.value === selectedGender}
                                     >
                                         {language === 'vi' ? option.label.vi : option.label.en}
                                     </option>
@@ -202,7 +264,7 @@ const CreateUser = ({ t }) => {
                             name="address"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
-                            placeholder="Vui lòng nhập địa chỉ"
+                            placeholder={t('createuser.phderaddress')}
                             maxLength={100}
                             error={error.address}
                             required
@@ -227,7 +289,7 @@ const CreateUser = ({ t }) => {
                                     <option
                                         value={option.value}
                                         key={option.value}
-                                        selected={option.value === selectedTitle}
+                                    // selected={option.value === selectedTitle}
                                     >
                                         {language === 'vi' ? option.label.vi : option.label.en}
                                     </option>
@@ -251,7 +313,7 @@ const CreateUser = ({ t }) => {
                                     <option
                                         value={option.value}
                                         key={option.value}
-                                        selected={option.value === selectedRole}
+                                    // selected={option.value === selectedRole}
                                     >
                                         {language === 'vi' ? option.label.vi : option.label.en}
                                     </option>
@@ -267,7 +329,7 @@ const CreateUser = ({ t }) => {
                         name="password"
                         password={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Vui lòng nhập mật khẩu..."
+                        placeholder={t('createuser.phderpassword')}
                         error={error.password}
                         required
                     />
@@ -276,25 +338,30 @@ const CreateUser = ({ t }) => {
                         name="repassword"
                         password={rePassword}
                         onChange={(e) => setRePassword(e.target.value)}
-                        placeholder="Vui lòng nhập lại mật khẩu..."
+                        placeholder={t('createuser.phderrepassword')}
                         error={error.rePassword}
                         required
                     />
-                    <div className="mb-4">
-                        <button type="button" name="upload" className="border font-bold py-2 px-2 mr-5 mb-2 hover:opacity-80 hover:cursor-pointer rounded-[4px] text-[13px]">
-                            <input
-                                className="w-[300px] h-[50px]"
-                                type="file"
-                                accept="image/*"
-                                onChange={(e) => handleImageUpload(e)}
-                            />
-                        </button>
-                    </div>
+
+                </div>
+                <div className="ml-12 mt-2">
+                    {/* <label className="font-bold text-[20px]">{t('createuser.upload')}</label> */}
+                    <button type="button" name="upload" className="bg-[#003985] text-white font-bold py-2 px-2 mr-5 mb-2 relative hover:opacity-80 hover:cursor-pointer rounded-[4px] text-[15px]">
+                        <i className="mr-2 text-[15px]"><ion-icon name="cloud-upload-outline"></ion-icon></i>
+                        {t('createuser.upload')}
+                        <input
+                            className="opacity-0 absolute w-full h-full top-0 left-0"
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => handleImageUpload(e)}
+                        />
+
+                    </button>
+                    {showImg && <img src={showImg} className="w-[120px] h-[120px] mb-4" alt="" />}
                 </div>
 
             </form>
-
-
+            <button onClick={handleCreateUserOnClick} className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2 mx-12  rounded-[5px]">{t('createuser.save')}</button>
 
         </ManagerLayout>
     )
