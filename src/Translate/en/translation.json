@@ -103,6 +103,15 @@
         "title": "Title",
         "role": "Role",
         "password": "Password",
-        "repassword": "Rewrite password"
+        "repassword": "Rewrite password",
+        "upload": "Upload Image",
+        "save": "Save",
+        "phderlastname": "Please enter last name including middle name...",
+        "phderfirstname": "Please enter name...",
+        "phderemail": "Please enter your email address...",
+        "phderphonenumber": "Please enter the phone number...",
+        "phderaddress": "Please enter your address",
+        "phderpassword": "Please enter a password...",
+        "phderrepassword": "Please re-enter password..."
     }
 }
