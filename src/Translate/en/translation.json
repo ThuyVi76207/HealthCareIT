@@ -113,5 +113,13 @@
         "phderaddress": "Please enter your address",
         "phderpassword": "Please enter a password...",
         "phderrepassword": "Please re-enter password..."
+    },
+    "createspecialty": {
+        "titles": "Create Specialty",
+        "namespecialty": "Specialist Name",
+        "imgspecialty": "Specialty Image",
+        "upload": "Upload Image",
+        "save": "Save",
+        "phderspecialty": "Enter the name of the specialty"
     }
 }

@@ -11,10 +11,8 @@ export default function PasswordInput({
     maxLength = 50,
     error = "",
     type = "password",
-    pattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}",
-    title = "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters",
 }) {
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
 
 
     return (
@@ -31,18 +29,16 @@ export default function PasswordInput({
                     type={type}
                     placeholder={placeholder}
                     maxLength={maxLength}
-                    pattern={pattern}
-                    title={title}
 
                     className="w-full rounded-[4px] px-2 border-b-2 border-[#003985] placeholder-shown:border-gray-500 focus:outline-none h-[40px]"
                 ></input>
-                <div className="absolute right-3 top-[50%] translate-y-[-50%]">
+                {/* <div className="absolute right-3 top-[50%] translate-y-[-50%]">
                     {loading ? (
                         <LoadingSpinner loading />
                     ) : (
                         <i className="fa-solid fa-circle-check text-secondary-color"></i>
                     )}
-                </div>
+                </div> */}
             </div>
 
             {error && <p className="text-red-600">{error}</p>}
