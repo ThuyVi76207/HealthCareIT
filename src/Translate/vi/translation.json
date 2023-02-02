@@ -113,5 +113,13 @@
         "phderaddress": "Vui lòng nhập địa chỉ",
         "phderpassword": "Vui lòng nhập mật khẩu...",
         "phderrepassword": "Vui lòng nhập lại mật khẩu..."
+    },
+    "createspecialty": {
+        "titles": "Tạo chuyên khoa",
+        "namespecialty": "Tên chuyên khoa",
+        "imgspecialty": "Ảnh chuyên khoa",
+        "upload": "Tải ảnh",
+        "save": "Save",
+        "phderspecialty": "Nhập tên chuyên khoa"
     }
 }

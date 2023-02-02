@@ -42,11 +42,11 @@ const CreateUser = ({ t }) => {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [address, setAddress] = useState("");
     const [selectedGender, setSelectedGender] = useState("M");
-    const [optionGenders, setOptionGenders] = useState(GENDER_OPTIONS);
+    // const [optionGenders, setOptionGenders] = useState(GENDER_OPTIONS);
     const [selectedTitle, setSelectedTitle] = useState("P0");
-    const [optionTitle, setOptionTitle] = useState(TITLE_OPTIONS);
+    // const [optionTitle, setOptionTitle] = useState(TITLE_OPTIONS);
     const [selectedRole, setSelectedRole] = useState("R1");
-    const [optionRole, setOptionRole] = useState(ROLE_OPTIONS);
+    // const [optionRole, setOptionRole] = useState(ROLE_OPTIONS);
     const [password, setPassword] = useState("");
     const [rePassword, setRePassword] = useState("");
     const [showImg, setShowImg] = useState();
@@ -147,6 +147,14 @@ const CreateUser = ({ t }) => {
         if (loading) return;
         createNewUser();
     };
+    const handleResetForm = () => {
+        setLastName('')
+        setFirstName('')
+        setEmail('')
+        setPassword('')
+        setRePassword('')
+        setPhoneNumber('')
+    }
     const createNewUser = async () => {
         if (!isValidated()) return srollToInput();
 
@@ -171,13 +179,15 @@ const CreateUser = ({ t }) => {
             if (res && res.errCode === 0) {
                 dispatch(addSuccessMessage({ title: "Tạo thành công", content: "Thêm thành công tài khoản người dùng" }));
                 srollToInput();
-                // handleResetForm();
+                handleResetForm();
             } else if (res && res.errCode === 1) {
                 dispatch(addWarningMessage({ title: "Tài khoản đã tồn tại", content: "Vui lòng nhập email mới!!!" }))
                 setLoading(false);
+                handleResetForm()
             } else {
                 dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
                 setLoading(false);
+                handleResetForm()
             }
             setLoading(false);
         } catch (error) {
@@ -185,11 +195,14 @@ const CreateUser = ({ t }) => {
         }
     }
 
+
+
+
     return (
         <ManagerLayout>
             <Loading loading={loading} />
-            <h2 className="text-center text-[25px] font-bold py-12 after:content-[''] after:border-b-4 after:border-b-[#003985] ">{t('createuser.titles')}</h2>
-            <form ref={formRef}>
+            <h2 className="text-center text-[25px] font-bold py-12">{t('createuser.titles')}</h2>
+            <form ref={formRef} >
                 <div className="px-12 grid grid-cols-2 gap-[10%]">
                     <CommonInput
                         field={t('createuser.lastname')}
@@ -245,7 +258,7 @@ const CreateUser = ({ t }) => {
                             value={selectedGender}
                             className="w-full rounded-[4px] px-2 border-b-2 border-[#003985] placeholder-shown:border-gray-500 focus:outline-none h-[40px]"
                         >
-                            {optionGenders
+                            {GENDER_OPTIONS
                                 .map((option) => (
                                     <option
                                         value={option.value}
@@ -284,7 +297,7 @@ const CreateUser = ({ t }) => {
                             value={selectedTitle}
                             className="w-full rounded-[4px] px-2 border-b-2 border-[#003985] placeholder-shown:border-gray-500 focus:outline-none h-[40px]"
                         >
-                            {optionTitle
+                            {TITLE_OPTIONS
                                 .map((option) => (
                                     <option
                                         value={option.value}
@@ -308,7 +321,7 @@ const CreateUser = ({ t }) => {
                             value={selectedRole}
                             className="w-full rounded-[4px] px-2 border-b-2 border-[#003985] placeholder-shown:border-gray-500 focus:outline-none h-[40px]"
                         >
-                            {optionRole
+                            {ROLE_OPTIONS
                                 .map((option) => (
                                     <option
                                         value={option.value}
@@ -359,9 +372,9 @@ const CreateUser = ({ t }) => {
                     </button>
                     {showImg && <img src={showImg} className="w-[120px] h-[120px] mb-4" alt="" />}
                 </div>
+                <button onClick={handleCreateUserOnClick} className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2 mx-12  rounded-[5px]">{t('createuser.save')}</button>
 
             </form>
-            <button onClick={handleCreateUserOnClick} className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2 mx-12  rounded-[5px]">{t('createuser.save')}</button>
 
         </ManagerLayout>
     )
