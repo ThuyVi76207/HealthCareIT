@@ -87,13 +87,23 @@ function DoctorDetail({ t }) {
                                     <i className="mr-1 mt-2 text-[15px]"><ion-icon name="medkit-outline"></ion-icon></i>
                                     <h4 className="text-[15px] font-bold uppercase mt-1">{t('profiledoctor.workaddress')}</h4>
                                 </div>
-
+                                <div>
+                                    {
+                                        infoDoctor &&
+                                        infoDoctor.Doctor_Infor &&
+                                        infoDoctor.Doctor_Infor.nameClinic &&
+                                        <h4 className="text-[15px]">{infoDoctor.Doctor_Infor.nameClinic}</h4>
+                                    }
+                                </div>
                                 {
                                     infoDoctor &&
                                     infoDoctor.Doctor_Infor &&
-                                    infoDoctor.Doctor_Infor.nameClinic &&
-                                    <h4 className="text-[15px]">{infoDoctor.Doctor_Infor.nameClinic}</h4>
+                                    infoDoctor.Doctor_Infor.addressClinic &&
+                                    <h4 className="text-[13px]">{`(${infoDoctor.Doctor_Infor.addressClinic})`}</h4>
                                 }
+
+
+
                             </div>
                         </div>
                     </div>

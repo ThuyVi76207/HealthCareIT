@@ -153,5 +153,26 @@
         "phone": "Số điện thoại",
         "choose": "Tùy chọn",
         "addinfor": "Thêm thông tin"
+    },
+    "addinfordoctor": {
+        "titles": "Thông tin bác sĩ",
+        "phone": "Số điện thoại",
+        "lastname": "Họ",
+        "firstname": "Tên",
+        "address": "Địa chỉ",
+        "gender": "Giới tính",
+        "title": "Chức danh",
+        "role": "Vai trò",
+        "password": "Mật khẩu",
+        "repassword": "Nhập lại mật khẩu",
+        "upload": "Tải ảnh",
+        "save": "Lưu",
+        "phderlastname": "Vui lòng nhập họ bao gồm tên lót...",
+        "phderfirstname": "Vui lòng nhập tên...",
+        "phderemail": "Vui lòng nhập địa chỉ email...",
+        "phderphonenumber": "Vui lòng nhập số điện thoại...",
+        "phderaddress": "Vui lòng nhập địa chỉ",
+        "phderpassword": "Vui lòng nhập mật khẩu...",
+        "phderrepassword": "Vui lòng nhập lại mật khẩu..."
     }
 }

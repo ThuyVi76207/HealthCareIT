@@ -1,10 +1,23 @@
 import ManagerLayout from "features/Admin/layouts/ManagerLayout";
 import { useEffect, useState } from "react";
+import { withNamespaces } from "react-i18next";
 import { getAllDoctors } from "services/adminService";
 
-const AddInforDoctor = () => {
+const AddInforDoctor = ({ t }) => {
 
     const [listDoctor, setListDoctor] = useState([]);
+    const [selectedDoctor, setSelectedDoctor] = useState("");
+    const [description, setDescription] = useState("");
+    const [selectedPrice, setSelectedPrice] = useState("");
+    const [selectedSpecialty, setSelectedSpecialty] = useState("");
+    const [selectedProvince, setSelectedProvince] = useState("");
+    const [addressClinic, setAddressClinic] = useState("");
+    const [nameClinic, setNameClinic] = useState("");
+    const [note, setNote] = useState("");
+
+    const [error, setError] = useState({
+
+    });
 
     useEffect(() => {
         const getListDoctor = async () => {
@@ -24,9 +37,12 @@ const AddInforDoctor = () => {
 
     return (
         <ManagerLayout>
-            <div>CreateDoctor</div>
+            <h2>{t('addinfordoctor.titles')}</h2>
+            <form>
+
+            </form>
         </ManagerLayout>
     )
 }
 
-export default AddInforDoctor;
+export default withNamespaces()(AddInforDoctor);
