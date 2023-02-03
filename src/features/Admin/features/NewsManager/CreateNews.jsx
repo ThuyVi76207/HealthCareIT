@@ -6,6 +6,7 @@ import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/
 import { createNews } from "services/adminService";
 import MarkdownIt from "markdown-it";
 import MdEditor from 'react-markdown-editor-lite';
+import ManagerLayout from "features/Admin/layouts/ManagerLayout";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -117,7 +118,7 @@ const CreateNews = ({ t }) => {
     }
 
     return (
-        <div>
+        <ManagerLayout>
             <h2 className="text-center text-[25px] font-bold py-8">{t('createnews.titles')}</h2>
             <form ref={formref}>
                 <div className="px-12">
@@ -161,7 +162,7 @@ const CreateNews = ({ t }) => {
 
             <button onClick={handleCreateNewsOnClick} className="bg-[#003985] ml-12 text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2  rounded-[5px]">{t('createnews.save')}</button>
 
-        </div>
+        </ManagerLayout>
     )
 }
 

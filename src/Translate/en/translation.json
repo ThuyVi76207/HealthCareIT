@@ -114,6 +114,14 @@
         "phderpassword": "Please enter a password...",
         "phderrepassword": "Please re-enter password..."
     },
+    "tablespecialty": {
+        "title": "Specialty Management",
+        "name": "Specialist Name",
+        "daycreate": "Day creation",
+        "dayupdate": "Day update",
+        "choose": "Action",
+        "create": "Create New"
+    },
     "createspecialty": {
         "titles": "Create Specialty",
         "namespecialty": "Specialist Name",
@@ -121,6 +129,14 @@
         "upload": "Upload Image",
         "save": "Save",
         "phderspecialty": "Enter the name of the specialty"
+    },
+    "tablenews": {
+        "title": "News Management",
+        "name": "News Name",
+        "daycreate": "Day creation",
+        "dayupdate": "Day update",
+        "choose": "Action",
+        "create": "Create New"
     },
     "createnews": {
         "titles": "Create News",
