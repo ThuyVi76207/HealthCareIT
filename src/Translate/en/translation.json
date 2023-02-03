@@ -121,5 +121,13 @@
         "upload": "Upload Image",
         "save": "Save",
         "phderspecialty": "Enter the name of the specialty"
+    },
+    "createnews": {
+        "titles": "Create News",
+        "namenews": "News Name",
+        "imgnews": "News Image",
+        "upload": "Upload Image",
+        "save": "Save",
+        "phdernews": "Enter the name of the news"
     }
 }

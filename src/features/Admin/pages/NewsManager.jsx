@@ -1,9 +1,10 @@
+import CreateNews from "../features/NewsManager/CreateNews";
 import ManagerLayout from "../layouts/ManagerLayout";
 
 const NewsManager = () => {
     return (
         <ManagerLayout>
-            <div>NewsManager</div>
+            <CreateNews />
         </ManagerLayout>
     )
 }

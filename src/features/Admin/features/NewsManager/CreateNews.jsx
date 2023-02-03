@@ -1,30 +1,26 @@
 import CommonInput from "features/Admin/components/Input/CommonInput";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { withNamespaces } from "react-i18next";
-import MarkdownIt from "markdown-it";
-import MdEditor from 'react-markdown-editor-lite';
-import { useRef } from "react";
-import Loading from "components/Loading/loading";
-import { createNewSpecialty } from "services/adminService";
 import { useDispatch } from "react-redux";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
+import { createNews } from "services/adminService";
+import MarkdownIt from "markdown-it";
+import MdEditor from 'react-markdown-editor-lite';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
-const CreateSpecialty = ({ t }) => {
-
+const CreateNews = ({ t }) => {
     const dispatch = useDispatch();
+    const formref = useRef(null);
 
-    const formRef = useRef(null);
-
-    const [nameSpecialty, setNameSpecialty] = useState("");
+    const [nameNews, setNameNews] = useState("");
+    const [imgNews, setImgNews] = useState();
     const [descriptionMarkdown, setDescriptionMarkdown] = useState("");
     const [descriptionHTML, setDescriptionHTML] = useState("");
-    const [showImg, setShowImg] = useState();
-    const [loading, setloading] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const [error, setError] = useState({
-        nameSpecialty: "",
+        nameNews: "",
         descriptionMarkdown: "",
     });
 
@@ -32,13 +28,13 @@ const CreateSpecialty = ({ t }) => {
         let validated = true;
         let _error = {};
 
-        if (nameSpecialty === "") {
+        if (nameNews === "") {
             validated = false;
-            _error.nameSpecialty = "Vui long nhap ten chuyen khoa"
+            _error.nameNews = "Vui lòng nhập tên bài đăng"
         }
         if (descriptionMarkdown === "") {
             validated = false;
-            _error.descriptionMarkdown = "Vui long nhap mo ta chuyen khoa"
+            _error.descriptionMarkdown = "Vui lòng nhập mô tả bài đăng";
         }
 
         setError(_error);
@@ -52,108 +48,104 @@ const CreateSpecialty = ({ t }) => {
 
             fileReader.onload = () => {
                 resolve(fileReader.result);
-            };
+            }
 
             fileReader.onerror = (error) => {
-                reject(error);
-            };
-        });
-    };
+                reject(error)
+            }
+        })
+    }
 
     const handleImageUpload = async (e) => {
         if (e.target.files.length > 0) {
             const image = e.target.files[0];
-            const base64 = await convertBase64(image);
-            setShowImg(base64);
+            const base64 = await convertBase64(image)
+            setImgNews(base64);
         }
-    };
+    }
+
+    const handleResetForm = () => {
+        setNameNews('');
+        setDescriptionMarkdown('');
+        setImgNews();
+    }
+
+    const srollToInput = () => {
+        formref.current.scrollIntoView();
+    }
+
+    const handleCreateNewsOnClick = () => {
+        if (loading) return;
+        createdNews();
+    }
+
+    const createdNews = async () => {
+        if (!isValidated()) return srollToInput();
+
+        const data = {
+            name: nameNews,
+            image: imgNews,
+            descriptionHTML: descriptionHTML,
+            descriptionMarkdown: descriptionMarkdown,
+        }
+
+        setLoading(true);
+
+        try {
+            let res = await createNews(data);
+            console.log('Check created news', res);
+            if (res && res.errCode === 0) {
+                dispatch(addSuccessMessage({ title: 'Tạo thành công', content: 'Thêm bài đăng thành công!!!' }))
+                srollToInput();
+            } else if (res && res.errCode === 1) {
+                dispatch(addWarningMessage({ title: 'Tạo không thành công', content: 'Vui lòng thêm ảnh bài đăng!!!' }))
+                srollToInput();
+            }
+
+            setLoading(false);
+            handleResetForm();
+        } catch (error) {
+            dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
+            setLoading(false);
+            console.log('Faild to create a news: ', error);
+        }
+    }
 
     function handleEditorChange({ html, text }) {
         setDescriptionHTML(html);
         setDescriptionMarkdown(text);
     }
 
-    const handleResetForm = () => {
-        setNameSpecialty('');
-        setDescriptionMarkdown('');
-        setShowImg();
-    }
-
-    const srollToInput = () => {
-        formRef.current.scrollIntoView();
-
-    }
-    const handleCreateSpecialtyOnClick = () => {
-        if (loading) return;
-        CreateSpecialty();
-    };
-
-    const CreateSpecialty = async () => {
-        if (!isValidated()) return srollToInput();
-
-        const data = {
-            image: showImg,
-            name: nameSpecialty,
-            descriptionHTML: descriptionHTML,
-            descriptionMarkdown: descriptionMarkdown,
-        }
-
-        // console.log('Check data', data);
-        setloading(true);
-
-        try {
-            let res = await createNewSpecialty(data)
-            // console.log('Check success', res);
-            if (res && res.errCode === 0) {
-                dispatch(addSuccessMessage({ title: 'Tạo thành công', content: 'Thêm chuyên khoa thành công!!!!' }))
-                srollToInput();
-            } else if (res && res.errCode === 1) {
-                dispatch(addWarningMessage({ title: 'Tạo không thành công', content: 'Vui lòng thêm ảnh chuyên khoa!!!' }))
-                srollToInput();
-            }
-
-            setloading(false);
-            handleResetForm();
-        } catch (error) {
-            dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
-            setloading(false);
-            console.log('Faild to create a new specialty error: ', error);
-        }
-    }
-
     return (
         <div>
-            <Loading loading={loading} />
-            <h2 className="text-center text-[25px] font-bold py-8">{t('createspecialty.titles')}</h2>
-            <form ref={formRef}>
+            <h2 className="text-center text-[25px] font-bold py-8">{t('createnews.titles')}</h2>
+            <form ref={formref}>
                 <div className="px-12">
                     <div className="w-[30%] my-4">
                         <CommonInput
-                            field={t('createspecialty.namespecialty')}
-                            name="specialty"
-                            value={nameSpecialty}
-                            onChange={(e) => setNameSpecialty(e.target.value)}
-                            placeholder={t('createspecialty.phderspecialty')}
+                            field={t('createnews.namenews')}
+                            name='news'
+                            value={nameNews}
+                            onChange={(e) => setNameNews(e.target.value)}
+                            placeholder={t('createnews.phdernews')}
                             maxLength={100}
-                            error={error.nameSpecialty}
+                            error={error.nameNews}
                             required
                         />
                     </div>
-                    <h2 className="text-[20px] font-bold mb-2">{t('createspecialty.imgspecialty')}</h2>
-                    <div className='mt-2 mb-4'>
-                        {/* <label className="font-bold text-[20px]">{t('createuser.upload')}</label> */}
+                    <h2 className="text-[20px] font-bold mb-2">{t('createnews.imgnews')}</h2>
+                    <div className="mt-2 mb-4">
                         <button type="button" name="upload" className="bg-[#003985] text-white font-bold py-2 px-2 mr-5 mb-2 relative hover:opacity-80 hover:cursor-pointer rounded-[4px] text-[15px]">
                             <i className="mr-2 text-[15px]"><ion-icon name="cloud-upload-outline"></ion-icon></i>
-                            {t('createspecialty.upload')}
+                            {t('createnews.upload')}
                             <input
                                 className="opacity-0 absolute w-full h-full top-0 left-0"
                                 type="file"
                                 accept="image/*"
                                 onChange={(e) => handleImageUpload(e)}
                             />
-
                         </button>
-                        {showImg && <img src={showImg} className="w-[120px] h-[120px] mb-4" alt="" />}
+                        {imgNews && <img src={imgNews} className="w-[120px] h-[120px] mb-4" alt="" />}
                     </div>
                     <div className="mb-4">
                         {error.descriptionMarkdown && <p className="text-red-600">{error.descriptionMarkdown}</p>}
@@ -167,10 +159,10 @@ const CreateSpecialty = ({ t }) => {
                 </div>
             </form>
 
-            <button onClick={handleCreateSpecialtyOnClick} className="bg-[#003985] ml-12 text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2  rounded-[5px]">{t('createspecialty.save')}</button>
+            <button onClick={handleCreateNewsOnClick} className="bg-[#003985] ml-12 text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2  rounded-[5px]">{t('createnews.save')}</button>
 
         </div>
     )
 }
 
-export default withNamespaces()(CreateSpecialty);
+export default withNamespaces()(CreateNews);
