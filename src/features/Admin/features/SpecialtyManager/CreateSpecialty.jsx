@@ -8,6 +8,7 @@ import Loading from "components/Loading/loading";
 import { createNewSpecialty } from "services/adminService";
 import { useDispatch } from "react-redux";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
+import ManagerLayout from "features/Admin/layouts/ManagerLayout";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -122,7 +123,7 @@ const CreateSpecialty = ({ t }) => {
     }
 
     return (
-        <div>
+        <ManagerLayout>
             <Loading loading={loading} />
             <h2 className="text-center text-[25px] font-bold py-8">{t('createspecialty.titles')}</h2>
             <form ref={formRef}>
@@ -169,7 +170,7 @@ const CreateSpecialty = ({ t }) => {
 
             <button onClick={handleCreateSpecialtyOnClick} className="bg-[#003985] ml-12 text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2  rounded-[5px]">{t('createspecialty.save')}</button>
 
-        </div>
+        </ManagerLayout>
     )
 }
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useSelector } from "react-redux";
 import { getAllUsers } from "services/adminService";
-import './TableUserStyles.scss';
+import "features/Admin/components/StylesCommon/TableManagerStyles.scss";
 
 const TableUser = ({ t }) => {
     const { language } = useSelector((state) => state.user) || {};
@@ -24,10 +24,10 @@ const TableUser = ({ t }) => {
         printUser();
     }, [])
 
-    console.log('Check list user', listUsers)
+    // console.log('Check list user', listUsers)
 
     return (
-        <table id="tableManageUser">
+        <table id="tableManager">
             <tbody>
                 <tr className="uppercase">
                     <th>STT</th>

@@ -114,6 +114,14 @@
         "phderpassword": "Vui lòng nhập mật khẩu...",
         "phderrepassword": "Vui lòng nhập lại mật khẩu..."
     },
+    "tablespecialty": {
+        "title": "Quản lý chuyên khoa",
+        "name": "Tên chuyên khoa",
+        "daycreate": "Ngày tạo",
+        "dayupdate": "Ngày cập nhật",
+        "choose": "Tùy chọn",
+        "create": "Tạo mới"
+    },
     "createspecialty": {
         "titles": "Tạo chuyên khoa",
         "namespecialty": "Tên chuyên khoa",
@@ -121,6 +129,14 @@
         "upload": "Tải ảnh",
         "save": "Lưu",
         "phderspecialty": "Nhập tên chuyên khoa"
+    },
+    "tablenews": {
+        "title": "Quản lý bài đăng",
+        "name": "Tên bài đăng",
+        "daycreate": "Ngày tạo",
+        "dayupdate": "Ngày cập nhật",
+        "choose": "Tùy chọn",
+        "create": "Tạo mới"
     },
     "createnews": {
         "titles": "Tạo bài đăng",
