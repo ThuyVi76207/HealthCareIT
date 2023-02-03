@@ -13,8 +13,14 @@ const createNewSpecialty = (data) => {
     return axiosClient.post(`/api/create-new-specialty`, data)
 }
 
+//News
+const createNews = (data) => {
+    return axiosClient.post(`/api/create-news`, data)
+}
+
 export {
     getAllUsers,
     createNewUserService,
     createNewSpecialty,
+    createNews,
 }

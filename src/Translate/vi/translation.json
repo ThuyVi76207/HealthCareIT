@@ -119,7 +119,15 @@
         "namespecialty": "Tên chuyên khoa",
         "imgspecialty": "Ảnh chuyên khoa",
         "upload": "Tải ảnh",
-        "save": "Save",
+        "save": "Lưu",
         "phderspecialty": "Nhập tên chuyên khoa"
+    },
+    "createnews": {
+        "titles": "Tạo bài đăng",
+        "namenews": "Tên bài đăng",
+        "imgnews": "Ảnh bài đăng",
+        "upload": "Tải ảnh",
+        "save": "Lưu",
+        "phdernews": "Nhập tên bài đăng"
     }
 }

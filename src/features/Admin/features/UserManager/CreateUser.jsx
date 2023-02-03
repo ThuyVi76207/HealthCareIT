@@ -154,6 +154,7 @@ const CreateUser = ({ t }) => {
         setPassword('')
         setRePassword('')
         setPhoneNumber('')
+        setAddress('');
     }
     const createNewUser = async () => {
         if (!isValidated()) return srollToInput();
@@ -171,26 +172,23 @@ const CreateUser = ({ t }) => {
             avatar: showImg,
         };
 
-        console.log('Check body', data)
+        // console.log('Check body', data)
         setLoading(true);
         try {
             let res = await createNewUserService(data);
-            console.log('Check results', res)
+            // console.log('Check results', res)
             if (res && res.errCode === 0) {
                 dispatch(addSuccessMessage({ title: "Tạo thành công", content: "Thêm thành công tài khoản người dùng" }));
                 srollToInput();
-                handleResetForm();
             } else if (res && res.errCode === 1) {
-                dispatch(addWarningMessage({ title: "Tài khoản đã tồn tại", content: "Vui lòng nhập email mới!!!" }))
-                setLoading(false);
-                handleResetForm()
-            } else {
-                dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
-                setLoading(false);
-                handleResetForm()
+                dispatch(addWarningMessage({ title: "Tài khoản đã tồn tại", content: "Vui lòng nhập email mới!!!" }));
+                srollToInput();
             }
             setLoading(false);
+            handleResetForm();
         } catch (error) {
+            dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
+            setLoading(false);
             console.log("Error create a new user", error);
         }
     }
@@ -372,9 +370,9 @@ const CreateUser = ({ t }) => {
                     </button>
                     {showImg && <img src={showImg} className="w-[120px] h-[120px] mb-4" alt="" />}
                 </div>
-                <button onClick={handleCreateUserOnClick} className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2 mx-12  rounded-[5px]">{t('createuser.save')}</button>
-
             </form>
+
+            <button onClick={handleCreateUserOnClick} className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2 mx-12  rounded-[5px]">{t('createuser.save')}</button>
 
         </ManagerLayout>
     )

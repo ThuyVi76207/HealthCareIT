@@ -1,6 +1,7 @@
 
 import Menu from "../components/Menu/Menu";
 import NavbarManager from "../components/Navbar/NavbarManager";
+import 'react-markdown-editor-lite/lib/index.css';
 
 const ManagerLayout = ({ children }) => {
     return (
