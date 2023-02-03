@@ -145,5 +145,13 @@
         "upload": "Upload Image",
         "save": "Save",
         "phdernews": "Enter the name of the news"
+    },
+    "tabledoctor": {
+        "title": "Doctor Management",
+        "name": "First and last name",
+        "address": "Address",
+        "phone": "Phone",
+        "choose": "Action",
+        "addinfor": "Add Information"
     }
 }

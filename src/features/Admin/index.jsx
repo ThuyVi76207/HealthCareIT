@@ -1,4 +1,5 @@
 import NotFound from "components/NotFound";
+import AddInforDoctor from "./features/DoctorManager/AddInforDoctor";
 import CreateNews from "./features/NewsManager/CreateNews";
 import CreateSpecialty from "./features/SpecialtyManager/CreateSpecialty";
 import CreateUser from "./features/UserManager/CreateUser";
@@ -21,6 +22,8 @@ function HealthManager() {
                 <Route exact path="/usermanager/create" element={<CreateUser />}></Route>
 
                 <Route exact path="/doctormanager" element={<DoctorManager />}></Route>
+                <Route exact path="/doctormanager/add-information-doctor" element={<AddInforDoctor />}></Route>
+
                 <Route exact path="/planmanager" element={<PlanManager />}></Route>
                 <Route exact path="/specialtymanager" element={<SpecialtyManager />}></Route>
                 <Route exact path="/specialtymanager/create" element={<CreateSpecialty />}></Route>

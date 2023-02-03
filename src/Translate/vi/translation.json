@@ -145,5 +145,13 @@
         "upload": "Tải ảnh",
         "save": "Lưu",
         "phdernews": "Nhập tên bài đăng"
+    },
+    "tabledoctor": {
+        "title": "Quản lý bác sĩ",
+        "name": "Họ và tên",
+        "address": "Địa chỉ",
+        "phone": "Số điện thoại",
+        "choose": "Tùy chọn",
+        "addinfor": "Thêm thông tin"
     }
 }
