@@ -18,9 +18,15 @@ const createNews = (data) => {
     return axiosClient.post(`/api/create-news`, data)
 }
 
+//Doctor
+const getAllDoctors = () => {
+    return axiosClient.get(`/api/get-all-doctors`)
+}
+
 export {
     getAllUsers,
     createNewUserService,
     createNewSpecialty,
     createNews,
+    getAllDoctors,
 }
