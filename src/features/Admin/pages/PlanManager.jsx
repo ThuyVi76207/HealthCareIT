@@ -1,9 +1,10 @@
+import AddPlan from "../features/PlanManager/AddPlan";
 import ManagerLayout from "../layouts/ManagerLayout";
 
 const PlanManager = () => {
     return (
         <ManagerLayout>
-            <div>PlanManager</div>
+            <AddPlan />
         </ManagerLayout>
     )
 }
