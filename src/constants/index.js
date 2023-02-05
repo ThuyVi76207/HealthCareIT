@@ -23,8 +23,15 @@ export const PRICES_OPTIONS = [
     { value: 'PRI1', label: { vi: '200000', en: '10' } },
     { value: 'PRI2', label: { vi: '250000', en: '15' } },
     { value: 'PRI3', label: { vi: '300000', en: '20' } },
-    { value: 'PRI4', label: { vi: '3500000', en: '25' } },
+    { value: 'PRI4', label: { vi: '350000', en: '25' } },
     { value: 'PRI5', label: { vi: '400000', en: '30' } },
     { value: 'PRI6', label: { vi: '450000', en: '35' } },
     { value: 'PRI7', label: { vi: '500000', en: '40' } },
-]
+];
+
+export const CRUD_ACTIONS = {
+    CREATE: "CREATE",
+    EDIT: "EDIT",
+    DELETE: "DELETE",
+    READ: "READ"
+};

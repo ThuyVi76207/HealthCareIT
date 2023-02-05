@@ -48,12 +48,7 @@ function DoctorDetail({ t }) {
                 <div className="doctor-detail__head flex items-center">
                     <div className="w-[70%] mx-auto flex items-center">
                         <i className="text-[30px] text-[#fff] mt-1 mr-1"><ion-icon name="arrow-forward-outline"></ion-icon></i>
-                        {
-                            infoDoctor &&
-                            infoDoctor.Doctor_Infor &&
-                            infoDoctor.Doctor_Infor.note &&
-                            <h2 className="uppercase text-[20px] text-[#fff] font-bold">{infoDoctor.Doctor_Infor.note}</h2>
-                        }
+                        <h2 className="uppercase text-[22px] text-[#fff] font-bold">{t('detaildoctor.titles')}</h2>
                     </div>
                 </div>
 

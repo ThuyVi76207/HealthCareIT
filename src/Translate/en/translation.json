@@ -69,7 +69,8 @@
         "more": "See more"
     },
     "detaildoctor": {
-        "overview": "Overview"
+        "overview": "Overview",
+        "titles": "Detail Doctor"
     },
     "detailnews": {
         "createdat": "Created At: ",
@@ -165,10 +166,12 @@
         "city": "City",
         "nameclinic": "Hopitalty Name",
         "addresswork": "Address Hopitalty",
+        "note": "Note",
         "upload": "Upload Image",
         "save": "Save",
         "phderinforIntro": "Enter referral information...",
-        "phdernameclinic": "Enter hopitalty name...",
-        "phderaddresswork": "Enter address work..."
+        "phdernameclinic": "Enter the name of the hospital you work for...",
+        "phderaddresswork": "Enter address work...",
+        "phdernote": "Enter the note..."
     }
 }

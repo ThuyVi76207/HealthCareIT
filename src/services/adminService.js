@@ -22,6 +22,9 @@ const createNews = (data) => {
 const getAllDoctors = () => {
     return axiosClient.get(`/api/get-all-doctors`)
 }
+const saveDetailDoctorService = (data) => {
+    return axiosClient.post('/api/save-infor-doctors', data)
+}
 
 export {
     getAllUsers,
@@ -29,4 +32,5 @@ export {
     createNewSpecialty,
     createNews,
     getAllDoctors,
+    saveDetailDoctorService,
 }

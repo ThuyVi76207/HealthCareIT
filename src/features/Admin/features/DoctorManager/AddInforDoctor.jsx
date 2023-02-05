@@ -2,27 +2,39 @@ import { PRICES_OPTIONS } from "constants";
 import CommonInput from "features/Admin/components/Input/CommonInput";
 import ManagerLayout from "features/Admin/layouts/ManagerLayout";
 import { getFormattedPriceUSD, getFormattedPriceVND } from "function/formater";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { withNamespaces } from "react-i18next";
-import { useSelector } from "react-redux";
-import { getAllDoctors } from "services/adminService";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllDoctors, saveDetailDoctorService } from "services/adminService";
 import { getAllSpecialty, getSettingService } from "services/userService";
+import MarkdownIt from "markdown-it";
+import MdEditor from 'react-markdown-editor-lite';
+import { CRUD_ACTIONS } from "constants";
+import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
+import Loading from "components/Loading/loading";
+
+const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 const AddInforDoctor = ({ t }) => {
+    const formref = useRef(null);
+    const dispatch = useDispatch();
 
     const { language } = useSelector((state) => state.user) || {};
+    const [loading, setLoading] = useState(false);
 
     const [listDoctor, setListDoctor] = useState([]);
     const [selectedDoctor, setSelectedDoctor] = useState(0);
     const [description, setDescription] = useState("");
     const [selectedPrice, setSelectedPrice] = useState("PRI1");
-    const [selectedSpecialty, setSelectedSpecialty] = useState("");
+    const [selectedSpecialty, setSelectedSpecialty] = useState(0);
     const [listSpecialty, setListSpecialty] = useState([]);
     const [selectedProvince, setSelectedProvince] = useState("PRO2");
     const [listProvinces, setListProvinces] = useState([]);
     const [addressClinic, setAddressClinic] = useState("");
     const [nameClinic, setNameClinic] = useState("");
     const [note, setNote] = useState("");
+    const [descriptionMarkdown, setDescriptionMarkdown] = useState("");
+    const [descriptionHTML, setDescriptionHTML] = useState("");
 
     const [error, setError] = useState({
         selectedDoctor: '',
@@ -30,6 +42,7 @@ const AddInforDoctor = ({ t }) => {
         description: '',
         nameClinic: '',
         addressClinic: '',
+        descriptionMarkdown: '',
     });
 
     const isValidated = () => {
@@ -56,6 +69,11 @@ const AddInforDoctor = ({ t }) => {
             validated = false;
             _error.addressClinic = "Vui lòng nhập địa chỉ bệnh viện làm việc"
         }
+        if (descriptionMarkdown === "") {
+            validated = false;
+            _error.descriptionMarkdown = "Vui lòng nhập mô tả bác sĩ";
+        }
+
 
         setError(_error);
         return validated;
@@ -113,12 +131,78 @@ const AddInforDoctor = ({ t }) => {
         printProvince();
     }, []);
 
+    function handleEditorChange({ html, text }) {
+        setDescriptionHTML(html);
+        setDescriptionMarkdown(text);
+    }
+
+    const srollToInput = () => {
+        formref.current.scrollIntoView();
+    }
+
+    const handleResetForm = () => {
+        setSelectedDoctor(0);
+        setDescription('');
+        setSelectedSpecialty(0);
+        setNameClinic('');
+        setAddressClinic('');
+        setNote('');
+        setDescriptionMarkdown('');
+
+    }
+
+    const handleAddInforDoctorOnClick = () => {
+        if (loading) return;
+        saveInforDoctor();
+    }
+
+    const saveInforDoctor = async () => {
+        if (!isValidated()) return srollToInput();
+
+        let data = {
+            contentHTML: descriptionHTML,
+            contentMarkdown: descriptionMarkdown,
+            description: description,
+            doctorId: selectedDoctor,
+            action: CRUD_ACTIONS.CREATE,
+
+            selectedPayment: 'PAY2',//default payment is Paypal
+            selectedPrice: selectedPrice,
+            selectedProvince: selectedProvince,
+            selectedSpecialty: selectedSpecialty,
+            nameClinic: nameClinic,
+            addressClinic: addressClinic,
+            note: note,
+            specialtyId: selectedSpecialty,
+        }
+
+        console.log("check data", data);
+
+        try {
+            let res = await saveDetailDoctorService(data)
+            console.log("Check save doctor", res);
+            if (res && res.errCode === 0) {
+                dispatch(addSuccessMessage({ title: "Thêm thành công", content: "Thêm thành công thông tin bác sĩ" }));
+                srollToInput();
+            } else if (res && res.errCode === 1) {
+                dispatch(addWarningMessage({ title: "Thêm thất bại", content: "Vui lòng kiểm tra lại thông tin!!!" }));
+                srollToInput();
+            }
+            setLoading(false);
+            handleResetForm();
+        } catch (error) {
+            dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
+            setLoading(false);
+            console.log('Faild to add informations doctor', error)
+        }
+    }
 
     console.log("Check selected doctor", selectedDoctor)
     return (
         <ManagerLayout>
+            <Loading loading={loading} />
             <h2 className="text-center text-[25px] font-bold py-12">{t('addinfordoctor.titles')}</h2>
-            <form>
+            <form ref={formref}>
                 <div className="px-12 flex gap-[10%]">
                     <div className="mb-4 w-[25%]">
                         <label className="font-bold text-[20px]">{t('addinfordoctor.namedoctor')}</label>
@@ -254,7 +338,30 @@ const AddInforDoctor = ({ t }) => {
                         required
                     />
                 </div>
+                <div className='px-12 w-[50%] mb-6 mt-6'>
+                    <label className="font-bold text-[20px] inline-block">{t('addinfordoctor.note')}</label>
+                    <textarea className=' form-control block mt-2 w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300
+                                                 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                        rows="4"
+                        onChange={(e) => setNote(e.target.value)}
+                        value={note}
+                        placeholder={t('addinfordoctor.phdernote')}
+                    >
+                    </textarea>
+                </div>
+                <div className="px-12 mb-4">
+                    {error.descriptionMarkdown && <p className="text-red-600">{error.descriptionMarkdown}</p>}
+                    <MdEditor
+                        style={{ height: '500px', width: '100%' }}
+                        renderHTML={text => mdParser.render(text)}
+                        onChange={handleEditorChange}
+                        value={descriptionMarkdown}
+                    />
+                </div>
             </form>
+
+            <button onClick={handleAddInforDoctorOnClick} className="bg-[#003985] ml-12 text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2  rounded-[5px]">{t('createnews.save')}</button>
+
         </ManagerLayout>
     )
 }
