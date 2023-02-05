@@ -1,13 +1,15 @@
-import { TIMELINE_OPTIONS } from "constants";
 import { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next"
 import { useSelector } from "react-redux";
-import { getAllDoctors } from "services/adminService";
+import { getAllDoctors, saveBulkSchedudeDoctors } from "services/adminService";
 import ScheduleCommon from "./ScheduleCommon";
 import TimeLineCommon from "./TimeLineCommon";
 
 const AddPlan = ({ t }) => {
     const { language } = useSelector((state) => state.user) || {};
+    const { listTime } = useSelector((state) => state.timeranges) || {};
+
+    console.log('Check timer', listTime)
 
     const [listDoctor, setListDoctor] = useState([]);
     const [selectedDoctor, setSelectedDoctor] = useState(0);
@@ -47,6 +49,26 @@ const AddPlan = ({ t }) => {
         }
         getListDoctor();
     }, []);
+
+    const handleCreateScheduleOnClick = async () => {
+
+        let formatedDate = new Date(dateStartContract).getTime();
+        let result = [];
+        console.log('formatedDate', formatedDate);
+
+        let data = {
+            arrSchedule: result,
+            doctorId: selectedDoctor,
+            formatedDate: formatedDate
+        }
+
+        try {
+            let saveSchedule = await saveBulkSchedudeDoctors(data);
+
+        } catch (error) {
+            console.log('Faild to create schedule', error)
+        }
+    }
 
     return (
         <div>
@@ -93,11 +115,9 @@ const AddPlan = ({ t }) => {
                 <label className="font-bold text-[20px] mt-2">{t('addplan.choosehour')}</label>
                 <span className="text-red-600">*</span>
                 <TimeLineCommon
-                    rangeTime={TIMELINE_OPTIONS}
                     language={language}
-
-
                 />
+                <button onClick={handleCreateScheduleOnClick} className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2 mx-12  rounded-[5px]">{t('createuser.save')}</button>
             </div>
         </div>
     )
