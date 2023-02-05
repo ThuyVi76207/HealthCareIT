@@ -35,3 +35,14 @@ export const CRUD_ACTIONS = {
     DELETE: "DELETE",
     READ: "READ"
 };
+
+export const TIMELINE_OPTIONS = [
+    { value: 'T1', label: { vi: '8:00 - 9:00', en: '8:00 AM - 9:00 AM' } },
+    { value: 'T2', label: { vi: '9:00 - 10:00', en: '9:00 AM - 10:00 AM' } },
+    { value: 'T3', label: { vi: '10:00 - 11:00', en: '10:00 AM - 11:00 AM' } },
+    { value: 'T4', label: { vi: '11:00 - 12:00', en: '11:00 AM - 0:00 PM' } },
+    { value: 'T5', label: { vi: '13:00 - 14:00', en: '1:00 PM - 2:00 PM' } },
+    { value: 'T6', label: { vi: '14:00 - 15:00', en: '2:00 PM - 3:00 PM' } },
+    { value: 'T7', label: { vi: '15:00 - 16:00', en: '3:00 PM - 4:00 PM' } },
+    { value: 'T8', label: { vi: '16:00 - 17:00', en: '4:00 PM - 5:00 PM' } },
+];

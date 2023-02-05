@@ -173,5 +173,10 @@
         "phdernameclinic": "Enter the name of the hospital you work for...",
         "phderaddresswork": "Enter address work...",
         "phdernote": "Enter the note..."
+    },
+    "addplan": {
+        "titles": "Plan management",
+        "chooseday": "Choose Day",
+        "choosehour": "Choose Hour"
     }
 }

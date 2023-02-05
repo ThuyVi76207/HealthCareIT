@@ -173,5 +173,10 @@
         "phdernameclinic": "Nhập tên bệnh viện làm việc...",
         "phderaddresswork": "Nhập địa chỉ bệnh viện làm việc...",
         "phdernote": "Nhập ghi chú..."
+    },
+    "addplan": {
+        "titles": "Quản lý kế hoạch khám bệnh",
+        "chooseday": "Chọn ngày",
+        "choosehour": "Chọn giờ"
     }
 }
