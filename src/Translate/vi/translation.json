@@ -69,7 +69,8 @@
         "more": "Xem thêm"
     },
     "detaildoctor": {
-        "overview": "Thông tin bác sĩ"
+        "overview": "Thông tin bác sĩ",
+        "titles": "Chi tiết bác sĩ"
     },
     "detailnews": {
         "createdat": "Đã tạo lúc: ",
@@ -165,10 +166,12 @@
         "city": "Tỉnh thành",
         "nameclinic": "Tên bệnh viện",
         "addresswork": "Địa chỉ bệnh viện",
+        "note": "Ghi chú",
         "upload": "Tải ảnh",
         "save": "Lưu",
         "phderinforIntro": "Nhập thông tin giới thiệu...",
-        "phdernameclinic": "Nhập tên bệnh viện",
-        "phderaddresswork": "Nhập địa chỉ bệnh viện làm việc"
+        "phdernameclinic": "Nhập tên bệnh viện làm việc...",
+        "phderaddresswork": "Nhập địa chỉ bệnh viện làm việc...",
+        "phdernote": "Nhập ghi chú..."
     }
 }
