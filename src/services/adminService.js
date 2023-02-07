@@ -31,6 +31,14 @@ const deleteSpecialtyService = (id) => {
 const createNews = (data) => {
     return axiosClient.post(`/api/create-news`, data)
 }
+const deleteNewsService = (id) => {
+    return axiosClient.delete('/api/delete-news', {
+        data: {
+            id: id
+        }
+    });
+}
+
 
 //Doctor
 const getAllDoctors = () => {
@@ -55,4 +63,5 @@ export {
     saveBulkSchedudeDoctors,
     deleteUserService,
     deleteSpecialtyService,
+    deleteNewsService,
 }

@@ -24,7 +24,6 @@ const TableUser = ({ t }) => {
                     setListUsers(resUser.users);
                 }
             } catch (error) {
-                setLoading(false);
                 console.log('Faild get API get all user', error);
             }
         }
@@ -39,7 +38,7 @@ const TableUser = ({ t }) => {
             if (res && res.errCode === 0) {
                 dispatch(addSuccessMessage({ title: 'Xóa thành công', content: 'Đã xóa thành công người dùng!!!' }));
                 setReload(!reload);
-            } else if (res && res.errCode === 1) {
+            } else if (res && res.errCode === 2) {
                 dispatch(addWarningMessage({ title: 'Xóa không thành công', content: 'Vui lòng kiểm tra lại!!!' }));
             }
 
