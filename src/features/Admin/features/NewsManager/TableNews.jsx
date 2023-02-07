@@ -6,8 +6,11 @@ import { withNamespaces } from "react-i18next";
 import { convertDateToDateTime } from "function/formater";
 
 const TableNews = ({ t }) => {
+    const dispatch = useDispatch();
 
     const [listnews, setListNews] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [reload, setReload] = useState(false);
 
     useEffect(() => {
         const printNewsAll = async () => {
