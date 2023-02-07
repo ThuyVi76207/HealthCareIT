@@ -1,33 +1,63 @@
 import { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
-import { useSelector } from "react-redux";
-import { getAllUsers } from "services/adminService";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUserService, getAllUsers } from "services/adminService";
 import "features/Admin/components/StylesCommon/TableManagerStyles.scss";
+import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
+import Loading from "components/Loading/loading";
 
 const TableUser = ({ t }) => {
     const { language } = useSelector((state) => state.user) || {};
+    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
 
     const [listUsers, setListUsers] = useState([]);
+    const [reload, setReload] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         const printUser = async () => {
             try {
                 const resUser = await getAllUsers('ALL');
-                if (resUser && resUser.errCode === 0)
-                    setListUsers(resUser.users)
+                if (resUser && resUser.errCode === 0) {
+                    setLoading(false);
+                    setListUsers(resUser.users);
+                }
             } catch (error) {
-                console.log('Faild get API get all user', error)
+                setLoading(false);
+                console.log('Faild get API get all user', error);
             }
-
         }
 
         printUser();
-    }, [])
+    }, [reload]);
+
+    const handleDeleteUser = async (item) => {
+        setLoading(true);
+        try {
+            let res = await deleteUserService(item.id);
+            if (res && res.errCode === 0) {
+                dispatch(addSuccessMessage({ title: 'Xóa thành công', content: 'Đã xóa thành công người dùng!!!' }));
+                setReload(!reload);
+            } else if (res && res.errCode === 1) {
+                dispatch(addWarningMessage({ title: 'Xóa không thành công', content: 'Vui lòng kiểm tra lại!!!' }));
+            }
+
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
+            console.log('Faild api delete user', error);
+        }
+
+
+    }
 
     // console.log('Check list user', listUsers)
 
     return (
         <table id="tableManager">
+            {loading && <Loading loading={loading} />}
             <tbody>
                 <tr className="uppercase">
                     <th>STT</th>
@@ -52,10 +82,10 @@ const TableUser = ({ t }) => {
                                 <td>
                                     {/* <button className="btn-edit"
                                             onClick={() => this.handleEditUser(item)}
-                                        ><i className="fas fa-pencil-alt"></i></button>
-                                        <button className="btn-delete"
-                                            onClick={() => this.handleDeleteUser(item)}
-                                        ><i className="fas fa-trash"></i></button> */}
+                                        ><i className="fas fa-pencil-alt"></i></button> */}
+                                    <button className="btn-delete"
+                                        onClick={() => handleDeleteUser(item)}
+                                    ><i className="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                         )

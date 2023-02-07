@@ -148,13 +148,14 @@ const CreateUser = ({ t }) => {
         createNewUser();
     };
     const handleResetForm = () => {
-        setLastName('')
-        setFirstName('')
-        setEmail('')
-        setPassword('')
-        setRePassword('')
-        setPhoneNumber('')
+        setLastName('');
+        setFirstName('');
+        setEmail('');
+        setPassword('');
+        setRePassword('');
+        setPhoneNumber('');
         setAddress('');
+        setShowImg();
     }
     const createNewUser = async () => {
         if (!isValidated()) return srollToInput();
