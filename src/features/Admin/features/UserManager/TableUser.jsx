@@ -56,7 +56,7 @@ const TableUser = ({ t }) => {
 
     return (
         <table id="tableManager">
-            {loading && <Loading loading={loading} />}
+            <Loading loading={loading} />
             <tbody>
                 <tr className="uppercase">
                     <th>STT</th>

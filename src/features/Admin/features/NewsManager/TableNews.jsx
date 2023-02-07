@@ -5,6 +5,9 @@ import 'features/Admin/components/StylesCommon/TableManagerStyles.scss';
 import { withNamespaces } from "react-i18next";
 import { convertDateToDateTime } from "function/formater";
 import { useDispatch } from "react-redux";
+import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
+import { deleteNewsService } from "services/adminService";
+import Loading from "components/Loading/loading";
 
 const TableNews = ({ t }) => {
     const dispatch = useDispatch();
@@ -14,12 +17,14 @@ const TableNews = ({ t }) => {
     const [reload, setReload] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         const printNewsAll = async () => {
             try {
                 let res = await getAllNews();
                 if (res && res.errCode === 0) {
                     // console.log('Check api news: ', res.data);
                     setListNews(res.data);
+                    setLoading(false);
                 }
 
             } catch (error) {
@@ -28,10 +33,30 @@ const TableNews = ({ t }) => {
         }
 
         printNewsAll();
-    }, [])
+    }, [reload]);
+
+    const handleDeleteNews = async (item) => {
+        setLoading(true);
+        try {
+            let res = await deleteNewsService(item.id);
+            if (res && res.errCode === 0) {
+                dispatch(addSuccessMessage({ title: 'Xóa thành công', content: 'Đã xóa thành công bài đăng!!!' }))
+                setReload(!reload);
+            } else if (res && res.errCode === 2) {
+                dispatch(addWarningMessage({ title: 'Xóa không thành công', content: 'Vui lòng kiểm tra lại!!!' }))
+            }
+            setLoading(false);
+        } catch (err) {
+            setLoading(false);
+            dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
+            console.error('Faild api delete specialty', err);
+        }
+    }
+
 
     return (
         <table id="tableManager">
+            <Loading loading={loading} />
             <tbody>
                 <tr className="uppercase">
                     <th>STT</th>
@@ -50,7 +75,14 @@ const TableNews = ({ t }) => {
                                 <td>{item.name}</td>
                                 <td>{convertDateToDateTime(item.createdAt)}</td>
                                 <td>{convertDateToDateTime(item.updatedAt)}</td>
-                                <td></td>
+                                <td>
+                                    {/* <button className="btn-edit"
+                                            onClick={() => this.handleEditUser(item)}
+                                        ><i className="fas fa-pencil-alt"></i></button> */}
+                                    <button className="btn-delete"
+                                        onClick={() => handleDeleteNews(item)}
+                                    ><i className="fas fa-trash"></i></button>
+                                </td>
                             </tr>
                         )
                     })
