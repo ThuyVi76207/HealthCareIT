@@ -4,10 +4,14 @@ import { getAllNews } from "services/userService";
 import 'features/Admin/components/StylesCommon/TableManagerStyles.scss';
 import { withNamespaces } from "react-i18next";
 import { convertDateToDateTime } from "function/formater";
+import { useDispatch } from "react-redux";
 
 const TableNews = ({ t }) => {
+    const dispatch = useDispatch();
 
     const [listnews, setListNews] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [reload, setReload] = useState(false);
 
     useEffect(() => {
         const printNewsAll = async () => {
