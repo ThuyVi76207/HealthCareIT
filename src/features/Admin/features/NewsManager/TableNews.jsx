@@ -4,6 +4,7 @@ import { getAllNews } from "services/userService";
 import 'features/Admin/components/StylesCommon/TableManagerStyles.scss';
 import { withNamespaces } from "react-i18next";
 import { convertDateToDateTime } from "function/formater";
+import { useDispatch } from "react-redux";
 
 const TableNews = ({ t }) => {
     const dispatch = useDispatch();
