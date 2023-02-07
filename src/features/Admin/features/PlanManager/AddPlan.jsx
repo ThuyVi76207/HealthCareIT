@@ -1,20 +1,22 @@
-import { useEffect, useState } from "react";
-import { withNamespaces } from "react-i18next"
-import { useSelector } from "react-redux";
+import Loading from "components/Loading/loading";
+import { useEffect, useRef, useState } from "react";
+import { withNamespaces } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import { getAllDoctors, saveBulkSchedudeDoctors } from "services/adminService";
 import ScheduleCommon from "./ScheduleCommon";
 import TimeLineCommon from "./TimeLineCommon";
 
 const AddPlan = ({ t }) => {
+    const dispatch = useDispatch();
+    const formRef = useRef(null);
     const { language } = useSelector((state) => state.user) || {};
-    const { listTime } = useSelector((state) => state.timeranges) || {};
-
-    console.log('Check timer', listTime)
 
     const [listDoctor, setListDoctor] = useState([]);
     const [selectedDoctor, setSelectedDoctor] = useState(0);
-
-
+    const [listTime, setListTime] = useState([]);
+    const [loading, setloading] = useState(false);
+    // const [resetForm, setRessetForm] = useState(false);
 
     const [dateStartContract, setDateStartContract] = useState(
         new Date().toISOString().split("T")[0]
@@ -49,31 +51,78 @@ const AddPlan = ({ t }) => {
         }
         getListDoctor();
     }, []);
+    const srollToInput = () => {
+        formRef.current.scrollIntoView();
 
-    const handleCreateScheduleOnClick = async () => {
+    }
+    const handleCreateScheduleOnClick = () => {
+        if (loading) return;
+        CreateSchedule();
+    };
+
+    const handleResetForm = () => {
+        setSelectedDoctor(0);
+        // setRessetForm(true);
+    }
+
+    const CreateSchedule = async () => {
+        if (!isValidated()) return srollToInput();
 
         let formatedDate = new Date(dateStartContract).getTime();
         let result = [];
         console.log('formatedDate', formatedDate);
+
+        if (listTime && listTime.length > 0) {
+            let selectedTime = listTime.filter((time) => time.isSelected === true);
+            selectedTime && selectedTime.length > 0 && selectedTime.map((schedule) => {
+                let object = {};
+                object.doctorId = selectedDoctor;
+                object.date = formatedDate;
+                object.timeType = schedule.keyMap;
+                result.push(object);
+                return (
+                    <></>
+                )
+            })
+        }
 
         let data = {
             arrSchedule: result,
             doctorId: selectedDoctor,
             formatedDate: formatedDate
         }
-
+        setloading(true);
+        console.log('Check get data from', data)
         try {
             let saveSchedule = await saveBulkSchedudeDoctors(data);
+            console.log('Check save', saveSchedule);
+            if (saveSchedule && saveSchedule.errCode === 0) {
+                dispatch(addSuccessMessage({ title: 'Tạo thành công', content: 'Lưu thành công lịch làm việc của bác sĩ!!!' }));
+                srollToInput();
+            } else if (saveSchedule && saveSchedule.errCode === 1) {
+                dispatch(addWarningMessage({ title: 'Tạo không thành công', content: 'Vui lòng kiểm tra lại thông tin' }));
+                srollToInput();
+            }
 
+            setloading(false);
+            handleResetForm();
         } catch (error) {
-            console.log('Faild to create schedule', error)
+            dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
+            setloading(false);
+            console.log('Faild to create schedule', error);
         }
     }
 
+    const handleListTime = (listtime) => {
+        console.log('List time', listtime)
+        setListTime(listtime);
+    }
+
     return (
-        <div>
-            <form>
-                <h2 className="text-center text-[25px] font-bold py-12">{t('addplan.titles')}</h2>
+        <div className="h-full">
+            <Loading loading={loading} />
+            <h2 className="text-center text-[25px] font-bold py-12">{t('addplan.titles')}</h2>
+            <form ref={formRef}>
                 <div className="px-12 grid grid-cols-2 gap-[10%]">
                     <div className="mb-4">
                         <label className="font-bold text-[20px]">{t('addinfordoctor.namedoctor')}</label>
@@ -116,9 +165,12 @@ const AddPlan = ({ t }) => {
                 <span className="text-red-600">*</span>
                 <TimeLineCommon
                     language={language}
+                    updateList={handleListTime}
+                // resetForm={resetForm}
                 />
-                <button onClick={handleCreateScheduleOnClick} className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2 mx-12  rounded-[5px]">{t('createuser.save')}</button>
             </div>
+            <button onClick={handleCreateScheduleOnClick} className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-6 mx-12  rounded-[5px]">{t('createuser.save')}</button>
+
         </div>
     )
 }

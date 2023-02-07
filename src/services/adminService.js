@@ -7,10 +7,24 @@ const getAllUsers = (id) => {
 const createNewUserService = (data) => {
     return axiosClient.post('/api/create-users', data)
 }
+const deleteUserService = (id) => {
+    return axiosClient.delete('/api/delete-users', {
+        data: {
+            id: id
+        }
+    });
+}
 
 //Specialty
 const createNewSpecialty = (data) => {
     return axiosClient.post(`/api/create-new-specialty`, data)
+}
+const deleteSpecialtyService = (id) => {
+    return axiosClient.delete('/api/delete-specialty', {
+        data: {
+            id: id
+        }
+    });
 }
 
 //News
@@ -39,4 +53,6 @@ export {
     getAllDoctors,
     saveDetailDoctorService,
     saveBulkSchedudeDoctors,
+    deleteUserService,
+    deleteSpecialtyService,
 }

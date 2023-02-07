@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { getSettingService } from "services/userService";
-import { addTime } from "reducers/timelineSlice";
 
 const TimeLineCommon = ({
     language,
+    updateList,
+    // resetForm,
 }) => {
-    const dispatch = useDispatch();
 
     const [listTime, setListTime] = useState([]);
-    // const [selectedItem, setSelectedItem] = useState('');
-    // const [active, setActive] = useState(false);
+    // const [listReset, setListReset] = useState([]);
 
     const handleClickBtnTime = (time) => {
         let arrTime = listTime
@@ -22,15 +20,35 @@ const TimeLineCommon = ({
                 return item;
             })
             setListTime(arrTime);
-
-            console.log('List time', arrTime);
+            updateList(arrTime)
+            // console.log('List time', arrTime);
         }
-
-        arrTime = JSON.parse(JSON.stringify(arrTime));
-        dispatch(addTime(arrTime));
-
-
     }
+
+    // const getListTime = useCallback((listTime) => {
+
+    //     let arrReset = listTime
+    //     if (arrReset && arrReset.length > 0) {
+    //         arrReset = arrReset.map(item => {
+    //             if (item.isSelected === true) {
+    //                 item.isSelected = false
+    //             }
+    //             return item;
+    //         })
+
+    //     }
+    //     return arrReset;
+
+    // }, [])
+
+    // useEffect(() => {
+    //     if (resetForm) {
+    //         let arr = getListTime(listTime);
+    //         resetForm = false;
+    //         setListTime(arr);
+    //     }
+    // }, [resetForm, getListTime]);
+
 
     useEffect(() => {
         const getTime = async () => {
@@ -39,7 +57,6 @@ const TimeLineCommon = ({
                 let data = res.data;
                 if (data && data.length > 0) {
                     data = data.map(item => ({ ...item, isSelected: false }));
-
                 }
                 setListTime(data);
                 // console.log('get time', res)
@@ -50,11 +67,7 @@ const TimeLineCommon = ({
         getTime();
     }, []);
 
-    // useEffect(() => {
-    //     dispatch(addTime(listTime));
-    // }, [listTime]);
     console.log('get time', listTime);
-    // console.log('check item select:', selectedItem)
 
     return (
         <div className="grid grid-cols-4">
@@ -63,7 +76,7 @@ const TimeLineCommon = ({
                     // console.log('Check item1:', item)
                     return (
                         <button
-                            className={`border mt-4 mx-3 py-2 ${item.isSelected ? 'bg-yellow-300' : ''}  ${language === 'vi' ? 'min-w-[110px] ' : 'min-w-[150px]'}`}
+                            className={`border mt-4 mx-3 py-2 ${item.isSelected ? 'bg-yellow-300' : 'bg-white'}  ${language === 'vi' ? 'min-w-[110px] ' : 'min-w-[150px]'}`}
                             key={index}
                             onClick={() => handleClickBtnTime(item)}
                         >
