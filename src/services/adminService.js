@@ -41,6 +41,9 @@ const deleteNewsService = (id) => {
         }
     });
 }
+const editNewsService = (data) => {
+    return axiosClient.put('/api/edit-news', data)
+}
 
 
 //Doctor
@@ -68,4 +71,5 @@ export {
     deleteSpecialtyService,
     deleteNewsService,
     editUserService,
+    editNewsService,
 }

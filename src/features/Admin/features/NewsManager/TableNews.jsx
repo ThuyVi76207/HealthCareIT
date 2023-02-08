@@ -9,7 +9,7 @@ import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/
 import { deleteNewsService } from "services/adminService";
 import Loading from "components/Loading/loading";
 import { useNavigate } from "react-router-dom";
-import { addUser } from "reducers/edituserSlice";
+import { addInfor } from "reducers/editcommonSlice";
 
 const TableNews = ({ t }) => {
     const dispatch = useDispatch();
@@ -57,8 +57,8 @@ const TableNews = ({ t }) => {
     }
 
     const handleEditNews = (user) => {
-        dispatch(addUser(user));
-        navigate(`/manager/usermanager/edit/${user.id}`);
+        dispatch(addInfor(user));
+        navigate(`/manager/newsmanager/edit/${user.id}`);
     }
 
     return (
@@ -83,11 +83,11 @@ const TableNews = ({ t }) => {
                                     <td>{item.name}</td>
                                     <td>{convertDateToDateTime(item.createdAt)}</td>
                                     <td>{convertDateToDateTime(item.updatedAt)}</td>
-                                    <td>
-                                        {/* <button className="btn-edit"
-                                            onClick={() => this.handleEditUser(item)}
-                                        ><i className="fas fa-pencil-alt"></i></button> */}
-                                        <button className="btn-delete"
+                                    <td className="text-center">
+                                        <button className="mr-2 hover:text-orange-400"
+                                            onClick={() => handleEditNews(item)}
+                                        ><i className="fas fa-pencil-alt"></i></button>
+                                        <button className="hover:text-red-600"
                                             onClick={() => handleDeleteNews(item)}
                                         ><i className="fas fa-trash"></i></button>
                                     </td>

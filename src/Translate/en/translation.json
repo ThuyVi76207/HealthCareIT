@@ -134,6 +134,9 @@
         "save": "Save",
         "phderspecialty": "Enter the name of the specialty"
     },
+    "editnews": {
+        "titles": "Edit Information Specialty"
+    },
     "tablenews": {
         "title": "News Management",
         "name": "News Name",

@@ -21,14 +21,14 @@ const CreateEditUser = ({ t }) => {
     const formRef = useRef(null);
     const { id } = useParams();
     const isAddMode = !id;
-    console.log('Check mode', isAddMode)
+    // console.log('Check mode', isAddMode)
 
     const dispatch = useDispatch();
 
     const { language } = useSelector((state) => state.user) || {};
-    const useredit = useSelector((state) => state.edituser) || {};
+    const useredit = useSelector((state) => state.editcommon) || {};
 
-    console.log("Check your user", useredit);
+    // console.log("Check your user", useredit);
 
     const [error, setError] = useState({
         lastName: "",
