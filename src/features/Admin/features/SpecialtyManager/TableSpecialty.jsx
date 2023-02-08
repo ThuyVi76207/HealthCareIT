@@ -51,41 +51,48 @@ const TableSpecialty = ({ t }) => {
         }
     }
 
-    return (
-        <table id="tableManager">
-            <Loading loading={loading} />
-            <tbody>
-                <tr className="uppercase">
-                    <th>STT</th>
-                    <th>{t('tablespecialty.name')}</th>
-                    <th>{t('tablespecialty.daycreate')}</th>
-                    <th>{t('tablespecialty.dayupdate')}</th>
-                    <th>{t('tablespecialty.choose')}</th>
-                </tr>
+    // const handleEditUser = (itemuser) => {
+    //     user = itemuser;
+    // }
 
-                {
-                    listspecialty && listspecialty.length > 0 &&
-                    listspecialty.map((item, index) => {
-                        return (
-                            <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{item.name}</td>
-                                <td>{convertDateToDateTime(item.createdAt)}</td>
-                                <td>{convertDateToDateTime(item.updatedAt)}</td>
-                                <td>
-                                    {/* <button className="btn-edit"
-                                            onClick={() => this.handleEditUser(item)}
-                                        ><i className="fas fa-pencil-alt"></i></button> */}
-                                    <button className="btn-delete"
-                                        onClick={() => handleDeleteSpecialty(item)}
-                                    ><i className="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                        )
-                    })
-                }
-            </tbody>
-        </table>
+    return (
+        <>
+            <Loading loading={loading} />
+            <table id="tableManager">
+                <tbody>
+                    <tr className="uppercase">
+                        <th>STT</th>
+                        <th>{t('tablespecialty.name')}</th>
+                        <th>{t('tablespecialty.daycreate')}</th>
+                        <th>{t('tablespecialty.dayupdate')}</th>
+                        <th>{t('tablespecialty.choose')}</th>
+                    </tr>
+
+                    {
+                        listspecialty && listspecialty.length > 0 &&
+                        listspecialty.map((item, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td>{item.name}</td>
+                                    <td>{convertDateToDateTime(item.createdAt)}</td>
+                                    <td>{convertDateToDateTime(item.updatedAt)}</td>
+                                    <td>
+                                        {/* <button className=""
+                                        onClick={() => handleEditUser(item)}
+                                    ><i className="fas fa-pencil-alt"></i></button> */}
+                                        <button className=""
+                                            onClick={() => handleDeleteSpecialty(item)}
+                                        ><i className="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
+        </>
+
     )
 }
 

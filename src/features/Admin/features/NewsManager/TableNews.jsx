@@ -8,9 +8,12 @@ import { useDispatch } from "react-redux";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import { deleteNewsService } from "services/adminService";
 import Loading from "components/Loading/loading";
+import { useNavigate } from "react-router-dom";
+import { addUser } from "reducers/edituserSlice";
 
 const TableNews = ({ t }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [listnews, setListNews] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -53,42 +56,49 @@ const TableNews = ({ t }) => {
         }
     }
 
+    const handleEditNews = (user) => {
+        dispatch(addUser(user));
+        navigate(`/manager/usermanager/edit/${user.id}`);
+    }
 
     return (
-        <table id="tableManager">
+        <>
             <Loading loading={loading} />
-            <tbody>
-                <tr className="uppercase">
-                    <th>STT</th>
-                    <th>{t('tablenews.name')}</th>
-                    <th>{t('tablenews.daycreate')}</th>
-                    <th>{t('tablenews.dayupdate')}</th>
-                    <th>{t('tablenews.choose')}</th>
-                </tr>
+            <table id="tableManager">
+                <tbody>
+                    <tr className="uppercase">
+                        <th>STT</th>
+                        <th>{t('tablenews.name')}</th>
+                        <th>{t('tablenews.daycreate')}</th>
+                        <th>{t('tablenews.dayupdate')}</th>
+                        <th>{t('tablenews.choose')}</th>
+                    </tr>
 
-                {
-                    listnews && listnews.length > 0 &&
-                    listnews.map((item, index) => {
-                        return (
-                            <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{item.name}</td>
-                                <td>{convertDateToDateTime(item.createdAt)}</td>
-                                <td>{convertDateToDateTime(item.updatedAt)}</td>
-                                <td>
-                                    {/* <button className="btn-edit"
+                    {
+                        listnews && listnews.length > 0 &&
+                        listnews.map((item, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td>{item.name}</td>
+                                    <td>{convertDateToDateTime(item.createdAt)}</td>
+                                    <td>{convertDateToDateTime(item.updatedAt)}</td>
+                                    <td>
+                                        {/* <button className="btn-edit"
                                             onClick={() => this.handleEditUser(item)}
                                         ><i className="fas fa-pencil-alt"></i></button> */}
-                                    <button className="btn-delete"
-                                        onClick={() => handleDeleteNews(item)}
-                                    ><i className="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                        )
-                    })
-                }
-            </tbody>
-        </table>
+                                        <button className="btn-delete"
+                                            onClick={() => handleDeleteNews(item)}
+                                        ><i className="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
+        </>
+
     )
 }
 

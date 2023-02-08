@@ -1,8 +1,8 @@
 import NotFound from "components/NotFound";
 import AddInforDoctor from "./features/DoctorManager/AddInforDoctor";
-import CreateNews from "./features/NewsManager/CreateNews";
+import CreateEditNews from "./features/NewsManager/CreateEditNews";
 import CreateSpecialty from "./features/SpecialtyManager/CreateSpecialty";
-import CreateUser from "./features/UserManager/CreateUser";
+import CreateEditUser from "./features/UserManager/CreateEditUser";
 import DoctorManager from "./pages/DoctorManager";
 import HomeManager from "./pages/HomeManager";
 import NewsManager from "./pages/NewsManager";
@@ -19,7 +19,8 @@ function HealthManager() {
                 <Route exact path="/" element={<HomeManager />}></Route>
 
                 <Route exact path="/usermanager" element={<UserManager />}></Route>
-                <Route exact path="/usermanager/create" element={<CreateUser />}></Route>
+                <Route exact path="/usermanager/create" element={<CreateEditUser />}></Route>
+                <Route exact path="/usermanager/edit/:id" element={<CreateEditUser />}></Route>
 
                 <Route exact path="/doctormanager" element={<DoctorManager />}></Route>
                 <Route exact path="/doctormanager/add-information-doctor" element={<AddInforDoctor />}></Route>
@@ -28,8 +29,11 @@ function HealthManager() {
                 <Route exact path="/specialtymanager" element={<SpecialtyManager />}></Route>
                 <Route exact path="/specialtymanager/create" element={<CreateSpecialty />}></Route>
 
+
                 <Route exact path="/newsmanager" element={<NewsManager />}></Route>
-                <Route exact path="/newsmanager/create" element={<CreateNews />}></Route>
+                <Route exact path="/newsmanager/create" element={<CreateEditNews />}></Route>
+                <Route exact path="/newsmanager/edit/:id" element={<CreateEditNews />}></Route>
+
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
         </>

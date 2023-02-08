@@ -10,7 +10,7 @@ import ManagerLayout from "features/Admin/layouts/ManagerLayout";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
-const CreateNews = ({ t }) => {
+const CreateEditNews = ({ t }) => {
     const dispatch = useDispatch();
     const formref = useRef(null);
 
@@ -166,4 +166,4 @@ const CreateNews = ({ t }) => {
     )
 }
 
-export default withNamespaces()(CreateNews);
+export default withNamespaces()(CreateEditNews);
