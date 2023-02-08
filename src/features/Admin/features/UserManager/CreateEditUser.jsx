@@ -1,27 +1,34 @@
 
-import Loading from "components/Loading/loading";
+import ManagerLayout from "features/Admin/layouts/ManagerLayout";
+import { isPasswordStrength, isValidEmail, isValidPhoneNumber } from "function/formater";
+import { useMemo, useRef, useState } from "react";
+import { withNamespaces } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
+import { createNewUserService, editUserService } from "services/adminService";
 import { TITLE_OPTIONS } from "constants";
 import { ROLE_OPTIONS } from "constants";
 import { GENDER_OPTIONS } from "constants";
 import CommonInput from "features/Admin/components/Input/CommonInput";
 import EmailInput from "features/Admin/components/Input/EmailInput";
-import PasswordInput from "features/Admin/components/Input/PasswordInput";
 import PhoneInput from "features/Admin/components/Input/PhoneInput";
-import ManagerLayout from "features/Admin/layouts/ManagerLayout";
-import { isPasswordStrength, isValidEmail, isValidPhoneNumber } from "function/formater";
-import { useRef } from "react";
-import { useState } from "react";
-import { withNamespaces } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
-import { createNewUserService } from "services/adminService";
+import PasswordInput from "features/Admin/components/Input/PasswordInput";
+import Loading from "components/Loading/loading";
+import { Buffer } from "buffer";
+import { useParams } from "react-router-dom";
 
-const CreateUser = ({ t }) => {
+const CreateEditUser = ({ t }) => {
     const formRef = useRef(null);
+    const { id } = useParams();
+    const isAddMode = !id;
+    console.log('Check mode', isAddMode)
 
     const dispatch = useDispatch();
 
     const { language } = useSelector((state) => state.user) || {};
+    const useredit = useSelector((state) => state.edituser) || {};
+
+    console.log("Check your user", useredit);
 
     const [error, setError] = useState({
         lastName: "",
@@ -140,7 +147,6 @@ const CreateUser = ({ t }) => {
 
     const srollToInput = () => {
         formRef.current.scrollIntoView();
-
     }
 
     const handleCreateUserOnClick = () => {
@@ -173,7 +179,6 @@ const CreateUser = ({ t }) => {
             avatar: showImg,
         };
 
-        // console.log('Check body', data)
         setLoading(true);
         try {
             let res = await createNewUserService(data);
@@ -194,13 +199,69 @@ const CreateUser = ({ t }) => {
         }
     }
 
+    useMemo(() => {
+        if (isAddMode) return;
 
+        let imageBase64 = Buffer.from(useredit.image, 'base64').toString('binary');
+
+        setLastName(useredit.lastName);
+        setFirstName(useredit.firstName);
+        setEmail(useredit.email);
+        setPhoneNumber(useredit.phonenumber);
+        setAddress(useredit.address);
+        setShowImg(imageBase64);
+        setSelectedGender(useredit.gender);
+        setSelectedTitle(useredit.positionId);
+        setSelectedRole(useredit.roleId);
+
+    }, [isAddMode, useredit.lastName, useredit.firstName, useredit.email, useredit.phonenumber, useredit.address, useredit.image, useredit.gender, useredit.positionId, useredit.roleId])
+
+    const handleEditUser = () => {
+        if (loading) return;
+        editUser();
+    }
+
+    const editUser = async () => {
+        if (!isValidated()) return srollToInput();
+
+        let data = {
+            id: id,
+            email: email,
+            password: password,
+            firstName: firstName,
+            lastName: lastName,
+            address: address,
+            gender: selectedGender,
+            phonenumber: phoneNumber,
+            roleId: selectedRole,
+            positionId: selectedTitle,
+            avatar: showImg,
+        }
+        setLoading(true);
+        try {
+            let res = await editUserService(data);
+            console.log('Check results edit', res)
+            if (res && res.errCode === 0) {
+                dispatch(addSuccessMessage({ title: "Lưu thành công", content: "Sửa thành công thông tin tài khoản người dùng" }));
+                srollToInput();
+            } else if (res && res.errCode === 2) {
+                dispatch(addWarningMessage({ title: "Tài khoản không tồn tại", content: "Vui lòng kiểm tra lại!!!" }));
+                srollToInput();
+            }
+            setLoading(false);
+            handleResetForm();
+        } catch (err) {
+            dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
+            setLoading(false);
+            console.log("Faild to edit user", err);
+        }
+    }
 
 
     return (
         <ManagerLayout>
             <Loading loading={loading} />
-            <h2 className="text-center text-[25px] font-bold py-12">{t('createuser.titles')}</h2>
+            <h2 className="text-center text-[25px] font-bold py-12">{`${isAddMode ? t('createuser.titles') : t('edituser.titles')}`}</h2>
             <form ref={formRef} >
                 <div className="px-12 grid grid-cols-2 gap-[10%]">
                     <CommonInput
@@ -243,7 +304,6 @@ const CreateUser = ({ t }) => {
                         error={error.phoneNumber}
                         required
                     />
-
                 </div>
 
                 <div className="px-12 flex gap-[10%] mt-7">
@@ -373,10 +433,19 @@ const CreateUser = ({ t }) => {
                 </div>
             </form>
 
-            <button onClick={handleCreateUserOnClick} className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2 mx-12  rounded-[5px]">{t('createuser.save')}</button>
+            {
+                isAddMode
+                    ?
+                    <button onClick={handleCreateUserOnClick} className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2 mx-12  rounded-[5px]">{t('createuser.save')}</button>
+
+                    :
+                    <button onClick={handleEditUser} className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2 mx-12  rounded-[5px]">{t('createuser.save')}</button>
+
+            }
+
 
         </ManagerLayout>
     )
 }
 
-export default withNamespaces()(CreateUser);
+export default withNamespaces()(CreateEditUser);

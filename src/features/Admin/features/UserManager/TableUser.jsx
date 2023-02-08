@@ -5,6 +5,8 @@ import { deleteUserService, getAllUsers } from "services/adminService";
 import "features/Admin/components/StylesCommon/TableManagerStyles.scss";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import Loading from "components/Loading/loading";
+import { addUser } from "reducers/edituserSlice";
+import { useNavigate } from "react-router-dom";
 
 const TableUser = ({ t }) => {
     const { language } = useSelector((state) => state.user) || {};
@@ -13,6 +15,7 @@ const TableUser = ({ t }) => {
 
     const [listUsers, setListUsers] = useState([]);
     const [reload, setReload] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         setLoading(true);
@@ -54,44 +57,52 @@ const TableUser = ({ t }) => {
 
     // console.log('Check list user', listUsers)
 
-    return (
-        <table id="tableManager">
-            <Loading loading={loading} />
-            <tbody>
-                <tr className="uppercase">
-                    <th>STT</th>
-                    <th>{t('tableuser.name')}</th>
-                    <th>Email</th>
-                    <th>{t('tableuser.address')}</th>
-                    <th>{t('tableuser.phone')}</th>
-                    <th>{t('tableuser.choose')}</th>
-                </tr>
-                {listUsers && listUsers.length > 0 &&
-                    listUsers.map((item, index) => {
+    const handleEditUser = (user) => {
+        dispatch(addUser(user));
+        navigate(`/manager/usermanager/edit/${user.id}`);
+    }
 
-                        let nameVi = `${item.lastName} ${item.firstName}`;
-                        let nameEn = ` ${item.firstName} ${item.lastName} `;
-                        return (
-                            <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{language === 'vi' ? nameVi : nameEn}</td>
-                                <td>{item.email}</td>
-                                <td>{item.address}</td>
-                                <td>{item.phonenumber}</td>
-                                <td>
-                                    {/* <button className="btn-edit"
-                                            onClick={() => this.handleEditUser(item)}
-                                        ><i className="fas fa-pencil-alt"></i></button> */}
-                                    <button className="btn-delete"
-                                        onClick={() => handleDeleteUser(item)}
-                                    ><i className="fas fa-trash"></i></button>
-                                </td>
-                            </tr>
-                        )
-                    })
-                }
-            </tbody>
-        </table>
+    return (
+        <>
+            <Loading loading={loading} />
+            <table id="tableManager">
+                <tbody>
+                    <tr className="uppercase">
+                        <th>STT</th>
+                        <th>{t('tableuser.name')}</th>
+                        <th>Email</th>
+                        <th>{t('tableuser.address')}</th>
+                        <th>{t('tableuser.phone')}</th>
+                        <th>{t('tableuser.choose')}</th>
+                    </tr>
+                    {listUsers && listUsers.length > 0 &&
+                        listUsers.map((item, index) => {
+
+                            let nameVi = `${item.lastName} ${item.firstName}`;
+                            let nameEn = ` ${item.firstName} ${item.lastName} `;
+                            return (
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td>{language === 'vi' ? nameVi : nameEn}</td>
+                                    <td>{item.email}</td>
+                                    <td>{item.address}</td>
+                                    <td>{item.phonenumber}</td>
+                                    <td className="text-center">
+                                        <button className="mr-2 hover:text-orange-400"
+                                            onClick={() => handleEditUser(item)}
+                                        ><i className="fas fa-pencil-alt"></i></button>
+                                        <button className="hover:text-red-600"
+                                            onClick={() => handleDeleteUser(item)}
+                                        ><i className="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
+        </>
+
     )
 }
 

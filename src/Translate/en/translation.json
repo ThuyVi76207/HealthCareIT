@@ -115,6 +115,9 @@
         "phderpassword": "Please enter a password...",
         "phderrepassword": "Please re-enter password..."
     },
+    "edituser": {
+        "titles": "Edit Information User"
+    },
     "tablespecialty": {
         "title": "Specialty Management",
         "name": "Specialist Name",

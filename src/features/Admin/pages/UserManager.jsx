@@ -5,11 +5,14 @@ import ManagerLayout from "../layouts/ManagerLayout";
 
 const UserManager = ({ t }) => {
 
+
+
     const navigate = useNavigate();
 
     const handleNavigateCreateUser = () => {
         navigate(`/manager/usermanager/create`)
     }
+
 
     return (
         <ManagerLayout>
