@@ -15,14 +15,14 @@ import PhoneInput from "features/Admin/components/Input/PhoneInput";
 import PasswordInput from "features/Admin/components/Input/PasswordInput";
 import Loading from "components/Loading/loading";
 import { Buffer } from "buffer";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const CreateEditUser = ({ t }) => {
     const formRef = useRef(null);
     const { id } = useParams();
     const isAddMode = !id;
     // console.log('Check mode', isAddMode)
-
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const { language } = useSelector((state) => state.user) || {};
@@ -249,7 +249,7 @@ const CreateEditUser = ({ t }) => {
                 srollToInput();
             }
             setLoading(false);
-            handleResetForm();
+            navigate(`/manager/usermanager`);
         } catch (err) {
             dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
             setLoading(false);

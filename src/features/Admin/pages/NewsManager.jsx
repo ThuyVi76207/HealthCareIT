@@ -7,8 +7,9 @@ const NewsManager = ({ t }) => {
     const navigate = useNavigate();
 
     const handleNavigateCreateNews = () => {
-        navigate(`/manager/newsmanager/create`)
+        navigate(`/manager/newsmanager/create`);
     }
+
     return (
         <ManagerLayout>
             <div className="w-[95%] mx-auto py-3">

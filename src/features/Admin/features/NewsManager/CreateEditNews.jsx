@@ -7,7 +7,7 @@ import { createNews, editNewsService } from "services/adminService";
 import MarkdownIt from "markdown-it";
 import MdEditor from 'react-markdown-editor-lite';
 import ManagerLayout from "features/Admin/layouts/ManagerLayout";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -15,6 +15,7 @@ const CreateEditNews = ({ t }) => {
     const { id } = useParams();
     const isAddMode = !id;
     console.log("Check mode", isAddMode);
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const editnews = useSelector((state) => state.editcommon) || {};
@@ -154,14 +155,14 @@ const CreateEditNews = ({ t }) => {
             let res = await editNewsService(data);
             console.log('Check results edit', res)
             if (res && res.errCode === 0) {
-                dispatch(addSuccessMessage({ title: "Lưu thành công", content: "Sửa thành công thông tin tài khoản người dùng" }));
+                dispatch(addSuccessMessage({ title: "Lưu thành công", content: "Sửa thành công thông tin bài đăng" }));
                 srollToInput();
             } else if (res && res.errCode === 2) {
-                dispatch(addWarningMessage({ title: "Tài khoản không tồn tại", content: "Vui lòng kiểm tra lại!!!" }));
+                dispatch(addWarningMessage({ title: "Bài đăng không tồn tại", content: "Vui lòng kiểm tra lại!!!" }));
                 srollToInput();
             }
             setLoading(false);
-            handleResetForm();
+            navigate(`/manager/newsmanager`);
         } catch (err) {
             dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
             setLoading(false);

@@ -29,6 +29,10 @@ const deleteSpecialtyService = (id) => {
         }
     });
 }
+const editSpecialtyService = (data) => {
+    return axiosClient.put('/api/edit-specialty', data)
+}
+
 
 //News
 const createNews = (data) => {
@@ -72,4 +76,5 @@ export {
     deleteNewsService,
     editUserService,
     editNewsService,
+    editSpecialtyService,
 }
