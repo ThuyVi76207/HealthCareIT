@@ -2,11 +2,11 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {}
 
-const edituserSlice = createSlice({
-    name: "edituser",
+const editcommonSlice = createSlice({
+    name: "editcommon",
     initialState,
     reducers: {
-        addUser: (state, action) => {
+        addInfor: (state, action) => {
             state = action.payload;
             console.log('Check state', state);
             return state;
@@ -14,5 +14,5 @@ const edituserSlice = createSlice({
     }
 })
 
-export const { addUser } = edituserSlice.actions;
-export default edituserSlice.reducer;
+export const { addInfor } = editcommonSlice.actions;
+export default editcommonSlice.reducer;

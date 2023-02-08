@@ -5,8 +5,9 @@ import { deleteUserService, getAllUsers } from "services/adminService";
 import "features/Admin/components/StylesCommon/TableManagerStyles.scss";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import Loading from "components/Loading/loading";
-import { addUser } from "reducers/edituserSlice";
+
 import { useNavigate } from "react-router-dom";
+import { addInfor } from "reducers/editcommonSlice";
 
 const TableUser = ({ t }) => {
     const { language } = useSelector((state) => state.user) || {};
@@ -58,7 +59,7 @@ const TableUser = ({ t }) => {
     // console.log('Check list user', listUsers)
 
     const handleEditUser = (user) => {
-        dispatch(addUser(user));
+        dispatch(addInfor(user));
         navigate(`/manager/usermanager/edit/${user.id}`);
     }
 

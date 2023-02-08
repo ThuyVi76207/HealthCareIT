@@ -1,17 +1,24 @@
 import CommonInput from "features/Admin/components/Input/CommonInput";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { withNamespaces } from "react-i18next";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
-import { createNews } from "services/adminService";
+import { createNews, editNewsService } from "services/adminService";
 import MarkdownIt from "markdown-it";
 import MdEditor from 'react-markdown-editor-lite';
 import ManagerLayout from "features/Admin/layouts/ManagerLayout";
+import { useParams } from "react-router-dom";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 const CreateEditNews = ({ t }) => {
+    const { id } = useParams();
+    const isAddMode = !id;
+    console.log("Check mode", isAddMode);
+
     const dispatch = useDispatch();
+    const editnews = useSelector((state) => state.editcommon) || {};
+    console.log("Check your edit news", editnews);
     const formref = useRef(null);
 
     const [nameNews, setNameNews] = useState("");
@@ -117,9 +124,54 @@ const CreateEditNews = ({ t }) => {
         setDescriptionMarkdown(text);
     }
 
+    useMemo(() => {
+        if (isAddMode) return;
+
+        setNameNews(editnews.name);
+        setDescriptionMarkdown(editnews.descriptionMarkdown);
+        setImgNews(editnews.image);
+
+    }, [isAddMode, editnews.name, editnews.descriptionMarkdown, editnews.image]);
+
+    const handleEditNews = () => {
+        if (loading) return;
+        editNews();
+    }
+
+    const editNews = async () => {
+        if (!isValidated()) return srollToInput();
+
+        let data = {
+            id: id,
+            name: nameNews,
+            image: imgNews,
+            descriptionHTML: descriptionHTML,
+            descriptionMarkdown: descriptionMarkdown,
+        }
+
+        setLoading(true);
+        try {
+            let res = await editNewsService(data);
+            console.log('Check results edit', res)
+            if (res && res.errCode === 0) {
+                dispatch(addSuccessMessage({ title: "Lưu thành công", content: "Sửa thành công thông tin tài khoản người dùng" }));
+                srollToInput();
+            } else if (res && res.errCode === 2) {
+                dispatch(addWarningMessage({ title: "Tài khoản không tồn tại", content: "Vui lòng kiểm tra lại!!!" }));
+                srollToInput();
+            }
+            setLoading(false);
+            handleResetForm();
+        } catch (err) {
+            dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
+            setLoading(false);
+            console.log("Faild to edit user", err);
+        }
+    }
+
     return (
         <ManagerLayout>
-            <h2 className="text-center text-[25px] font-bold py-8">{t('createnews.titles')}</h2>
+            <h2 className="text-center text-[25px] font-bold py-8">{`${isAddMode ? t('createnews.titles') : t('editnews.titles')}`}</h2>
             <form ref={formref}>
                 <div className="px-12">
                     <div className="w-[30%] my-4">
@@ -159,8 +211,15 @@ const CreateEditNews = ({ t }) => {
                     </div>
                 </div>
             </form>
+            {
+                isAddMode
+                    ?
+                    <button onClick={handleCreateNewsOnClick} className="bg-[#003985] ml-12 text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2  rounded-[5px]">{t('createnews.save')}</button>
+                    :
+                    <button onClick={handleEditNews} className="bg-[#003985] ml-12 text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2  rounded-[5px]">{t('createnews.save')}</button>
 
-            <button onClick={handleCreateNewsOnClick} className="bg-[#003985] ml-12 text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2  rounded-[5px]">{t('createnews.save')}</button>
+            }
+
 
         </ManagerLayout>
     )
