@@ -134,8 +134,11 @@
         "save": "Lưu",
         "phderspecialty": "Nhập tên chuyên khoa"
     },
-    "editnews": {
+    "editspecialty": {
         "titles": "Sửa thông tin chuyên khoa"
+    },
+    "editnews": {
+        "titles": "Sửa thông tin bài đăng"
     },
     "tablenews": {
         "title": "Quản lý bài đăng",

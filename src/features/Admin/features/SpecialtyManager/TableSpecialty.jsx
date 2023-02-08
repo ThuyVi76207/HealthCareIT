@@ -7,8 +7,11 @@ import { deleteSpecialtyService } from "services/adminService";
 import { useDispatch } from "react-redux";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import Loading from "components/Loading/loading";
+import { addInfor } from "reducers/editcommonSlice";
+import { useNavigate } from "react-router-dom";
 
 const TableSpecialty = ({ t }) => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [listspecialty, setListSpecialty] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -51,9 +54,10 @@ const TableSpecialty = ({ t }) => {
         }
     }
 
-    // const handleEditUser = (itemuser) => {
-    //     user = itemuser;
-    // }
+    const handleEditSpecialty = (specialty) => {
+        dispatch(addInfor(specialty));
+        navigate(`/manager/specialtymanager/edit/${specialty.id}`);
+    }
 
     return (
         <>
@@ -77,11 +81,11 @@ const TableSpecialty = ({ t }) => {
                                     <td>{item.name}</td>
                                     <td>{convertDateToDateTime(item.createdAt)}</td>
                                     <td>{convertDateToDateTime(item.updatedAt)}</td>
-                                    <td>
-                                        {/* <button className=""
-                                        onClick={() => handleEditUser(item)}
-                                    ><i className="fas fa-pencil-alt"></i></button> */}
-                                        <button className=""
+                                    <td className="text-center">
+                                        <button className="mr-2 hover:text-orange-400"
+                                            onClick={() => handleEditSpecialty(item)}
+                                        ><i className="fas fa-pencil-alt"></i></button>
+                                        <button className="hover:text-red-600"
                                             onClick={() => handleDeleteSpecialty(item)}
                                         ><i className="fas fa-trash"></i></button>
                                     </td>

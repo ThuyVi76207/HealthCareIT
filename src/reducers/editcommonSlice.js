@@ -8,7 +8,7 @@ const editcommonSlice = createSlice({
     reducers: {
         addInfor: (state, action) => {
             state = action.payload;
-            console.log('Check state', state);
+            // console.log('Check state', state);
             return state;
         }
     }

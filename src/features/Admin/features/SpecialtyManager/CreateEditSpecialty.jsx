@@ -1,20 +1,26 @@
 import CommonInput from "features/Admin/components/Input/CommonInput";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import MarkdownIt from "markdown-it";
 import MdEditor from 'react-markdown-editor-lite';
 import { useRef } from "react";
 import Loading from "components/Loading/loading";
-import { createNewSpecialty } from "services/adminService";
-import { useDispatch } from "react-redux";
+import { createNewSpecialty, editSpecialtyService } from "services/adminService";
+import { useDispatch, useSelector } from "react-redux";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import ManagerLayout from "features/Admin/layouts/ManagerLayout";
+import { useNavigate, useParams } from "react-router-dom";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
-const CreateSpecialty = ({ t }) => {
+const CreateEditSpecialty = ({ t }) => {
+    const { id } = useParams();
+    const isAddMode = !id;
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
+    const editspecialty = useSelector((state) => state.editcommon) || {};
+    // console.log("Check your specialty", editspecialty)
 
     const formRef = useRef(null);
 
@@ -122,10 +128,54 @@ const CreateSpecialty = ({ t }) => {
         }
     }
 
+    useMemo(() => {
+        if (isAddMode) return;
+
+        setNameSpecialty(editspecialty.name);
+        setDescriptionMarkdown(editspecialty.descriptionMarkdown);
+        setShowImg(editspecialty.image);
+
+    }, [isAddMode, editspecialty.name, editspecialty.descriptionMarkdown, editspecialty.image])
+
+    const handleEditSpecialty = () => {
+        if (loading) return;
+        editSpecialty();
+    }
+
+    const editSpecialty = async () => {
+        if (!isValidated()) return srollToInput();
+
+        let data = {
+            id: id,
+            image: showImg,
+            name: nameSpecialty,
+            descriptionHTML: descriptionHTML,
+            descriptionMarkdown: descriptionMarkdown,
+        }
+
+        setloading(true);
+        try {
+            let res = await editSpecialtyService(data);
+            console.log('Check results edit', res)
+            if (res && res.errCode === 0) {
+                dispatch(addSuccessMessage({ title: "Lưu thành công", content: "Sửa thành công thông tin chuyên khoa" }));
+                srollToInput();
+            } else if (res && res.errCode === 2) {
+                dispatch(addWarningMessage({ title: "Chuyên khoa không tồn tại", content: "Vui lòng kiểm tra lại!!!" }));
+                srollToInput();
+            }
+            setloading(false);
+            navigate(`/manager/specialtymanager`);
+        } catch (err) {
+            dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
+            setloading(false);
+            console.log("Faild to edit user", err);
+        }
+    }
     return (
         <ManagerLayout>
             <Loading loading={loading} />
-            <h2 className="text-center text-[25px] font-bold py-8">{t('createspecialty.titles')}</h2>
+            <h2 className="text-center text-[25px] font-bold py-8">{`${isAddMode ? t('createspecialty.titles') : t('editspecialty.titles')}`}</h2>
             <form ref={formRef}>
                 <div className="px-12">
                     <div className="w-[30%] my-4">
@@ -167,11 +217,18 @@ const CreateSpecialty = ({ t }) => {
                     </div>
                 </div>
             </form>
+            {
+                isAddMode
+                    ?
+                    <button onClick={handleCreateSpecialtyOnClick} className="bg-[#003985] ml-12 text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2  rounded-[5px]">{t('createspecialty.save')}</button>
+                    :
+                    <button onClick={handleEditSpecialty} className="bg-[#003985] ml-12 text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2  rounded-[5px]">{t('createspecialty.save')}</button>
 
-            <button onClick={handleCreateSpecialtyOnClick} className="bg-[#003985] ml-12 text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2  rounded-[5px]">{t('createspecialty.save')}</button>
+            }
+
 
         </ManagerLayout>
     )
 }
 
-export default withNamespaces()(CreateSpecialty);
+export default withNamespaces()(CreateEditSpecialty);
