@@ -2,22 +2,28 @@ import { PRICES_OPTIONS } from "constants";
 import CommonInput from "features/Admin/components/Input/CommonInput";
 import ManagerLayout from "features/Admin/layouts/ManagerLayout";
 import { getFormattedPriceUSD, getFormattedPriceVND } from "function/formater";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllDoctors, saveDetailDoctorService } from "services/adminService";
-import { getAllSpecialty, getSettingService } from "services/userService";
+import { getAllSpecialty, getDetailInforDoctor, getSettingService } from "services/userService";
 import MarkdownIt from "markdown-it";
 import MdEditor from 'react-markdown-editor-lite';
 import { CRUD_ACTIONS } from "constants";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import Loading from "components/Loading/loading";
+import { useParams } from "react-router-dom";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
-const AddInforDoctor = ({ t }) => {
+const AddEditInforDoctor = ({ t }) => {
+    const { id } = useParams();
+    const isAddMode = !id;
+    console.log("Check mode", isAddMode);
+
     const formref = useRef(null);
     const dispatch = useDispatch();
+
 
     const { language } = useSelector((state) => state.user) || {};
     const [loading, setLoading] = useState(false);
@@ -84,7 +90,7 @@ const AddInforDoctor = ({ t }) => {
             try {
                 let res = await getAllDoctors();
                 if (res && res.errCode === 0) {
-                    console.log("Check list doctor", res.data);
+                    // console.log("Check list doctor", res.data);
                     setListDoctor(res.data);
                 }
             } catch (error) {
@@ -99,7 +105,7 @@ const AddInforDoctor = ({ t }) => {
             try {
                 let res = await getAllSpecialty();
                 if (res && res.errCode === 0) {
-                    console.log("Check list specialty", res.data);
+                    // console.log("Check list specialty", res.data);
                     setListSpecialty(res.data);
                 }
             } catch (error) {
@@ -132,8 +138,9 @@ const AddInforDoctor = ({ t }) => {
     }, []);
 
     function handleEditorChange({ html, text }) {
-        setDescriptionHTML(html);
         setDescriptionMarkdown(text);
+        setDescriptionHTML(html);
+
     }
 
     const srollToInput = () => {
@@ -148,7 +155,8 @@ const AddInforDoctor = ({ t }) => {
         setAddressClinic('');
         setNote('');
         setDescriptionMarkdown('');
-
+        setSelectedPrice('PRI1');
+        setSelectedProvince('PRO2');
     }
 
     const handleAddInforDoctorOnClick = () => {
@@ -164,7 +172,7 @@ const AddInforDoctor = ({ t }) => {
             contentMarkdown: descriptionMarkdown,
             description: description,
             doctorId: selectedDoctor,
-            action: CRUD_ACTIONS.CREATE,
+            action: isAddMode ? CRUD_ACTIONS.CREATE : CRUD_ACTIONS.EDIT,
 
             selectedPayment: 'PAY2',//default payment is Paypal
             selectedPrice: selectedPrice,
@@ -189,15 +197,43 @@ const AddInforDoctor = ({ t }) => {
                 srollToInput();
             }
             setLoading(false);
-            handleResetForm();
+            // handleResetForm();
         } catch (error) {
             dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
             setLoading(false);
             console.log('Faild to add informations doctor', error)
         }
     }
-
     console.log("Check selected doctor", selectedDoctor)
+
+    useMemo(() => {
+        if (isAddMode) return;
+
+        const getInforDoctor = async () => {
+            try {
+                let res = await getDetailInforDoctor(id);
+                console.log("Check result inforDoctor: ", res);
+                let infor = res.data
+                if (res && res.error === 0) {
+                    setSelectedDoctor(infor.id);
+                    setDescription(infor.Markdown.description);
+                    setSelectedSpecialty(infor.Doctor_Infor.specialtyId);
+                    setNameClinic(infor.Doctor_Infor.nameClinic);
+                    setAddressClinic(infor.Doctor_Infor.addressClinic);
+                    setNote(infor.Doctor_Infor.note);
+                    setDescriptionMarkdown(infor.Markdown.contentMarkdown);
+                    setSelectedPrice(infor.Doctor_Infor.priceId);
+                    setSelectedProvince(infor.Doctor_Infor.provinceId);
+                    handleEditorChange();
+                }
+
+            } catch (err) {
+                console.log("Faild to get inforDoctor", err);
+            }
+        }
+        getInforDoctor();
+
+    }, [isAddMode, id])
     return (
         <ManagerLayout>
             <Loading loading={loading} />
@@ -366,4 +402,4 @@ const AddInforDoctor = ({ t }) => {
     )
 }
 
-export default withNamespaces()(AddInforDoctor);
+export default withNamespaces()(AddEditInforDoctor);
