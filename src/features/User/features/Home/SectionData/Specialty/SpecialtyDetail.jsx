@@ -17,13 +17,14 @@ function SpecialtyDetail({ t }) {
     const [listDoctorId, setListDoctorId] = useState([]);
     const [overflowHide, setOverflowHide] = useState(true);
     const { language } = useSelector((state) => state.user) || {};
+    const [selectedProvince, setSelectedProvince] = useState('ALL');
 
     useEffect(() => {
         const printSpecialtyID = async () => {
             try {
                 const res = await getAllSpecialtyById({
                     id: id,
-                    location: 'ALL'
+                    location: selectedProvince,
                 });
 
                 setObSpecialty(res.data);
@@ -37,7 +38,7 @@ function SpecialtyDetail({ t }) {
 
         printSpecialtyID();
 
-    }, [id]);
+    }, [id, selectedProvince]);
 
     useEffect(() => {
         const printProvince = async () => {
@@ -65,7 +66,7 @@ function SpecialtyDetail({ t }) {
         printProvince();
     }, [])
 
-    // console.log('Province', listProvinces)
+    console.log('Province', listProvinces)
 
     // console.log('Check specialty id', obSpecialty)
 
@@ -103,7 +104,9 @@ function SpecialtyDetail({ t }) {
                 <div className='specialty-detail-container'>
                     <div className='w-[70%] mx-auto border border-transparent'>
                         <div className='province-spectialty'>
-                            <select className='my-4 h-[40px] focus:outline-none rounded-[5px] px-2'>
+                            <select className='my-4 h-[40px] focus:outline-none rounded-[5px] px-2'
+                                onChange={(e) => setSelectedProvince(e.target.value)}
+                            >
                                 {
                                     listProvinces &&
                                     listProvinces.length > 0 &&
