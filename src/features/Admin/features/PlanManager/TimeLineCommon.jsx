@@ -31,49 +31,6 @@ const TimeLineCommon = ({
     }
     console.log("Check reset form", resetForm)
 
-
-    // useMemo(() => {
-    //     if (!resetForm) return;
-
-    //     let arrReset = listTime;
-    //     if (arrReset && arrReset.length > 0) {
-    //         arrReset = arrReset.map(item => {
-    //             if (item.isSelected === true) {
-    //                 item.isSelected = false
-    //             }
-    //             return item;
-    //         })
-
-    //         setListTime(arrReset);
-    //     }
-
-    // }, [resetForm, listTime])
-
-    // const getListTime = useCallback((listTime) => {
-
-    //     let arrReset = listTime
-    //     if (arrReset && arrReset.length > 0) {
-    //         arrReset = arrReset.map(item => {
-    //             if (item.isSelected === true) {
-    //                 item.isSelected = false
-    //             }
-    //             return item;
-    //         })
-
-    //     }
-    //     return arrReset;
-
-    // }, [])
-
-    // useEffect(() => {
-    //     if (resetForm) {
-    //         let arr = getListTime(listTime);
-    //         resetForm = false;
-    //         setListTime(arr);
-    //     }
-    // }, [resetForm, getListTime]);
-
-
     useEffect(() => {
         const getTime = async () => {
             try {
