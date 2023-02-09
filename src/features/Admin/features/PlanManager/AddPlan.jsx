@@ -65,11 +65,15 @@ const AddPlan = ({ t }) => {
         setRessetForm(true);
     }
 
+    // console.log("Handle format day", new Date(1675875600000));
+
     const CreateSchedule = async () => {
         if (!isValidated()) return srollToInput();
 
-        let formatedDate = new Date(dateStartContract).getTime();
+        // let date = new Date(dateStartContract);
+        let formatedDate = new Date(dateStartContract).getTime() - 25200000;
         let result = [];
+        // console.log("Check date is valid", date);
         console.log('formatedDate', formatedDate);
 
         if (listTime && listTime.length > 0) {

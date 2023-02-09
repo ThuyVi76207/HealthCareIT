@@ -125,7 +125,7 @@ function SpecialtyDetail({ t }) {
                             listDoctorId.length > 0 &&
                             listDoctorId.map((item, index) => {
                                 return (
-                                    <div key={index}>
+                                    <div className='my-[25px]' key={index}>
                                         <ProfileDoctor id={item.doctorId} />
                                     </div>
 

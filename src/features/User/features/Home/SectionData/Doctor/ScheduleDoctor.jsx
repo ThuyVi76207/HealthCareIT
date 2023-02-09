@@ -11,6 +11,7 @@ const ScheduleDoctor = ({ id, t }) => {
     console.log('language', language);
     const [scheduleDoctor, setScheduleDoctor] = useState([]);
     const [timeWork, setTimeWork] = useState([]);
+    const [selectedDate, setSelectedDate] = useState(0);
 
 
 
@@ -67,7 +68,7 @@ const ScheduleDoctor = ({ id, t }) => {
             console.log('Chekc day', getAlldays);
             try {
                 if (getAlldays && getAlldays.length > 0) {
-                    const resSchedule = await getScheduleDoctorByDate(id, getAlldays[2].value);
+                    const resSchedule = await getScheduleDoctorByDate(id, getAlldays[selectedDate].value);
                     if (resSchedule && resSchedule.errCode === 0) {
                         //Get all work days doctor
                         setTimeWork(resSchedule.data)
@@ -82,15 +83,19 @@ const ScheduleDoctor = ({ id, t }) => {
         }
         printScheduleDoctor();
 
-    }, [id, language, getArrDays])
+    }, [id, language, selectedDate, getArrDays])
+
+    // console.log("Check selected day", selectedDate)
 
     return (
         <div className='ml-2'>
-            <select className='border-b border-[#c6c3c3] rounded-[50px] focus:outline-none py-1 px-3 text-[#16917c] text-[16px] font-semibold'>
+            <select className='border-b border-[#c6c3c3] rounded-[50px] focus:outline-none py-1 px-3 text-[#16917c] text-[16px] font-semibold'
+                onChange={(e) => setSelectedDate(e.target.value)}
+            >
                 {
                     scheduleDoctor && scheduleDoctor.length > 0 && scheduleDoctor.map((item, index) => {
                         return (
-                            <option key={index} value={item}>{item.label}</option>
+                            <option key={index} value={index}>{item.label}</option>
                         )
                     })
                 }
