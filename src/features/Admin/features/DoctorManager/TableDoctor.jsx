@@ -3,8 +3,10 @@ import { getAllDoctors } from "services/adminService";
 import "features/Admin/components/StylesCommon/TableManagerStyles.scss";
 import { withNamespaces } from "react-i18next";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const TableDoctor = ({ t }) => {
+    const navigate = useNavigate();
 
     const { language } = useSelector((state) => state.user) || {};
 
@@ -24,7 +26,12 @@ const TableDoctor = ({ t }) => {
         }
 
         getListDoctor();
-    }, [])
+    }, []);
+
+    const handleEditInforDoctor = (infordoctor) => {
+        navigate(`/manager/doctormanager/edit-information-doctor/${infordoctor.id}`)
+    }
+
     return (
         <table id="tableManager">
             <tbody>
@@ -48,11 +55,10 @@ const TableDoctor = ({ t }) => {
                                 <td>{item.email}</td>
                                 <td>{item.address}</td>
                                 <td>{item.phonenumber}</td>
-                                <td>
-                                    {/* <button className="btn-edit"
-                                            onClick={() => this.handleEditUser(item)}
-                                        ><i className="fas fa-pencil-alt"></i></button> */}
-
+                                <td className="text-center">
+                                    <button className="hover:text-orange-600"
+                                        onClick={() => handleEditInforDoctor(item)}
+                                    ><i className="fas fa-pencil-alt"></i></button>
                                 </td>
                             </tr>
                         )

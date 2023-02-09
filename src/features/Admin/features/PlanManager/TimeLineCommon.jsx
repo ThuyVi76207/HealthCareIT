@@ -4,13 +4,17 @@ import { getSettingService } from "services/userService";
 const TimeLineCommon = ({
     language,
     updateList,
-    // resetForm,
+    resetForm,
 }) => {
 
     const [listTime, setListTime] = useState([]);
-    // const [listReset, setListReset] = useState([]);
+
+    // const [listarr, setList] = useState([]);
+
 
     const handleClickBtnTime = (time) => {
+
+
         let arrTime = listTime
         if (arrTime && arrTime.length > 0) {
             arrTime = arrTime.map(item => {
@@ -21,9 +25,29 @@ const TimeLineCommon = ({
             })
             setListTime(arrTime);
             updateList(arrTime)
+
             // console.log('List time', arrTime);
         }
     }
+    console.log("Check reset form", resetForm)
+
+
+    // useMemo(() => {
+    //     if (!resetForm) return;
+
+    //     let arrReset = listTime;
+    //     if (arrReset && arrReset.length > 0) {
+    //         arrReset = arrReset.map(item => {
+    //             if (item.isSelected === true) {
+    //                 item.isSelected = false
+    //             }
+    //             return item;
+    //         })
+
+    //         setListTime(arrReset);
+    //     }
+
+    // }, [resetForm, listTime])
 
     // const getListTime = useCallback((listTime) => {
 
@@ -65,7 +89,9 @@ const TimeLineCommon = ({
             }
         }
         getTime();
-    }, []);
+        // setActiveReset(false);
+
+    }, [resetForm]);
 
     console.log('get time', listTime);
 
