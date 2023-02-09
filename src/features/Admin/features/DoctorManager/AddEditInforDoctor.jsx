@@ -12,11 +12,12 @@ import MdEditor from 'react-markdown-editor-lite';
 import { CRUD_ACTIONS } from "constants";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import Loading from "components/Loading/loading";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 const AddEditInforDoctor = ({ t }) => {
+    const navigate = useNavigate();
     const { id } = useParams();
     const isAddMode = !id;
     console.log("Check mode", isAddMode);
@@ -147,17 +148,17 @@ const AddEditInforDoctor = ({ t }) => {
         formref.current.scrollIntoView();
     }
 
-    const handleResetForm = () => {
-        setSelectedDoctor(0);
-        setDescription('');
-        setSelectedSpecialty(0);
-        setNameClinic('');
-        setAddressClinic('');
-        setNote('');
-        setDescriptionMarkdown('');
-        setSelectedPrice('PRI1');
-        setSelectedProvince('PRO2');
-    }
+    // const handleResetForm = () => {
+    //     setSelectedDoctor(0);
+    //     setDescription('');
+    //     setSelectedSpecialty(0);
+    //     setNameClinic('');
+    //     setAddressClinic('');
+    //     setNote('');
+    //     setDescriptionMarkdown('');
+    //     setSelectedPrice('PRI1');
+    //     setSelectedProvince('PRO2');
+    // }
 
     const handleAddInforDoctorOnClick = () => {
         if (loading) return;
@@ -191,9 +192,10 @@ const AddEditInforDoctor = ({ t }) => {
             console.log("Check save doctor", res);
             if (res && res.errCode === 0) {
                 dispatch(addSuccessMessage({ title: "Thêm thành công", content: "Thêm thành công thông tin bác sĩ" }));
-                srollToInput();
+                navigate(`/manager/usermanager`)
+
             } else if (res && res.errCode === 1) {
-                dispatch(addWarningMessage({ title: "Thêm thất bại", content: "Vui lòng kiểm tra lại thông tin!!!" }));
+                dispatch(addWarningMessage({ title: "Thêm thất bại", content: "Vui lòng kiểm tra lại thông tin và điền đầy đủ thông tin mô tả bác sĩ!!!" }));
                 srollToInput();
             }
             setLoading(false);
@@ -224,7 +226,7 @@ const AddEditInforDoctor = ({ t }) => {
                     setDescriptionMarkdown(infor.Markdown.contentMarkdown);
                     setSelectedPrice(infor.Doctor_Infor.priceId);
                     setSelectedProvince(infor.Doctor_Infor.provinceId);
-                    handleEditorChange();
+
                 }
 
             } catch (err) {

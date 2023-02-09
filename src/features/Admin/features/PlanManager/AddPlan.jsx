@@ -16,7 +16,7 @@ const AddPlan = ({ t }) => {
     const [selectedDoctor, setSelectedDoctor] = useState(0);
     const [listTime, setListTime] = useState([]);
     const [loading, setloading] = useState(false);
-    // const [resetForm, setRessetForm] = useState(false);
+    const [resetForm, setRessetForm] = useState(false);
 
     const [dateStartContract, setDateStartContract] = useState(
         new Date().toISOString().split("T")[0]
@@ -62,7 +62,7 @@ const AddPlan = ({ t }) => {
 
     const handleResetForm = () => {
         setSelectedDoctor(0);
-        // setRessetForm(true);
+        setRessetForm(true);
     }
 
     const CreateSchedule = async () => {
@@ -116,6 +116,7 @@ const AddPlan = ({ t }) => {
     const handleListTime = (listtime) => {
         console.log('List time', listtime)
         setListTime(listtime);
+        setRessetForm(false);
     }
 
     return (
@@ -166,7 +167,7 @@ const AddPlan = ({ t }) => {
                 <TimeLineCommon
                     language={language}
                     updateList={handleListTime}
-                // resetForm={resetForm}
+                    resetForm={resetForm}
                 />
             </div>
             <button onClick={handleCreateScheduleOnClick} className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-6 mx-12  rounded-[5px]">{t('createuser.save')}</button>
