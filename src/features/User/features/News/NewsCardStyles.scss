@@ -1,0 +1,23 @@
+.news {
+    display: flex;
+    border-bottom: 1px solid #dcd4d4;
+    padding: 10px 0;
+
+    gap: 3%;
+
+    &__title {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 24px;
+    }
+
+    &__overfow {
+        height: 90px;
+        overflow: hidden;
+    }
+
+    &__actions {
+        text-align: right;
+        font-size: 16px;
+    }
+}
