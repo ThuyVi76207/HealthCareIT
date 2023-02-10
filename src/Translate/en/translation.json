@@ -187,5 +187,8 @@
         "titles": "Plan management",
         "chooseday": "Choose Day",
         "choosehour": "Choose Hour"
+    },
+    "newcontainer": {
+        "titles": "News Health"
     }
 }

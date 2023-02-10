@@ -187,5 +187,8 @@
         "titles": "Quản lý kế hoạch khám bệnh",
         "chooseday": "Chọn ngày",
         "choosehour": "Chọn giờ"
+    },
+    "newcontainer": {
+        "titles": "Tin tức sức khỏe"
     }
 }

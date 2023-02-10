@@ -41,7 +41,7 @@ const Footer = ({ t }) => {
                     </div>
                 </div>
             </div>
-            <div className="bg-[#9adcdc] pb-[2rem] text-center text-[#0e294d] font-light text-[1rem]">
+            <div className="pb-[2rem] text-center text-white font-light text-[1rem]">
                 <p>
                     © Copyright <span className="text-[#16917c]">HCare {" "}</span><span>{new Date().getFullYear()}</span>
                 </p>
