@@ -1,7 +1,10 @@
 import React from "react";
+import RoomContent from "../features/OnlExamination/RoomContent";
 
 function OnlExamination() {
-    return (<div>Online examination</div>)
+    return (
+        <RoomContent />
+    )
 }
 
 export default OnlExamination;

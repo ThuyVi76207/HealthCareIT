@@ -3,11 +3,17 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import NotFound from "components/NotFound";
 import AlertBoxSection from "components/Alert/AlertBoxSection";
+import * as process from 'process';
+
+
 
 const HealthCare = React.lazy(() => import("features/User"));
 const HealthManager = React.lazy(() => import("features/Admin"));
 
 function App() {
+  (window).global = window;
+  (window).process = process;
+  (window).Buffer = [];
   return (
     <div className="health-app">
       <Suspense fallback={<div>Loading...</div>}>

@@ -3,22 +3,24 @@ import { convertDateToDateTime } from 'function/formater';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { withNamespaces } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-import { getAllNews, getAllNewsById } from 'services/userService';
+import { useParams } from 'react-router-dom';
+import { getAllNewsById } from 'services/userService';
 import './NewsDetailStyles.scss';
 import { Buffer } from 'buffer';
 import Loading from 'components/Loading/loading';
-import LoadingSpinner from 'components/Loading/LoadingSpinner';
+// import LoadingSpinner from 'components/Loading/LoadingSpinner';
 
 const NewsDetail = ({ t }) => {
     const { id } = useParams();
     const [dataDetailNews, setDataDetailNews] = useState({});
-    const [dataListNews, setDataListNews] = useState([]);
+    // const [dataListNews, setDataListNews] = useState([]);
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     // console.log('Check id param', id);
 
     useEffect(() => {
+        setLoading(true)
+
         const printNewsDetail = async () => {
             try {
                 let resNewsDetail = await getAllNewsById(
@@ -26,10 +28,12 @@ const NewsDetail = ({ t }) => {
                         id: id,
                     }
                 );
-                if (resNewsDetail && resNewsDetail.errCode === 0)
+                if (resNewsDetail && resNewsDetail.errCode === 0) {
                     setDataDetailNews(resNewsDetail.data);
-
+                    setLoading(false)
+                }
             } catch (error) {
+                setLoading(true);
                 console.log('Failed to get API detail news', error);
             }
 
@@ -38,30 +42,30 @@ const NewsDetail = ({ t }) => {
         printNewsDetail();
     }, [id]);
 
-    useEffect(() => {
-        const printListNews = async () => {
+    // useEffect(() => {
+    //     const printListNews = async () => {
 
-            try {
-                setLoading(true);
-                const resListNews = await getAllNews();
-                if (resListNews && resListNews.errCode === 0) {
-                    setDataListNews(resListNews.data);
-                }
+    //         try {
+    //             setLoading(true);
+    //             const resListNews = await getAllNews();
+    //             if (resListNews && resListNews.errCode === 0) {
+    //                 setDataListNews(resListNews.data);
+    //             }
 
-            } catch (error) {
-                console.log("Failed to get API list News", error);
+    //         } catch (error) {
+    //             console.log("Failed to get API list News", error);
 
-            }
-        }
+    //         }
+    //     }
 
-        printListNews();
-    }, []);
+    //     printListNews();
+    // }, []);
 
-    useEffect(() => {
-        if (dataListNews.length > 0) {
-            setLoading(false);
-        }
-    }, [dataListNews])
+    // useEffect(() => {
+    //     if (dataListNews.length > 0) {
+    //         setLoading(false);
+    //     }
+    // }, [dataListNews])
 
 
 
@@ -72,13 +76,13 @@ const NewsDetail = ({ t }) => {
     let createDate = convertDateToDateTime(dataDetailNews.createdAt);
     let updateDate = convertDateToDateTime(dataDetailNews.updatedAt);
 
-    const handleViewDetailNews = (item) => {
-        console.log('Check News id', item);
-        navigate(`/healthcare/detail-news/${item.id}`)
+    // const handleViewDetailNews = (item) => {
+    //     console.log('Check News id', item);
+    //     navigate(`/healthcare/detail-news/${item.id}`)
 
-    }
+    // }
 
-    console.log('check loading status', loading)
+    // console.log('check loading status', loading)
 
     return (
         <MainLayout>
@@ -90,7 +94,7 @@ const NewsDetail = ({ t }) => {
                     <h2 className='text-[#16917c] font-medium'>{t('detailnews.news')}</h2>
                 </div>
                 <div className='news-detail'>
-                    <div className='flex gap-[3%] p-6'>
+                    <div className='flex justify-center p-6'>
                         <div className='news-detail__left'>
                             {
                                 dataDetailNews &&
@@ -110,7 +114,7 @@ const NewsDetail = ({ t }) => {
                                 </div>
                             }
                         </div>
-                        <div className='news-detail__right'>
+                        {/* <div className='news-detail__right'>
                             <h2 className='text-[20px] uppercase font-bold text-[#333] mt-[40px]'>{t('detailnews.more')}</h2>
                             <div className='my-5'>
                                 {
@@ -128,7 +132,7 @@ const NewsDetail = ({ t }) => {
                                 }
                             </div>
 
-                        </div>
+                        </div> */}
                     </div>
 
                 </div>
