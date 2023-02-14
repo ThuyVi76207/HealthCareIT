@@ -55,6 +55,13 @@ const Menu = ({ t }) => {
                         </Link>
 
                     </li>
+                    <li className='my-3 cursor-pointer hover:text-[#16917c]'>
+                        <Link className="flex items-center w-full" to={"/manager/medicinemanager"}>
+                            <i className='mt-1 mr-4'><ion-icon name="flask-outline"></ion-icon></i>
+                            <h2>{t('menu.medicine')}</h2>
+                        </Link>
+
+                    </li>
                 </ul>
             </div>
 

@@ -86,7 +86,8 @@ const Navbar = ({ t }) => {
                             <Link to={"/healthcare"}><b>{t('navbar.homepage')}</b></Link>
                         </div>
                         <div className='child-content'>
-                            <Link to={"/healthcare/online-examination"}><b>{t('navbar.onlinemedica')}</b></Link>
+                            {/* <Link to={"/healthcare/online-examination"}></Link> */}
+                            <a href={"/healthcare/online-examination"}><b>{t('navbar.onlinemedica')}</b></a>
                         </div>
                         <div className='child-content'>
                             <Link to={"/healthcare/forum"}><b>{t('navbar.forum')}</b></Link>

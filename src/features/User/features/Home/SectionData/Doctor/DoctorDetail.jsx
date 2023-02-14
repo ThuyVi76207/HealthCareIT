@@ -66,7 +66,7 @@ function DoctorDetail({ t }) {
                     </div>
                     <div className="flex mt-9 gap-4">
                         <div className="w-[60%]">
-                            <ScheduleDoctor id={id} />
+                            <ScheduleDoctor id={id} price={language === 'vi' ? priceVI : priceEn} />
                         </div>
 
                         <div className="border-l border-[#c6c3c3] w-[40%] mt-10">

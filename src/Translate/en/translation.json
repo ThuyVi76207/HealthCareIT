@@ -84,7 +84,8 @@
         "doctormanager": "Doctor Management",
         "planmanager": "Manage the examination plan",
         "specialtymanager": "Specialty Management",
-        "newsmanager": "News Management"
+        "newsmanager": "News Management",
+        "medicine": "Medicine Management"
     },
     "tableuser": {
         "title": "User Management",

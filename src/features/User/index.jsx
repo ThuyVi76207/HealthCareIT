@@ -4,6 +4,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import DoctorDetail from "./features/Home/SectionData/Doctor/DoctorDetail";
 import NewsDetail from "./features/Home/SectionData/News/NewsDetail";
 import SpecialtyDetail from "./features/Home/SectionData/Specialty/SpecialtyDetail";
+import BookingSchedule from "./pages/BookingSchedule";
 import Contact from "./pages/Contact";
 import Forum from "./pages/Forum";
 import Home from "./pages/Home";
@@ -28,6 +29,8 @@ function HeathCare() {
                 <Route exact path="/detail-speacilty/:id" element={<SpecialtyDetail />}></Route>
                 <Route exact path="/detail-doctor/:id" element={<DoctorDetail />}></Route>
                 <Route exact path="/detail-news/:id" element={<NewsDetail />}></Route>
+
+                <Route exact path="/booking-schedule/:date/:time" element={<BookingSchedule />}></Route>
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
 

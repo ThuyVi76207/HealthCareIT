@@ -5,6 +5,7 @@ import CreateEditSpecialty from "./features/SpecialtyManager/CreateEditSpecialty
 import CreateEditUser from "./features/UserManager/CreateEditUser";
 import DoctorManager from "./pages/DoctorManager";
 import HomeManager from "./pages/HomeManager";
+import MedicineManager from "./pages/MedicineManager";
 import NewsManager from "./pages/NewsManager";
 import PlanManager from "./pages/PlanManager";
 import SpecialtyManager from "./pages/SpecialtyManager";
@@ -34,6 +35,8 @@ function HealthManager() {
                 <Route exact path="/newsmanager" element={<NewsManager />}></Route>
                 <Route exact path="/newsmanager/create" element={<CreateEditNews />}></Route>
                 <Route exact path="/newsmanager/edit/:id" element={<CreateEditNews />}></Route>
+
+                <Route exact path="/medicinemanager" element={<MedicineManager />}></Route>
 
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>

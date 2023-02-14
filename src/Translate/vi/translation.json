@@ -84,7 +84,8 @@
         "doctormanager": "Quản lý bác sĩ",
         "planmanager": "Quản lý kế hoạch khám bệnh",
         "specialtymanager": "Quản lý chuyên khoa",
-        "newsmanager": "Quản lý bài đăng"
+        "newsmanager": "Quản lý bài đăng",
+        "medicine": "Quản lý thuốc"
     },
     "tableuser": {
         "title": "Quản lý người dùng",

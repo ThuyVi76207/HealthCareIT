@@ -1,12 +1,17 @@
 import moment from 'moment';
 import { useCallback, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import 'moment/locale/vi'
 import { getScheduleDoctorByDate } from "services/userService";
 import { withNamespaces } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { addInfor } from 'reducers/timeworkSlice';
 
 
-const ScheduleDoctor = ({ id, t }) => {
+const ScheduleDoctor = ({ id, price, t }) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const { language } = useSelector((state) => state.user) || {};
     console.log('language', language);
     const [scheduleDoctor, setScheduleDoctor] = useState([]);
@@ -50,7 +55,7 @@ const ScheduleDoctor = ({ id, t }) => {
             allDays.push(object);
 
         }
-        console.log(allDays);
+        // console.log("Check all day", allDays);
         setScheduleDoctor(allDays);
 
         return allDays;
@@ -65,7 +70,7 @@ const ScheduleDoctor = ({ id, t }) => {
     useEffect(() => {
         const printScheduleDoctor = async () => {
             let getAlldays = getArrDays(language);
-            console.log('Chekc day', getAlldays);
+            // console.log('Chekc day', getAlldays);
             try {
                 if (getAlldays && getAlldays.length > 0) {
                     const resSchedule = await getScheduleDoctorByDate(id, getAlldays[selectedDate].value);
@@ -75,7 +80,7 @@ const ScheduleDoctor = ({ id, t }) => {
                     }
 
 
-                    console.log('check get all days', resSchedule.data);
+                    // console.log('check get days', resSchedule.data);
                 }
             } catch (err) {
                 console.log('Failed to print schedule', err);
@@ -85,7 +90,14 @@ const ScheduleDoctor = ({ id, t }) => {
 
     }, [id, language, selectedDate, getArrDays])
 
-    // console.log("Check selected day", selectedDate)
+    // console.log("Check time work", timeWork)
+    console.log("Check price", price)
+
+    const handleScheduleDoctor = (time) => {
+        console.log("Check time work", time)
+        dispatch(addInfor(time));
+        navigate(`/healthcare/booking-schedule/${time.date}/${time.timeType}/?price=${price}`);
+    }
 
     return (
         <div className='ml-2'>
@@ -117,6 +129,7 @@ const ScheduleDoctor = ({ id, t }) => {
                                             <button
                                                 key={index}
                                                 className={`mr-2 mb-2 bg-slate-200 hover:bg-yellow-300 ${language === 'vi' ? 'min-w-[110px] py-2 ' : 'min-w-[150px] py-3'}`}
+                                                onClick={() => handleScheduleDoctor(item)}
                                             >{timeDisplay}</button>
                                         )
                                     })
