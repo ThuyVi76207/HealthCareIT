@@ -193,6 +193,21 @@
         "titles": "News Health"
     },
     "bookingschedule": {
-        "titles": "Book an appointment"
+        "titles": "Book an appointment",
+        "title1": "Information appointment",
+        "price": "Price",
+        "name": "Last name and first name",
+        "phdername": "Enter your name...",
+        "phone": "Phone Number",
+        "phderphonenumber": "Please enter the phone number...",
+        "phderemail": "Please enter your email address...",
+        "address": "Address",
+        "phderaddress": "Please enter your address",
+        "birthday": "Birthday",
+        "gender": "Gender",
+        "description": "Description Reason",
+        "phderdescription": "Please enter reason...",
+        "save": "Booking",
+        "close": "Close"
     }
 }

@@ -193,6 +193,21 @@
         "titles": "Tin tức sức khỏe"
     },
     "bookingschedule": {
-        "titles": "Đặt lịch khám"
+        "titles": "Đặt lịch khám",
+        "title1": "Thông tin lịch đặt",
+        "price": "Giá khám",
+        "name": "Họ và tên",
+        "phdername": "Nhập họ và tên",
+        "phone": "Số điện thoại",
+        "phderphonenumber": "Vui lòng nhập số điện thoại...",
+        "phderemail": "Vui lòng nhập địa chỉ email...",
+        "address": "Địa chỉ",
+        "phderaddress": "Vui lòng nhập địa chỉ",
+        "birthday": "Ngày sinh",
+        "gender": "Giới tính",
+        "description": "Lý do khám",
+        "phderdescription": "Vui lòng nhập lý do. Ví dụ: Đau đầu, chóng mặt...",
+        "save": "Đặt lịch",
+        "close": "Thoát"
     }
 }
