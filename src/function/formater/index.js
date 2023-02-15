@@ -32,7 +32,14 @@ const isValidPhoneNumber = (phoneNumber) => {
 const isPasswordStrength = (password) => {
     var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$/;
     return re.test(password);
-}
+};
+
+const formatMonthAndDate = (md) => {
+    if (Number(md) < 10) {
+        return `0${md}`;
+    }
+    return md;
+};
 
 
 export {
@@ -42,4 +49,5 @@ export {
     isValidEmail,
     isValidPhoneNumber,
     isPasswordStrength,
+    formatMonthAndDate,
 };

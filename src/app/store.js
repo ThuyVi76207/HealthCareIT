@@ -3,6 +3,7 @@ import userReducer from 'reducers/userSlice';
 import messageReducer from 'reducers/messageSlice';
 import editcommonReducer from 'reducers/editcommonSlice';
 import timeworkReducer from 'reducers/timeworkSlice';
+import inforDoctorReducer from 'reducers/inforDoctorSlice';
 
 //tao store
 
@@ -11,6 +12,7 @@ const rootReducer = {
     messages: messageReducer,
     editcommon: editcommonReducer,
     timework: timeworkReducer,
+    inforDoctor: inforDoctorReducer,
 }
 
 const store = configureStore({

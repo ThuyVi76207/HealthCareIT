@@ -5,10 +5,11 @@ import 'moment/locale/vi'
 import { getScheduleDoctorByDate } from "services/userService";
 import { withNamespaces } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { addInfor } from 'reducers/timeworkSlice';
+import { addInforTime } from 'reducers/timeworkSlice';
+import { addInforDoctor } from 'reducers/inforDoctorSlice';
 
 
-const ScheduleDoctor = ({ id, price, t }) => {
+const ScheduleDoctor = ({ id, price, profile, t }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -62,11 +63,6 @@ const ScheduleDoctor = ({ id, price, t }) => {
 
     }, [])
 
-
-
-
-
-
     useEffect(() => {
         const printScheduleDoctor = async () => {
             let getAlldays = getArrDays(language);
@@ -94,8 +90,9 @@ const ScheduleDoctor = ({ id, price, t }) => {
     console.log("Check price", price)
 
     const handleScheduleDoctor = (time) => {
-        console.log("Check time work", time)
-        dispatch(addInfor(time));
+        console.log("Check time work", time);
+        dispatch(addInforTime(time));
+        dispatch(addInforDoctor(profile));
         navigate(`/healthcare/booking-schedule/${time.date}/${time.timeType}/?price=${price}`);
     }
 

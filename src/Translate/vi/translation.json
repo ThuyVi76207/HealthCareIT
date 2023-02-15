@@ -191,5 +191,8 @@
     },
     "newcontainer": {
         "titles": "Tin tức sức khỏe"
+    },
+    "bookingschedule": {
+        "titles": "Đặt lịch khám"
     }
 }
