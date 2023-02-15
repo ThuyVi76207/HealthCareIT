@@ -70,7 +70,7 @@ const ProfileDoctor = ({ id, t }) => {
                 </div>
             </div>
             <div className="card-profile__right">
-                <ScheduleDoctor id={id} price={language === 'vi' ? priceVI : priceEn} />
+                <ScheduleDoctor id={id} price={language === 'vi' ? priceVI : priceEn} profile={profileDoctorId} />
                 <div className="ml-4 mt-2 flex items-center">
                     <i className="mr-1 mt-1"><ion-icon name="cash-outline"></ion-icon></i>
                     <h4 className="uppercase text-[15px] font-bold mr-1">{t('profiledoctor.price')}</h4>

@@ -191,5 +191,8 @@
     },
     "newcontainer": {
         "titles": "News Health"
+    },
+    "bookingschedule": {
+        "titles": "Book an appointment"
     }
 }

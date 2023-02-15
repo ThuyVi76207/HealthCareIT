@@ -6,7 +6,7 @@ const timeworkSlice = createSlice({
     name: "timework",
     initialState,
     reducers: {
-        addInfor: (state, action) => {
+        addInforTime: (state, action) => {
             state = action.payload;
             // console.log('Check state', state);
             return state;
@@ -14,5 +14,5 @@ const timeworkSlice = createSlice({
     }
 })
 
-export const { addInfor } = timeworkSlice.actions;
+export const { addInforTime } = timeworkSlice.actions;
 export default timeworkSlice.reducer;
