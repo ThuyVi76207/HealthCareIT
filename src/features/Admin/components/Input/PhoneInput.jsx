@@ -32,7 +32,7 @@ export default function PhoneInput({
                 {field}
             </label>
             {required && <span className="text-red-600">*</span>}
-            <div className="relative mt-2">
+            <div className="relative">
                 <input
                     id={name}
                     value={phoneNumber}

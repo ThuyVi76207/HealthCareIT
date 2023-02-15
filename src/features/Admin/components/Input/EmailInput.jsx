@@ -31,7 +31,7 @@ export default function EmailInput({
                 {field}
             </label>
             {required && <span className="text-red-600 text-[20px]">*</span>}
-            <div className="relative mt-2">
+            <div className="relative ">
                 <input
                     id={name}
                     value={email}

@@ -34,6 +34,16 @@ const getAllNewsById = (data) => {
     return axiosClient.get(`/api/get-detail-news-by-id?id=${data.id}`)
 }
 
+//Booking
+const postPatientBooking = (data) => {
+    return axiosClient.post('/api/patient-booking-appointment', data)
+}
+
+//SMS
+const postSendSMS = (data) => {
+    return axiosClient.post(`/api/sendSMS`, data)
+}
+
 
 export {
     getAllSpecialty,
@@ -44,5 +54,7 @@ export {
     getProfileDoctorById,
     getScheduleDoctorByDate,
     getDetailInforDoctor,
-    getAllNewsById
+    getAllNewsById,
+    postPatientBooking,
+    postSendSMS,
 }
