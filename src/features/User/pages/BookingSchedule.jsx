@@ -11,7 +11,7 @@ import BirthdayInput from "../components/BirthdayInput/BirthdayInput";
 import { GENDER_OPTIONS } from "constants";
 import moment from "moment";
 import _ from "lodash";
-import { postPatientBooking, postSendSMS } from "services/userService";
+import { postPatientBooking, postPaymentPaypal, postSendSMS } from "services/userService";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import PaymentMethodSection from "../features/PaymentMenthod/PaymentSection";
 
@@ -43,6 +43,7 @@ const BookingSchedule = ({ t }) => {
     })
 
     const formref = useRef(null);
+    const [paymentMethod, setPaymentMethod] = useState(10);
 
     const isValidated = () => {
         let validated = true;
@@ -125,9 +126,9 @@ const BookingSchedule = ({ t }) => {
         setDate(day);
     }, [language, timeSchedule, handleTime])
 
-    // const srollToInput = () => {
-    //     formref.current.scrollIntoView();
-    // }
+    const srollToInput = () => {
+        formref.current.scrollIntoView();
+    }
 
     // const buildTimeBooking = (dataTime) => {
     //     if (dataTime && !_.isEmpty(dataTime)) {
@@ -213,8 +214,16 @@ const BookingSchedule = ({ t }) => {
         navigate(`/`);
     }
 
-    const handlePayment = () => {
-
+    const handlePayment = async () => {
+        if (!isValidated()) return srollToInput();
+        try {
+            let res = await postPaymentPaypal();
+            console.log('Check paypal', res);
+        } catch (error) {
+            alert("Có lỗi xảy ra vui lòng quay lại sau");
+            console.log("Faild to call API paymentMethod paypal", error);
+        }
+        console.log("Check paymentMethod", paymentMethod)
     }
 
     return (
@@ -343,14 +352,14 @@ const BookingSchedule = ({ t }) => {
                     <div>
                         <h2 className="text-[20px] font-bold mb-4">Phương thức thanh toán</h2>
                         <PaymentMethodSection
-                        // paymentMethod={paymentMethod}
-                        // bankCodeZalo={bankCodeZalo}
-                        // handlePaymentMethod={(value) => setPaymentMethod(value)}
+                            paymentMethod={paymentMethod}
+                            // bankCodeZalo={bankCodeZalo}
+                            handlePaymentMethod={(value) => setPaymentMethod(value)}
                         // handleBankCodeZalo={(value) => setBankCodeZalo(value)}
                         />
                     </div>
                     <div className="flex justify-end">
-                        <button onClick={handlePayment} className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-12 mt-2 rounded-[5px] mx-2">{t('bookingschedule.save')}</button>
+                        <button onClick={handlePayment} className="bg-[#27284a] hover:bg-[#16917c] text-white text-[18px] font-medium px-4 py-2 mb-12 mt-2 rounded-[5px] mx-2">{t('bookingschedule.save')}</button>
                         <button onClick={handleClose} className="bg-red-600 text-white text-[18px] font-medium px-4 py-2 mb-12 mt-2 rounded-[5px]">{t('bookingschedule.close')}</button>
                     </div>
 

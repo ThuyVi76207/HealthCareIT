@@ -209,5 +209,9 @@
         "phderdescription": "Please enter reason...",
         "save": "Booking",
         "close": "Close"
+    },
+    "register": {
+        "titles": "Register Form",
+        "save": "Register"
     }
 }

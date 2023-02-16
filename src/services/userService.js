@@ -1,5 +1,10 @@
 import axiosClient from "api/axiosClient";
 
+//Register
+const postRegister = (data) => {
+    return axiosClient.post('/api/auth/register', data);
+}
+
 //Specialty
 const getAllSpecialty = () => {
     return axiosClient.get('/api/get-specialty');
@@ -47,6 +52,11 @@ const postSendSMS = (data) => {
     return axiosClient.post(`/api/sendSMS`, data)
 }
 
+//Payment
+const postPaymentPaypal = () => {
+    return axiosClient.post(`/api/pay-paypal`)
+}
+
 
 
 export {
@@ -62,4 +72,6 @@ export {
     postPatientBooking,
     postSendSMS,
     postVerifyBooking,
+    postPaymentPaypal,
+    postRegister,
 }

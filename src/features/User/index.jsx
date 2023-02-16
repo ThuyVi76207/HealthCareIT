@@ -10,6 +10,7 @@ import Forum from "./pages/Forum";
 import Home from "./pages/Home";
 import News from "./pages/News";
 import OnlExamination from "./pages/OnlExamination";
+import Register from "./pages/Register";
 
 function HeathCare() {
     const { pathname } = useLocation();
@@ -31,6 +32,8 @@ function HeathCare() {
                 <Route exact path="/detail-news/:id" element={<NewsDetail />}></Route>
 
                 <Route exact path="/booking-schedule/:date/:time" element={<BookingSchedule />}></Route>
+
+                <Route exact path="/register" element={<Register />}></Route>
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
 

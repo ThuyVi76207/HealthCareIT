@@ -209,5 +209,9 @@
         "phderdescription": "Vui lòng nhập lý do. Ví dụ: Đau đầu, chóng mặt...",
         "save": "Đặt lịch",
         "close": "Thoát"
+    },
+    "register": {
+        "titles": "Thông tin đăng ký",
+        "save": "Đăng ký"
     }
 }
