@@ -22,13 +22,15 @@
 
     .navbar-down {
 
+        box-shadow: 0px 3px 5px #c9c8c8;
+
         &__active {
             position: fixed;
             left: 0;
             top: 0;
             width: 100%;
             background-color: #fff;
-            box-shadow: 1px 2px 5px #c9c8c8;
+            // box-shadow: 1px 2px 5px #c9c8c8;
             z-index: 20;
             transition: background-color 0.5s;
         }

@@ -16,7 +16,7 @@ export default function PaymentMethodSection({
                 <div className="border-2 mb-2 rounded-[4px]">
                     <PaymentOption
                         onClick={() => handlePaymentMethod(10)}
-                        title={"Thanh toán qua ATM/Visa/MasterCard/JCB"}
+                        title={"Thanh toán qua ví điện tử VNPay"}
                         value={10}
                         currentValue={paymentMethod}
                         imgSrc={imgvnpay}
@@ -26,7 +26,7 @@ export default function PaymentMethodSection({
                 <div className="border-2 mb-2 rounded-[4px]">
                     <PaymentOption
                         onClick={() => handlePaymentMethod(12)}
-                        title={"Thanh toán qua ví điện tử Zalo Pay"}
+                        title={"Thanh toán qua ví điện tử Paypal"}
                         value={12}
                         currentValue={paymentMethod}
                         imgSrc={imgpaypal}

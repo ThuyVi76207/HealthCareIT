@@ -1,5 +1,3 @@
-import LoadingSpinner from "components/Loading/LoadingSpinner";
-import { useState } from "react"
 
 export default function PasswordInput({
     name,
@@ -21,7 +19,7 @@ export default function PasswordInput({
                 {field}
             </label>
             {required && <span className="text-red-600 text-[20px]">*</span>}
-            <div className="relative mt-2">
+            <div className="relative">
                 <input
                     id={name}
                     value={password}
