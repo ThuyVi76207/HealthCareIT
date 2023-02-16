@@ -8,6 +8,7 @@ import BookingSchedule from "./pages/BookingSchedule";
 import Contact from "./pages/Contact";
 import Forum from "./pages/Forum";
 import Home from "./pages/Home";
+import LoginUser from "./pages/LoginUser";
 import News from "./pages/News";
 import OnlExamination from "./pages/OnlExamination";
 import Register from "./pages/Register";
@@ -34,6 +35,7 @@ function HeathCare() {
                 <Route exact path="/booking-schedule/:date/:time" element={<BookingSchedule />}></Route>
 
                 <Route exact path="/register" element={<Register />}></Route>
+                <Route exact path="/login/user" element={<LoginUser />}></Route>
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
 

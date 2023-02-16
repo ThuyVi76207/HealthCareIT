@@ -33,7 +33,7 @@ const ContactContent = () => {
                         </div>
 
                     </div>
-                    <form ref={form} onSubmit={sendEmail}>
+                    <form ref={form} onSubmit={sendEmail} className="fm">
                         <input className="input-info" type="text" name="name" placeholder="Your Full Name" required />
                         <input className="input-info" type="email" name="email" placeholder="Your Email" required />
                         <textarea className="textarea-info" name="message" rows="7" placeholder="Your Message" required></textarea>

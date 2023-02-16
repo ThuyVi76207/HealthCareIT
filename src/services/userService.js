@@ -5,6 +5,11 @@ const postRegister = (data) => {
     return axiosClient.post('/api/auth/register', data);
 }
 
+//Login
+const handleLoginApi = (email, password) => {
+    return axiosClient.post('/api/login', { email, password });
+}
+
 //Specialty
 const getAllSpecialty = () => {
     return axiosClient.get('/api/get-specialty');
@@ -74,4 +79,5 @@ export {
     postVerifyBooking,
     postPaymentPaypal,
     postRegister,
+    handleLoginApi,
 }
