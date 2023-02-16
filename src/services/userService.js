@@ -38,11 +38,15 @@ const getAllNewsById = (data) => {
 const postPatientBooking = (data) => {
     return axiosClient.post('/api/patient-booking-appointment', data)
 }
+const postVerifyBooking = (data) => {
+    return axiosClient.post('/api/verify-booking-appointment', data)
+}
 
 //SMS
 const postSendSMS = (data) => {
     return axiosClient.post(`/api/sendSMS`, data)
 }
+
 
 
 export {
@@ -57,4 +61,5 @@ export {
     getAllNewsById,
     postPatientBooking,
     postSendSMS,
+    postVerifyBooking,
 }
