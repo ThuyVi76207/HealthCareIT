@@ -213,5 +213,10 @@
     "register": {
         "titles": "Thông tin đăng ký",
         "save": "Đăng ký"
+    },
+    "login": {
+        "titles": "Xin chào",
+        "forgotpassword": "Quên mật khẩu",
+        "btn": "Đăng nhập"
     }
 }

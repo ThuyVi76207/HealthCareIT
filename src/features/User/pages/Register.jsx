@@ -11,8 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import PasswordInput from "features/Admin/components/Input/PasswordInput";
 import { postRegister } from "services/userService";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
+import Loading from "components/Loading/loading";
+import { useNavigate } from "react-router-dom";
 
 const Register = ({ t }) => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const formRef = useRef(null);
     const { language } = useSelector((state) => state.user) || {};
@@ -93,6 +96,10 @@ const Register = ({ t }) => {
         handleRegister();
     };
 
+    const handleNavigateLogin = () => {
+        navigate(`/healthcare/login/user`);
+    }
+
     const handleRegister = async () => {
         if (!isValidated()) return srollToInput();
         const data = {
@@ -116,7 +123,8 @@ const Register = ({ t }) => {
                 srollToInput();
             }
             setLoading(false);
-            console.log('Check res', res)
+            handleNavigateLogin();
+            // console.log('Check res', res)
         } catch (error) {
             dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
             setLoading(false);
@@ -125,6 +133,7 @@ const Register = ({ t }) => {
     }
     return (
         <MainLayout>
+            <Loading loading={loading} />
             <h2 className="text-[30px] font-bold text-[#16917c] text-center my-[50px]">{t('register.titles')}</h2>
             <div className="flex w-[80%] mx-auto">
                 <div className="w-[60%]">

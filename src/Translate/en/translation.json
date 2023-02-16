@@ -213,5 +213,10 @@
     "register": {
         "titles": "Register Form",
         "save": "Register"
+    },
+    "login": {
+        "titles": "Welcome",
+        "forgotpassword": "Forgot password",
+        "btn": "Login"
     }
 }
