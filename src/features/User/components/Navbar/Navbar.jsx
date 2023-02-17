@@ -73,7 +73,7 @@ const Navbar = ({ t }) => {
                         </div>
                         <div className='content-item'>
                             <i className='fa fa-user'></i>
-                            <div className='text-item'>{t('navbar.login')}</div>
+                            <div className='text-item'><Link to={"/healthcare/login/user"}><b>{t('navbar.login')}</b></Link></div>
                         </div>
                     </div>
                 </div>
