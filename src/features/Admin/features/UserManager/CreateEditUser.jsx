@@ -243,13 +243,14 @@ const CreateEditUser = ({ t }) => {
             console.log('Check results edit', res)
             if (res && res.errCode === 0) {
                 dispatch(addSuccessMessage({ title: "Lưu thành công", content: "Sửa thành công thông tin tài khoản người dùng" }));
-                srollToInput();
+
             } else if (res && res.errCode === 2) {
                 dispatch(addWarningMessage({ title: "Tài khoản không tồn tại", content: "Vui lòng kiểm tra lại!!!" }));
                 srollToInput();
             }
             setLoading(false);
             navigate(`/manager/usermanager`);
+
         } catch (err) {
             dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
             setLoading(false);
