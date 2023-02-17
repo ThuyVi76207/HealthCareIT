@@ -217,6 +217,10 @@
     "login": {
         "titles": "Xin chào",
         "forgotpassword": "Quên mật khẩu",
-        "btn": "Đăng nhập"
+        "btn": "Đăng nhập",
+        "titlesad": "Đăng nhập",
+        "phderemail": "Địa chỉ email",
+        "phderpassword": "Mật khẩu",
+        "make": "Thực hiện với ❤️ bởi HealthCare"
     }
 }

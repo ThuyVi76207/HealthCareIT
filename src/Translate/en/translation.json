@@ -217,6 +217,10 @@
     "login": {
         "titles": "Welcome",
         "forgotpassword": "Forgot password",
-        "btn": "Login"
+        "btn": "Login",
+        "titlesad": "Login Form",
+        "phderemail": "Email Address",
+        "phderpassword": "Password",
+        "make": "Make with ❤️ by HealthCare"
     }
 }
