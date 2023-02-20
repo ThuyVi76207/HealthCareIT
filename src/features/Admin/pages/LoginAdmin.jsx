@@ -5,6 +5,7 @@ import { withNamespaces } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
+import { addProfileUser } from "reducers/profileuserSlice";
 import { handleLoginApi } from "services/userService";
 
 const LoginAdmin = ({ t }) => {
@@ -61,6 +62,7 @@ const LoginAdmin = ({ t }) => {
             console.log('Check results login', res)
             if (res && res.errCode === 0) {
                 dispatch(addSuccessMessage({ title: "Đăng nhập thành công", content: "Chào mừng bạn đến với HealthCare" }));
+                dispatch(addProfileUser(res.user));
                 navigate(`/manager`)
             } else if (res && res.errCode === 1) {
                 dispatch(addWarningMessage({ title: "Email không tồn tại", content: "Vui lòng kiểm tra lại!!!" }));
@@ -84,7 +86,7 @@ const LoginAdmin = ({ t }) => {
 
     return (
         <div className="bg-[#16917c] w-full h-[720px] relative">
-            {/* <Loading loading={loading} /> */}
+            <Loading loading={loading} />
             <div className="w-[350px]  text-white absolute bg-[#1b2342] top-[20%] left-[40%] rounded-[10px] shadow-[0_2px_10px_1px_rgba(0,0,0,0.3)]">
                 <h2 className="text-center text-[30px] font-bold my-8">{t('login.titlesad')}</h2>
                 <form ref={formRef}>

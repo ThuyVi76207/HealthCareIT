@@ -34,6 +34,7 @@ function HealthManager() {
                 <Route exact path="/specialtymanager/create" element={<CreateEditSpecialty />}></Route>
                 <Route exact path="/specialtymanager/edit/:id" element={<CreateEditSpecialty />}></Route>
 
+                {/* NVYT */}
                 <Route exact path="/newsmanager" element={<NewsManager />}></Route>
                 <Route exact path="/newsmanager/create" element={<CreateEditNews />}></Route>
                 <Route exact path="/newsmanager/edit/:id" element={<CreateEditNews />}></Route>

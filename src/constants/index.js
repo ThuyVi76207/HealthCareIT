@@ -46,3 +46,10 @@ export const TIMELINE_OPTIONS = [
     { value: 'T7', label: { vi: '15:00 - 16:00', en: '3:00 PM - 4:00 PM' } },
     { value: 'T8', label: { vi: '16:00 - 17:00', en: '4:00 PM - 5:00 PM' } },
 ];
+
+export const USER_ROLES = {
+    ADMIN: 'R1',
+    DOCTOR: 'R2',
+    PATIENT: 'R3',
+    STAFF: 'R4'
+}
