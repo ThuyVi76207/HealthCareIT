@@ -1,8 +1,32 @@
 import logo from 'assets/Logo/Hcare-white.svg';
+import { USER_ROLES } from 'constants';
+import { useEffect, useState } from 'react';
 import { withNamespaces } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { adminMenu } from './OptionMenu';
 
 const Menu = ({ t }) => {
+
+    const profileuser = useSelector((state) => state.profileuser);
+
+    const [menuUrl, setMenuUrl] = useState([]);
+    useEffect(() => {
+
+        let menu = [];
+        if (profileuser && profileuser.roleId) {
+            let role = profileuser.roleId;
+            if (role === USER_ROLES.ADMIN) {
+                menu = adminMenu;
+                setMenuUrl(menu);
+            }
+        }
+
+    }, [profileuser])
+
+    console.log("Check menuURl", menuUrl);
+    // let icon = `grid-outline`;
+
 
 
 
@@ -13,13 +37,28 @@ const Menu = ({ t }) => {
             </div>
             <div className="text-[#fff]">
                 <ul>
-                    <li className='my-3 cursor-pointer hover:text-[#16917c]'>
-                        <Link className="flex items-center w-full" to={"/manager"}>
-                            <i className='mt-1 mr-4'><ion-icon name="grid-outline"></ion-icon></i>
-                            <h2>{t('menu.dashboard')}</h2>
-                        </Link>
+                    {
+                        menuUrl.map((item, index) => {
+                            return (
+                                <li key={index} className='my-3 cursor-pointer hover:text-[#16917c]'>
+                                    <Link className="flex items-center w-full" to={item.link}>
+                                        <i className='mt-1 mr-4'><ion-icon name={item.icon}></ion-icon></i>
+                                        <h2>{t(item.name)}</h2>
+                                    </Link>
 
-                    </li>
+                                </li>
+                            )
+                        })
+                    }
+
+                    {/* 
+                    <li className='my-3 cursor-pointer hover:text-[#16917c]'>
+                                    <Link className="flex items-center w-full" to={"/manager"}>
+                                        <i className='mt-1 mr-4'><ion-icon name="grid-outline"></ion-icon></i>
+                                        <h2>{t('menu.dashboard')}</h2>
+                                    </Link>
+
+                                </li>
                     <li className='my-3 cursor-pointer hover:text-[#16917c]'>
                         <Link className="flex items-center w-full" to={"/manager/usermanager"}>
                             <i className='mt-1 mr-4'><ion-icon name="people-outline"></ion-icon></i>
@@ -61,7 +100,7 @@ const Menu = ({ t }) => {
                             <h2>{t('menu.medicine')}</h2>
                         </Link>
 
-                    </li>
+                    </li> */}
                 </ul>
             </div>
 
