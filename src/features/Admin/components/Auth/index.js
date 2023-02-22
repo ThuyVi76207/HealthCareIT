@@ -6,8 +6,10 @@ const getUrlDynamic = (roleId) => {
         userUrl = 'admin';
     } else if (roleId && roleId === 'R2') {
         userUrl = 'doctor';
-    } else {
+    } else if (roleId && roleId === 'R4') {
         userUrl = 'healthstaff';
+    } else {
+        userUrl = 'user'
     }
     return userUrl;
 }
