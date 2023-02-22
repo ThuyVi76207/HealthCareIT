@@ -4,14 +4,16 @@ import 'features/Admin/components/StylesCommon/TableManagerStyles.scss';
 import { withNamespaces } from "react-i18next";
 import { convertDateToDateTime } from "function/formater";
 import { deleteSpecialtyService } from "services/adminService";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import Loading from "components/Loading/loading";
 import { addInfor } from "reducers/editcommonSlice";
 import { useNavigate } from "react-router-dom";
+import { getUrlDynamic } from "features/Admin/components/Auth";
 
 const TableSpecialty = ({ t }) => {
     const navigate = useNavigate();
+    const userProfile = useSelector((state) => state.profileuser);
     const dispatch = useDispatch();
     const [listspecialty, setListSpecialty] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -56,7 +58,8 @@ const TableSpecialty = ({ t }) => {
 
     const handleEditSpecialty = (specialty) => {
         dispatch(addInfor(specialty));
-        navigate(`/manager/specialtymanager/edit/${specialty.id}`);
+        let userUrl = getUrlDynamic(userProfile.roleId);
+        navigate(`/manager/system/${userUrl}/specialtymanager/edit/${specialty.id}`);
     }
 
     return (

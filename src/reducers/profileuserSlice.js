@@ -8,6 +8,7 @@ const profileuserSlice = createSlice({
     reducers: {
         addProfileUser: (state, action) => {
             state = action.payload;
+            state = { ...state, isLogin: true }
             return state;
         }
     }

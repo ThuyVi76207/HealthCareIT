@@ -4,9 +4,11 @@ import "features/Admin/components/StylesCommon/TableManagerStyles.scss";
 import { withNamespaces } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getUrlDynamic } from "features/Admin/components/Auth";
 
 const TableDoctor = ({ t }) => {
     const navigate = useNavigate();
+    const userProfile = useSelector((state) => state.profileuser)
 
     const { language } = useSelector((state) => state.user) || {};
 
@@ -29,7 +31,8 @@ const TableDoctor = ({ t }) => {
     }, []);
 
     const handleEditInforDoctor = (infordoctor) => {
-        navigate(`/manager/doctormanager/edit-information-doctor/${infordoctor.id}`)
+        let userUrl = getUrlDynamic(userProfile.roleId);
+        navigate(`/manager/system/${userUrl}/doctormanager/edit-information-doctor/${infordoctor.id}`)
     }
 
     return (

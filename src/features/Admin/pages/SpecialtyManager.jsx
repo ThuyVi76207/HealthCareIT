@@ -1,14 +1,19 @@
 import { withNamespaces } from "react-i18next";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getUrlDynamic } from "../components/Auth";
 import TableSpecialty from "../features/SpecialtyManager/TableSpecialty";
 import ManagerLayout from "../layouts/ManagerLayout";
 
 const SpecialtyManager = ({ t }) => {
 
     const navigate = useNavigate();
+    const userProfile = useSelector((state) => state.profileuser)
+
 
     const handleNavigateCreateSpecialty = () => {
-        navigate(`/manager/specialtymanager/create`);
+        let userUrl = getUrlDynamic(userProfile.roleId);
+        navigate(`/manager/system/${userUrl}/specialtymanager/create`);
     }
 
     return (

@@ -4,11 +4,13 @@ import { useEffect, useState } from 'react';
 import { withNamespaces } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { adminMenu } from './OptionMenu';
+import { adminMenu, doctorMenu, healthStaffMenu } from './OptionMenu';
 
 const Menu = ({ t }) => {
 
     const profileuser = useSelector((state) => state.profileuser);
+
+    console.log("check profile login", profileuser)
 
     const [menuUrl, setMenuUrl] = useState([]);
     useEffect(() => {
@@ -20,15 +22,20 @@ const Menu = ({ t }) => {
                 menu = adminMenu;
                 setMenuUrl(menu);
             }
+            if (role === USER_ROLES.DOCTOR) {
+                menu = doctorMenu;
+                setMenuUrl(menu);
+            }
+            if (role === USER_ROLES.STAFF) {
+                menu = healthStaffMenu;
+                setMenuUrl(menu);
+            }
         }
 
     }, [profileuser])
 
     console.log("Check menuURl", menuUrl);
     // let icon = `grid-outline`;
-
-
-
 
     return (
         <div className="bg-[#1b2342] flex flex-col items-center absolute left-0 w-[20%] h-full">

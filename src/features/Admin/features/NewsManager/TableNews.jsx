@@ -4,16 +4,18 @@ import { getAllNews } from "services/userService";
 import 'features/Admin/components/StylesCommon/TableManagerStyles.scss';
 import { withNamespaces } from "react-i18next";
 import { convertDateToDateTime } from "function/formater";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import { deleteNewsService } from "services/adminService";
 import Loading from "components/Loading/loading";
 import { useNavigate } from "react-router-dom";
 import { addInfor } from "reducers/editcommonSlice";
+import { getUrlDynamic } from "features/Admin/components/Auth";
 
 const TableNews = ({ t }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const userProfile = useSelector((state) => state.profileuser);
 
     const [listnews, setListNews] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -58,7 +60,8 @@ const TableNews = ({ t }) => {
 
     const handleEditNews = (user) => {
         dispatch(addInfor(user));
-        navigate(`/manager/newsmanager/edit/${user.id}`);
+        let userUrl = getUrlDynamic(userProfile.roleId);
+        navigate(`/manager/system/${userUrl}/newsmanager/edit/${user.id}`);
     }
 
     return (

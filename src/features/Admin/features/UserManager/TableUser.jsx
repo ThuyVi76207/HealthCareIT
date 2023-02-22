@@ -8,9 +8,11 @@ import Loading from "components/Loading/loading";
 
 import { useNavigate } from "react-router-dom";
 import { addInfor } from "reducers/editcommonSlice";
+import { getUrlDynamic } from "features/Admin/components/Auth";
 
 const TableUser = ({ t }) => {
     const { language } = useSelector((state) => state.user) || {};
+    const userProfile = useSelector((state) => state.profileuser);
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
 
@@ -60,7 +62,8 @@ const TableUser = ({ t }) => {
 
     const handleEditUser = (user) => {
         dispatch(addInfor(user));
-        navigate(`/manager/usermanager/edit/${user.id}`);
+        let userUrl = getUrlDynamic(userProfile.roleId);
+        navigate(`/manager/system/${userUrl}/usermanager/edit/${user.id}`);
     }
 
     return (
