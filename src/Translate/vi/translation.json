@@ -6,7 +6,10 @@
         "healthnews": "Tin tức sức khỏe",
         "contact": "Liên hệ",
         "register": "Đăng ký",
-        "login": "Đăng nhập"
+        "login": "Đăng nhập",
+        "logout": "Đăng xuất",
+        "welcome": "Chào mừng",
+        "with": "đến với"
     },
     "banner": {
         "bntitle1": "Không chỉ chăm sóc",

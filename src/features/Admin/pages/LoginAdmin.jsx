@@ -4,7 +4,6 @@ import React, { useRef, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { isAuthenChecked } from "reducers/isAuthenSlice";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import { addProfileUser } from "reducers/profileuserSlice";
 import { handleLoginApi } from "services/userService";
@@ -67,15 +66,15 @@ const LoginAdmin = ({ t }) => {
                 navigate(`/manager/system`)
             } else if (res && res.errCode === 1) {
                 dispatch(addWarningMessage({ title: "Email không tồn tại", content: "Vui lòng kiểm tra lại!!!" }));
-                dispatch(isAuthenChecked(false));
+                ;
                 srollToInput();
             } else if (res && res.errCode === 2) {
                 dispatch(addWarningMessage({ title: "Không tìm thấy user", content: "Vui lòng kiểm tra lại!!!" }));
-                dispatch(isAuthenChecked(false));
+
                 srollToInput();
             } else if (res && res.errCode === 3) {
                 dispatch(addWarningMessage({ title: "Mật khẩu không đúng", content: "Vui lòng kiểm tra lại!!!" }));
-                dispatch(isAuthenChecked(false));
+
                 srollToInput();
             }
 
@@ -83,7 +82,7 @@ const LoginAdmin = ({ t }) => {
 
         } catch (err) {
             dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
-            dispatch(isAuthenChecked(false));
+
             setLoading(false);
             console.log("Faild to login user", err);
         }

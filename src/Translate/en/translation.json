@@ -6,7 +6,10 @@
         "healthnews": "Health News",
         "contact": "Contact",
         "register": "Register",
-        "login": "Login"
+        "login": "Login",
+        "logout": "Logout",
+        "welcome": "Welcome",
+        "with": "with"
     },
     "banner": {
         "bntitle1": "More than just",
