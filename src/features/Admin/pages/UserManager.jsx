@@ -1,5 +1,7 @@
 import { withNamespaces } from "react-i18next";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getUrlDynamic } from "../components/Auth";
 import TableUser from "../features/UserManager/TableUser";
 import ManagerLayout from "../layouts/ManagerLayout";
 
@@ -8,9 +10,12 @@ const UserManager = ({ t }) => {
 
 
     const navigate = useNavigate();
+    const userProfile = useSelector((state) => state.profileuser)
+
 
     const handleNavigateCreateUser = () => {
-        navigate(`/manager/usermanager/create`)
+        let userUrl = getUrlDynamic(userProfile.roleId);
+        navigate(`/manager/system/${userUrl}/usermanager/create`)
     }
 
 

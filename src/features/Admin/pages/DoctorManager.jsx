@@ -1,14 +1,18 @@
 import { withNamespaces } from "react-i18next";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getUrlDynamic } from "../components/Auth";
 import TableDoctor from "../features/DoctorManager/TableDoctor";
 import ManagerLayout from "../layouts/ManagerLayout";
 
 const DoctorManager = ({ t }) => {
 
     const navigate = useNavigate();
+    const userProfile = useSelector((state) => state.profileuser)
 
     const handleNavigateAddInformationDoctor = () => {
-        navigate(`/manager/doctormanager/add-information-doctor`)
+        let userUrl = getUrlDynamic(userProfile.roleId);
+        navigate(`/manager/system/${userUrl}/doctormanager/add-information-doctor`)
     }
     return (
         <ManagerLayout>

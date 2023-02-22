@@ -5,6 +5,7 @@ import editcommonReducer from 'reducers/editcommonSlice';
 import timeworkReducer from 'reducers/timeworkSlice';
 import inforDoctorReducer from 'reducers/inforDoctorSlice';
 import profileuserReducer from 'reducers/profileuserSlice';
+import isAuthenReducer from 'reducers/isAuthenSlice';
 
 //tao store
 
@@ -15,6 +16,7 @@ const rootReducer = {
     timework: timeworkReducer,
     inforDoctor: inforDoctorReducer,
     profileuser: profileuserReducer,
+    isAuthen: isAuthenReducer,
 }
 
 const store = configureStore({

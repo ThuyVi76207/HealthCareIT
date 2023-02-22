@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { isAuthenChecked } from "reducers/isAuthenSlice";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import { addProfileUser } from "reducers/profileuserSlice";
 import { handleLoginApi } from "services/userService";
@@ -59,19 +60,22 @@ const LoginAdmin = ({ t }) => {
         setLoading(true);
         try {
             let res = await handleLoginApi(email, password);
-            console.log('Check results login', res)
+            // console.log('Check results login', res)
             if (res && res.errCode === 0) {
                 dispatch(addSuccessMessage({ title: "Đăng nhập thành công", content: "Chào mừng bạn đến với HealthCare" }));
                 dispatch(addProfileUser(res.user));
-                navigate(`/manager`)
+                navigate(`/manager/system`)
             } else if (res && res.errCode === 1) {
                 dispatch(addWarningMessage({ title: "Email không tồn tại", content: "Vui lòng kiểm tra lại!!!" }));
+                dispatch(isAuthenChecked(false));
                 srollToInput();
             } else if (res && res.errCode === 2) {
                 dispatch(addWarningMessage({ title: "Không tìm thấy user", content: "Vui lòng kiểm tra lại!!!" }));
+                dispatch(isAuthenChecked(false));
                 srollToInput();
             } else if (res && res.errCode === 3) {
                 dispatch(addWarningMessage({ title: "Mật khẩu không đúng", content: "Vui lòng kiểm tra lại!!!" }));
+                dispatch(isAuthenChecked(false));
                 srollToInput();
             }
 
@@ -79,6 +83,7 @@ const LoginAdmin = ({ t }) => {
 
         } catch (err) {
             dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
+            dispatch(isAuthenChecked(false));
             setLoading(false);
             console.log("Faild to login user", err);
         }

@@ -12,6 +12,8 @@ function SystemAdmin() {
     return (
         <>
             <Routes>
+
+
                 <Route exact path="/usermanager" element={<UserManager />}></Route>
                 <Route exact path="/usermanager/create" element={<CreateEditUser />}></Route>
                 <Route exact path="/usermanager/edit/:id" element={<CreateEditUser />}></Route>
