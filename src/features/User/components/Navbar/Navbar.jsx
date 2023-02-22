@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useState } from 'react';
 import i18n from '../../../../function/i18n/i18n';
 import { withNamespaces } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addLanguage } from 'reducers/userSlice';
 
 
@@ -16,7 +16,8 @@ const Navbar = ({ t }) => {
 
     const dispatch = useDispatch()
 
-
+    const userPRofile = useSelector((state) => state.profileuser);
+    console.log("Check if user login", userPRofile)
 
     const [language, setLanguage] = useState('vi');
 
@@ -42,22 +43,18 @@ const Navbar = ({ t }) => {
 
     }
 
-
-
-
-
-
-
-
-
-
+    let nameVi, nameEn;
+    if (userPRofile && userPRofile.lastName && userPRofile.firstName) {
+        nameVi = ` ${userPRofile.lastName} ${userPRofile.firstName}`;
+        nameEn = ` ${userPRofile.firstName} ${userPRofile.lastName}`;
+    }
 
     return (
         <div className='navbar-common'>
             <div className='navbar-up'>
                 <div className='header-up'>
                     <img className='h-[3.125rem]' src='/logo/Hcare.svg' alt='' />
-                    <div className='flex w-[42%] justify-between'>
+                    <div className='flex gap-10'>
                         <a href="mailto:healthcare@gmail.com" className='content-item'>
                             <i className='fa fa-envelope'></i>
                             <div className='text-item'>healthcare@gmail.com</div>
@@ -69,12 +66,34 @@ const Navbar = ({ t }) => {
                         </a>
                         <div className='content-item'>
                             <i className='fa fa-registered'></i>
-                            <div className='text-item'><Link to={"/healthcare/register"}><b>{t('navbar.register')}</b></Link></div>
+                            <div className='text-item'><a href='/healthcare/register'><b>{t('navbar.register')}</b></a></div>
                         </div>
-                        <div className='content-item'>
+                        {/* <div className='content-item'>
                             <i className='fa fa-user'></i>
                             <div className='text-item'><Link to={"/healthcare/login/user"}><b>{t('navbar.login')}</b></Link></div>
-                        </div>
+                        </div> */}
+                        {
+                            userPRofile && userPRofile.isLogin === true ?
+                                < div className='content-item'>
+                                    <i className="fas fa-sign-out-alt"></i>
+                                    <div className='text-item'><a href='/healthcare/login/user'><b>{t('navbar.logout')}</b></a></div>
+                                </div>
+                                :
+                                < div className='content-item'>
+                                    <i className='fa fa-user'></i>
+                                    <div className='text-item'><Link to={"/healthcare/login/user"}><b>{t('navbar.login')}</b></Link></div>
+                                </div>
+                        }
+
+                        {
+                            userPRofile && userPRofile.lastName && userPRofile.firstName &&
+                            <div className='flex items-center'>
+                                <h2 className='text-[#16917c] font-bold text-[18px]'>{`${t('navbar.welcome')}, ${language === 'vi' ? nameVi : nameEn}`}</h2>
+                            </div>
+
+
+                        }
+
                     </div>
                 </div>
             </div>

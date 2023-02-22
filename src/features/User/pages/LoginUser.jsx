@@ -10,6 +10,7 @@ import { handleLoginApi } from "services/userService";
 import { useDispatch } from "react-redux";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import { useNavigate } from "react-router-dom";
+import { addProfileUser } from "reducers/profileuserSlice";
 const LoginUser = ({ t }) => {
     const dispatch = useDispatch();
     const formRef = useRef(null);
@@ -61,9 +62,10 @@ const LoginUser = ({ t }) => {
         setLoading(true);
         try {
             let res = await handleLoginApi(email, password);
-            console.log('Check results login', res)
+            // console.log('Check results login', res)
             if (res && res.errCode === 0) {
                 dispatch(addSuccessMessage({ title: "Đăng nhập thành công", content: "Chào mừng bạn đến với HealthCare" }));
+                dispatch(addProfileUser(res.user));
                 navigate(`/`)
             } else if (res && res.errCode === 1) {
                 dispatch(addWarningMessage({ title: "Email không tồn tại", content: "Vui lòng kiểm tra lại!!!" }));
