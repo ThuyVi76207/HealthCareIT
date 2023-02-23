@@ -109,10 +109,10 @@ const Navbar = ({ t }) => {
                             <a href={"/healthcare/online-examination"}><b>{t('navbar.onlinemedica')}</b></a>
                         </div>
                         <div className='child-content'>
-                            <Link to={"/healthcare/forum"}><b>{t('navbar.forum')}</b></Link>
+                            <Link to={userPRofile && userPRofile.isLogin === true ? "/healthcare/forum" : "/healthcare/login/user"}><b>{t('navbar.forum')}</b></Link>
                         </div>
                         <div className='child-content'>
-                            <Link to={"/healthcare/news"}><b>{t('navbar.healthnews')}</b></Link>
+                            <Link to={userPRofile && userPRofile.isLogin === true ? "/healthcare/news" : "/healthcare/login/user"}><b>{t('navbar.healthnews')}</b></Link>
                         </div>
                         <div className='child-content'>
                             <Link to={"/healthcare/contact"}><b>{t('navbar.contact')}</b></Link>

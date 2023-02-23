@@ -61,6 +61,7 @@ const NavbarManager = () => {
                         })
                     }
                 </div>
+                <a className="p-3" href='/manager/login'><i className="fas fa-sign-out-alt"></i></a>
             </div>
         </div>
     )
