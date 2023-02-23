@@ -1,6 +1,7 @@
 import NotFound from "components/NotFound";
 import { useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import DoctorDetail from "./features/Home/SectionData/Doctor/DoctorDetail";
 import NewsDetail from "./features/Home/SectionData/News/NewsDetail";
 import SpecialtyDetail from "./features/Home/SectionData/Specialty/SpecialtyDetail";
@@ -14,6 +15,7 @@ import OnlExamination from "./pages/OnlExamination";
 import Register from "./pages/Register";
 
 function HeathCare() {
+    const userProfile = useSelector((state) => state.profileuser)
     const { pathname } = useLocation();
 
     useEffect(() => {
@@ -26,11 +28,11 @@ function HeathCare() {
                 <Route exact path="/" element={<Home />}></Route>
                 <Route exact path="/online-examination" element={<OnlExamination />}></Route>
                 <Route exact path="/forum" element={<Forum />}></Route>
-                <Route exact path="/news" element={<News />}></Route>
+                <Route exact path="/news" element={userProfile && userProfile.isLogin === true ? <News /> : <Navigate to={'/healthcare/login/user'} />}></Route>
                 <Route exact path="/contact" element={<Contact />}></Route>
                 <Route exact path="/detail-speacilty/:id" element={<SpecialtyDetail />}></Route>
                 <Route exact path="/detail-doctor/:id" element={<DoctorDetail />}></Route>
-                <Route exact path="/detail-news/:id" element={<NewsDetail />}></Route>
+                <Route exact path="/detail-news/:id" element={userProfile && userProfile.isLogin === true ? <NewsDetail /> : <Navigate to={'/healthcare/login/user'} />}></Route>
 
                 <Route exact path="/booking-schedule/:date/:time" element={<BookingSchedule />}></Route>
 
