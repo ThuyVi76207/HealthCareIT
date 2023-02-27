@@ -7,11 +7,9 @@ import "./RoomContentStyles.scss";
 
 const socket = io("http://localhost:7777");
 
-var stream;
-
 const RoomContent = () => {
     const [me, setMe] = useState("")
-    // const [stream, setStream] = useState()
+    const [stream, setStream] = useState()
     const [receivingCall, setReceivingCall] = useState(false)
     const [caller, setCaller] = useState("")
     const [callerSignal, setCallerSignal] = useState()
@@ -20,7 +18,7 @@ const RoomContent = () => {
     const [callEnded, setCallEnded] = useState(false)
     const [name, setName] = useState("")
     const [ipRoom, setIPRoom] = useState(false);
-    const [shareCam, setShareCam] = useState(false);
+    const [shareCam, setShareCam] = useState(true);
 
     const myVideo = useRef(null);
     const userVideo = useRef()
@@ -30,18 +28,16 @@ const RoomContent = () => {
 
         const getUserMedia = async () => {
             try {
-                const streams = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
                 if (myVideo.current) {
                     myVideo.current.srcObject = stream
                 }
 
-                if (streams) {
-                    console.log('Check streamer ', streams);
-                    // setStream(stream);
-                    stream = streams
-
+                if (stream) {
+                    console.log('Check streamer ', stream);
+                    setStream(stream);
+                    // stream = streams
                 }
-
 
             } catch (error) {
                 console.log("Faild to get user media", error);
@@ -49,13 +45,6 @@ const RoomContent = () => {
         }
 
         getUserMedia();
-        // navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((streams) => {
-        //     console.log("Check stream ", streams);
-        //     setStream(streams)
-        //     myVideo.current.srcObject = streams
-        // })
-
-
 
         socket.on("me", (id) => { //IP room
             setMe(id)
@@ -68,33 +57,28 @@ const RoomContent = () => {
             setCallerSignal(data.signal)
         })
 
-    }, [me])
 
-    // useEffect(() => {
-    //     socket.on("remote turned webcam off", () => {
+        socket.on("hideCam", hideCam)
+        socket.on("onOffAudio", onOffAudio)
 
-    //     });
-    // }, [])
+    }, [])
 
-    const handleStopWebcam = () => {
-        socket.emit("turn webcam off", me);
-        stream.getTracks()[0].stop();
-        navigator.mediaDevices.getUserMedia({ video: !shareCam, audio: true }).then(stream => {
-
-            myVideo.current = stream;
-            setShareCam(false);
-        }).catch(e => console.error(e));
-
-
+    const hideCam = () => {
+        navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
+            setStream(stream)
+            myVideo.current.srcObject.getTracks().forEach(t => t.enabled = !t.enabled);
+            setShareCam(!shareCam);
+        })
     }
 
-    const handleStartWebcam = () => {
-        stream.getVideoTracks()[0].start();
-        setShareCam(true);
-        socket.emit("turn webcam on", me);
-        return;
-    }
+    // Nút này hơi sai sai nên để sau nha :))))
+    const onOffAudio = () => {
+        navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then((stream) => {
+            setStream(stream);
+            myVideo.current.srcObject.getAudioTracks().forEach(t => t.enabled = !t.enabled);
 
+        })
+    }
 
     const callUser = (id) => {
         const peer = new Peer({
@@ -123,8 +107,12 @@ const RoomContent = () => {
         connectionRef.current = peer
     }
 
+    const stopStream = () => {
+        myVideo.current.srcObject.getVideoTracks().forEach((track) => track.stop());
+    }
+
     const answerCall = () => {
-        alert('answer')
+        // alert('answer')
         setCallAccepted(true)
         const peer = new Peer({
             initiator: false,
@@ -153,20 +141,22 @@ const RoomContent = () => {
     //     setIPRoom(me);
     // }
 
-    console.log("Check callEnded", callEnded);
+    // console.log("Check callEnded", callEnded);
 
-    console.log("Check receivingCall", receivingCall);
-    console.log("Check callAccepted", callAccepted);
+    // console.log("Check receivingCall", receivingCall);
+    // console.log("Check callAccepted", callAccepted);
 
-    console.log("Check IP room ", me)
+    // console.log("Check IP room ", me)
 
-    console.log("")
+    // console.log("")
+
+
 
     const StopShareWebcamButton = () => {
 
         return (
             <div
-                onClick={handleStopWebcam}
+                onClick={hideCam}
                 className="w-16 h-16 flex items-center justify-center mx-auto rounded-full bg-cyan-500 hover:bg-cyan-600 hover:cursor-pointer mx-4"
             >
                 <svg
@@ -183,7 +173,7 @@ const RoomContent = () => {
     const StartShareWebcamButton = () => {
         return (
             <div
-                onClick={handleStartWebcam}
+                onClick={hideCam}
                 className="w-16 h-16 flex items-center justify-center mx-auto rounded-full bg-cyan-500 hover:bg-cyan-600 hover:cursor-pointer mx-4"
             >
                 <svg
@@ -200,7 +190,7 @@ const RoomContent = () => {
         <div className="bg-black h-full absolute w-full">
             <h2 className="text-white font-bold text-[30px] text-center">Room Online</h2>
             <div className="flex gap-[2%] py-3 w-[80%] mx-auto items-center">
-                <h2 className="text-white">{`IP Room: ${me}`}</h2>
+                {/* <h2 className="text-white">{`IP Room: ${me}`}</h2> */}
                 <div>
                     <label className="text-[15px] font-bold text-white mr-2">Tên người dùng:</label>
                     <input
@@ -225,7 +215,7 @@ const RoomContent = () => {
                         onChange={(e) => setIdToCall(e.target.value)}
                         value={idToCall}
                         className="px-2 placeholder-shown:border-gray-500 focus:outline-none h-[30px]"
-                        placeholder="Nhập mã để vào..."
+                        placeholder="Nhập mã để gọi..."
                     ></input>
                 </div>
 
@@ -233,7 +223,7 @@ const RoomContent = () => {
             <div className="">
                 <div className="z-30 absolute bottom-[15px] right-[15px] cursor-move ">
                     {
-                        myVideo
+                        stream
                             ?
                             <video playsInline muted ref={myVideo} autoPlay
                                 className="z-30 w-[100vw] h-[56.25vw] md:w-[320px] md:h-[180px] border-2 border-sky-200 bg-blue-100 object-cover"
@@ -244,14 +234,20 @@ const RoomContent = () => {
                             </div>
 
                     }
+                    {/* <button variant="contained" color="primary" onClick={hideCam}>
+                        Bật/Tắt Video
+                    </button>
+                    <button variant="contained" color="primary" onClick={onOffAudio}>
+                        Bật/Tắt Tiếng
+                    </button> */}
                 </div>
                 <div className="">
                     {callAccepted && !callEnded
                         ?
                         <video playsInline ref={userVideo} autoPlay
-                            className="fixed top-[10vh] md:left-[10vw] md:top-[2vw] w-[100vw] md:w-[80vw] h-[56.25vw] md:h-[45vw] object-cover border-2 border-sky-200"
+                            className="fixed md:left-[10vw] w-[80%] h-[40.25vw] object-cover border-2 border-sky-200"
                         /> :
-                        <div className="hidden md:flex fixed left-[10vw] top-[7vw] w-[80vw] h-[40vw] animate-pulse bg-gray-700 text-blue-300 object-cover border-2 border-sky-200 z-10 text-black flex justify-center items-center text-2xl">
+                        <div className="md:flex fixed left-[10vw] w-[80%] h-[40.25vw]  animate-pulse bg-gray-700 object-cover border-2 border-sky-200 z-10 text-black flex justify-center items-center text-2xl">
                             <h2 className="text-white ">Your camera is off</h2>
                         </div>
 
@@ -268,7 +264,7 @@ const RoomContent = () => {
                             <i className=" text-[25px] text-center"><ion-icon name="call-outline"></ion-icon></i>
                         </button>
                     )}
-                    {idToCall}
+                    {/* {idToCall} */}
                 </div>
                 <div className="user-caller">
                     {receivingCall && !callAccepted ? (
