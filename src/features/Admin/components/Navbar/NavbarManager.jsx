@@ -42,7 +42,6 @@ const NavbarManager = () => {
                     <div className={`cursor-pointer hover:text-orange-400 ${language === 'vi' ? 'text-orange-400' : 'text-black'}`}><span onClick={() => changeLanguage('vi')}>VN</span></div>
                     <span className="mx-1">/</span>
                     <div className={`cursor-pointer hover:text-blue-500 ${language === 'en' ? 'text-blue-600' : 'text-black'}`}><span onClick={() => changeLanguage('en')}>EN</span></div>
-
                 </div>
                 <i className="bg-slate-100 text-center pt-2 rounded-[50%] w-[40px] h-[40px] text-[20px]"><ion-icon name="mail-unread-outline"></ion-icon></i>
                 <i className="bg-slate-100 text-center pt-2 rounded-[50%] w-[40px] h-[40px] text-[20px]"><ion-icon name="call-outline"></ion-icon></i>
