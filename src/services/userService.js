@@ -61,6 +61,9 @@ const postSendSMS = (data) => {
 const postPaymentPaypal = () => {
     return axiosClient.post(`/api/pay-paypal`)
 }
+const successPay = (data) => {
+    return axiosClient.post(`/success`, data)
+}
 
 
 
@@ -80,4 +83,5 @@ export {
     postPaymentPaypal,
     postRegister,
     handleLoginApi,
+    successPay,
 }

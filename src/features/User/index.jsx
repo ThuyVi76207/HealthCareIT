@@ -38,6 +38,7 @@ function HeathCare() {
 
                 <Route exact path="/register" element={<Register />}></Route>
                 <Route exact path="/login/user" element={<LoginUser />}></Route>
+
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
 
