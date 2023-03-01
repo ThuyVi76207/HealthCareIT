@@ -19,6 +19,7 @@ const RoomContent = () => {
     const [name, setName] = useState("")
     const [ipRoom, setIPRoom] = useState(false);
     const [shareCam, setShareCam] = useState(true);
+    const [audio, setAudio] = useState(true);
 
     const myVideo = useRef(null);
     const userVideo = useRef()
@@ -59,14 +60,15 @@ const RoomContent = () => {
 
 
         socket.on("hideCam", hideCam)
-        socket.on("onOffAudio", onOffAudio)
+        // socket.on("onOffAudio", onOffAudio)
 
     }, [])
 
     const hideCam = () => {
+
         navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
             setStream(stream)
-            myVideo.current.srcObject.getTracks().forEach(t => t.enabled = !t.enabled);
+            myVideo.current.srcObject.getVideoTracks().forEach(t => t.enabled = !t.enabled);
             setShareCam(!shareCam);
         })
     }
@@ -74,8 +76,8 @@ const RoomContent = () => {
     // Nút này hơi sai sai nên để sau nha :))))
     const onOffAudio = () => {
         navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then((stream) => {
-            setStream(stream);
             myVideo.current.srcObject.getAudioTracks().forEach(t => t.enabled = !t.enabled);
+            setStream(stream);
 
         })
     }
@@ -107,9 +109,17 @@ const RoomContent = () => {
         connectionRef.current = peer
     }
 
-    const stopStream = () => {
+    const stopStream = async () => {
         myVideo.current.srcObject.getVideoTracks().forEach((track) => track.stop());
+
+        // stream.current?.getTracks().forEach((track) => track.stop());
+
+        // navigator.getUserMedia({ video: false, audio: true }, (stream) => {
+        //     myVideo.current = stream;
+        // })
+
     }
+
 
     const answerCall = () => {
         // alert('answer')
@@ -132,8 +142,9 @@ const RoomContent = () => {
 
     const leaveCall = () => {
         setCallEnded(true);
-        if (connectionRef.current)
-            connectionRef.current.destroy();
+
+        connectionRef.current?.destroy();
+        myVideo.current?.getTracks().forEach((track) => track.stop());
 
     }
 
@@ -226,8 +237,10 @@ const RoomContent = () => {
                         stream
                             ?
                             <video playsInline muted ref={myVideo} autoPlay
-                                className="z-30 w-[100vw] h-[56.25vw] md:w-[320px] md:h-[180px] border-2 border-sky-200 bg-blue-100 object-cover"
-                            />
+                                className="z-30 w-[100vw] h-[56.25vw] text-white md:w-[320px] md:h-[180px] border-2 border-sky-200 object-cover bg-blue-100 "
+                            >
+                                {/* {shareCam === false ? <h2 className="text-white text-center">Your camera is off</h2> : null} */}
+                            </video>
                             :
                             <div className="z-10 fixed md:absolute bottom-[3vh] right-[5vh] w-[320px] h-[180px] bg-black object-cover border-2 border-sky-200 text-white flex justify-center items-center text-2xl">
                                 <h2 className="text-white ">Your camera is off</h2>

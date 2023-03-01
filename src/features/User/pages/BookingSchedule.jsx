@@ -14,8 +14,10 @@ import _ from "lodash";
 import { postPatientBooking, postPaymentPaypal, postSendSMS } from "services/userService";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import PaymentMethodSection from "../features/PaymentMenthod/PaymentSection";
+import Loading from "components/Loading/loading";
 
 const BookingSchedule = ({ t }) => {
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -43,7 +45,7 @@ const BookingSchedule = ({ t }) => {
     })
 
     const formref = useRef(null);
-    const [paymentMethod, setPaymentMethod] = useState(10);
+    const [paymentMethod, setPaymentMethod] = useState(12);
 
     const isValidated = () => {
         let validated = true;
@@ -130,104 +132,127 @@ const BookingSchedule = ({ t }) => {
         formref.current.scrollIntoView();
     }
 
-    // const buildTimeBooking = (dataTime) => {
-    //     if (dataTime && !_.isEmpty(dataTime)) {
-    //         let time = language === 'vi' ?
-    //             dataTime.timeTypeData.value_Vi : dataTime.timeTypeData.value_En;
-    //         let date = language === 'vi' ?
-    //             moment.unix(+dataTime.date / 1000).format('dddd - DD/MM/YYYY')
-    //             :
-    //             moment.unix(+dataTime.date / 1000).locale('en').format('ddd - MM/DD/YYYY')
+    const buildTimeBooking = (dataTime) => {
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let time = language === 'vi' ?
+                dataTime.timeTypeData.value_Vi : dataTime.timeTypeData.value_En;
+            let date = language === 'vi' ?
+                moment.unix(+dataTime.date / 1000).format('dddd - DD/MM/YYYY')
+                :
+                moment.unix(+dataTime.date / 1000).locale('en').format('ddd - MM/DD/YYYY')
 
-    //         return `${time} - ${date}`
-    //     }
-    //     return ''
-    // }
+            return `${time} - ${date}`
+        }
+        return ''
+    }
 
-    // const buidDoctorName = (dataTime) => {
-    //     if (dataTime && !_.isEmpty(dataTime)) {
-    //         let name = language === 'vi' ?
-    //             `${dataTime.doctorData.lastName} - ${dataTime.doctorData.firstName}`
-    //             :
-    //             `${dataTime.doctorData.firstName} - ${dataTime.doctorData.lastName}`
-    //         return name;
-    //     }
-    //     return ''
-    // }
+    const buidDoctorName = (dataTime) => {
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let name = language === 'vi' ?
+                `${dataTime.doctorData.lastName} - ${dataTime.doctorData.firstName}`
+                :
+                `${dataTime.doctorData.firstName} - ${dataTime.doctorData.lastName}`
+            return name;
+        }
+        return ''
+    }
 
-    // const handleConfirmBooking = () => {
-    //     if (loading) return;
-    //     saveConfirmBookin();
-    // }
+    const handlePaymentOnclick = () => {
+        if (loading) return;
+        saveConfirmBookin();
+    }
 
 
 
-    // const saveConfirmBookin = async () => {
-    //     if (!isValidated()) return srollToInput();
+    const saveConfirmBookin = async () => {
+        if (!isValidated()) return srollToInput();
 
-    //     let timeString = buildTimeBooking(timeSchedule);
-    //     let doctorName = buidDoctorName(timeSchedule);
-    //     let numberPhone = `+84${+phoneNumber}`;
-    //     console.log("check numberPhone: ", numberPhone)
-    //     let data = {
-    //         fullName: name,
-    //         phoneNumber: numberPhone,
-    //         email: email,
-    //         address: address,
-    //         reason: description,
-    //         date: timeSchedule.date,
-    //         birthday: dateFinalContract,
-    //         selectedGender: selectedGender,
-    //         doctorId: inforDoctor.id,
-    //         timeType: timeSchedule.timeType,
-    //         language: language,
-    //         timeString: timeString,
-    //         doctorName: doctorName
-    //     }
+        let timeString = buildTimeBooking(timeSchedule);
+        let doctorName = buidDoctorName(timeSchedule);
+        let numberPhone = `+84${+phoneNumber}`;
+        console.log("check numberPhone: ", numberPhone)
+        let data = {
+            fullName: name,
+            phoneNumber: numberPhone,
+            email: email,
+            address: address,
+            reason: description,
+            date: timeSchedule.date,
+            birthday: dateFinalContract,
+            selectedGender: selectedGender,
+            doctorId: inforDoctor.id,
+            timeType: timeSchedule.timeType,
+            language: language,
+            timeString: timeString,
+            doctorName: doctorName
+        }
 
-    //     setLoading(true);
+        setLoading(true);
 
-    //     try {
-    //         let res = await postPatientBooking(data)
+        try {
+            let res = await postPatientBooking(data);
+            console.log(res);
+            setLoading(true);
 
-    //         await postSendSMS({
-    //             phoneNumber: numberPhone
-    //         })
+            if (res && res.errCode === 0) {
 
-    //         if (res && res.errCode === 0) {
-    //             dispatch(addSuccessMessage({ title: "Đặt lịch thành công", content: "Vui lòng truy cập email để xác nhận" }));
-    //             srollToInput();
-    //         } else if (res && res.errCode === 2) {
-    //             dispatch(addWarningMessage({ title: "Đặt lịch không thành công", content: "Khung giờ không trống!!! Vui lòng chọn khung giờ khác!!" }));
-    //             srollToInput();
-    //         }
-    //         setLoading(false);
-    //         console.log("Check booking successful", res);
-    //     } catch (error) {
-    //         dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
-    //         setLoading(false);
-    //         console.log("Faild API a book apointment", error);
-    //     }
-    // }
+                try {
+                    await postSendSMS({
+                        phoneNumber: numberPhone
+                    })
+
+                    if (paymentMethod === 12) {
+                        setLoading(false);
+                        let res = await postPaymentPaypal();
+                        if (res && res.forwardLink) {
+                            window.location.href = res.forwardLink
+                        }
+                        console.log('Check paypal', res);
+                    }
+                } catch (error) {
+                    dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
+                    setLoading(false);
+                    console.log("Faild post API payment paypal ", error);
+                }
+            } else if (res && res.errCode === 2) {
+                dispatch(addWarningMessage({ title: "Đặt lịch không thành công", content: "Khung giờ không trống!!! Vui lòng chọn khung giờ khác!!" }));
+                srollToInput();
+            }
+            setLoading(false);
+            console.log("Check booking successful", res);
+        } catch (error) {
+            dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
+            setLoading(false);
+            console.log("Faild API a book apointment", error);
+        }
+    }
 
     const handleClose = () => {
         navigate(`/`);
     }
 
-    const handlePayment = async () => {
-        if (!isValidated()) return srollToInput();
-        try {
-            let res = await postPaymentPaypal();
-            console.log('Check paypal', res);
-        } catch (error) {
-            alert("Có lỗi xảy ra vui lòng quay lại sau");
-            console.log("Faild to call API paymentMethod paypal", error);
-        }
-        console.log("Check paymentMethod", paymentMethod)
-    }
+    // const handlePayment = async () => {
+    //     if (!isValidated()) return srollToInput();
+    //     try {
+
+    //         if (paymentMethod === 12) {
+    //             let res = await postPaymentPaypal();
+    //             if (res && res.forwardLink) {
+    //                 navigate(`${res.forwardLink}`)
+    //             }
+    //             console.log('Check paypal', res);
+    //         }
+
+    //     } catch (error) {
+    //         alert("Có lỗi xảy ra vui lòng quay lại sau");
+    //         console.log("Faild to call API paymentMethod paypal", error);
+    //     }
+    //     console.log("Check paymentMethod", paymentMethod)
+    // }
 
     return (
         <MainLayout>
+            <Loading loading={loading} />
             <div>
                 <div className="bg-[#e6eeee] ">
                     <div className="py-3 flex w-[60%] mx-auto gap-[3%] items-center">
@@ -353,13 +378,11 @@ const BookingSchedule = ({ t }) => {
                         <h2 className="text-[20px] font-bold mb-4">Phương thức thanh toán</h2>
                         <PaymentMethodSection
                             paymentMethod={paymentMethod}
-                            // bankCodeZalo={bankCodeZalo}
-                            handlePaymentMethod={(value) => setPaymentMethod(value)}
-                        // handleBankCodeZalo={(value) => setBankCodeZalo(value)}
+                            handlePaymentMethod={(e) => setPaymentMethod(e)}
                         />
                     </div>
                     <div className="flex justify-end">
-                        <button onClick={handlePayment} className="bg-[#27284a] hover:bg-[#16917c] text-white text-[18px] font-medium px-4 py-2 mb-12 mt-2 rounded-[5px] mx-2">{t('bookingschedule.save')}</button>
+                        <button onClick={handlePaymentOnclick} className="bg-[#27284a] hover:bg-[#16917c] text-white text-[18px] font-medium px-4 py-2 mb-12 mt-2 rounded-[5px] mx-2">{t('bookingschedule.save')}</button>
                         <button onClick={handleClose} className="bg-red-600 text-white text-[18px] font-medium px-4 py-2 mb-12 mt-2 rounded-[5px]">{t('bookingschedule.close')}</button>
                     </div>
 
