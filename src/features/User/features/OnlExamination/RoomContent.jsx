@@ -58,27 +58,25 @@ const RoomContent = () => {
             setCallerSignal(data.signal)
         })
 
-
         socket.on("hideCam", hideCam)
         // socket.on("onOffAudio", onOffAudio)
-
     }, [])
 
     const hideCam = () => {
-
-        navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
-            setStream(stream)
-            myVideo.current.srcObject.getVideoTracks().forEach(t => t.enabled = !t.enabled);
-            setShareCam(!shareCam);
-        })
+        myVideo.current.srcObject.getVideoTracks().forEach((track) => track.stop());
+        // navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
+        //     setStream(stream)
+        //     myVideo.current.srcObject.getVideoTracks().forEach(t => t.enabled = !t.enabled);
+        //     setShareCam(!shareCam);
+        // })
     }
 
     // Nút này hơi sai sai nên để sau nha :))))
     const onOffAudio = () => {
+
         navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then((stream) => {
             myVideo.current.srcObject.getAudioTracks().forEach(t => t.enabled = !t.enabled);
             setStream(stream);
-
         })
     }
 
@@ -105,19 +103,15 @@ const RoomContent = () => {
             setCallAccepted(true)
             peer.signal(signal)
         })
-
         connectionRef.current = peer
     }
 
     const stopStream = async () => {
-        myVideo.current.srcObject.getVideoTracks().forEach((track) => track.stop());
-
+        myVideo.current.srcObject.getVideoTracks().forEach(t => t.enabled = true);
         // stream.current?.getTracks().forEach((track) => track.stop());
-
         // navigator.getUserMedia({ video: false, audio: true }, (stream) => {
         //     myVideo.current = stream;
         // })
-
     }
 
 
@@ -184,7 +178,7 @@ const RoomContent = () => {
     const StartShareWebcamButton = () => {
         return (
             <div
-                onClick={hideCam}
+                onClick={stopStream}
                 className="w-16 h-16 flex items-center justify-center mx-auto rounded-full bg-cyan-500 hover:bg-cyan-600 hover:cursor-pointer mx-4"
             >
                 <svg

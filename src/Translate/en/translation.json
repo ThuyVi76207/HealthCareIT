@@ -88,7 +88,8 @@
         "planmanager": "Manage the examination plan",
         "specialtymanager": "Specialty Management",
         "newsmanager": "News Management",
-        "medicine": "Medicine Management"
+        "medicine": "Medicine Management",
+        "patientmanager": "Patient Management"
     },
     "tableuser": {
         "title": "User Management",
@@ -225,5 +226,13 @@
         "phderemail": "Email Address",
         "phderpassword": "Password",
         "make": "Make with ❤️ by HealthCare"
+    },
+    "patientManager": {
+        "title": "Patient Manager"
+    },
+    "verifyBooking": {
+        "title": "Successful",
+        "description": "Thank you for coming to Healthcare.",
+        "note": "Please check in and be on time for Doctor's advice"
     }
 }

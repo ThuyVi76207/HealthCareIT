@@ -1,4 +1,5 @@
 import NotFound from "components/NotFound";
+import VerifyBooking from "features/Admin/pages/VerifyBooking";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
@@ -39,6 +40,7 @@ function HeathCare() {
                 <Route exact path="/register" element={<Register />}></Route>
                 <Route exact path="/login/user" element={<LoginUser />}></Route>
 
+                <Route exact path="/verify-booking" element={<VerifyBooking />}></Route>
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
 

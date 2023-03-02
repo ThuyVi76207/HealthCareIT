@@ -88,7 +88,8 @@
         "planmanager": "Quản lý kế hoạch khám bệnh",
         "specialtymanager": "Quản lý chuyên khoa",
         "newsmanager": "Quản lý bài đăng",
-        "medicine": "Quản lý thuốc"
+        "medicine": "Quản lý thuốc",
+        "patientmanager": "Quản lý bệnh nhân"
     },
     "tableuser": {
         "title": "Quản lý người dùng",
@@ -225,5 +226,13 @@
         "phderemail": "Địa chỉ email",
         "phderpassword": "Mật khẩu",
         "make": "Thực hiện với ❤️ bởi HealthCare"
+    },
+    "patientManager": {
+        "title": "Quản lý bệnh nhân"
+    },
+    "verifyBooking": {
+        "title": "Thành công",
+        "description": "Cảm ơn bạn đã đến với HealthCare.",
+        "note": "Vui lòng kiểm tra và vào đúng giờ để Bác sĩ tư vấn."
     }
 }
