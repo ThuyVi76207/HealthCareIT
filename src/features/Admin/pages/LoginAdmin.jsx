@@ -66,15 +66,12 @@ const LoginAdmin = ({ t }) => {
                 navigate(`/manager/system`)
             } else if (res && res.errCode === 1) {
                 dispatch(addWarningMessage({ title: "Email không tồn tại", content: "Vui lòng kiểm tra lại!!!" }));
-                ;
                 srollToInput();
             } else if (res && res.errCode === 2) {
                 dispatch(addWarningMessage({ title: "Không tìm thấy user", content: "Vui lòng kiểm tra lại!!!" }));
-
                 srollToInput();
             } else if (res && res.errCode === 3) {
                 dispatch(addWarningMessage({ title: "Mật khẩu không đúng", content: "Vui lòng kiểm tra lại!!!" }));
-
                 srollToInput();
             }
 

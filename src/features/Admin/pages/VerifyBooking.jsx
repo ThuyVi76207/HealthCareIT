@@ -10,7 +10,7 @@ const VerifyBooking = ({ t }) => {
 
         let urlParam = new URLSearchParams(window.location.search);
         let token = urlParam.get('token');
-        let doctorId = urlParam.get('doctorId')
+        let doctorId = urlParam.get('doctorId');
         let data = {
             token: token,
             doctorId: doctorId
@@ -23,6 +23,7 @@ const VerifyBooking = ({ t }) => {
                 let res = await postVerifyBooking(data)
                 if (res && res.errCode === 0) {
                     setLoading(false);
+                    // console.log("Check booking", res);
                 }
 
             } catch (error) {

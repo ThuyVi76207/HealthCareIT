@@ -5,6 +5,7 @@ import NotFound from "components/NotFound";
 import AlertBoxSection from "components/Alert/AlertBoxSection";
 import * as process from 'process';
 import PaymentSuccess from "features/User/features/PaymentMenthod/PaymentSuccess";
+import DialogModal from "components/Modal/DialogModal";
 
 
 
@@ -28,6 +29,7 @@ function App() {
           </Routes>
         </BrowserRouter>
         <AlertBoxSection />
+        <DialogModal />
       </Suspense>
     </div>
   );
