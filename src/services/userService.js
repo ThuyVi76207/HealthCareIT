@@ -51,6 +51,9 @@ const postPatientBooking = (data) => {
 const postVerifyBooking = (data) => {
     return axiosClient.post('/api/verify-booking-appointment', data)
 }
+const postSendPrescription = (data) => {
+    return axiosClient.post(`/api/send-prescription`, data)
+}
 
 //SMS
 const postSendSMS = (data) => {
@@ -84,4 +87,5 @@ export {
     postRegister,
     handleLoginApi,
     successPay,
+    postSendPrescription,
 }

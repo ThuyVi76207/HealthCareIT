@@ -234,5 +234,8 @@
         "title": "Thành công",
         "description": "Cảm ơn bạn đã đến với HealthCare.",
         "note": "Vui lòng kiểm tra và vào đúng giờ để Bác sĩ tư vấn."
+    },
+    "precription": {
+        "upload": "Chọn đơn thuốc"
     }
 }

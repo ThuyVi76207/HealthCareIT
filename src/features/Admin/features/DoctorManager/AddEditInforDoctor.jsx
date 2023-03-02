@@ -192,7 +192,7 @@ const AddEditInforDoctor = ({ t }) => {
             console.log("Check save doctor", res);
             if (res && res.errCode === 0) {
                 dispatch(addSuccessMessage({ title: "Thêm thành công", content: "Thêm thành công thông tin bác sĩ" }));
-                navigate(`/manager/usermanager`)
+                navigate(`/manager/system/admin/usermanager`)
 
             } else if (res && res.errCode === 1) {
                 dispatch(addWarningMessage({ title: "Thêm thất bại", content: "Vui lòng kiểm tra lại thông tin và điền đầy đủ thông tin mô tả bác sĩ!!!" }));

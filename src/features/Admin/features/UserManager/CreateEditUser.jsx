@@ -249,7 +249,7 @@ const CreateEditUser = ({ t }) => {
                 srollToInput();
             }
             setLoading(false);
-            navigate(`/manager/usermanager`);
+            navigate(`/manager/system/admin/usermanager`);
 
         } catch (err) {
             dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))

@@ -234,5 +234,8 @@
         "title": "Successful",
         "description": "Thank you for coming to Healthcare.",
         "note": "Please check in and be on time for Doctor's advice"
+    },
+    "precription": {
+        "upload": "Choose a prescription"
     }
 }
