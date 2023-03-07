@@ -1,4 +1,5 @@
 
+import Loading from "components/Loading/loading";
 import { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +15,9 @@ const ListPatient = ({ t }) => {
         new Date().toISOString().split("T")[0]
     );
 
-    const profile = useSelector((state) => state.profileuser);
+    const rolID = sessionStorage.getItem('role');
+    const profile = JSON.parse(localStorage.getItem(`${rolID}`));
+
     let id = profile.id;
     const [profilePatient, setProfilePatient] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -59,6 +62,7 @@ const ListPatient = ({ t }) => {
 
     return (
         <div>
+            <Loading loading={loading} />
             <div className="grid grid-cols-3">
                 <ScheduleCommon
                     field={t('addplan.chooseday')}

@@ -8,6 +8,9 @@ import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/
 import { addProfileUser } from "reducers/profileuserSlice";
 import { handleLoginApi } from "services/userService";
 
+
+
+
 const LoginAdmin = ({ t }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -59,9 +62,14 @@ const LoginAdmin = ({ t }) => {
         setLoading(true);
         try {
             let res = await handleLoginApi(email, password);
-            // console.log('Check results login', res)
+
+            // console.log('Check results login', res.data)
             if (res && res.errCode === 0) {
+                let profiles = res.user;
+                let user = { ...profiles, isLogin: true }
                 dispatch(addSuccessMessage({ title: "Đăng nhập thành công", content: "Chào mừng bạn đến với HealthCare" }));
+                sessionStorage.setItem('role', `${res.user.roleId}`);
+                localStorage.setItem(`${profiles.roleId}`, JSON.stringify(user));
                 dispatch(addProfileUser(res.user));
                 navigate(`/manager/system`)
             } else if (res && res.errCode === 1) {

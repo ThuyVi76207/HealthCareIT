@@ -1,7 +1,7 @@
 import { ROLE_OPTIONS } from "constants";
 import i18n from "function/i18n/i18n";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addLanguage } from "reducers/userSlice";
 import { Buffer } from "buffer";
 
@@ -9,8 +9,19 @@ const NavbarManager = () => {
 
     const [language, setLanguage] = useState('vi');
     const dispatch = useDispatch();
-    const profile = useSelector((state) => state.profileuser);
-    // console.log("chek profile", profile)
+
+    // const profiles = useSelector((state) => state.profileuser);
+
+    // if (profiles && profiles.roleId) {
+    //     localStorage.setItem(`${profiles.roleId}`, JSON.stringify(profiles));
+    // }
+
+
+    const rolID = sessionStorage.getItem('role');
+    const profile = JSON.parse(localStorage.getItem(`${rolID}`));
+
+    // var profiles = JSON.parse(localStorage.getItem('user'));
+    console.log("chek profile", profile)
 
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
@@ -20,6 +31,7 @@ const NavbarManager = () => {
         setLanguage(lng);
 
     }
+
 
     let nameVi, nameEn;
     if (profile && profile.lastName && profile.firstName) {

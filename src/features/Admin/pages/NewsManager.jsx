@@ -1,5 +1,4 @@
 import { withNamespaces } from "react-i18next";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUrlDynamic } from "../components/Auth";
 import TableNews from "../features/NewsManager/TableNews";
@@ -7,7 +6,9 @@ import ManagerLayout from "../layouts/ManagerLayout";
 
 const NewsManager = ({ t }) => {
     const navigate = useNavigate();
-    const userProfile = useSelector((state) => state.profileuser)
+
+    const rolID = sessionStorage.getItem('role');
+    const userProfile = JSON.parse(localStorage.getItem(`${rolID}`));
 
     const handleNavigateCreateNews = () => {
         let userUrl = getUrlDynamic(userProfile.roleId);
