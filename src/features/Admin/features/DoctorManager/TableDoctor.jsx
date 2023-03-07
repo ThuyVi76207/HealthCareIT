@@ -8,7 +8,9 @@ import { getUrlDynamic } from "features/Admin/components/Auth";
 
 const TableDoctor = ({ t }) => {
     const navigate = useNavigate();
-    const userProfile = useSelector((state) => state.profileuser)
+
+    const rolID = sessionStorage.getItem('role');
+    const userProfile = JSON.parse(localStorage.getItem(`${rolID}`));
 
     const { language } = useSelector((state) => state.user) || {};
 

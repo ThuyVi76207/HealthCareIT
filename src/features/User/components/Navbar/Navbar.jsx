@@ -7,16 +7,18 @@ import { Link } from "react-router-dom";
 import { useState } from 'react';
 import i18n from '../../../../function/i18n/i18n';
 import { withNamespaces } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addLanguage } from 'reducers/userSlice';
 
 
 
 const Navbar = ({ t }) => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
-    const userPRofile = useSelector((state) => state.profileuser);
+    const rolID = sessionStorage.getItem('role');
+    const userPRofile = JSON.parse(localStorage.getItem(`${rolID}`));
+
     console.log("Check if user login", userPRofile)
 
     const [language, setLanguage] = useState('vi');

@@ -4,7 +4,7 @@ import 'features/Admin/components/StylesCommon/TableManagerStyles.scss';
 import { withNamespaces } from "react-i18next";
 import { convertDateToDateTime } from "function/formater";
 import { deleteSpecialtyService } from "services/adminService";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import Loading from "components/Loading/loading";
 import { addInfor } from "reducers/editcommonSlice";
@@ -13,7 +13,10 @@ import { getUrlDynamic } from "features/Admin/components/Auth";
 
 const TableSpecialty = ({ t }) => {
     const navigate = useNavigate();
-    const userProfile = useSelector((state) => state.profileuser);
+
+    const rolID = sessionStorage.getItem('role');
+    const userProfile = JSON.parse(localStorage.getItem(`${rolID}`));
+
     const dispatch = useDispatch();
     const [listspecialty, setListSpecialty] = useState([]);
     const [loading, setLoading] = useState(false);

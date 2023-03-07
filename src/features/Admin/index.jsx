@@ -14,8 +14,6 @@ function HealthManager() {
                 <Route exact path="/login" element={<LoginAdmin />}></Route>
                 <Route path="/system/*" element={<HomeManager />}></Route>
 
-
-
                 {/* Admin */}
                 {/* <Route exact path="/usermanager" element={<UserManager />}></Route>
                 <Route exact path="/usermanager/create" element={<CreateEditUser />}></Route>

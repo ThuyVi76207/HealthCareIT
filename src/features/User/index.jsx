@@ -1,7 +1,6 @@
 import NotFound from "components/NotFound";
 import VerifyBooking from "features/Admin/pages/VerifyBooking";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import DoctorDetail from "./features/Home/SectionData/Doctor/DoctorDetail";
 import NewsDetail from "./features/Home/SectionData/News/NewsDetail";
@@ -16,7 +15,10 @@ import OnlExamination from "./pages/OnlExamination";
 import Register from "./pages/Register";
 
 function HeathCare() {
-    const userProfile = useSelector((state) => state.profileuser)
+
+    const rolID = sessionStorage.getItem('role');
+    const userProfile = JSON.parse(localStorage.getItem(`${rolID}`));
+
     const { pathname } = useLocation();
 
     useEffect(() => {

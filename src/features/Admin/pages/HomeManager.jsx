@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { getUrlDynamic } from "../components/Auth";
 import DenyUser from "./DenyUser";
@@ -8,7 +7,13 @@ import SystemDoctor from "./SystemDoctor";
 import SystemHealthcareStaff from "./SystemHealthcareStaff";
 
 const HomeManager = () => {
-    const userProfile = useSelector((state) => state.profileuser)
+
+    const rolID = sessionStorage.getItem('role');
+    const userProfile = JSON.parse(localStorage.getItem(`${rolID}`));
+
+    console.log("Check roleID ", rolID);
+    console.log("Check userProfile ", userProfile);
+
     let userUrl = getUrlDynamic(userProfile.roleId);
 
     return (

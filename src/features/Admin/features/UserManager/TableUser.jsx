@@ -12,7 +12,10 @@ import { getUrlDynamic } from "features/Admin/components/Auth";
 
 const TableUser = ({ t }) => {
     const { language } = useSelector((state) => state.user) || {};
-    const userProfile = useSelector((state) => state.profileuser);
+
+    const rolID = sessionStorage.getItem('role');
+    const userProfile = JSON.parse(localStorage.getItem(`${rolID}`));
+
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
 

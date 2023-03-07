@@ -2,13 +2,13 @@ import logo from 'assets/Logo/Hcare-white.svg';
 import { USER_ROLES } from 'constants';
 import { useEffect, useState } from 'react';
 import { withNamespaces } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { adminMenu, doctorMenu, healthStaffMenu } from './OptionMenu';
 
 const Menu = ({ t }) => {
 
-    const profileuser = useSelector((state) => state.profileuser);
+    const rolID = sessionStorage.getItem('role');
+    const profileuser = JSON.parse(localStorage.getItem(`${rolID}`));
 
     console.log("check profile login", profileuser)
 
