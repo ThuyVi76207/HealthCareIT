@@ -11,8 +11,8 @@ import BirthdayInput from "../components/BirthdayInput/BirthdayInput";
 import { GENDER_OPTIONS } from "constants";
 import moment from "moment";
 import _ from "lodash";
-import { postPatientBooking, postPaymentPaypal, postSendSMS } from "services/userService";
-import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
+import { postPatientBooking, postSendSMS } from "services/userService";
+import { addErrorMessage, addWarningMessage } from "reducers/messageSlice";
 import PaymentMethodSection from "../features/PaymentMenthod/PaymentSection";
 import Loading from "components/Loading/loading";
 
@@ -162,6 +162,10 @@ const BookingSchedule = ({ t }) => {
         saveConfirmBookin();
     }
 
+    const announceVerify = () => {
+        navigate(`/healthcare/announce-verify-mail`)
+    }
+
 
 
     const saveConfirmBookin = async () => {
@@ -203,11 +207,8 @@ const BookingSchedule = ({ t }) => {
 
                     if (paymentMethod === 12) {
                         setLoading(false);
-                        let res = await postPaymentPaypal();
-                        if (res && res.forwardLink) {
-                            window.location.href = res.forwardLink
-                        }
-                        console.log('Check paypal', res);
+                        announceVerify();
+
                     }
                 } catch (error) {
                     dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))

@@ -1,7 +1,7 @@
 import Loading from "components/Loading/loading";
 import { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
-import { postVerifyBooking } from "services/userService";
+import { postPaymentPaypal, postVerifyBooking } from "services/userService";
 
 const VerifyBooking = ({ t }) => {
     const [loading, setLoading] = useState(false);
@@ -24,6 +24,11 @@ const VerifyBooking = ({ t }) => {
                 if (res && res.errCode === 0) {
                     setLoading(false);
                     // console.log("Check booking", res);
+                    let res = await postPaymentPaypal();
+                    if (res && res.forwardLink) {
+                        window.location.href = res.forwardLink
+                    }
+                    console.log('Check paypal', res);
                 }
 
             } catch (error) {
