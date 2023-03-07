@@ -5,7 +5,6 @@ import { withNamespaces } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
-import { addProfileUser } from "reducers/profileuserSlice";
 import { handleLoginApi } from "services/userService";
 
 
@@ -70,7 +69,7 @@ const LoginAdmin = ({ t }) => {
                 dispatch(addSuccessMessage({ title: "Đăng nhập thành công", content: "Chào mừng bạn đến với HealthCare" }));
                 sessionStorage.setItem('role', `${res.user.roleId}`);
                 localStorage.setItem(`${profiles.roleId}`, JSON.stringify(user));
-                dispatch(addProfileUser(res.user));
+                // dispatch(addProfileUser(res.user));
                 navigate(`/manager/system`)
             } else if (res && res.errCode === 1) {
                 dispatch(addWarningMessage({ title: "Email không tồn tại", content: "Vui lòng kiểm tra lại!!!" }));

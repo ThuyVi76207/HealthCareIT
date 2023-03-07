@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import bgLogin from "assets/Login/bg.svg";
 import wave from "assets/Login/wave.png";
 import avatar from "assets/Login/avatar.svg";
@@ -10,7 +10,6 @@ import { handleLoginApi } from "services/userService";
 import { useDispatch } from "react-redux";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
 import { useNavigate } from "react-router-dom";
-import { addProfileUser } from "reducers/profileuserSlice";
 const LoginUser = ({ t }) => {
     const dispatch = useDispatch();
     const formRef = useRef(null);
@@ -23,6 +22,10 @@ const LoginUser = ({ t }) => {
         password: '',
     });
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        localStorage.clear();
+    }, [])
 
     const isValidated = () => {
         let validated = true;
@@ -64,8 +67,12 @@ const LoginUser = ({ t }) => {
             let res = await handleLoginApi(email, password);
             // console.log('Check results login', res)
             if (res && res.errCode === 0) {
+                let profiles = res.user;
+                let user = { ...profiles, isLogin: true }
                 dispatch(addSuccessMessage({ title: "Đăng nhập thành công", content: "Chào mừng bạn đến với HealthCare" }));
-                dispatch(addProfileUser(res.user));
+                sessionStorage.setItem('role', `${res.user.roleId}`);
+                localStorage.setItem(`${profiles.roleId}`, JSON.stringify(user));
+                // dispatch(addProfileUser(res.user));
                 navigate(`/`)
             } else if (res && res.errCode === 1) {
                 dispatch(addWarningMessage({ title: "Email không tồn tại", content: "Vui lòng kiểm tra lại!!!" }));

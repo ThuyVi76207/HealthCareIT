@@ -1,10 +1,10 @@
 import NotFound from "components/NotFound";
-import VerifyBooking from "features/Admin/pages/VerifyBooking";
 import { useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import DoctorDetail from "./features/Home/SectionData/Doctor/DoctorDetail";
 import NewsDetail from "./features/Home/SectionData/News/NewsDetail";
 import SpecialtyDetail from "./features/Home/SectionData/Specialty/SpecialtyDetail";
+import AnnounceVerify from "./pages/AnnounceVerify";
 import BookingSchedule from "./pages/BookingSchedule";
 import Contact from "./pages/Contact";
 import Forum from "./pages/Forum";
@@ -13,6 +13,7 @@ import LoginUser from "./pages/LoginUser";
 import News from "./pages/News";
 import OnlExamination from "./pages/OnlExamination";
 import Register from "./pages/Register";
+import VerifyBooking from "./pages/VerifyBooking";
 
 function HeathCare() {
 
@@ -43,6 +44,8 @@ function HeathCare() {
                 <Route exact path="/login/user" element={<LoginUser />}></Route>
 
                 <Route exact path="/verify-booking" element={<VerifyBooking />}></Route>
+
+                <Route exact path="/announce-verify-mail" element={<AnnounceVerify />}></Route>
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
 
