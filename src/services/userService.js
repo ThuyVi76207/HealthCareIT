@@ -37,8 +37,8 @@ const getDetailInforDoctor = (inputId) => {
 }
 
 //News
-const getAllNews = () => {
-    return axiosClient.get('/api/get-news');
+const getAllNews = (limit) => {
+    return axiosClient.get(`/api/get-news?limit=${limit}`);
 }
 const getAllNewsById = (data) => {
     return axiosClient.get(`/api/get-detail-news-by-id?id=${data.id}`)
@@ -54,7 +54,9 @@ const postVerifyBooking = (data) => {
 const postSendPrescription = (data) => {
     return axiosClient.post(`/api/send-prescription`, data)
 }
-
+const getBookingInfo = () => {
+    return axiosClient.get(`/api/get-booking-info`)
+}
 //SMS
 const postSendSMS = (data) => {
     return axiosClient.post(`/api/sendSMS`, data)
@@ -88,4 +90,5 @@ export {
     handleLoginApi,
     successPay,
     postSendPrescription,
+    getBookingInfo
 }
