@@ -4,27 +4,31 @@ import { successPay } from "services/userService";
 const PaymentSuccess = () => {
     // let url = window.location
     let urlParam = new URLSearchParams(window.location.search)
-    console.log("Check ủl", urlParam)
+    console.log("Check url", urlParam)
     let PayerID = urlParam.get('PayerID');
     let paymentId = urlParam.get('paymentId');
     console.log('payerid', PayerID);
     console.log('paymentid', paymentId);
-    useEffect(() => {
-        const paymentSuccess = async () => {
-            await successPay({
-                PayerID: PayerID,
-                paymentId: paymentId
-            })
-        }
 
-        paymentSuccess();
-    })
 
     const tokenID = localStorage.getItem("tokenID");
     const doctorId = localStorage.getItem("doctorId");
 
     console.log("Check token", tokenID);
     console.log("Check doctor", doctorId);
+
+    useEffect(() => {
+        const paymentSuccess = async () => {
+            await successPay({
+                PayerID: PayerID,
+                paymentId: paymentId,
+                doctorId: doctorId,
+                token: tokenID
+            })
+        }
+
+        paymentSuccess();
+    })
 
 
     return (
