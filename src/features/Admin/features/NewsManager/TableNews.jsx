@@ -27,7 +27,7 @@ const TableNews = ({ t }) => {
         setLoading(true);
         const printNewsAll = async () => {
             try {
-                let res = await getAllNews();
+                let res = await getAllNews('');
                 if (res && res.errCode === 0) {
                     // console.log('Check api news: ', res.data);
                     setListNews(res.data);

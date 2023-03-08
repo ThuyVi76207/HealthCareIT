@@ -14,7 +14,7 @@ const NewsListCompo = ({ t }) => {
         setLoading(true);
         const printNewsList = async () => {
             try {
-                let res = await getAllNews()
+                let res = await getAllNews('')
                 if (res && res.errCode === 0) {
                     setNewsList(res.data);
                     setLoading(false);
