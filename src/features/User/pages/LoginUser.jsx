@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useRef, useState } from "react"
 import bgLogin from "assets/Login/bg.svg";
 import wave from "assets/Login/wave.png";
 import avatar from "assets/Login/avatar.svg";
@@ -22,10 +22,6 @@ const LoginUser = ({ t }) => {
         password: '',
     });
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        localStorage.clear();
-    }, [])
 
     const isValidated = () => {
         let validated = true;

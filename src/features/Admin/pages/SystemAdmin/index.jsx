@@ -5,6 +5,7 @@ import CreateEditUser from "features/Admin/features/UserManager/CreateEditUser";
 import { Route, Routes } from "react-router-dom";
 import DoctorManager from "../DoctorManager";
 import NewsManager from "../NewsManager";
+import PlanManager from "../PlanManager";
 import SpecialtyManager from "../SpecialtyManager";
 import UserManager from "../UserManager";
 
@@ -29,6 +30,8 @@ function SystemAdmin() {
                 <Route exact path="/newsmanager" element={<NewsManager />}></Route>
                 <Route exact path="/newsmanager/create" element={<CreateEditNews />}></Route>
                 <Route exact path="/newsmanager/edit/:id" element={<CreateEditNews />}></Route>
+
+                <Route exact path="/planmanager" element={<PlanManager />}></Route>
 
             </Routes>
         </>

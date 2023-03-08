@@ -123,6 +123,25 @@ const AddPlan = ({ t }) => {
         setRessetForm(false);
     }
 
+    const [isDoctor, setIsDoctor] = useState(false);
+    const [useProf, setUseProf] = useState();
+
+    useEffect(() => {
+
+        const userProfile = JSON.parse(localStorage.getItem('R2'));
+        if (userProfile == null) {
+            return;
+        } else {
+            setUseProf(userProfile);
+            setIsDoctor(true);
+            setSelectedDoctor(userProfile.id);
+        }
+    }, [])
+
+
+
+    // console.log("Check selecdoctor", selectedDoctor)
+
     return (
         <div className="h-full">
             <Loading loading={loading} />
@@ -132,28 +151,36 @@ const AddPlan = ({ t }) => {
                     <div className="mb-4">
                         <label className="font-bold text-[20px]">{t('addinfordoctor.namedoctor')}</label>
                         <span className="text-red-600">*</span>
-                        <select
-                            onChange={(e) => setSelectedDoctor(e.target.value)}
-                            value={selectedDoctor}
-                            className="w-full rounded-[4px] px-2 border-b-2 border-[#003985] placeholder-shown:border-gray-500 focus:outline-none h-[40px]"
-                        >
-                            <option value={0}>{`--- ${t('addinfordoctor.selecdoctor')} ---`}</option>
-                            {listDoctor
-                                .map((option) => {
-                                    let nameDoctorVi, nameDoctorEn;
-                                    nameDoctorVi = `${option.lastName} ${option.firstName}`;
-                                    nameDoctorEn = `${option.firstName} ${option.lastName}`;
-                                    return (
-                                        <option
-                                            value={option.id}
-                                            key={option.id}
-                                        // selected={option.value === selectedRole}
-                                        >
-                                            {language === 'vi' ? nameDoctorVi : nameDoctorEn}
-                                        </option>
-                                    )
-                                })}
-                        </select>
+                        {
+                            isDoctor
+                                ?
+
+                                <h2>{language === 'vi' ? `${useProf.lastName} ${useProf.firstName}` : `${useProf.firstName} ${useProf.lastName}`}</h2>
+
+                                :
+                                <select
+                                    onChange={(e) => setSelectedDoctor(e.target.value)}
+                                    value={selectedDoctor}
+                                    className="w-full rounded-[4px] px-2 border-b-2 border-[#003985] placeholder-shown:border-gray-500 focus:outline-none h-[40px]"
+                                >
+                                    <option value={0}>{`--- ${t('addinfordoctor.selecdoctor')} ---`}</option>
+                                    {listDoctor
+                                        .map((option) => {
+                                            let nameDoctorVi, nameDoctorEn;
+                                            nameDoctorVi = `${option.lastName} ${option.firstName}`;
+                                            nameDoctorEn = `${option.firstName} ${option.lastName}`;
+                                            return (
+                                                <option
+                                                    value={option.id}
+                                                    key={option.id}
+                                                // selected={option.value === selectedRole}
+                                                >
+                                                    {language === 'vi' ? nameDoctorVi : nameDoctorEn}
+                                                </option>
+                                            )
+                                        })}
+                                </select>
+                        }
                         {error.selectedDoctor && <span className="text-red-600">{error.selectedDoctor}</span>}
                     </div>
 

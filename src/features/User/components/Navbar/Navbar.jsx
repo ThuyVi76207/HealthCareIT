@@ -1,6 +1,6 @@
 import './NavbarStyle.scss';
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import { FormattedMessage } from 'react-intl';
 // import LogoImg from '../../assets/Hcare.svg';
 
@@ -15,6 +15,7 @@ import { addLanguage } from 'reducers/userSlice';
 const Navbar = ({ t }) => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const rolID = sessionStorage.getItem('role');
     const userPRofile = JSON.parse(localStorage.getItem(`${rolID}`));
@@ -51,6 +52,11 @@ const Navbar = ({ t }) => {
         nameEn = ` ${userPRofile.firstName} ${userPRofile.lastName}`;
     }
 
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/healthcare/login/user');
+    }
+
     return (
         <div className='navbar-common'>
             <div className='navbar-up'>
@@ -66,10 +72,14 @@ const Navbar = ({ t }) => {
                             <i className='fa fa-phone'></i>
                             <div className='text-item font-sans'>0123456894</div>
                         </a>
-                        <div className='content-item'>
-                            <i className='fa fa-registered'></i>
-                            <div className='text-item'><a href='/healthcare/register'><b>{t('navbar.register')}</b></a></div>
-                        </div>
+
+                        {
+                            userPRofile && userPRofile.isLogin === true ? null :
+                                <div className='content-item'>
+                                    <i className='fa fa-registered'></i>
+                                    <div className='text-item'><a href='/healthcare/register'><b>{t('navbar.register')}</b></a></div>
+                                </div>
+                        }
                         {/* <div className='content-item'>
                             <i className='fa fa-user'></i>
                             <div className='text-item'><Link to={"/healthcare/login/user"}><b>{t('navbar.login')}</b></Link></div>
@@ -78,7 +88,7 @@ const Navbar = ({ t }) => {
                             userPRofile && userPRofile.isLogin === true ?
                                 < div className='content-item'>
                                     <i className="fas fa-sign-out-alt"></i>
-                                    <div className='text-item'><a href='/healthcare/login/user'><b>{t('navbar.logout')}</b></a></div>
+                                    <div className='text-item' onClick={handleLogout}><b>{t('navbar.logout')}</b></div>
                                 </div>
                                 :
                                 < div className='content-item'>
