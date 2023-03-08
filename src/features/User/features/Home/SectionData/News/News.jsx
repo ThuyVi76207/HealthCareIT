@@ -21,7 +21,7 @@ function News() {
     useEffect(() => {
         const printAllNews = async () => {
             try {
-                const res = await getAllNews();
+                const res = await getAllNews('5');
                 setListNews(res.data);
             } catch (err) {
                 console.log('Failed to get all news', err);

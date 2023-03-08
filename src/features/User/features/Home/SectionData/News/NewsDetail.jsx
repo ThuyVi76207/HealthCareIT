@@ -47,7 +47,7 @@ const NewsDetail = ({ t }) => {
 
     //         try {
     //             setLoading(true);
-    //             const resListNews = await getAllNews();
+    //             const resListNews = await getAllNews('');
     //             if (resListNews && resListNews.errCode === 0) {
     //                 setDataListNews(resListNews.data);
     //             }
