@@ -4,11 +4,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addLanguage } from "reducers/userSlice";
 import { Buffer } from "buffer";
+import { useNavigate } from "react-router-dom";
 
 const NavbarManager = () => {
 
     const [language, setLanguage] = useState('vi');
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     // const profiles = useSelector((state) => state.profileuser);
 
@@ -44,6 +46,11 @@ const NavbarManager = () => {
         imageBase64 = Buffer.from(profile.image, 'base64').toString('binary');
     }
 
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/manager/login');
+    }
+
     return (
         <div className="flex justify-between w-[95%] mx-auto items-center">
             <div>
@@ -55,8 +62,8 @@ const NavbarManager = () => {
                     <span className="mx-1">/</span>
                     <div className={`cursor-pointer hover:text-blue-500 ${language === 'en' ? 'text-blue-600' : 'text-black'}`}><span onClick={() => changeLanguage('en')}>EN</span></div>
                 </div>
-                <i className="bg-slate-100 text-center pt-2 rounded-[50%] w-[40px] h-[40px] text-[20px]"><ion-icon name="mail-unread-outline"></ion-icon></i>
-                <i className="bg-slate-100 text-center pt-2 rounded-[50%] w-[40px] h-[40px] text-[20px]"><ion-icon name="call-outline"></ion-icon></i>
+                <a href="mailto:healthcare@gmail.com" className="bg-slate-100 text-center pt-2 rounded-[50%] w-[40px] h-[40px] text-[20px]"><i ><ion-icon name="mail-unread-outline"></ion-icon></i></a>
+                <a href="tel:0123456894" className="bg-slate-100 text-center pt-2 rounded-[50%] w-[40px] h-[40px] text-[20px]"><i ><ion-icon name="call-outline"></ion-icon></i></a>
                 <img className="w-[50px] h-[50px] rounded-[50%] border" src={imageBase64} alt="" />
                 <div>
                     <h2 className="text-[17px] font-semibold">{language === 'vi' ? nameVi : nameEn}</h2>
@@ -72,7 +79,7 @@ const NavbarManager = () => {
                         })
                     }
                 </div>
-                <a className="p-3" href='/manager/login'><i className="fas fa-sign-out-alt"></i></a>
+                <div className="p-3" onClick={handleLogout}><i className="fas fa-sign-out-alt"></i></div>
             </div>
         </div>
     )

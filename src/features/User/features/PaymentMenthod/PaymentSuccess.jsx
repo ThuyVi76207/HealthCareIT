@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { withNamespaces } from "react-i18next";
 import { successPay } from "services/userService";
 
-const PaymentSuccess = ({ t }) => {
+const PaymentSuccess = () => {
     // let url = window.location
     let urlParam = new URLSearchParams(window.location.search)
     console.log("Check ủl", urlParam)
@@ -32,9 +32,9 @@ const PaymentSuccess = ({ t }) => {
                 </div>
 
                 <div className="h-[50%] text-center">
-                    <h2 className="text-[25px] font-bold mt-3">{t('verifyBooking.title')}!</h2>
-                    <p className="font-medium mt-1">{t('verifyBooking.description')}</p>
-                    <p className="font-medium mt-1">{t('verifyBooking.note')}</p>
+                    <h2 className="text-[25px] font-bold mt-3">Thanh toán thành công!</h2>
+                    <p className="font-medium mt-1">Cảm ơn bạn đã đến với HealthCare.</p>
+                    <p className="font-medium mt-1">Vui lòng kiểm tra và vào đúng giờ để Bác sĩ tư vấn.</p>
                 </div>
 
             </div>
@@ -42,4 +42,4 @@ const PaymentSuccess = ({ t }) => {
     )
 }
 
-export default withNamespaces()(PaymentSuccess);
+export default PaymentSuccess;

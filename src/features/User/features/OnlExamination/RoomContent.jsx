@@ -63,12 +63,12 @@ const RoomContent = () => {
     }, [])
 
     const hideCam = () => {
-        myVideo.current.srcObject.getVideoTracks().forEach((track) => track.stop());
-        // navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
-        //     setStream(stream)
-        //     myVideo.current.srcObject.getVideoTracks().forEach(t => t.enabled = !t.enabled);
-        //     setShareCam(!shareCam);
-        // })
+        // myVideo.current.srcObject.getVideoTracks().forEach((track) => track.stop());
+        navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
+            setStream(stream)
+            myVideo.current.srcObject.getVideoTracks().forEach(t => t.enabled = !t.enabled);
+            setShareCam(!shareCam);
+        })
     }
 
     // Nút này hơi sai sai nên để sau nha :))))
