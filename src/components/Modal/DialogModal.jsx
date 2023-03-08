@@ -1,47 +1,29 @@
+import Loading from "components/Loading/loading";
 import EmailInput from "features/Admin/components/Input/EmailInput";
 import { isValidEmail } from "function/formater";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { addSuccessMessage } from "reducers/messageSlice";
 import { postSendPrescription } from "services/userService";
 import { removeModal } from "../../reducers/modal/dialogModalSlice";
 function DialogModal() {
     const dispatch = useDispatch();
     const { language } = useSelector((state) => state.user) || {};
     const { title, rightButtonText, patient } = useSelector((state) => state.dialogModal) || {};
-    console.log(patient)
+    // console.log(patient)
 
-    const [email, setEmail] = useState(patient.patientData ? patient.patientData.email : "");
+    const [email, setEmail] = useState('');
+    // console.log("Check patient", patient.patientData.email)
     const [showImg, setShowImg] = useState();
     const [error, setError] = useState({
         email: "",
     })
+    const [loading, setLoading] = useState(false);
 
-
-    const handleCloseModal = () => {
-        dispatch(removeModal());
-    };
-
-    const handleRightButtonOnClick = async () => {
-        let data = {
-            email: email,
-            imageBase64: showImg,
-            doctorId: patient.doctorId,
-            patientId: patient.patientId,
-            timeType: patient.timeType,
-            language: language,
-            patientName: patient.patientData.firstName,
-        }
-
-        try {
-            let res = await postSendPrescription(data)
-            console.log("Chwck ", res)
-
-        } catch (error) {
-            console.log("Faild to get API send prescription")
-        }
-        handleCloseModal();
-    };
-
+    useEffect(() => {
+        if (patient && patient.patientData)
+            setEmail(patient.patientData.email)
+    }, [patient])
 
     const isValidated = () => {
         let validated = true;
@@ -57,6 +39,44 @@ function DialogModal() {
         setError(_error);
         return validated;
     }
+
+    const handleCloseModal = () => {
+        dispatch(removeModal());
+    };
+
+    const handleRightButtonOnClick = async () => {
+        if (!isValidated()) return;
+
+        let data = {
+            email: email,
+            imageBase64: showImg,
+            doctorId: patient.doctorId,
+            patientId: patient.patientId,
+            timeType: patient.timeType,
+            language: language,
+            patientName: patient.patientData.firstName,
+        }
+
+        setLoading(true);
+
+        try {
+            let res = await postSendPrescription(data);
+            // console.log("Chwck ", res)
+            if (res && res.errCode === 0) {
+                setLoading(false);
+                dispatch(addSuccessMessage({ title: 'Xác nhận thành công', content: 'Đã khám bệnh nhân!!!!' }));
+                window.location.reload();
+            }
+
+        } catch (error) {
+            alert("Đã có lỗi xảy ra vui lòng thử lại sau!!!")
+            console.log("Faild to get API send prescription")
+        }
+        handleCloseModal();
+    };
+
+
+
 
     const convertBase64 = (file) => {
         return new Promise((resolve, reject) => {
@@ -88,6 +108,7 @@ function DialogModal() {
 
     return (
         <>
+            <Loading loading={loading} />
             <div className=" fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80 z-50 bg-blur" onClick={handleCloseModal}></div>
             <div
                 id="defaultModal"
