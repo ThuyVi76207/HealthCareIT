@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { withNamespaces } from "react-i18next";
 import { successPay } from "services/userService";
 
 const PaymentSuccess = () => {
@@ -20,6 +19,12 @@ const PaymentSuccess = () => {
 
         paymentSuccess();
     })
+
+    const tokenID = localStorage.getItem("tokenID");
+    const doctorId = localStorage.getItem("doctorId");
+
+    console.log("Check token", tokenID);
+    console.log("Check doctor", doctorId);
 
 
     return (

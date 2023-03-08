@@ -21,9 +21,17 @@ const VerifyBooking = ({ t }) => {
 
             try {
                 let res = await postVerifyBooking(data)
+                console.log("Check booking", res);
                 if (res && res.errCode === 0) {
                     setLoading(false);
-                    // console.log("Check booking", res);
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const tokenID = urlParams.get('token');
+                    const doctorId = urlParams.get('doctorId');
+                    // console.log("Check token", tokenID);
+                    // console.log("Check doctor", doctorId);
+                    localStorage.setItem("tokenID", `${tokenID}`);
+                    localStorage.setItem("doctorId", `${doctorId}`);
+
                     let res = await postPaymentPaypal();
                     if (res && res.forwardLink) {
                         window.location.href = res.forwardLink

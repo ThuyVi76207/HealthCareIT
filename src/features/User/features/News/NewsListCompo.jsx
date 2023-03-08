@@ -33,13 +33,14 @@ const NewsListCompo = ({ t }) => {
     return (
         <div className="news-list">
             <Loading loading={loading} />
+
             <div className="news-list_head flex items-center">
                 <div className="w-[70%] mx-auto flex items-center">
                     <i className="text-[30px] text-[#fff] mt-1 mr-1"><ion-icon name="arrow-forward-outline"></ion-icon></i>
                     <h2 className="uppercase text-[22px] text-[#fff] font-bold">{t('newcontainer.titles')}</h2>
                 </div>
             </div>
-            <div className="w-[75%] mx-auto my-[40px]">
+            <div className="w-[75%] mx-auto py-[40px]">
                 <div className="grid grid-cols-2 gap-[4%]">
                     {
                         newsList && newsList.length > 0 &&
@@ -54,6 +55,8 @@ const NewsListCompo = ({ t }) => {
                 </div>
 
             </div>
+
+
         </div>
     )
 }
