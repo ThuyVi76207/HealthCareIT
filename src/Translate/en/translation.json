@@ -39,7 +39,7 @@
         "description2": "We want all of our customers to be able to say that they feel cared for as individuals and that they feel truly heard and respected. Our friendly support team is available to answer any questions you may have and help you make informed decisions about your medical care. Find out more about the services we offer below."
     },
     "section3": {
-        "title": "Specialties and reputable doctors",
+        "title": "Specialties",
         "see": "SEE MORE"
     },
     "section4": {
@@ -55,6 +55,17 @@
         "title1": "Start your journey towards improved healthcare today. ",
         "title2": "Get in touch with one of our dedicated team.",
         "button": "Get In Touch"
+    },
+    "section7": {
+        "title": "Typical doctor"
+    },
+    "section8": {
+        "title1": "Reduced Wait Times",
+        "title2": "Additional Services",
+        "title3": "Personal Approach",
+        "description1": "Our self-pay services mean that you see a clinician at a time that suits you - no long waiting lists.",
+        "description2": "Access health and wellbeing services that may not be readily available on the HealthCare.",
+        "description3": "We want you to feel like a VIP. Whatever your needs, at HealthCare, you will be treated as an individual."
     },
     "specialtydetail": {
         "more": "Read more",

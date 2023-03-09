@@ -39,7 +39,7 @@
         "description2": "Chúng tôi muốn tất cả khách hàng của mình có thể nói rằng họ cảm thấy được quan tâm với tư cách cá nhân và họ cảm thấy thực sự được lắng nghe và tôn trọng. Nhóm hỗ trợ thân thiện của chúng tôi luôn sẵn sàng trả lời bất kỳ câu hỏi nào mà bạn có thể có và giúp bạn đưa ra quyết định sáng suốt về việc chăm sóc y tế của mình. Tìm hiểu thêm về các dịch vụ mà chúng tôi cung cấp dưới đây."
     },
     "section3": {
-        "title": "Các chuyên khoa và bác sĩ uy tín",
+        "title": "Chuyên khoa",
         "see": "XEM THÊM"
     },
     "section4": {
@@ -55,6 +55,17 @@
         "title1": "Bắt đầu hành trình hướng tới chăm sóc sức khỏe được cải thiện ngay hôm nay.",
         "title2": "Hãy liên hệ với một trong những đội ngũ chuyên dụng của chúng tôi.",
         "button": "Liên Hệ Ngay"
+    },
+    "section7": {
+        "title": "Bác sĩ tiêu biểu"
+    },
+    "section8": {
+        "title1": "Giảm thời gian chờ đợi",
+        "title2": "Dịch vụ bổ sung",
+        "title3": "Yêu cầu cá nhânt",
+        "description1": "Các dịch vụ tự thanh toán của chúng tôi có nghĩa là bạn sẽ gặp bác sĩ lâm sàng vào thời điểm phù hợp với mình - không phải xếp hàng dài chờ đợi.",
+        "description2": "Tiếp cận các dịch vụ sức khỏe và phúc lợi có thể không có sẵn trên HealthCare.",
+        "description3": "Chúng tôi muốn bạn cảm thấy như một VIP. Dù nhu cầu của bạn là gì, tại HealthCare, bạn sẽ được đối xử như một cá nhân."
     },
     "specialtydetail": {
         "more": "Đọc thêm",

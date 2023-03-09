@@ -10,6 +10,8 @@ import Section3 from "../features/Home/SectionData/Section3";
 import Section4 from "../features/Home/SectionUI/Section4";
 import Section5 from "../features/Home/SectionData/Section5";
 import Section6 from "../features/Home/SectionUI/Section6";
+import Section7 from "../features/Home/SectionData/Section7";
+import Section8 from "../features/Home/SectionUI/Section8";
 
 const Home = () => {
     // const changeLanguage = (lng) => {
@@ -23,6 +25,8 @@ const Home = () => {
             <Section2 />
             <Section3 />
             <Section4 />
+            <Section7 />
+            <Section8 />
             <Section5 />
             <Section6 />
         </MainLayout >
