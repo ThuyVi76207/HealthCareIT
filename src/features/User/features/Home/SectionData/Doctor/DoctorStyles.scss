@@ -4,7 +4,7 @@
     scrollbar-gutter: var(--gutter, auto);
 
     .share-container {
-        margin: 0 80px;
+        margin: 0 170px;
         display: flex;
         flex-direction: column;
 
@@ -25,19 +25,23 @@
         .doctor-customize {
             width: 100%;
             display: inline-block;
-            height: 230px;
-            border: 1px solid #d5d9d7;
+            height: 350px;
+            /* border: 1px solid #d5d9d7; */
             padding: 20px 0;
+            box-shadow: 0px 0px 4px -1px #968b8b;
+            border-radius: 5px;
+
 
             .text-doctor {
                 text-align: center;
-                margin: 10px 0;
+                margin: 5px 0;
             }
 
             .doctor-image {
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-position: center;
+                box-shadow: 0px 0px 3px 0px #cdbfb2;
             }
         }
     }

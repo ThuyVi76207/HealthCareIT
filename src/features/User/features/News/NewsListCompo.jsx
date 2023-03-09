@@ -35,13 +35,13 @@ const NewsListCompo = ({ t }) => {
             <Loading loading={loading} />
 
             <div className="news-list_head flex items-center">
-                <div className="w-[70%] mx-auto flex items-center">
-                    <i className="text-[30px] text-[#fff] mt-1 mr-1"><ion-icon name="arrow-forward-outline"></ion-icon></i>
+                <div className="w-[75%] mx-auto flex items-center">
+                    <i className="text-[30px] font-bold text-[#fff] mt-2 mr-1"><ion-icon name="arrow-forward-outline"></ion-icon></i>
                     <h2 className="uppercase text-[22px] text-[#fff] font-bold">{t('newcontainer.titles')}</h2>
                 </div>
             </div>
             <div className="w-[75%] mx-auto py-[40px]">
-                <div className="grid grid-cols-2 gap-[4%]">
+                <div className="block">
                     {
                         newsList && newsList.length > 0 &&
                         newsList.map((item, index) => {

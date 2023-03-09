@@ -18,7 +18,7 @@ const NewsCard = ({ news }) => {
                 .........
                 <div className="news__actions">
 
-                    <button onClick={() => handleDetailNewsOnclick()} className="font-semibold hover:text-red-500">Chi tiet</button>
+                    <button onClick={() => handleDetailNewsOnclick()} className="font-semibold hover:text-red-500">Chi tiết</button>
 
                 </div>
             </div>

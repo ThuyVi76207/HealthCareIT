@@ -37,7 +37,7 @@ function Doctor() {
 
     }, [])
 
-    // console.log('Top doctor home page', listTopDoctor)
+    console.log('Top doctor home page', listTopDoctor)
 
     const handleViewDetailDoctor = (item) => {
         const urlDetailDoctor = `/healthcare/detail-doctor/${item.id}`
@@ -58,8 +58,8 @@ function Doctor() {
                             imageBase64 = Buffer.from(item.image, 'base64').toString('binary');
                         }
 
-                        let nameVi = `${item.positionData.value_Vi}, ${item.lastName} ${item.firstName}`;
-                        let nameEn = `${item.positionData.value_En}, ${item.firstName} ${item.lastName}`;
+                        let nameVi = `${item.lastName} ${item.firstName}`;
+                        let nameEn = `${item.firstName} ${item.lastName}`;
                         // console.log('Check image', item.image)
 
                         return (
@@ -69,7 +69,8 @@ function Doctor() {
                                 key={index}
                                 onClick={() => handleViewDetailDoctor(item)}
                             >
-                                <img className='doctor-image rounded-full m-auto' style={{ height: "140px", width: "140px" }} src={imageBase64} alt={index} />
+                                <img className='doctor-image mx-auto mt-3' style={{ height: "170px", width: "170px" }} src={imageBase64} alt={index} />
+                                <h2 className="text-[20px] font-bold text-center mt-4">{language === 'vi' ? item.positionData.value_Vi : item.positionData.value_En}</h2>
                                 <div className='text-doctor'><b>{language === 'vi' ? nameVi : nameEn}</b></div>
                             </div>
                         )

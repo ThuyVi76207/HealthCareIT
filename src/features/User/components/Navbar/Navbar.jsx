@@ -86,7 +86,7 @@ const Navbar = ({ t }) => {
                         </div> */}
                         {
                             userPRofile && userPRofile.isLogin === true ?
-                                < div className='content-item'>
+                                < div className='content-item cursor-pointer'>
                                     <i className="fas fa-sign-out-alt"></i>
                                     <div className='text-item' onClick={handleLogout}><b>{t('navbar.logout')}</b></div>
                                 </div>
