@@ -59,14 +59,14 @@ const RoomContent = () => {
         })
 
         socket.on("hideCam", hideCam)
-        // socket.on("onOffAudio", onOffAudio)
+        //  socket.on("onOffAudio", onOffAudio)
     }, [])
 
     const hideCam = () => {
         // myVideo.current.srcObject.getVideoTracks().forEach((track) => track.stop());
         navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then((stream) => {
             setStream(stream)
-            myVideo.current.srcObject.getVideoTracks().forEach(t => t.enabled = !t.enabled);
+            myVideo.current.srcObject.getTracks().forEach(t => t.enabled = !t.enabled);
             setShareCam(!shareCam);
         })
     }
@@ -107,11 +107,7 @@ const RoomContent = () => {
     }
 
     const stopStream = async () => {
-        myVideo.current.srcObject.getVideoTracks().forEach(t => t.enabled = true);
-        // stream.current?.getTracks().forEach((track) => track.stop());
-        // navigator.getUserMedia({ video: false, audio: true }, (stream) => {
-        //     myVideo.current = stream;
-        // })
+        myVideo.current.srcObject.getVideoTracks().forEach((track) => track.stop());
     }
 
 
@@ -138,24 +134,8 @@ const RoomContent = () => {
         setCallEnded(true);
 
         connectionRef.current?.destroy();
-        myVideo.current?.getTracks().forEach((track) => track.stop());
 
     }
-
-    // const handleIPRoom = () => {
-    //     setIPRoom(me);
-    // }
-
-    // console.log("Check callEnded", callEnded);
-
-    // console.log("Check receivingCall", receivingCall);
-    // console.log("Check callAccepted", callAccepted);
-
-    // console.log("Check IP room ", me)
-
-    // console.log("")
-
-
 
     const StopShareWebcamButton = () => {
 
@@ -178,7 +158,7 @@ const RoomContent = () => {
     const StartShareWebcamButton = () => {
         return (
             <div
-                onClick={stopStream}
+                onClick={hideCam}
                 className="w-16 h-16 flex items-center justify-center mx-auto rounded-full bg-cyan-500 hover:bg-cyan-600 hover:cursor-pointer mx-4"
             >
                 <svg
@@ -191,6 +171,8 @@ const RoomContent = () => {
             </div>
         );
     };
+
+
     return (
         <div className="bg-black h-full absolute w-full">
             <h2 className="text-white font-bold text-[30px] text-center">Room Online</h2>
@@ -229,16 +211,16 @@ const RoomContent = () => {
                 <div className="z-30 absolute bottom-[15px] right-[15px] cursor-move ">
                     {
                         stream
-                            ?
-                            <video playsInline muted ref={myVideo} autoPlay
-                                className="z-30 w-[100vw] h-[56.25vw] text-white md:w-[320px] md:h-[180px] border-2 border-sky-200 object-cover bg-blue-100 "
-                            >
-                                {/* {shareCam === false ? <h2 className="text-white text-center">Your camera is off</h2> : null} */}
-                            </video>
-                            :
-                            <div className="z-10 fixed md:absolute bottom-[3vh] right-[5vh] w-[320px] h-[180px] bg-black object-cover border-2 border-sky-200 text-white flex justify-center items-center text-2xl">
-                                <h2 className="text-white ">Your camera is off</h2>
-                            </div>
+                        &&
+                        <video playsInline muted ref={myVideo} autoPlay
+                            className="z-30 w-[100vw] h-[56.25vw] text-white md:w-[320px] md:h-[180px] border-2 border-sky-200 object-cover bg-blue-100 "
+                        >
+                            {/* {shareCam === false ? <h2 className="text-white text-center">Your camera is off</h2> : null} */}
+                        </video>
+
+                        // <div className="z-10 fixed md:absolute bottom-[3vh] right-[5vh] w-[320px] h-[180px] bg-black object-cover border-2 border-sky-200 text-white flex justify-center items-center text-2xl">
+                        //     <h2 className="text-white ">Your camera is off</h2>
+                        // </div>
 
                     }
                     {/* <button variant="contained" color="primary" onClick={hideCam}>
@@ -255,29 +237,48 @@ const RoomContent = () => {
                             className="fixed md:left-[10vw] w-[80%] h-[40.25vw] object-cover border-2 border-sky-200"
                         /> :
                         <div className="md:flex fixed left-[10vw] w-[80%] h-[40.25vw]  animate-pulse bg-gray-700 object-cover border-2 border-sky-200 z-10 text-black flex justify-center items-center text-2xl">
-                            <h2 className="text-white ">Your camera is off</h2>
+                            <h2 className="text-white ">Waiting another user to join...</h2>
                         </div>
 
                     }
                 </div>
                 <div className="fixed z-40 flex items-center justify-center w-[100vw] md:w-[33.33333vw] md:left-[33.333333vw] bottom-[20px]">
-                    {shareCam ? <StartShareWebcamButton /> : <StopShareWebcamButton />}
+                    {!shareCam ? <StartShareWebcamButton /> : <StopShareWebcamButton />}
                     {callAccepted && !callEnded ? (
-                        <button className="text-white bg-red-500 rounded-[50%] px-[20px] py-[15px]" onClick={leaveCall}>
-                            <i className=" text-[25px] text-center"><ion-icon name="call-outline"></ion-icon></i>
-                        </button>
+                        <div
+                            onClick={leaveCall}
+                            className="w-16 h-16 flex items-center justify-center mx-auto rounded-full bg-red-500 hover:bg-red-600 hover:cursor-pointer mx-4"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 640 512"
+                                className="h-7 w-7 fill-white"
+                            >
+                                <path d="M271.1 367.5L227.9 313.7c-8.688-10.78-23.69-14.51-36.47-8.974l-108.5 46.51c-13.91 6-21.49 21.19-18.11 35.79l23.25 100.8C91.32 502 103.8 512 118.5 512c107.4 0 206.1-37.46 284.2-99.65l-88.75-69.56C300.6 351.9 286.6 360.3 271.1 367.5zM630.8 469.1l-159.6-125.1c65.03-78.97 104.7-179.5 104.7-289.5c0-14.66-9.969-27.2-24.22-30.45L451 .8125c-14.69-3.406-29.73 4.213-35.82 18.12l-46.52 108.5c-5.438 12.78-1.771 27.67 8.979 36.45l53.82 44.08C419.2 232.1 403.9 256.2 386.2 277.4L38.81 5.111C34.41 1.673 29.19 0 24.03 0C16.91 0 9.84 3.158 5.121 9.189c-8.188 10.44-6.37 25.53 4.068 33.7l591.1 463.1c10.5 8.203 25.57 6.328 33.69-4.078C643.1 492.4 641.2 477.3 630.8 469.1z" />
+                            </svg>
+                        </div>
                     ) : (
-                        <button className="text-white bg-green-500 rounded-[50%] px-[20px] py-[15px]" onClick={() => callUser(idToCall)}>
-                            <i className=" text-[25px] text-center"><ion-icon name="call-outline"></ion-icon></i>
-                        </button>
+                        <div
+                            onClick={() => callUser(idToCall)}
+                            className="w-16 h-16 flex items-center justify-center mx-auto rounded-full bg-green-500 hover:bg-green-600 hover:cursor-pointer mx-4"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-7 w-7 fill-white"
+                                viewBox="0 0 24 24"
+                            >
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                        </div>
+
                     )}
                     {/* {idToCall} */}
                 </div>
-                <div className="user-caller">
+                <div className="fixed right-9 top-6 z-[1000] max-h-screen overflow-auto " role="alert">
                     {receivingCall && !callAccepted ? (
-                        <div className="caller">
-                            <h1 >{name} is calling...</h1>
-                            <button className="text-white bg-green-400 z-50 absolute" onClick={answerCall}>Tra loi</button>
+                        <div className="min-w-[350px] max-w-sm bg-[#d8f2f1] border-l-4 border-[#16917c] text-sky-700 p-4 mb-4 relative">
+                            <h1 className="text-[#27284a] font-bold">{name} đang gọi...</h1>
+                            <button className="absolute top-[7px] right-[7px] px-4 py-2 bg-sky-700 rounded-[5px] text-white" onClick={answerCall}>Trả lời</button>
                         </div>
                     ) : null}
                 </div>
