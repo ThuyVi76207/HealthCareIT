@@ -54,6 +54,10 @@ const postVerifyBooking = (data) => {
 const postSendPrescription = (data) => {
     return axiosClient.post(`/api/send-prescription`, data)
 }
+const postSendRoomID = (data) => {
+    return axiosClient.post(`/api/send-roomID`, data)
+}
+
 const getBookingInfo = () => {
     return axiosClient.get(`/api/get-booking-info`)
 }
@@ -90,5 +94,6 @@ export {
     handleLoginApi,
     successPay,
     postSendPrescription,
-    getBookingInfo
+    getBookingInfo,
+    postSendRoomID,
 }
