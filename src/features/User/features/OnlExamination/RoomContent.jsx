@@ -3,8 +3,6 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import * as Peer from 'simple-peer';
 import io from "socket.io-client";
 
-import "./RoomContentStyles.scss";
-
 const socket = io("http://localhost:7777");
 
 const RoomContent = () => {
@@ -58,7 +56,7 @@ const RoomContent = () => {
             setCallerSignal(data.signal)
         })
 
-        socket.on("hideCam", hideCam)
+        // socket.on("hideCam", hideCam)
         //  socket.on("onOffAudio", onOffAudio)
     }, [])
 

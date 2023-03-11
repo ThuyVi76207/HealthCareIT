@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { addSuccessModal } from "reducers/modal/dialogModalSlice";
+import { addSuccessSendModal } from "reducers/modal/sendModalSlice";
 import { getAllPatientDoctor } from "services/adminService";
 import ScheduleCommon from "../PlanManager/ScheduleCommon";
 
@@ -60,6 +61,16 @@ const ListPatient = ({ t }) => {
         ))
     };
 
+    const handleSendIDRom = (patient) => {
+        dispatch(addSuccessSendModal(
+            {
+                title: "GỬI MÃ PHÒNG",
+                rightButtonText: "GỬi",
+                patient: patient,
+            }
+        ))
+    }
+
     return (
         <div>
             <Loading loading={loading} />
@@ -93,9 +104,18 @@ const ListPatient = ({ t }) => {
                                     <td>{item.patientData.address}</td>
                                     <td>{numberPhone}</td>
                                     <td className="text-center">
-                                        <button className="mr-2 hover:text-orange-400"
+                                        <button
+                                            className="mr-4 hover:text-orange-400"
                                             onClick={() => handleSendPrescription(item)}
-                                        ><i className="fas fa-check"></i></button>
+                                        >
+                                            <i className="fas fa-check"></i>
+                                        </button>
+                                        <button
+                                            className="hover:text-blue-400"
+                                            onClick={() => handleSendIDRom(item)}
+                                        >
+                                            <i className="fas fa-comment-dots"></i>
+                                        </button>
 
                                     </td>
                                 </tr>

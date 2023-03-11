@@ -6,6 +6,7 @@ import AlertBoxSection from "components/Alert/AlertBoxSection";
 import * as process from 'process';
 import PaymentSuccess from "features/User/features/PaymentMenthod/PaymentSuccess";
 import DialogModal from "components/Modal/DialogModal";
+import SendIDModal from "components/Modal/SendIDModal";
 
 
 
@@ -30,6 +31,7 @@ function App() {
         </BrowserRouter>
         <AlertBoxSection />
         <DialogModal />
+        <SendIDModal />
       </Suspense>
     </div>
   );

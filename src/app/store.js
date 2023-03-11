@@ -6,6 +6,7 @@ import timeworkReducer from 'reducers/timeworkSlice';
 import inforDoctorReducer from 'reducers/inforDoctorSlice';
 import profileuserReducer from 'reducers/profileuserSlice';
 import dialogModalReducer from 'reducers/modal/dialogModalSlice';
+import sendModalReducer from 'reducers/modal/sendModalSlice';
 //tao store
 
 const rootReducer = {
@@ -16,6 +17,7 @@ const rootReducer = {
     inforDoctor: inforDoctorReducer,
     profileuser: profileuserReducer,
     dialogModal: dialogModalReducer,
+    sendModal: sendModalReducer,
 
 }
 
