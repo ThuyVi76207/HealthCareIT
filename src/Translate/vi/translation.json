@@ -100,7 +100,8 @@
         "specialtymanager": "Quản lý chuyên khoa",
         "newsmanager": "Quản lý bài đăng",
         "medicine": "Quản lý thuốc",
-        "patientmanager": "Quản lý bệnh nhân"
+        "patientmanager": "Quản lý bệnh nhân",
+        "bookmanager": "Quản lý lịch đặt"
     },
     "tableuser": {
         "title": "Quản lý người dùng",
@@ -248,5 +249,8 @@
     },
     "precription": {
         "upload": "Chọn đơn thuốc"
+    },
+    "bookmanager": {
+        "title": "Quản lý lịch đặt"
     }
 }
