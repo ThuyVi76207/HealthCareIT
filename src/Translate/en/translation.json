@@ -100,7 +100,8 @@
         "specialtymanager": "Specialty Management",
         "newsmanager": "News Management",
         "medicine": "Medicine Management",
-        "patientmanager": "Patient Management"
+        "patientmanager": "Patient Management",
+        "bookmanager": "Book Management"
     },
     "tableuser": {
         "title": "User Management",
@@ -248,5 +249,8 @@
     },
     "precription": {
         "upload": "Choose a prescription"
+    },
+    "bookmanager": {
+        "title": "Book Manager"
     }
 }

@@ -62,10 +62,18 @@ const saveDetailDoctorService = (data) => {
 const getAllPatientDoctor = (data) => {
     return axiosClient.get(`/api/get-list-patient-for-doctor?doctorId=${data.doctorId}&date=${data.date}`, data)
 }
+const getAllPatientStaff = (data) => {
+    return axiosClient.get(`/api/get-list-patient-for-staff?doctorId=${data.doctorId}&date=${data.date}`, data)
+}
 
 //Schedule
 const saveBulkSchedudeDoctors = (data) => {
     return axiosClient.post(`/api/bulk-create-schedule`, data)
+}
+
+//Staff
+const getWarningBooking = (data) => {
+    return axiosClient.get(`/api/warning-booking`, data)
 }
 
 export {
@@ -83,4 +91,6 @@ export {
     editNewsService,
     editSpecialtyService,
     getAllPatientDoctor,
+    getWarningBooking,
+    getAllPatientStaff,
 }

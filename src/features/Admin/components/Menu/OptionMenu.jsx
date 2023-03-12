@@ -13,4 +13,5 @@ export const doctorMenu = [
 ];
 export const healthStaffMenu = [
     { icon: 'newspaper-outline', name: 'menu.newsmanager', link: '/manager/system/healthstaff/newsmanager' },
+    { icon: 'reader-outline', name: 'menu.bookmanager', link: '/manager/system/healthstaff/bookmanager' },
 ];
