@@ -1,6 +1,6 @@
 import ManagerLayout from "features/Admin/layouts/ManagerLayout";
 import { useEffect } from "react";
-import { getWarningBooking } from "services/adminService";
+import { postWarningBooking } from "services/adminService";
 
 
 const DetailBookPatient = () => {
@@ -10,25 +10,23 @@ const DetailBookPatient = () => {
     console.log("Check patientId", patientId, doctorId);
 
     useEffect(() => {
-        const getWarningBookingPatient = async () => {
-
-            console.log(patientId, doctorId)
-
+        const postWarningBookingPatient = async () => {
             try {
-                let res = await getWarningBooking({
-                    doctorId: 70,
-                    patientId: 72,
+                let res = await postWarningBooking({
+                    doctorId: doctorId,
+                    patientId: patientId,
+
                 });
-                console.log("Chekc waring", res);
+                console.log("Check doctorId", res);
             } catch (error) {
                 alert('Có lỗi xảy ra vui lòng thử lại sau!!!')
                 console.log("Faild to get API patient", error)
             }
         }
-
-        getWarningBookingPatient();
+        postWarningBookingPatient();
 
     }, [doctorId, patientId])
+
     return (
         <ManagerLayout>
 
