@@ -72,8 +72,8 @@ const saveBulkSchedudeDoctors = (data) => {
 }
 
 //Staff
-const getWarningBooking = (data) => {
-    return axiosClient.get(`/api/warning-booking`, data)
+const postWarningBooking = (data) => {
+    return axiosClient.post(`/api/warning-booking`, data)
 }
 
 export {
@@ -91,6 +91,6 @@ export {
     editNewsService,
     editSpecialtyService,
     getAllPatientDoctor,
-    getWarningBooking,
+    postWarningBooking,
     getAllPatientStaff,
 }
