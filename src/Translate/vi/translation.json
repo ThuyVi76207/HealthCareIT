@@ -252,5 +252,12 @@
     },
     "bookmanager": {
         "title": "Quản lý lịch đặt"
+    },
+    "detailbook": {
+        "daybook": "Ngày đặt",
+        "hourbook": "Giờ đặt",
+        "status": "Trạng thái",
+        "option": "Tùy chọn",
+        "statusnotverify": "Chưa xác nhận"
     }
 }
