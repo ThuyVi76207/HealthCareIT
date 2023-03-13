@@ -83,9 +83,9 @@ const ListBook = ({ t }) => {
 
     console.log("Check  Patient", profilePatient);
 
-    const handleDetailPatient = (item) => {
+    const handleDetailPatient = (item, stt) => {
         let userUrl = getUrlDynamic(userProfile.roleId);
-        const urlDetailPatient = `/manager/system/${userUrl}/bookmanager/detail-patient/${item.id}/?doctorId=${item.doctorId}&&patientId=${item.patientId}`
+        const urlDetailPatient = `/manager/system/${userUrl}/bookmanager/detail-patient/${stt}?doctorId=${selectedDoctor}&&patientId=${item.patientId}`
         navigate(urlDetailPatient);
         console.log('Check list bokk', item)
     }
@@ -146,6 +146,7 @@ const ListBook = ({ t }) => {
                         && profilePatient.map((item, index) => {
                             let num = `${item.phonenumber}`
                             let numberPhone = `0${num.slice(3)}`
+                            let stt = index + 1;
                             return (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
@@ -163,7 +164,7 @@ const ListBook = ({ t }) => {
                                         </button> */}
                                         <button
                                             className="hover:text-blue-400"
-                                            onClick={() => handleDetailPatient(item)}
+                                            onClick={() => handleDetailPatient(item, stt)}
                                         >
                                             Xem chi tiết
                                         </button>
