@@ -134,24 +134,26 @@ const ListBook = ({ t }) => {
                 <tbody>
                     <tr>
                         <th>STT</th>
-                        <th>Thời gian</th>
+                        {/* <th>Thời gian</th> */}
                         <th>Họ và tên</th>
                         <th>Địa chỉ</th>
                         <th>Số điện thoại</th>
+                        <th>Email</th>
                         <th>Tùy chọn</th>
                     </tr>
                     {
                         profilePatient && profilePatient.length > 0
                         && profilePatient.map((item, index) => {
-                            let num = `${item.patientData.phonenumber}`
+                            let num = `${item.phonenumber}`
                             let numberPhone = `0${num.slice(3)}`
                             return (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
-                                    <td>{language === 'vi' ? item.timeTypeDataPatient.value_Vi : item.timeTypeDataPatient.value_En}</td>
-                                    <td>{item.patientData.firstName}</td>
-                                    <td>{item.patientData.address}</td>
+                                    {/* <td>{language === 'vi' ? item.timeTypeDataPatient.value_Vi : item.timeTypeDataPatient.value_En}</td> */}
+                                    <td>{item.firstName}</td>
+                                    <td>{item.address}</td>
                                     <td>{numberPhone}</td>
+                                    <td>{item.email}</td>
                                     <td className="text-center">
                                         {/* {/* <button
                                             className="mr-4 hover:text-orange-400"
