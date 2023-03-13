@@ -251,6 +251,13 @@
         "upload": "Choose a prescription"
     },
     "bookmanager": {
-        "title": "Book Manager"
+        "title": "Appointment Manager"
+    },
+    "detailbook": {
+        "daybook": "Appointment date",
+        "hourbook": "Appointment hour",
+        "status": "Status",
+        "option": "Option",
+        "statusnotverify": "Status Not Verify"
     }
 }

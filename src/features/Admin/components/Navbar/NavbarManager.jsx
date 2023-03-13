@@ -79,7 +79,7 @@ const NavbarManager = () => {
                         })
                     }
                 </div>
-                <div className="p-3" onClick={handleLogout}><i className="fas fa-sign-out-alt"></i></div>
+                <div className="p-3 cursor-pointer" onClick={handleLogout}><i className="fas fa-sign-out-alt"></i></div>
             </div>
         </div>
     )
