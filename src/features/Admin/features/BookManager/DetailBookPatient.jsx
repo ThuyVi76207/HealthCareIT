@@ -1,10 +1,11 @@
+import Loading from "components/Loading/loading";
 import { TIMELINE_OPTIONS } from "constants";
 import ManagerLayout from "features/Admin/layouts/ManagerLayout";
 import { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { addErrorMessage, addWarningMessage } from "reducers/messageSlice";
-import { postWarningBooking } from "services/adminService";
+import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
+import { deleteOneBooking, postWarningBooking } from "services/adminService";
 
 
 const DetailBookPatient = ({ t }) => {
@@ -16,9 +17,12 @@ const DetailBookPatient = ({ t }) => {
     let urlParam = new URLSearchParams(window.location.search);
     let doctorId = urlParam.get('doctorId');
     let patientId = urlParam.get('patientId');
-    console.log("Check patientId", patientId, doctorId);
+    // console.log("Check patientId", patientId, doctorId);
+    // const [reload, setReload] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         const postWarningBookingPatient = async () => {
             let data = {
                 doctorId: doctorId,
@@ -29,11 +33,14 @@ const DetailBookPatient = ({ t }) => {
                 console.log("Check doctorId", res);
                 if (res && res.errCode === 0) {
                     setListUserWarning(res.warningBooking);
+                    setLoading(false);
                     dispatch(addWarningMessage({ title: "Cảnh báo người dùng đặt quá số lượng cho phép", content: "Cần gọi điện xác nhận!!!!" }))
                 } else if (res && res.errCode === 1) {
+                    setLoading(false);
                     dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
                 }
             } catch (error) {
+                setLoading(false);
                 alert('Có lỗi xảy ra vui lòng thử lại sau!!!')
                 console.log("Faild to get API patient", error)
             }
@@ -60,10 +67,52 @@ const DetailBookPatient = ({ t }) => {
         }
     }
 
+    const handleDeleteOneBooking = async (item) => {
+        // console.log("Check item", item)
+        setLoading(true);
+        try {
+            await deleteOneBooking(item.id)
+                .then(function (data) {
+                    const items = data;
+                    if (items.errCode === 0) {
+                        setLoading(false);
+                        dispatch(addSuccessMessage({ title: "Xóa thành công", content: "Đã xóa lịch một lịch đặt." }));
+                        window.location.reload();
+                    } else if (items.errCode === 2) {
+                        setLoading(false);
+                        dispatch(addErrorMessage({ title: "Xóa thất bại", content: "Vui lòng thử lại sau" }))
+                    }
+                    setLoading(false);
+                    // console.log('check items', items);
+                })
+            // promiseResult(res);
+            // console.log("Check res", res);
+
+            setLoading(false);
+
+        } catch (error) {
+            setLoading(false);
+            alert(`Có lỗi xảy ra vui lòng thử lại sau`)
+            console.log('Faild to API delete one booking', error)
+        }
+    }
+
+    // function promiseResult(result) {
+    //     return new Promise(function (resolve, reject) {
+    //         if (result) {
+    //             resolve(result)
+    //             console.log('Check resolve', resolve(result))
+    //         }
+    //         else reject('Error resolve!!!')
+
+    //     })
+    // }
+
 
 
     return (
         <ManagerLayout>
+            <Loading loading={loading} />
             <div className="w-[95%] mx-auto py-6">
                 <div className="py-3">
                     <button className="border border-[#f4f4f4] py-2 px-4 float-right mb-4 hover:bg-[#035795] hover:text-white">Xóa tất cả</button>
@@ -95,7 +144,7 @@ const DetailBookPatient = ({ t }) => {
                                             <div className="flex justify-between w-[50%] mx-auto">
                                                 <input className="w-[20px] h-[20px]" type='checkbox' />
                                                 <button className="hover:text-red-600"
-                                                // onClick={() => handleDeleteNews(item)}
+                                                    onClick={() => handleDeleteOneBooking(item)}
                                                 ><i className="fas fa-trash "></i></button>
                                             </div>
 

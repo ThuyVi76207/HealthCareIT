@@ -1,4 +1,5 @@
 import axiosClient from "api/axiosClient"
+import { data } from "autoprefixer";
 
 //User
 const getAllUsers = (id) => {
@@ -75,6 +76,17 @@ const saveBulkSchedudeDoctors = (data) => {
 const postWarningBooking = (data) => {
     return axiosClient.post(`/api/warning-booking`, data)
 }
+const deleteOneBooking = (id) => {
+    return axiosClient.delete(`/api/delete-one-booking`, {
+        data: {
+            id: id
+        }
+    })
+}
+
+const deleteMultipleBooking = (data) => {
+    return axiosClient.delete(`/api/delete-multiple-booking`, data)
+}
 
 export {
     getAllUsers,
@@ -93,4 +105,6 @@ export {
     getAllPatientDoctor,
     postWarningBooking,
     getAllPatientStaff,
+    deleteOneBooking,
+    deleteMultipleBooking,
 }
