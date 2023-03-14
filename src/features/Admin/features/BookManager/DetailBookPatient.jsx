@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { addErrorMessage, addSuccessMessage, addWarningMessage } from "reducers/messageSlice";
-import { deleteOneBooking, postWarningBooking } from "services/adminService";
+import { deleteMultipleBooking, deleteOneBooking, postWarningBooking } from "services/adminService";
 
 
 const DetailBookPatient = ({ t }) => {
@@ -18,8 +18,10 @@ const DetailBookPatient = ({ t }) => {
     let doctorId = urlParam.get('doctorId');
     let patientId = urlParam.get('patientId');
     // console.log("Check patientId", patientId, doctorId);
-    // const [reload, setReload] = useState(false);
+    const [reload, setReload] = useState(false);
     const [loading, setLoading] = useState(false);
+
+    const [listCheck, setListCheck] = useState([]);
 
     useEffect(() => {
         setLoading(true);
@@ -38,7 +40,12 @@ const DetailBookPatient = ({ t }) => {
                 } else if (res && res.errCode === 1) {
                     setLoading(false);
                     dispatch(addErrorMessage({ title: "Đã có lỗi xảy ra", content: "Vui lòng thử lại sau!!!" }))
+                } if (res && res.errCode === 2) {
+                    setLoading(false);
+                    dispatch(addSuccessMessage({ title: "Thông báo", content: "Người dùng chưa đặt vượt giới hạn cho phép" }));
+                    setListUserWarning(res.warningBooking);
                 }
+
             } catch (error) {
                 setLoading(false);
                 alert('Có lỗi xảy ra vui lòng thử lại sau!!!')
@@ -47,7 +54,7 @@ const DetailBookPatient = ({ t }) => {
         }
         postWarningBookingPatient();
 
-    }, [doctorId, patientId])
+    }, [reload, doctorId, patientId])
 
     const reverseHours = (h) => {
         let hours = TIMELINE_OPTIONS;
@@ -55,10 +62,10 @@ const DetailBookPatient = ({ t }) => {
         for (let i = 0; i < hours.length; i++) {
             if (hours[i].value === h) {
                 if (language === 'vi') {
-                    console.log('Check lít', hours[i].label.vi);
+                    // console.log('Check lít', hours[i].label.vi);
                     hour = hours[i].label.vi;
                 } else {
-                    console.log('Check lít', hours[i].label.en);
+                    // console.log('Check lít', hours[i].label.en);
                     hour = hours[i].label.en;
                 }
                 return hour;
@@ -77,7 +84,7 @@ const DetailBookPatient = ({ t }) => {
                     if (items.errCode === 0) {
                         setLoading(false);
                         dispatch(addSuccessMessage({ title: "Xóa thành công", content: "Đã xóa lịch một lịch đặt." }));
-                        window.location.reload();
+                        setReload(!reload);
                     } else if (items.errCode === 2) {
                         setLoading(false);
                         dispatch(addErrorMessage({ title: "Xóa thất bại", content: "Vui lòng thử lại sau" }))
@@ -88,8 +95,6 @@ const DetailBookPatient = ({ t }) => {
             // promiseResult(res);
             // console.log("Check res", res);
 
-            setLoading(false);
-
         } catch (error) {
             setLoading(false);
             alert(`Có lỗi xảy ra vui lòng thử lại sau`)
@@ -97,25 +102,27 @@ const DetailBookPatient = ({ t }) => {
         }
     }
 
-    // function promiseResult(result) {
-    //     return new Promise(function (resolve, reject) {
-    //         if (result) {
-    //             resolve(result)
-    //             console.log('Check resolve', resolve(result))
-    //         }
-    //         else reject('Error resolve!!!')
+    const handleMultipDelete = async () => {
+        try {
+            let res = await deleteMultipleBooking(listCheck);
+            console.log('Check res multip', res)
+        } catch (error) {
+            setLoading(false);
+            alert(`Có lỗi xảy ra vui lòng thử lại sau`)
+            console.log('Faild to API delete one booking', error)
+        }
+    }
 
-    //     })
-    // }
-
-
-
+    console.log('Check list delete', listCheck);
     return (
         <ManagerLayout>
             <Loading loading={loading} />
             <div className="w-[95%] mx-auto py-6">
                 <div className="py-3">
-                    <button className="border border-[#f4f4f4] py-2 px-4 float-right mb-4 hover:bg-[#035795] hover:text-white">Xóa tất cả</button>
+                    <button
+                        className="border border-[#f4f4f4] py-2 px-4 float-right mb-4 hover:bg-[#035795] hover:text-white"
+                        onClick={handleMultipDelete}
+                    >Xóa tất cả</button>
                 </div>
                 <table id="tableManager">
                     <tbody>
@@ -132,7 +139,7 @@ const DetailBookPatient = ({ t }) => {
                                 let formatdate = parseInt(item.date) + 25200000;
                                 let days = new Date(formatdate).toISOString().split("T")[0];
                                 let dayReverse = days.split(/\D/).reverse().join('/');
-                                // console.log('check date reverse', dayReverse);
+                                // console.log('check item check', item);
                                 let hourReverse = reverseHours(item.timeType);
                                 return (
                                     <tr key={index}>
@@ -142,7 +149,28 @@ const DetailBookPatient = ({ t }) => {
                                         <td>{t('detailbook.statusnotverify')}</td>
                                         <td className="">
                                             <div className="flex justify-between w-[50%] mx-auto">
-                                                <input className="w-[20px] h-[20px]" type='checkbox' />
+                                                <input
+                                                    className="w-[20px] h-[20px]"
+                                                    type='checkbox'
+
+                                                    onChange={(e) => {
+                                                        if (e.target.checked) {
+                                                            setListCheck([
+                                                                ...listCheck,
+                                                                { id: item.id }
+                                                            ]);
+                                                        } else {
+                                                            //filter những id khác id vừa check
+                                                            setListCheck(
+                                                                listCheck.filter((t) => t.id !== item.id),
+                                                            );
+                                                        }
+                                                    }}
+
+
+                                                    value={listCheck}
+
+                                                />
                                                 <button className="hover:text-red-600"
                                                     onClick={() => handleDeleteOneBooking(item)}
                                                 ><i className="fas fa-trash "></i></button>
