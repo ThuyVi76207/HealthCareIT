@@ -1,5 +1,4 @@
 import axiosClient from "api/axiosClient"
-import { data } from "autoprefixer";
 
 //User
 const getAllUsers = (id) => {
@@ -84,8 +83,8 @@ const deleteOneBooking = (id) => {
     })
 }
 
-const deleteMultipleBooking = (data) => {
-    return axiosClient.delete(`/api/delete-multiple-booking`, data)
+const deleteMultipleBooking = (list) => {
+    return axiosClient.delete(`/api/delete-multiple-booking`, { data: { contentIds: list } })
 }
 
 export {
