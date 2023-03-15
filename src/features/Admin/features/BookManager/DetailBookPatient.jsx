@@ -83,7 +83,7 @@ const DetailBookPatient = ({ t }) => {
                     const items = data;
                     if (items.errCode === 0) {
                         setLoading(false);
-                        dispatch(addSuccessMessage({ title: "Xóa thành công", content: "Đã xóa lịch một lịch đặt." }));
+                        dispatch(addSuccessMessage({ title: "Xóa thành công", content: "Đã xóa lịch đặt." }));
                         setReload(!reload);
                     } else if (items.errCode === 2) {
                         setLoading(false);
@@ -103,9 +103,18 @@ const DetailBookPatient = ({ t }) => {
     }
 
     const handleMultipDelete = async () => {
+        setLoading(true);
         try {
             let res = await deleteMultipleBooking(listCheck);
             console.log('Check res multip', res)
+            if (res && res.errCode === 0) {
+                setLoading(false);
+                setReload(!reload);
+                 dispatch(addSuccessMessage({ title: "Xóa thành công", content: "Đã xóa lịch đặt." }));
+            } else if (res && res.errCode === 1) {
+                setLoading(false);
+                dispatch(addErrorMessage({ title: "Xóa thất bại", content: "Vui lòng thử lại sau" }));
+            }
         } catch (error) {
             setLoading(false);
             alert(`Có lỗi xảy ra vui lòng thử lại sau`)
