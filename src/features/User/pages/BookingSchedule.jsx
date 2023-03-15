@@ -44,6 +44,12 @@ const BookingSchedule = ({ t }) => {
         description: ''
     })
 
+    let urlParam = new URLSearchParams(window.location.search)
+    let price = urlParam.get('price');
+    localStorage.setItem("price", `${price}`);
+
+    console.log("Check price", price);
+
     const formref = useRef(null);
     const [paymentMethod, setPaymentMethod] = useState(12);
 

@@ -13,6 +13,7 @@ const PaymentSuccess = () => {
 
     const tokenID = localStorage.getItem("tokenID");
     const doctorId = localStorage.getItem("doctorId");
+    const price = localStorage.getItem("price");
 
     console.log("Check token", tokenID);
     console.log("Check doctor", doctorId);
@@ -23,7 +24,8 @@ const PaymentSuccess = () => {
                 PayerID: PayerID,
                 paymentId: paymentId,
                 doctorId: doctorId,
-                token: tokenID
+                token: tokenID,
+                price: price.toString()
             })
         }
 

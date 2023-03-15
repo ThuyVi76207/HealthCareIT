@@ -67,8 +67,8 @@ const postSendSMS = (data) => {
 }
 
 //Payment
-const postPaymentPaypal = () => {
-    return axiosClient.post(`/api/pay-paypal`)
+const postPaymentPaypal = (price) => {
+    return axiosClient.post(`/api/pay-paypal`, { price })
 }
 const successPay = (data) => {
     return axiosClient.post(`/success`, data)
