@@ -101,7 +101,8 @@
         "newsmanager": "Quản lý bài đăng",
         "medicine": "Quản lý thuốc",
         "patientmanager": "Quản lý bệnh nhân",
-        "bookmanager": "Quản lý lịch đặt"
+        "bookmanager": "Quản lý lịch đặt",
+        "roomvideo": "Phòng trực tuyến"
     },
     "tableuser": {
         "title": "Quản lý người dùng",

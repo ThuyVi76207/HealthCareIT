@@ -57,6 +57,15 @@ const Menu = ({ t }) => {
                             )
                         })
                     }
+                    {
+                        profileuser.roleId === USER_ROLES.DOCTOR &&
+                        <li className='my-3 cursor-pointer hover:text-[#16917c]'>
+                            <a href='/manager/room-video' className='flex items-center w-full' target={'_blank'}>
+                                <i className='mt-1 mr-4'><ion-icon name="videocam-outline"></ion-icon></i>
+                                <h2>{t('menu.roomvideo')}</h2>
+                            </a>
+                        </li>
+                    }
 
                     {/* 
                     <li className='my-3 cursor-pointer hover:text-[#16917c]'>

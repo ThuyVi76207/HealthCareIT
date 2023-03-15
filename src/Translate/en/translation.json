@@ -101,7 +101,8 @@
         "newsmanager": "News Management",
         "medicine": "Medicine Management",
         "patientmanager": "Patient Management",
-        "bookmanager": "Book Management"
+        "bookmanager": "Book Management",
+        "roomvideo": "Room Video"
     },
     "tableuser": {
         "title": "User Management",

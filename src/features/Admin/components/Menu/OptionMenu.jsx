@@ -10,6 +10,7 @@ export const doctorMenu = [
     { icon: 'time-outline', name: 'menu.planmanager', link: '/manager/system/doctor/planmanager' },
     { icon: 'newspaper-outline', name: 'menu.newsmanager', link: '/manager/system/doctor/newsmanager' },
     { icon: 'pulse-outline', name: 'menu.patientmanager', link: '/manager/system/doctor/patientmanager' },
+
 ];
 export const healthStaffMenu = [
     { icon: 'newspaper-outline', name: 'menu.newsmanager', link: '/manager/system/healthstaff/newsmanager' },

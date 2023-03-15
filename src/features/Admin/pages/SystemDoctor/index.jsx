@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import NewsManager from "../NewsManager";
 import PatientManager from "../PatientManager";
 import PlanManager from "../PlanManager";
+import RoomVideo from "../RoomVideo";
 
 function SystemDoctor() {
     return (
@@ -15,6 +16,8 @@ function SystemDoctor() {
                 <Route exact path="/newsmanager/edit/:id" element={<CreateEditNews />}></Route>
 
                 <Route exact path="/patientmanager" element={<PatientManager />}></Route>
+
+
             </Routes>
         </>
     )
