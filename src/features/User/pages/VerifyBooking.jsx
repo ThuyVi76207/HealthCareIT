@@ -27,12 +27,14 @@ const VerifyBooking = ({ t }) => {
                     const urlParams = new URLSearchParams(window.location.search);
                     const tokenID = urlParams.get('token');
                     const doctorId = urlParams.get('doctorId');
+                    const price = localStorage.getItem("price");
+
                     // console.log("Check token", tokenID);
                     // console.log("Check doctor", doctorId);
                     localStorage.setItem("tokenID", `${tokenID}`);
                     localStorage.setItem("doctorId", `${doctorId}`);
 
-                    let res = await postPaymentPaypal();
+                    let res = await postPaymentPaypal(price);
                     if (res && res.forwardLink) {
                         window.location.href = res.forwardLink
                     }
