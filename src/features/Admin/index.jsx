@@ -2,6 +2,7 @@ import NotFound from "components/NotFound";
 import HomeManager from "./pages/HomeManager";
 import LoginAdmin from "./pages/LoginAdmin";
 import MedicineManager from "./pages/MedicineManager";
+import RoomVideo from "./pages/RoomVideo";
 
 const { Routes, Route, Navigate } = require("react-router-dom");
 
@@ -13,6 +14,7 @@ function HealthManager() {
                 <Route exact path="/" element={<Navigate to='/manager/login' />}></Route>
                 <Route exact path="/login" element={<LoginAdmin />}></Route>
                 <Route path="/system/*" element={<HomeManager />}></Route>
+                <Route exact path="/room-video" element={<RoomVideo />}></Route>
 
                 {/* Admin */}
                 {/* <Route exact path="/usermanager" element={<UserManager />}></Route>
