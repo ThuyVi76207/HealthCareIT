@@ -113,7 +113,8 @@ const DetailBookPatient = ({ t }) => {
         }
     }
 
-    console.log('Check list delete', listCheck);
+    console.log('Check array list', listCheck);
+
     return (
         <ManagerLayout>
             <Loading loading={loading} />
@@ -157,19 +158,16 @@ const DetailBookPatient = ({ t }) => {
                                                         if (e.target.checked) {
                                                             setListCheck([
                                                                 ...listCheck,
-                                                                { id: item.id }
+                                                                item.id
                                                             ]);
                                                         } else {
                                                             //filter những id khác id vừa check
                                                             setListCheck(
-                                                                listCheck.filter((t) => t.id !== item.id),
+                                                                listCheck.filter((t) => t !== item.id),
                                                             );
                                                         }
                                                     }}
-
-
                                                     value={listCheck}
-
                                                 />
                                                 <button className="hover:text-red-600"
                                                     onClick={() => handleDeleteOneBooking(item)}
