@@ -2,6 +2,7 @@ import Loading from "components/Loading/loading";
 import { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { postPaymentPaypal, postVerifyBooking } from "services/userService";
+import { getFormattedPriceUSD } from "function/formater";
 
 const VerifyBooking = ({ t }) => {
     const [loading, setLoading] = useState(false);
@@ -34,7 +35,17 @@ const VerifyBooking = ({ t }) => {
                     localStorage.setItem("tokenID", `${tokenID}`);
                     localStorage.setItem("doctorId", `${doctorId}`);
 
-                    let res = await postPaymentPaypal(price);
+                    console.log('Check price to vnd', price)
+
+                    const priceToUsd = parseInt(price) / 23580;
+
+                    const priceFormat = getFormattedPriceUSD(priceToUsd).slice(1);
+
+
+
+                     console.log('Check price to usd', priceFormat)
+
+                    let res = await postPaymentPaypal(priceFormat);
                     if (res && res.forwardLink) {
                         window.location.href = res.forwardLink
                     }
