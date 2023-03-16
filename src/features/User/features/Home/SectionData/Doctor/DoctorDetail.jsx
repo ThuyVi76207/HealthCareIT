@@ -18,7 +18,7 @@ function DoctorDetail({ t }) {
             try {
                 const resDetail = await getDetailInforDoctor(id);
                 if (resDetail && resDetail.error === 0) {
-                    setInfoDoctor(resDetail.data)
+                    setInfoDoctor(resDetail.data);
                 }
 
             } catch (error) {
