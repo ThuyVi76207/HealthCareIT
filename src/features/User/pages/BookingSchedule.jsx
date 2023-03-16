@@ -1,5 +1,5 @@
 import { formatMonthAndDate, getFormattedPriceUSD, getFormattedPriceVND, isValidEmail, isValidPhoneNumber } from "function/formater";
-import { useCallback, useMemo, useRef, useState } from "react";
+import {  useEffect, useRef, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -21,8 +21,14 @@ const BookingSchedule = ({ t }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const timeSchedule = useSelector((state) => state.timework) || {};
-    const inforDoctor = useSelector((state) => state.inforDoctor) || {};
+    // const timeSchedule = useSelector((state) => state.timework) || {};
+    // const inforDoctor = useSelector((state) => state.inforDoctor) || {};
+    const inforDoctor = JSON.parse(localStorage.getItem('profiledoctor'));
+    const timeSchedule = JSON.parse(localStorage.getItem('timework'));
+
+    // console.log('Check time and infor', infor, time)
+
+   
     const { language } = useSelector((state) => state.user) || {};
     const [date, setDate] = useState('');
 
@@ -102,7 +108,7 @@ const BookingSchedule = ({ t }) => {
         return false;
     };
 
-    const handleTime = useCallback((language, timeSchedule) => {
+    useEffect(()=> {
 
         const daysVi = ["Chủ nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
         const daysEn = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -124,15 +130,17 @@ const BookingSchedule = ({ t }) => {
                 "/" + formatMonthAndDate(new Date(formatDate).getDate());
 
         }
-        return daymonthyear;
-    }, [])
+        // return daymonthyear;
+        setDate(daymonthyear);
 
-    useMemo(() => {
-        if (checkIfVerifiedExists(timeSchedule)) return;
-        let obj = timeSchedule
-        let day = handleTime(language, obj)
-        setDate(day);
-    }, [language, timeSchedule, handleTime])
+    } , [language, timeSchedule.date, timeSchedule.timeTypeData.value_En, timeSchedule.timeTypeData.value_Vi])
+
+    // useMemo(() => {
+    //     if (checkIfVerifiedExists(timeSchedule)) return;
+    //     let obj = timeSchedule
+    //     let day = handleTime(language, obj)
+    //     setDate(day);
+    // }, [language, timeSchedule, handleTime])
 
     const srollToInput = () => {
         formref.current.scrollIntoView();

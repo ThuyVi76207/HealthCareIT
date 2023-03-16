@@ -9,8 +9,8 @@ import { addInforTime } from 'reducers/timeworkSlice';
 import { addInforDoctor } from 'reducers/inforDoctorSlice';
 
 
-const ScheduleDoctor = ({ id, price, profile, t }) => {
-    const dispatch = useDispatch();
+const ScheduleDoctor = ({ id, price, t , profile}) => {
+     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const { language } = useSelector((state) => state.user) || {};
@@ -91,6 +91,9 @@ const ScheduleDoctor = ({ id, price, profile, t }) => {
 
     const handleScheduleDoctor = (time) => {
         console.log("Check time work", time);
+        
+        localStorage.setItem('timework', JSON.stringify(time))
+        localStorage.setItem('profiledoctor', JSON.stringify(profile));
         dispatch(addInforTime(time));
         dispatch(addInforDoctor(profile));
         navigate(`/healthcare/booking-schedule/${time.date}/${time.timeType}/?price=${price}`);
