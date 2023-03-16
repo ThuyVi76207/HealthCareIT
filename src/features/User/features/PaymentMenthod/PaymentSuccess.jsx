@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { successPay } from "services/userService";
+import { getFormattedPriceUSD } from "function/formater";
 
 const PaymentSuccess = () => {
     // let url = window.location
@@ -15,6 +16,10 @@ const PaymentSuccess = () => {
     const doctorId = localStorage.getItem("doctorId");
     const price = localStorage.getItem("price");
 
+
+    const priceToUsd = parseInt(price) / 23580;
+    const priceFormat = getFormattedPriceUSD(priceToUsd).slice(1);
+
     console.log("Check token", tokenID);
     console.log("Check doctor", doctorId);
 
@@ -25,7 +30,7 @@ const PaymentSuccess = () => {
                 paymentId: paymentId,
                 doctorId: doctorId,
                 token: tokenID,
-                price: price.toString()
+                priceFormat: priceFormat.toString()
             })
         }
 
