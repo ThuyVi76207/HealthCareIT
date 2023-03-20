@@ -9,7 +9,7 @@ import {
   addSuccessMessage,
   addWarningMessage,
 } from "reducers/messageSlice";
-import { deleteNewsService } from "services/adminService";
+import { deleteNewsService, filterNewsByDoctorId } from "services/adminService";
 import Loading from "components/Loading/loading";
 import { useNavigate } from "react-router-dom";
 import { addInfor } from "reducers/editcommonSlice";
@@ -29,8 +29,19 @@ const TableNews = ({ t }) => {
   useEffect(() => {
     setLoading(true);
     const printNewsAll = async () => {
+      console.log("Check roole id", userProfile.roleId);
+      let data = {
+        limit: "5",
+        doctorId: userProfile.id,
+      };
       try {
-        if (userProfile.rolID === "R2") {
+        if (userProfile.roleId === "R2") {
+          let res = await filterNewsByDoctorId(data);
+          if (res && res.errCode === 0) {
+            setListNews(res.data);
+            setLoading(false);
+          }
+          // console.log("Check result filter", res);
         } else {
           let res = await getAllNews("");
           if (res && res.errCode === 0) {
@@ -40,12 +51,13 @@ const TableNews = ({ t }) => {
           }
         }
       } catch (error) {
+        setLoading(false);
         console.log("Faild to print API all news error: ", error);
       }
     };
 
     printNewsAll();
-  }, [reload]);
+  }, [reload, userProfile.roleId, userProfile.id]);
 
   const handleDeleteNews = async (item) => {
     setLoading(true);
