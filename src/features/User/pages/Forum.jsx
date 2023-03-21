@@ -31,8 +31,11 @@ function Forum() {
       ) : (
         <div className="room">
           <label>Enter Room name: </label>
-          <input ref={roomInputRef} />
-          <button onClick={() => setRoom(roomInputRef.current.value)}>
+          <input type="text" ref={roomInputRef} className="border" />
+          <button
+            className="border"
+            onClick={() => setRoom(roomInputRef.current.value)}
+          >
             Enter chat
           </button>
         </div>

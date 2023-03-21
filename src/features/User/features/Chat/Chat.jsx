@@ -26,11 +26,11 @@ const Chat = (props) => {
       orderBy("createdAt")
     );
     const unscribe = onSnapshot(queryMessage, (snapshot) => {
-      let messages = [];
+      let message = [];
       snapshot.forEach((doc) => {
-        messages.push({ ...doc.data(), id: doc.id });
+        message.push({ ...doc.data(), id: doc.id });
       });
-      setMessages(messages);
+      setMessages(message);
     });
 
     return () => unscribe();
@@ -56,12 +56,18 @@ const Chat = (props) => {
         <h1>Welcome to: {room.toUpperCase()}</h1>
       </div>
       <div className="messages">
-        {messages.map((message) => (
-          <div className="message" key={message.id}>
-            <span className="user">{message.user}</span>
-            {message.text}*{message.createdAt}
-          </div>
-        ))}
+        {messages.map((message, index) => {
+          console.log(
+            "Check message",
+            new Date(message.createdAt.seconds * 1000).getMinutes()
+          );
+          return (
+            <div className="message" key={index}>
+              <span className="user">{message.user}</span>
+              {message.text}
+            </div>
+          );
+        })}
       </div>
       <form onSubmit={handleSubmit} className="new-message-form">
         <input
