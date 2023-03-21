@@ -1,37 +1,36 @@
-import { useState } from "react";
 import PaymentOption from "./PaymentOption";
 // import { PaymentOptionCK } from "./PaymentOption";
 import imgvnpay from "assets/Payment/vnpay.png";
 import imgpaypal from "assets/Payment/paypal.png";
 
 export default function PaymentMethodSection({
-    paymentMethod,
-    handlePaymentMethod,
-    bankCodeZalo,
-    handleBankCodeZalo,
+  paymentMethod,
+  handlePaymentMethod,
+  // bankCodeZalo,
+  // handleBankCodeZalo,
 }) {
-    return (
-        <div>
-            <div className="mb-5 rounded-[4px]">
-                <div className="border-2 mb-2 rounded-[4px]">
-                    <PaymentOption
-                        onClick={() => handlePaymentMethod(10)}
-                        title={"Thanh toán qua ví điện tử VNPay"}
-                        value={10}
-                        currentValue={paymentMethod}
-                        imgSrc={imgvnpay}
-                    />
-                </div>
+  return (
+    <div>
+      <div className="mb-5 rounded-[4px]">
+        <div className="border-2 mb-2 rounded-[4px]">
+          <PaymentOption
+            onClick={() => handlePaymentMethod(10)}
+            title={"Thanh toán qua ví điện tử VNPay"}
+            value={10}
+            currentValue={paymentMethod}
+            imgSrc={imgvnpay}
+          />
+        </div>
 
-                <div className="border-2 mb-2 rounded-[4px]">
-                    <PaymentOption
-                        onClick={() => handlePaymentMethod(12)}
-                        title={"Thanh toán qua ví điện tử Paypal"}
-                        value={12}
-                        currentValue={paymentMethod}
-                        imgSrc={imgpaypal}
-                    />
-                    {/* {
+        <div className="border-2 mb-2 rounded-[4px]">
+          <PaymentOption
+            onClick={() => handlePaymentMethod(12)}
+            title={"Thanh toán qua ví điện tử Paypal"}
+            value={12}
+            currentValue={paymentMethod}
+            imgSrc={imgpaypal}
+          />
+          {/* {
                         paymentMethod === 12 && (
                             <div className="p-2">
                                 <button onClick={() => handleBankCodeZalo("zalopayapp")} className={`flex items-center p-2 mb-2 border-2 bg-gray-100 w-full text-left hover:opacity-80 ${bankCodeZalo === 'zalopayapp' ? 'bg-primary-color text-white' : ''}`}>
@@ -64,9 +63,8 @@ export default function PaymentMethodSection({
                             </div>
                         )
                     } */}
-                </div>
-
-            </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
