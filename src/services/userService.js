@@ -77,6 +77,14 @@ const successPay = (data) => {
   return axiosClient.post(`/success`, data);
 };
 
+//Room chat
+const postSaveNameRoom = (data) => {
+  return axiosClient.post(`/api/save-name-room`, data);
+};
+const getAllRoom = () => {
+  return axiosClient.get(`/api/get-all-room`);
+};
+
 export {
   getAllSpecialty,
   getTopDoctorHomeService,
@@ -97,4 +105,6 @@ export {
   postSendPrescription,
   getBookingInfo,
   postSendRoomID,
+  postSaveNameRoom,
+  getAllRoom,
 };
