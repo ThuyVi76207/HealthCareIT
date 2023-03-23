@@ -61,15 +61,15 @@ function Forum() {
           <div className="h-[100px] w-full"></div>
           <div className="w-full flex">
             <div className="w-[35%] h-full bg-[#1d176e] bg-opacity-90">
-              <div className="h-[86vh] bg-[#1d176e]">
+              <div className="h-[86vh] ">
                 <div className="text-center bg-[#1d176e] py-[18px] text-white bg-opacity-70">
-                  List room
+                  Danh sách nhóm
                 </div>
                 <ul className="">
                   {listRoom.map((item, index) => (
                     <li
                       key={index}
-                      className="flex text-white items-center gap-4 py-2 px-[20%] hover:bg-[#1d176e] hover:bg-opacity-70 cursor-pointer"
+                      className="flex text-white items-center gap-4 py-2 px-[20%] hover:bg-[#1d176e] hover:bg-opacity-60 cursor-pointer"
                       onClick={() => setRoom(item.name)}
                     >
                       <i className="text-[25px] pt-1">
