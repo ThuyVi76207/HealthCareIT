@@ -55,8 +55,9 @@ const NavbarForum = (props) => {
         </div>
         <div className="w-[65%] flex items-center justify-end gap-x-10">
           <div className="text-white">
-            <label>Room name: </label>
+            <label>Tên phòng: </label>
             <input
+              placeholder="Nhập tên phòng mới..."
               type="text"
               ref={roomInputRef}
               className="border-b-2 bg-[#1d155e] py-1 px-2 focus:outline-none"
@@ -65,13 +66,13 @@ const NavbarForum = (props) => {
               className="ml-3 bg-[#1d155e] rounded-[5px] py-[6px] px-3 text-center hover:bg-[#110c3d]"
               onClick={handleClickCreateRoom}
             >
-              Create Room
+              Tạo phòng
             </button>
           </div>
 
           <div className="text-white mr-[10%]">
             <button onClick={signUserOut} className="border-b-2">
-              Sign Out
+              Đăng xuất
             </button>
           </div>
         </div>

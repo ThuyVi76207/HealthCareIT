@@ -58,7 +58,7 @@ const Chat = (props) => {
     <>
       <div className="chat-app">
         <div className="header">
-          <h1 className="text-[20px]">Welcome to: {room.toUpperCase()}</h1>
+          <h1 className="text-[20px]">Tên phòng: {room.toUpperCase()}</h1>
         </div>
         <div className="messages">
           {messages.map((message, index) => {
