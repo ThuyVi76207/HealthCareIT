@@ -1,0 +1,24 @@
+.banner {
+    background-color: #d8f2f1;
+
+    &-container {
+        width: 80%;
+        margin: auto;
+
+        display: flex;
+        gap: 2%;
+
+        justify-content: center;
+        align-items: center;
+        height: 600px;
+
+
+        &__left {
+            width: 50%;
+        }
+
+        &__right {
+            width: 50%;
+        }
+    }
+}

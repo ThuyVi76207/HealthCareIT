@@ -1,0 +1,24 @@
+.section-news {
+
+    padding: 5px 0;
+
+    .news-container {
+        margin: 55px 210px;
+    }
+}
+
+//reset slick slider css
+
+.news-container {
+    .slick-slide {
+        padding: 10px;
+    }
+
+    .img-news {
+        display: block;
+        height: 300px !important;
+        width: 450px !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

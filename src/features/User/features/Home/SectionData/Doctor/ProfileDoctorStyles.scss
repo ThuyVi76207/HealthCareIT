@@ -1,0 +1,21 @@
+.card-profile {
+    background: #fff;
+    padding: 30px;
+
+    display: flex;
+
+    border-radius: 10px;
+    box-shadow: -4px 5px 5px rgb(199 190 190);
+
+    &__left {
+        display: flex;
+        width: 60%;
+
+
+    }
+
+    &__right {
+        width: 40%;
+        border-left: 1px solid rgb(226, 220, 220);
+    }
+}

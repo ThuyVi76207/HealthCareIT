@@ -1,0 +1,103 @@
+.bg-contact {
+    background: url('../../../../assets/Background/background-contact.jpg');
+    min-width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 800px;
+}
+
+.bg-contact-body {
+    background: url('../../../../assets/Background/backgound-contact-op.webp');
+    min-width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 612px;
+    top: 112px;
+    position: absolute;
+}
+
+// section#contact {
+//     margin-top: 95px;
+// }
+.container.contact_container {
+    width: 58%;
+    display: grid;
+    grid-template-columns: 30% 58%;
+    gap: 12%;
+    margin-left: 370px;
+    margin-top: 65px;
+}
+
+.contact_options {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.contact_option {
+    font-size: 30px;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.contact_options h2 {
+    color: #fff;
+    font-size: 2.5rem;
+    border-bottom: 2px solid gray;
+    padding-bottom: 10px;
+}
+
+.contact-title {
+    color: #fff;
+    margin-bottom: 57px;
+    font-size: 27px;
+    margin-left: 370px;
+}
+
+/* ============== FORM ============= */
+.fm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-info,
+.textarea-info {
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background: transparent;
+    border: 1px solid #fff;
+    resize: none;
+    color: #fff;
+}
+
+/* ============= MEDIA QUERIES (MEDIUM DEVICES) ==========*/
+@media screen and (max-width: 1024px) {
+    .container.contact_container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        width: 52%;
+        display: grid;
+        margin-left: 200px;
+        margin-top: 65px;
+    }
+
+    .contact-title {
+        margin-left: 200px;
+    }
+}
+
+/* ============= MEDIA QUERIES (SMALL DEVICES) ==========*/
+@media screen and (max-width: 600px) {
+    .container.contact_container {
+        width: 52%;
+        display: grid;
+        margin-left: 90px;
+        margin-bottom: 95px;
+    }
+
+    .contact-title {
+        margin-left: 90px;
+    }
+}

@@ -1,0 +1,23 @@
+.section1 {
+    width: 100%;
+    margin: 50px 0;
+
+    &-form {
+        width: 80%;
+        display: flex;
+        margin: 20px auto;
+        gap: 2%;
+
+        &__child {
+            text-align: center;
+
+            .item-icon {
+                font-size: 40px;
+                text-align: center;
+                background-color: #d8f2f1;
+                padding: 37px 42px;
+                border-radius: 50%;
+            }
+        }
+    }
+}

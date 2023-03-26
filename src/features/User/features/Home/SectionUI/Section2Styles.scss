@@ -1,0 +1,21 @@
+.section2 {
+    background-color: #d8f2f1;
+
+    &-form {
+        width: 85%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3%;
+        padding: 65px 0;
+
+        &__content {
+            width: 50%;
+        }
+
+        &__image {
+            width: 50%;
+        }
+    }
+}

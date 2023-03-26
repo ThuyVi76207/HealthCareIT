@@ -1,0 +1,264 @@
+{
+    "navbar": {
+        "homepage": "Trang chủ",
+        "onlinemedica": "Khám online",
+        "forum": "Diễn đàn sức khỏe",
+        "healthnews": "Tin tức sức khỏe",
+        "contact": "Liên hệ",
+        "register": "Đăng ký",
+        "login": "Đăng nhập",
+        "logout": "Đăng xuất",
+        "welcome": "Chào mừng",
+        "with": "đến với"
+    },
+    "banner": {
+        "bntitle1": "Không chỉ chăm sóc",
+        "bntitle2": "sức khỏe",
+        "bncontent": "Tại HCare, chúng tôi cung cấp các dịch vụ chăm sóc sức khỏe chất lượng cao với chi phí phải chăng, lấy bạn làm trung tâm chăm sóc.",
+        "btn1": "Xem Thêm",
+        "btn2": "Đăng Ký Ngay"
+    },
+    "footer": {
+        "follow": "Theo dõi HCare tại",
+        "titlepolicy": "Chính sách và điều khoản",
+        "policy1": "Chính sách bảo mật",
+        "policy2": "Chính sách thanh toán"
+    },
+    "section1": {
+        "title1": "Nơi tìm kiếm chúng tôi",
+        "title2": "Trung tâm trợ giúp trực tuyến",
+        "title3": "Đặt lịch",
+        "description1": "Xác định vị trí phòng khám kiểm tra sức khỏe gần bạn nhất để dễ dàng tiếp cận với một loạt các dịch vụ chăm sóc sức khỏe.",
+        "description2": "Tìm ra câu trả lời cho câu hỏi của bạn một cách nhanh chóng bằng cách sử dụng trung tâm tài nguyên trực quan của chúng tôi.",
+        "description3": "Sẵn sàng để gặp một bác sĩ lâm sàng? Liên hệ với nhóm hỗ trợ của chúng tôi để sắp xếp một cuộc hẹn."
+    },
+    "section2": {
+        "title1": "Tự hào tạo niềm tin đối với khách hàng",
+        "title2": "Tạo điều kiện tiếp cận với chăm sóc sức khỏe",
+        "description1": "Tại Health Care, chúng tôi cung cấp dịch vụ chăm sóc sức khỏe tự trả. Lộ trình tự thanh toán của chúng tôi là để lấp đầy khoảng trống mà mọi người không thể tiếp cận các dịch vụ chăm sóc sức khỏe vì họ không đủ điều kiện, họ muốn được khám thay vì chờ đợi hoặc họ sống ở những khu vực mà một số dịch vụ nhất định không được cung cấp.",
+        "description2": "Chúng tôi muốn tất cả khách hàng của mình có thể nói rằng họ cảm thấy được quan tâm với tư cách cá nhân và họ cảm thấy thực sự được lắng nghe và tôn trọng. Nhóm hỗ trợ thân thiện của chúng tôi luôn sẵn sàng trả lời bất kỳ câu hỏi nào mà bạn có thể có và giúp bạn đưa ra quyết định sáng suốt về việc chăm sóc y tế của mình. Tìm hiểu thêm về các dịch vụ mà chúng tôi cung cấp dưới đây."
+    },
+    "section3": {
+        "title": "Chuyên khoa",
+        "see": "XEM THÊM"
+    },
+    "section4": {
+        "title1": "CÁCH TIẾP CẬN CỦA CHÚNG TA",
+        "title2": "Chăm sóc sức khỏe cho bạn",
+        "description1": "Cung cấp dịch vụ chăm sóc sức khỏe tồn tại để giúp thu hẹp khoảng cách giữa dịch vụ chăm sóc sức khỏe tư nhân và dịch vụ y tế quốc gia. Chúng tôi tự hào là nơi cung cấp dịch vụ chăm sóc trực tuyến hàng đầu. Trong những thời điểm nhu cầu ngày càng tăng và ngân sách bị thu hẹp, chúng tôi biết rằng có một số dịch vụ liên quan nhiều đến sức khỏe cá nhân hơn là sức khỏe thể chất.",
+        "description2": "Các dịch vụ của chúng tôi được thiết kế để cung cấp cho bạn nhiều lựa chọn hơn để thay đổi những điều quan trọng đối với bạn. Chúng tôi cố gắng đạt được sự xuất sắc và không ngừng xem xét cũng như phát triển cách chúng tôi cung cấp cho bạn dịch vụ đặc biệt."
+    },
+    "section5": {
+        "title": "Tin tức sức khỏe"
+    },
+    "section6": {
+        "title1": "Bắt đầu hành trình hướng tới chăm sóc sức khỏe được cải thiện ngay hôm nay.",
+        "title2": "Hãy liên hệ với một trong những đội ngũ chuyên dụng của chúng tôi.",
+        "button": "Liên Hệ Ngay"
+    },
+    "section7": {
+        "title": "Bác sĩ tiêu biểu"
+    },
+    "section8": {
+        "title1": "Giảm thời gian chờ đợi",
+        "title2": "Dịch vụ bổ sung",
+        "title3": "Yêu cầu cá nhân",
+        "description1": "Các dịch vụ tự thanh toán của chúng tôi có nghĩa là bạn sẽ gặp bác sĩ lâm sàng vào thời điểm phù hợp với mình - không phải xếp hàng dài chờ đợi.",
+        "description2": "Tiếp cận các dịch vụ sức khỏe và phúc lợi có thể không có sẵn trên HealthCare.",
+        "description3": "Chúng tôi muốn bạn cảm thấy như một VIP. Dù nhu cầu của bạn là gì, tại HealthCare, bạn sẽ được đối xử như một cá nhân."
+    },
+    "specialtydetail": {
+        "more": "Đọc thêm",
+        "hide": "Ẩn bớt"
+    },
+    "scheduledoctor": {
+        "schedule": "Lịch khám",
+        "choose": "Chọn",
+        "bookfree": "và đặt lịch miễn phí",
+        "noschedule": "Chưa có lịch trống"
+    },
+    "profiledoctor": {
+        "price": "Giá khám:",
+        "workaddress": "Địa chỉ làm việc",
+        "more": "Xem thêm"
+    },
+    "detaildoctor": {
+        "overview": "Thông tin bác sĩ",
+        "titles": "Chi tiết bác sĩ"
+    },
+    "detailnews": {
+        "createdat": "Đã tạo lúc: ",
+        "updatedat": "Cập nhật lần cuối: ",
+        "more": "Đọc thêm",
+        "news": "Tin tức"
+    },
+    "menu": {
+        "dashboard": "Bảng điều khiển",
+        "usermanager": "Quản lý người dùng",
+        "doctormanager": "Quản lý bác sĩ",
+        "planmanager": "Quản lý kế hoạch khám bệnh",
+        "specialtymanager": "Quản lý chuyên khoa",
+        "newsmanager": "Quản lý bài đăng",
+        "medicine": "Quản lý thuốc",
+        "patientmanager": "Quản lý bệnh nhân",
+        "bookmanager": "Quản lý lịch đặt",
+        "roomvideo": "Phòng trực tuyến"
+    },
+    "tableuser": {
+        "title": "Quản lý người dùng",
+        "name": "Họ và tên",
+        "address": "Địa chỉ",
+        "phone": "Số điện thoại",
+        "choose": "Tùy chọn",
+        "create": "Tạo mới"
+    },
+    "createuser": {
+        "titles": "Tạo mới người dùng",
+        "phone": "Số điện thoại",
+        "lastname": "Họ",
+        "firstname": "Tên",
+        "address": "Địa chỉ",
+        "gender": "Giới tính",
+        "title": "Chức danh",
+        "role": "Vai trò",
+        "password": "Mật khẩu",
+        "repassword": "Nhập lại mật khẩu",
+        "upload": "Tải ảnh",
+        "save": "Lưu",
+        "phderlastname": "Vui lòng nhập họ bao gồm tên lót...",
+        "phderfirstname": "Vui lòng nhập tên...",
+        "phderemail": "Vui lòng nhập địa chỉ email...",
+        "phderphonenumber": "Vui lòng nhập số điện thoại...",
+        "phderaddress": "Vui lòng nhập địa chỉ",
+        "phderpassword": "Vui lòng nhập mật khẩu...",
+        "phderrepassword": "Vui lòng nhập lại mật khẩu..."
+    },
+    "edituser": {
+        "titles": "Sửa thông tin người dùng"
+    },
+    "tablespecialty": {
+        "title": "Quản lý chuyên khoa",
+        "name": "Tên chuyên khoa",
+        "daycreate": "Ngày tạo",
+        "dayupdate": "Ngày cập nhật",
+        "choose": "Tùy chọn",
+        "create": "Tạo mới"
+    },
+    "createspecialty": {
+        "titles": "Tạo chuyên khoa",
+        "namespecialty": "Tên chuyên khoa",
+        "imgspecialty": "Ảnh chuyên khoa",
+        "upload": "Tải ảnh",
+        "save": "Lưu",
+        "phderspecialty": "Nhập tên chuyên khoa"
+    },
+    "editspecialty": {
+        "titles": "Sửa thông tin chuyên khoa"
+    },
+    "editnews": {
+        "titles": "Sửa thông tin bài đăng"
+    },
+    "tablenews": {
+        "title": "Quản lý bài đăng",
+        "name": "Tên bài đăng",
+        "daycreate": "Ngày tạo",
+        "dayupdate": "Ngày cập nhật",
+        "choose": "Tùy chọn",
+        "create": "Tạo mới"
+    },
+    "createnews": {
+        "titles": "Tạo bài đăng",
+        "namenews": "Tên bài đăng",
+        "imgnews": "Ảnh bài đăng",
+        "upload": "Tải ảnh",
+        "save": "Lưu",
+        "phdernews": "Nhập tên bài đăng"
+    },
+    "tabledoctor": {
+        "title": "Quản lý bác sĩ",
+        "name": "Họ và tên",
+        "address": "Địa chỉ",
+        "phone": "Số điện thoại",
+        "choose": "Tùy chọn",
+        "addinfor": "Thêm thông tin"
+    },
+    "addinfordoctor": {
+        "titles": "Thông tin bác sĩ",
+        "namedoctor": "Tên bác sĩ",
+        "selecdoctor": "Chọn bác sĩ",
+        "namespecialty": "Tên chuyên khoa",
+        "selecspecialty": "Chọn chuyên khoa",
+        "inforIntroduce": "Thông tin giới thiệu",
+        "price": "Giá khám",
+        "city": "Tỉnh thành",
+        "nameclinic": "Tên bệnh viện",
+        "addresswork": "Địa chỉ bệnh viện",
+        "note": "Ghi chú",
+        "upload": "Tải ảnh",
+        "save": "Lưu",
+        "phderinforIntro": "Nhập thông tin giới thiệu...",
+        "phdernameclinic": "Nhập tên bệnh viện làm việc...",
+        "phderaddresswork": "Nhập địa chỉ bệnh viện làm việc...",
+        "phdernote": "Nhập ghi chú..."
+    },
+    "addplan": {
+        "titles": "Quản lý kế hoạch khám bệnh",
+        "chooseday": "Chọn ngày",
+        "choosehour": "Chọn giờ"
+    },
+    "newcontainer": {
+        "titles": "Tin tức sức khỏe"
+    },
+    "bookingschedule": {
+        "titles": "Đặt lịch khám",
+        "title1": "Thông tin lịch đặt",
+        "price": "Giá khám",
+        "name": "Họ và tên",
+        "phdername": "Nhập họ và tên",
+        "phone": "Số điện thoại",
+        "phderphonenumber": "Vui lòng nhập số điện thoại...",
+        "phderemail": "Vui lòng nhập địa chỉ email...",
+        "address": "Địa chỉ",
+        "phderaddress": "Vui lòng nhập địa chỉ",
+        "birthday": "Ngày sinh",
+        "gender": "Giới tính",
+        "description": "Lý do khám",
+        "phderdescription": "Vui lòng nhập lý do. Ví dụ: Đau đầu, chóng mặt...",
+        "save": "Đặt lịch",
+        "close": "Thoát"
+    },
+    "register": {
+        "titles": "Thông tin đăng ký",
+        "save": "Đăng ký"
+    },
+    "login": {
+        "titles": "Xin chào",
+        "forgotpassword": "Quên mật khẩu",
+        "btn": "Đăng nhập",
+        "titlesad": "Đăng nhập",
+        "phderemail": "Địa chỉ email",
+        "phderpassword": "Mật khẩu",
+        "make": "Thực hiện với ❤️ bởi HealthCare"
+    },
+    "patientManager": {
+        "title": "Quản lý bệnh nhân"
+    },
+    "verifyBooking": {
+        "title": "Thành công",
+        "description": "Cảm ơn bạn đã đến với HealthCare.",
+        "note": "Vui lòng kiểm tra và vào đúng giờ để Bác sĩ tư vấn."
+    },
+    "precription": {
+        "upload": "Chọn đơn thuốc"
+    },
+    "bookmanager": {
+        "title": "Quản lý lịch đặt"
+    },
+    "detailbook": {
+        "daybook": "Ngày đặt",
+        "hourbook": "Giờ đặt",
+        "status": "Trạng thái",
+        "option": "Tùy chọn",
+        "statusnotverify": "Chưa xác nhận"
+    }
+}
