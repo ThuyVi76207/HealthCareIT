@@ -3,8 +3,8 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import * as Peer from "simple-peer";
 import io from "socket.io-client";
 
-const socket = io("https://service-healthcare.onrender.com");
-
+const socket = io("http://localhost:7777");
+//https://service-healthcare.onrender.com
 const RoomContent = () => {
   const [me, setMe] = useState("");
   const [stream, setStream] = useState();
