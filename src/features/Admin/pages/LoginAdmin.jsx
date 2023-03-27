@@ -38,11 +38,11 @@ const LoginAdmin = ({ t }) => {
     if (password === "") {
       validated = false;
       _error.password = "Vui lòng nhập mật khẩu";
+    } else if (!isPasswordStrength(password)) {
+      validated = false;
+      _error.password =
+        "Mật khẩu phải có đủ 8 ký tự bao gồm chữ thường, in hoa và số";
     }
-    // } else if (!isPasswordStrength(password)) {
-    //     validated = false;
-    //     _error.password = "Mật khẩu phải có đủ 8 ký tự bao gồm chữ thường, in hoa và số";
-    // }
 
     setError(_error);
     return validated;
