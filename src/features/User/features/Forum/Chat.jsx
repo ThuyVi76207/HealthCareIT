@@ -12,8 +12,6 @@ import { auth, db } from "components/firebase/firebase-config";
 
 import "./Chat.css";
 
-import { useDispatch } from "react-redux";
-
 const Chat = (props) => {
   const { room } = props;
   const [newMessage, setNewMessage] = useState("");
@@ -57,7 +55,7 @@ const Chat = (props) => {
   return (
     <>
       <div className="chat-app">
-        <div className="header">
+        <div className="header-app">
           <h1 className="text-[20px]">Tên phòng: {room.toUpperCase()}</h1>
         </div>
         <div className="messages">
