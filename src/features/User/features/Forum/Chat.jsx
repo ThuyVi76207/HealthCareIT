@@ -55,7 +55,7 @@ const Chat = (props) => {
   return (
     <>
       <div className="chat-app">
-        <div className="header-app">
+        <div className="header-apps">
           <h1 className="text-[20px]">Tên phòng: {room.toUpperCase()}</h1>
         </div>
         <div className="messages">
