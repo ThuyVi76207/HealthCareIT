@@ -31,10 +31,8 @@ const RoomContent = () => {
           audio: true,
         });
 
-        myVideo.current.srcObject = stream;
-        console.log("Check myVideo ", myVideo.current);
-
         if (stream) {
+          myVideo.current.srcObject = stream;
           setStream(stream);
           console.log("Check streamer ", stream);
 
