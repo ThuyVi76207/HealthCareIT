@@ -70,7 +70,7 @@ const RoomContent = () => {
       .getUserMedia({ video: true, audio: true })
       .then((stream) => {
         setStream(stream);
-        if (myVideo.current) {
+        if (myVideo.current.srcObject) {
           myVideo.current.srcObject
             .getTracks()
             .forEach((t) => (t.enabled = !t.enabled));
@@ -233,7 +233,7 @@ const RoomContent = () => {
                 muted
                 ref={myVideo}
                 autoPlay
-                className="z-30 w-[100vw] h-[56.25vw] text-white md:w-[320px] md:h-[180px] border-2 border-sky-200 object-cover"
+                className="z-30 w-[100vw] h-[56.25vw] text-white md:w-[320px] md:h-[180px] border-2 border-sky-200 object-cover bg-blue-100 "
               >
                 {/* {shareCam === false ? <h2 className="text-white text-center">Your camera is off</h2> : null} */}
               </video>
