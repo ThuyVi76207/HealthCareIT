@@ -70,7 +70,7 @@ const RoomContent = () => {
         if (myVideo.current) {
           console.log("Check myvideo", myVideo.current);
           myVideo.current.srcObject
-            .getTracks()
+            .getVideoTracks()
             .forEach((t) => (t.enabled = !t.enabled));
           setShareCam(!shareCam);
         }
