@@ -60,7 +60,7 @@ const RoomContent = () => {
 
     socket.on("hideCam", hideCam);
     //  socket.on("onOffAudio", onOffAudio)
-  }, [stream]);
+  }, []);
 
   const hideCam = () => {
     // myVideo.current.srcObject.getVideoTracks().forEach((track) => track.stop());
