@@ -40,7 +40,7 @@ const RoomContent = () => {
 
         if (myVideo.current) {
           myVideo.current.srcObject = stream;
-          console.log("Check myVideo ", myVideo.current.srcObject);
+          console.log("Check myVideo ", myVideo.current);
         }
       } catch (error) {
         console.log("Faild to get user media", error);
