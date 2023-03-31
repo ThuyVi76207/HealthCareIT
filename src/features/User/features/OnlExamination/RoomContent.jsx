@@ -30,15 +30,14 @@ const RoomContent = () => {
           video: false,
           audio: true,
         });
-        if (myVideo.current) {
-          myVideo.current.srcObject = stream;
-        }
+        setStream(stream);
+        myVideo.current.srcObject = stream;
 
-        if (stream) {
-          console.log("Check streamer ", stream);
-          setStream(stream);
-          // stream = streams
-        }
+        // if (stream) {
+        //   console.log("Check streamer ", stream);
+
+        //   // stream = streams
+        // }
       } catch (error) {
         console.log("Faild to get user media", error);
       }
@@ -68,7 +67,7 @@ const RoomContent = () => {
       .getUserMedia({ video: true, audio: true })
       .then((stream) => {
         setStream(stream);
-        myVideo.current.srcObject
+        myVideo.current?.srcObject
           .getTracks()
           .forEach((t) => (t.enabled = !t.enabled));
         setShareCam(!shareCam);
