@@ -70,10 +70,12 @@ const RoomContent = () => {
       .getUserMedia({ video: true, audio: true })
       .then((stream) => {
         setStream(stream);
-        myVideo.current?.srcObject
-          .getTracks()
-          .forEach((t) => (t.enabled = !t.enabled));
-        setShareCam(!shareCam);
+        if (myVideo.current) {
+          myVideo.current.srcObject
+            .getTracks()
+            .forEach((t) => (t.enabled = !t.enabled));
+          setShareCam(!shareCam);
+        }
       });
   };
 
