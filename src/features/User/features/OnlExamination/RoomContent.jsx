@@ -33,7 +33,7 @@ const RoomContent = () => {
 
         if (stream) {
           setStream(stream);
-          myVideo.current.srcObject = stream.stream[0];
+          myVideo.current.srcObject = stream;
 
           console.log("Check streamer ", stream);
 
