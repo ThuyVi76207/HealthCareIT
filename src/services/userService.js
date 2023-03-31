@@ -69,12 +69,20 @@ const postSendSMS = (data) => {
   return axiosClient.post(`/api/sendSMS`, data);
 };
 
-//Payment
+//Payment Paypal
 const postPaymentPaypal = (price) => {
   return axiosClient.post(`/api/pay-paypal`, { price });
 };
 const successPay = (data) => {
   return axiosClient.post(`/success`, data);
+};
+
+//Payment VNPay
+const postPaymentVNPay = (amount) => {
+  return axiosClient.post(`/create_payment_url`, { amount });
+};
+const postReturnPaymentVNPay = () => {
+  return axiosClient.post(`/vnpay_return`);
 };
 
 //Room chat
@@ -107,4 +115,6 @@ export {
   postSendRoomID,
   postSaveNameRoom,
   getAllRoom,
+  postPaymentVNPay,
+  postReturnPaymentVNPay,
 };
