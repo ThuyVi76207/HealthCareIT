@@ -229,11 +229,11 @@ const RoomContent = () => {
           {
             stream && (
               <video
-                playsInline
+                // playsInline
                 muted
                 ref={myVideo}
                 autoPlay
-                className="z-30 w-[100vw] h-[56.25vw] text-white md:w-[320px] md:h-[180px] border-2 border-sky-200 object-cover bg-blue-100 "
+                className="z-30 w-[100vw] h-[56.25vw] text-white md:w-[320px] md:h-[180px] border-2 border-sky-200 object-cover"
               >
                 {/* {shareCam === false ? <h2 className="text-white text-center">Your camera is off</h2> : null} */}
               </video>
