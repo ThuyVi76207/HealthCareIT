@@ -27,7 +27,7 @@ const RoomContent = () => {
     const getUserMedia = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: true,
+          video: false,
           audio: true,
         });
         if (myVideo.current) {
@@ -65,7 +65,7 @@ const RoomContent = () => {
   const hideCam = () => {
     // myVideo.current.srcObject.getVideoTracks().forEach((track) => track.stop());
     navigator.mediaDevices
-      .getUserMedia({ video: false, audio: true })
+      .getUserMedia({ video: true, audio: true })
       .then((stream) => {
         setStream(stream);
         myVideo.current.srcObject
@@ -261,7 +261,7 @@ const RoomContent = () => {
           )}
         </div>
         <div className="fixed z-40 flex items-center justify-center w-[100vw] md:w-[33.33333vw] md:left-[33.333333vw] bottom-[20px]">
-          {!shareCam ? <StartShareWebcamButton /> : <StopShareWebcamButton />}
+          {shareCam ? <StartShareWebcamButton /> : <StopShareWebcamButton />}
           {callAccepted && !callEnded ? (
             <div
               onClick={leaveCall}
