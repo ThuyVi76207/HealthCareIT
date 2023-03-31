@@ -19,7 +19,7 @@ const RoomContent = () => {
   const [shareCam, setShareCam] = useState(true);
   const [audio, setAudio] = useState(true);
 
-  const myVideo = useRef(null);
+  const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
 
