@@ -31,15 +31,16 @@ const RoomContent = () => {
           audio: true,
         });
 
-        if (myVideo.current) {
-          myVideo.current.srcObject = stream;
-        }
-
         if (stream) {
           setStream(stream);
           console.log("Check streamer ", stream);
 
           // stream = streams
+        }
+
+        if (myVideo.current) {
+          myVideo.current.srcObject = stream;
+          console.log("Check myVideo ", myVideo.current.srcObject);
         }
       } catch (error) {
         console.log("Faild to get user media", error);
@@ -69,7 +70,8 @@ const RoomContent = () => {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((stream) => {
-        if (myVideo.current.srcObject) {
+        if (myVideo.current) {
+          console.log("Check myvideo", myVideo.current);
           myVideo.current.srcObject
             .getTracks()
             .forEach((t) => (t.enabled = !t.enabled));
