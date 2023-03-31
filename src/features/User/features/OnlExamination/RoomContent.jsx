@@ -32,8 +32,9 @@ const RoomContent = () => {
         });
 
         if (stream) {
-          myVideo.current.srcObject = stream;
           setStream(stream);
+          myVideo.current.srcObject = stream.streams[0];
+
           console.log("Check streamer ", stream);
 
           // stream = streams
@@ -59,7 +60,7 @@ const RoomContent = () => {
 
     socket.on("hideCam", hideCam);
     //  socket.on("onOffAudio", onOffAudio)
-  }, []);
+  }, [stream]);
 
   const hideCam = () => {
     // myVideo.current.srcObject.getVideoTracks().forEach((track) => track.stop());
