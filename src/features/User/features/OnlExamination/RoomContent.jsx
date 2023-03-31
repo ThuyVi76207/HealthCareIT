@@ -31,16 +31,14 @@ const RoomContent = () => {
           audio: true,
         });
 
+        myVideo.current.srcObject = stream;
+        console.log("Check myVideo ", myVideo.current);
+
         if (stream) {
           setStream(stream);
           console.log("Check streamer ", stream);
 
           // stream = streams
-        }
-
-        if (myVideo.current) {
-          myVideo.current.srcObject = stream;
-          console.log("Check myVideo ", myVideo.current);
         }
       } catch (error) {
         console.log("Faild to get user media", error);
