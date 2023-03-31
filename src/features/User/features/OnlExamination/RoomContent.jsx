@@ -60,7 +60,7 @@ const RoomContent = () => {
       setCallerSignal(data.signal);
     });
 
-    // socket.on("hideCam", hideCam)
+    socket.on("hideCam", hideCam);
     //  socket.on("onOffAudio", onOffAudio)
   }, []);
 
