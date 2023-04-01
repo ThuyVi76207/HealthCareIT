@@ -230,7 +230,7 @@ const RoomContent = () => {
       </div>
       <div className="">
         <div className="z-30 absolute bottom-[15px] right-[15px] cursor-move ">
-          {myVideo.current.srcObject && stream ? (
+          {myVideo != null && stream ? (
             <video
               playsInline
               muted
