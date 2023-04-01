@@ -240,7 +240,7 @@ const RoomContent = () => {
               {/* {shareCam === false ? <h2 className="text-white text-center">Your camera is off</h2> : null} */}
             </video>
           )}
-          {"vhjvjhvhj"}
+
           {/* <button variant="contained" color="primary" onClick={hideCam}>
                         Bật/Tắt Video
                     </button>
