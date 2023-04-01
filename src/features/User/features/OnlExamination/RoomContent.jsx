@@ -63,7 +63,7 @@ const RoomContent = () => {
       navigator.mediaDevices
         .getUserMedia({ video: false, audio: true })
         .then((stream) => {
-          myVideo.current.srcObject = stream;
+          // myVideo.current.srcObject = stream;
           stream.getTracks().forEach((t) => t.stop());
           setStream(stream);
         });
@@ -253,7 +253,7 @@ const RoomContent = () => {
                     </button> */}
         </div>
         <div className="">
-          {!shareCam && callAccepted && !callEnded ? (
+          {callAccepted && !callEnded ? (
             <video
               playsInline
               ref={userVideo}
