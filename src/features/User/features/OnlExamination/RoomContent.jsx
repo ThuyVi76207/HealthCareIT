@@ -235,12 +235,12 @@ const RoomContent = () => {
               muted
               ref={myVideo}
               autoPlay
-              className="z-30 w-[100vw] h-[56.25vw] text-white md:w-[320px] md:h-[180px] border-2  object-cover bg-blue-100 "
+              className="z-30 w-[100vw] h-[56.25vw] text-white md:w-[320px] md:h-[180px] border-2 border-sky-200 object-cover "
             >
               {/* {shareCam === false ? <h2 className="text-white text-center">Your camera is off</h2> : null} */}
             </video>
           ) : (
-            <div className="z-10 fixed md:absolute bottom-[3vh] right-[5vh] w-[320px] h-[180px] bg-black object-cover border-2 border-sky-200 text-white flex justify-center items-center text-2xl">
+            <div className="z-40 fixed md:absolute bottom-[3vh] right-[5vh] w-[320px] h-[180px] bg-black object-cover border-2 border-sky-200 text-white flex justify-center items-center text-2xl">
               <h2 className="text-white ">Your camera is off</h2>
             </div>
           )}
