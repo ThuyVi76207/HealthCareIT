@@ -61,7 +61,9 @@ const RoomContent = () => {
       navigator.mediaDevices
         .getUserMedia({ video: false, audio: true })
         .then((stream) => {
-          myVideo.current.srcObject.getTracks().forEach((t) => t.stop());
+          myVideo.current.srcObject
+            .getTracks()
+            .forEach((t) => (t.enabled = false));
 
           setStream(stream);
           setShareCam(!shareCam);
@@ -228,7 +230,7 @@ const RoomContent = () => {
       <div className="">
         <div className="z-30 absolute bottom-[15px] right-[15px] cursor-move ">
           {
-            shareCam && stream && (
+            stream && (
               <video
                 playsInline
                 muted
