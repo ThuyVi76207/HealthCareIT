@@ -108,11 +108,7 @@ const RoomContent = () => {
       });
     });
     peer.on("stream", (stream) => {
-      if ("srcObject" in userVideo) {
-        userVideo.current.srcObject = stream;
-      } else {
-        userVideo.src = window.URL.createObjectURL(stream); // for older browsers
-      }
+      userVideo.current.srcObject = stream;
     });
     socket.on("callAccepted", (signal) => {
       setCallAccepted(true);
