@@ -16,7 +16,7 @@ const RoomContent = () => {
   const [callEnded, setCallEnded] = useState(false);
   const [name, setName] = useState("");
   const [ipRoom, setIPRoom] = useState(false);
-  const [shareCam, setShareCam] = useState(true);
+  const [shareCam, setShareCam] = useState(false);
   const [audio, setAudio] = useState(true);
 
   const myVideo = useRef();
@@ -57,26 +57,25 @@ const RoomContent = () => {
   }, []);
 
   const hideCam = () => {
-    // if (shareCam === false) {
-    navigator.mediaDevices
-      .getUserMedia({ video: false, audio: true })
-      .then((stream) => {
-        myVideo.current.srcObject = stream;
-        stream.getTracks().forEach((t) => (t.enabled = !t.enabled));
-        setStream(stream);
+    setShareCam(!shareCam);
 
-        setShareCam(!shareCam);
-      });
-    // } else {
-    //   navigator.mediaDevices
-    //     .getUserMedia({ video: true, audio: true })
-    //     .then((stream) => {
-    //       myVideo.current.srcObject = stream;
-    //       stream.getTracks().forEach((t) => (t.enabled = true));
-    //       setStream(stream);
-    //       setShareCam(!shareCam);
-    //     });
-    // }
+    if (shareCam === false) {
+      navigator.mediaDevices
+        .getUserMedia({ video: false, audio: true })
+        .then((stream) => {
+          myVideo.current.srcObject = stream;
+          stream.getTracks().forEach((t) => t.stop());
+          setStream(stream);
+        });
+    } else {
+      navigator.mediaDevices
+        .getUserMedia({ video: true, audio: true })
+        .then((stream) => {
+          myVideo.current.srcObject = stream;
+          stream.getTracks().forEach((t) => (t.enabled = true));
+          setStream(stream);
+        });
+    }
 
     // myVideo.current.srcObject.getVideoTracks().forEach((track) => track.stop()) t.enabled = !t.enabled;
   };
