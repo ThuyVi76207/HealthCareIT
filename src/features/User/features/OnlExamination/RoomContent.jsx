@@ -73,7 +73,6 @@ const RoomContent = () => {
           if (myVideo.current) myVideo.current.srcObject = stream;
           setStream(stream);
           setShareCam(!shareCam);
-          myVideo.play();
         });
     }
 
