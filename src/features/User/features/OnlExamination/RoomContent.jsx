@@ -70,7 +70,7 @@ const RoomContent = () => {
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: true })
         .then((stream) => {
-          myVideo.current.srcObject = stream;
+          if (myVideo.current) myVideo.current.srcObject = stream;
           setStream(stream);
           setShareCam(!shareCam);
           // myVideo.play();
