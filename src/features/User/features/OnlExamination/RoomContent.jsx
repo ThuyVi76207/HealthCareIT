@@ -253,7 +253,7 @@ const RoomContent = () => {
                     </button> */}
         </div>
         <div className="">
-          {shareCam && callAccepted && !callEnded ? (
+          {!shareCam && callAccepted && !callEnded ? (
             <video
               playsInline
               ref={userVideo}
