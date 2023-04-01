@@ -57,15 +57,15 @@ const RoomContent = () => {
   }, []);
 
   const hideCam = () => {
+    setShareCam(!shareCam);
     if (myVideo.current.srcObject) {
       navigator.mediaDevices
-        .getUserMedia({ video: !shareCam, audio: true })
+        .getUserMedia({ video: shareCam, audio: true })
         .then((stream) => {
           myVideo.current.srcObject
             .getTracks()
             .forEach((t) => (t.enabled = !t.enabled));
           setStream(stream);
-          setShareCam(!shareCam);
         });
     } else {
       navigator.mediaDevices
