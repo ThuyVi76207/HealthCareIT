@@ -63,6 +63,7 @@ const RoomContent = () => {
         .then((stream) => {
           myVideo.current.srcObject.getTracks().forEach((t) => t.stop());
 
+          setStream(stream);
           setShareCam(!shareCam);
         });
     } else {
@@ -70,7 +71,7 @@ const RoomContent = () => {
         .getUserMedia({ video: true, audio: true })
         .then((stream) => {
           myVideo.current.srcObject = stream;
-
+          setStream(stream);
           setShareCam(!shareCam);
           // myVideo.play();
         });
