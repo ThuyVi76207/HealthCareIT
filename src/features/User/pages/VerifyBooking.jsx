@@ -46,7 +46,7 @@ const VerifyBooking = ({ t }) => {
           const priceFormat = getFormattedPriceUSD(priceToUsd).slice(1);
 
           console.log("Check price to usd", priceFormat);
-          if (paymentMethod == 12) {
+          if (paymentMethod === "12") {
             let res = await postPaymentPaypal(priceFormat);
             if (res && res.forwardLink) {
               window.location.href = res.forwardLink;
