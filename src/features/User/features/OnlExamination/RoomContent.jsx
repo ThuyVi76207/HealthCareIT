@@ -16,7 +16,7 @@ const RoomContent = () => {
   const [callEnded, setCallEnded] = useState(false);
   const [name, setName] = useState("");
   const [ipRoom, setIPRoom] = useState(false);
-  const [shareCam, setShareCam] = useState(false);
+  const [shareCam, setShareCam] = useState(true);
   const [audio, setAudio] = useState(true);
 
   const myVideo = useRef();
@@ -267,7 +267,7 @@ const RoomContent = () => {
           )}
         </div>
         <div className="fixed z-40 flex items-center justify-center w-[100vw] md:w-[33.33333vw] md:left-[33.333333vw] bottom-[20px]">
-          {!shareCam ? <StartShareWebcamButton /> : <StopShareWebcamButton />}
+          {shareCam ? <StartShareWebcamButton /> : <StopShareWebcamButton />}
           {callAccepted && !callEnded ? (
             <div
               onClick={leaveCall}
