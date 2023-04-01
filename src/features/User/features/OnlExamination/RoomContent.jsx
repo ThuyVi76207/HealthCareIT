@@ -3,7 +3,7 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import * as Peer from "simple-peer";
 import io from "socket.io-client";
 
-const socket = io("https://service-healthcare.onrender.com");
+const socket = io("http://localhost:7777");
 //https://service-healthcare.onrender.com
 const RoomContent = () => {
   const [me, setMe] = useState("");
@@ -25,22 +25,16 @@ const RoomContent = () => {
 
   useEffect(() => {
     const getUserMedia = async () => {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: false,
-          audio: true,
-        });
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: false,
+        audio: true,
+      });
+      if (myVideo.current) myVideo.current.srcObject = stream;
+      if (stream) {
+        setStream(stream);
+        console.log("Check streamer ", stream);
 
-        if (stream) {
-          setStream(stream);
-          myVideo.current.srcObject = stream;
-
-          console.log("Check streamer ", stream);
-
-          // stream = streams
-        }
-      } catch (error) {
-        console.log("Faild to get user media", error);
+        // stream = streams
       }
     };
 
@@ -63,19 +57,27 @@ const RoomContent = () => {
   }, []);
 
   const hideCam = () => {
-    // myVideo.current.srcObject.getVideoTracks().forEach((track) => track.stop());
-    navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
-      .then((stream) => {
-        if (myVideo.current) {
-          console.log("Check myvideo", myVideo.current);
-          myVideo.current.srcObject
-            .getVideoTracks()
-            .forEach((t) => (t.enabled = !t.enabled));
+    if (shareCam === false) {
+      navigator.mediaDevices
+        .getUserMedia({ video: false, audio: true })
+        .then((stream) => {
+          myVideo.current.srcObject.getTracks().forEach((t) => t.stop());
+
+          setStream(stream);
           setShareCam(!shareCam);
-        }
-        setStream(stream);
-      });
+        });
+    } else {
+      navigator.mediaDevices
+        .getUserMedia({ video: true, audio: true })
+        .then((stream) => {
+          myVideo.current.srcObject = stream;
+          setStream(stream);
+          setShareCam(!shareCam);
+          // myVideo.play();
+        });
+    }
+
+    // myVideo.current.srcObject.getVideoTracks().forEach((track) => track.stop()) t.enabled = !t.enabled;
   };
 
   // Nút này hơi sai sai nên để sau nha :))))
@@ -96,6 +98,7 @@ const RoomContent = () => {
       trickle: false,
       stream: stream,
     });
+
     peer.on("signal", (data) => {
       socket.emit("callUser", {
         userToCall: id,
@@ -105,7 +108,11 @@ const RoomContent = () => {
       });
     });
     peer.on("stream", (stream) => {
-      userVideo.current.srcObject = stream;
+      if ("srcObject" in userVideo) {
+        userVideo.current.srcObject = stream;
+      } else {
+        userVideo.src = window.URL.createObjectURL(stream); // for older browsers
+      }
     });
     socket.on("callAccepted", (signal) => {
       setCallAccepted(true);
