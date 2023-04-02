@@ -81,8 +81,8 @@ const successPay = (data) => {
 const postPaymentVNPay = (amount) => {
   return axiosClient.post(`/create_payment_url`, { amount });
 };
-const postReturnPaymentVNPay = () => {
-  return axiosClient.post(`/vnpay_return`);
+const postReturnPaymentVNPay = (data) => {
+  return axiosClient.post(`/vnpay_return`, data);
 };
 
 //Room chat
