@@ -7,16 +7,21 @@ const PaymentSuccessVnPay = () => {
   const [status, setStatus] = useState(null);
   const [message, setMessage] = useState("");
   const [note, setNote] = useState("");
+  const tokenID = localStorage.getItem("tokenID");
+  const doctorId = localStorage.getItem("doctorId");
   useEffect(() => {
-    // const paymentSuccess = async () => {
-    //   try {
-    //     let res = await postReturnPaymentVNPay();
-    //     console.log(res);
-    //   } catch (error) {
-    //     alert("Đã có lỗi xảy ra");
-    //   }
-    // };
-    // paymentSuccess();
+    const paymentSuccess = async () => {
+      try {
+        let res = await postReturnPaymentVNPay({
+          doctorId: doctorId,
+          token: tokenID
+        });
+        console.log(res);
+      } catch (error) {
+        alert("Đã có lỗi xảy ra");
+      }
+    };
+    paymentSuccess();
 
     const message = searchParams.get("vnp_TransactionStatus");
     const resCode = searchParams.get("vnp_ResponseCode");
