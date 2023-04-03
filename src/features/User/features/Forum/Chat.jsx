@@ -34,7 +34,7 @@ const Chat = (props) => {
     });
 
     return () => unscribe();
-  }, []);
+  }, [room]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
