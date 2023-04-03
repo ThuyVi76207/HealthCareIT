@@ -1,4 +1,3 @@
-
 import Loading from "components/Loading/loading";
 import { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
@@ -9,126 +8,123 @@ import { getAllPatientDoctor } from "services/adminService";
 import ScheduleCommon from "../PlanManager/ScheduleCommon";
 
 const ListPatient = ({ t }) => {
-    const { language } = useSelector((state) => state.user) || {};
-    const dispatch = useDispatch();
+  const { language } = useSelector((state) => state.user) || {};
+  const dispatch = useDispatch();
 
-    const [dateStartContract, setDateStartContract] = useState(
-        new Date().toISOString().split("T")[0]
-    );
+  const [dateStartContract, setDateStartContract] = useState(
+    new Date().toISOString().split("T")[0]
+  );
 
-    const rolID = sessionStorage.getItem('role');
-    const profile = JSON.parse(localStorage.getItem(`${rolID}`));
+  const rolID = sessionStorage.getItem("role");
+  const profile = JSON.parse(localStorage.getItem(`${rolID}`));
 
-    let id = profile.id;
-    const [profilePatient, setProfilePatient] = useState([]);
-    const [loading, setLoading] = useState(false);
+  let id = profile.id;
+  const [profilePatient, setProfilePatient] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
+  useEffect(() => {
+    let formatedDate = new Date(dateStartContract).getTime() - 25200000;
+    const listPatient = async () => {
+      let data = {
+        doctorId: id,
+        date: formatedDate,
+      };
+      setLoading(true);
 
-        let formatedDate = new Date(dateStartContract).getTime() - 25200000;
-        const listPatient = async () => {
-            let data = {
-                doctorId: id,
-                date: formatedDate
-            };
-            setLoading(true);
-
-            try {
-                let res = await getAllPatientDoctor(data);
-                if (res && res.errCode === 0) {
-                    // console.log('Check Patient', res);
-                    setLoading(false);
-                    setProfilePatient(res.data);
-                }
-
-            } catch (error) {
-                setLoading(false);
-                alert('Có lỗi xảy ra vui lòng thử lại sau!!!')
-                console.log("Faild to get API patient", error)
-            }
+      try {
+        let res = await getAllPatientDoctor(data);
+        if (res && res.errCode === 0) {
+          // console.log('Check Patient', res);
+          setLoading(false);
+          setProfilePatient(res.data);
         }
-
-        listPatient();
-    }, [id, dateStartContract])
-
-    const handleSendPrescription = (patient) => {
-        dispatch(addSuccessModal(
-            {
-                title: "GỬI TOA THUỐC",
-                rightButtonText: "XÁC NHẬN",
-                patient: patient,
-            }
-        ))
+      } catch (error) {
+        setLoading(false);
+        alert("Có lỗi xảy ra vui lòng thử lại sau!!!");
+        console.log("Faild to get API patient", error);
+      }
     };
 
-    const handleSendIDRom = (patient) => {
-        dispatch(addSuccessSendModal(
-            {
-                title: "GỬI MÃ PHÒNG",
-                rightButtonText: "GỬi",
-                patient: patient,
-            }
-        ))
-    }
+    listPatient();
+  }, [id, dateStartContract]);
 
-    return (
-        <div>
-            <Loading loading={loading} />
-            <div className="grid grid-cols-3">
-                <ScheduleCommon
-                    field={t('addplan.chooseday')}
-                    onChange={(e) => setDateStartContract(e.target.value)}
-                    date={dateStartContract}
-                />
-            </div>
-            <table id="tableManager">
-                <tbody>
-                    <tr>
-                        <th>STT</th>
-                        <th>Thời gian</th>
-                        <th>Họ và tên</th>
-                        <th>Địa chỉ</th>
-                        <th>Số điện thoại</th>
-                        <th>Tùy chọn</th>
-                    </tr>
-                    {
-                        profilePatient && profilePatient.length > 0
-                        && profilePatient.map((item, index) => {
-                            let num = `${item.patientData.phonenumber}`
-                            let numberPhone = `0${num.slice(3)}`
-                            return (
-                                <tr key={index}>
-                                    <td>{index + 1}</td>
-                                    <td>{language === 'vi' ? item.timeTypeDataPatient.value_Vi : item.timeTypeDataPatient.value_En}</td>
-                                    <td>{item.patientData.firstName}</td>
-                                    <td>{item.patientData.address}</td>
-                                    <td>{numberPhone}</td>
-                                    <td className="text-center">
-                                        <button
-                                            className="mr-4 hover:text-orange-400"
-                                            onClick={() => handleSendPrescription(item)}
-                                        >
-                                            <i className="fas fa-check"></i>
-                                        </button>
-                                        <button
-                                            className="hover:text-blue-400"
-                                            onClick={() => handleSendIDRom(item)}
-                                        >
-                                            <i className="fas fa-comment-dots"></i>
-                                        </button>
+  const handleSendPrescription = (patient) => {
+    dispatch(
+      addSuccessModal({
+        title: "GỬI TOA THUỐC",
+        rightButtonText: "XÁC NHẬN",
+        patient: patient,
+      })
+    );
+  };
 
-                                    </td>
-                                </tr>
-                            )
-                        })
+  const handleSendIDRom = (patient) => {
+    dispatch(
+      addSuccessSendModal({
+        title: "GỬI MÃ PHÒNG",
+        rightButtonText: "GỬi",
+        patient: patient,
+      })
+    );
+  };
 
-                    }
-                </tbody>
-            </table>
-
-        </div >
-
-    )
-}
+  return (
+    <div>
+      <Loading loading={loading} />
+      <div className="grid grid-cols-3">
+        <ScheduleCommon
+          field={t("addplan.chooseday")}
+          onChange={(e) => setDateStartContract(e.target.value)}
+          date={dateStartContract}
+        />
+      </div>
+      <table id="tableManager">
+        <tbody>
+          <tr>
+            <th>STT</th>
+            <th>Thời gian</th>
+            <th>Họ và tên</th>
+            <th>Địa chỉ</th>
+            <th>Số điện thoại</th>
+            <th>Tùy chọn</th>
+          </tr>
+          {profilePatient &&
+            profilePatient.length > 0 &&
+            profilePatient.map((item, index) => {
+              let num = `${item.patientData.phonenumber}`;
+              let numberPhone = `0${num}`; //num.slice(3)
+              return (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>
+                    {language === "vi"
+                      ? item.timeTypeDataPatient.value_Vi
+                      : item.timeTypeDataPatient.value_En}
+                  </td>
+                  <td>{item.patientData.firstName}</td>
+                  <td>{item.patientData.address}</td>
+                  <td>{numberPhone}</td>
+                  <td className="text-center">
+                    <button
+                      className="mr-4 hover:text-orange-400"
+                      onClick={() => handleSendPrescription(item)}
+                    >
+                      <i className="fas fa-check"></i>
+                    </button>
+                    <button
+                      className="hover:text-blue-400"
+                      onClick={() => handleSendIDRom(item)}
+                    >
+                      <i className="fas fa-comment-dots"></i>
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
 export default withNamespaces()(ListPatient);
