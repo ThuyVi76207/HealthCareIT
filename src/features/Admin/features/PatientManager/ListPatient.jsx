@@ -34,7 +34,7 @@ const ListPatient = ({ t }) => {
       try {
         let res = await getAllPatientDoctor(data);
         if (res && res.errCode === 0) {
-          // console.log('Check Patient', res);
+          console.log("Check Patient", res);
           setLoading(false);
           setProfilePatient(res.data);
         }
