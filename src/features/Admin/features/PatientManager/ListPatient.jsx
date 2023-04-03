@@ -34,7 +34,7 @@ const ListPatient = ({ t }) => {
       try {
         let res = await getAllPatientDoctor(data);
         if (res && res.errCode === 0) {
-          console.log("Check Patient", res);
+          // console.log('Check Patient', res);
           setLoading(false);
           setProfilePatient(res.data);
         }
@@ -91,8 +91,8 @@ const ListPatient = ({ t }) => {
           {profilePatient &&
             profilePatient.length > 0 &&
             profilePatient.map((item, index) => {
-              // let num = `${item.patientData.phonenumber}`
-              // let numberPhone = `0${num.slice(3)}`
+              let num = `${item.patientData.phonenumber}`;
+              let numberPhone = `0${num.slice(3)}`;
               return (
                 <tr key={index}>
                   <td>{index + 1}</td>
@@ -103,7 +103,7 @@ const ListPatient = ({ t }) => {
                   </td>
                   <td>{item.patientData.firstName}</td>
                   <td>{item.patientData.address}</td>
-                  <td>{item.patientData.phonenumber}</td>
+                  <td>{numberPhone}</td>
                   <td className="text-center">
                     <button
                       className="mr-4 hover:text-orange-400"
