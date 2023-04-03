@@ -63,7 +63,7 @@ const Chat = (props) => {
             return (
               <div className="message w-[100%]" key={index}>
                 {/* <span className="user">{message.user}</span> */}
-                <div className="w-[6%]">
+                <div className="w-[7%]">
                   <img
                     className="w-[50px] h-[50px] rounded-[50%]"
                     src={message.photo}
