@@ -1,264 +1,264 @@
 {
-    "navbar": {
-        "homepage": "Home page",
-        "onlinemedica": "Online medical examination",
-        "forum": "Health Forum",
-        "healthnews": "Health News",
-        "contact": "Contact",
-        "register": "Register",
-        "login": "Login",
-        "logout": "Logout",
-        "welcome": "Welcome",
-        "with": "with"
-    },
-    "banner": {
-        "bntitle1": "More than just",
-        "bntitle2": "healthcare",
-        "bncontent": "At HCare, we offer high quality self-pay health and wellbeing services that put you at the centre of your care.",
-        "btn1": "See More",
-        "btn2": "Register"
-    },
-    "footer": {
-        "follow": "Follow HCare at",
-        "titlepolicy": "Policy and terms",
-        "policy1": "Privacy policy",
-        "policy2": "Payment policy"
-    },
-    "section1": {
-        "title1": "Where to find us",
-        "title2": "Online help center",
-        "title3": "Book an appointment",
-        "description1": "Locate the nearest Health Care clinic near you for easy access to a range of healthcare services.",
-        "description2": "Find out the answers to your questions quickly using our intuitive resource centre.",
-        "description3": "Ready to see a clinician? Contact our support team to arrange an appointment."
-    },
-    "section2": {
-        "title1": "Proud to create trust for customers",
-        "title2": "Facilitating access to healthcare",
-        "description1": "At Health Care, we provide out-of-pocket health care. Our self-pay pathway is to fill the gap where people can't access health care services because they can't afford it, they want to be seen instead of waiting, or they live in areas where certain services are not provided.",
-        "description2": "We want all of our customers to be able to say that they feel cared for as individuals and that they feel truly heard and respected. Our friendly support team is available to answer any questions you may have and help you make informed decisions about your medical care. Find out more about the services we offer below."
-    },
-    "section3": {
-        "title": "Specialties",
-        "see": "SEE MORE"
-    },
-    "section4": {
-        "title1": "OUR APPROACH",
-        "title2": "HealthCare for you",
-        "description1": "Healthcare delivery exists to help bridge the gap between private healthcare and the national health service. We pride ourselves on being a leading provider of online care. In these times of growing demand and tight budgets, we know that some services have more to do with personal health than physical health.",
-        "description2": "Our services are designed to give you more options to change the things that matter to you. We strive for excellence and are constantly reviewing and evolving the way we provide you with exceptional service."
-    },
-    "section5": {
-        "title": "Health News"
-    },
-    "section6": {
-        "title1": "Start your journey towards improved healthcare today. ",
-        "title2": "Get in touch with one of our dedicated team.",
-        "button": "Get In Touch"
-    },
-    "section7": {
-        "title": "Typical doctor"
-    },
-    "section8": {
-        "title1": "Reduced Wait Times",
-        "title2": "Additional Services",
-        "title3": "Personal Approach",
-        "description1": "Our self-pay services mean that you see a clinician at a time that suits you - no long waiting lists.",
-        "description2": "Access health and wellbeing services that may not be readily available on the HealthCare.",
-        "description3": "We want you to feel like a VIP. Whatever your needs, at HealthCare, you will be treated as an individual."
-    },
-    "specialtydetail": {
-        "more": "Read more",
-        "hide": "Hide"
-    },
-    "scheduledoctor": {
-        "schedule": "Health schedule",
-        "choose": "Choose",
-        "bookfree": "and free appointment",
-        "noschedule": "No schedule"
-    },
-    "profiledoctor": {
-        "price": "Price:",
-        "workaddress": "Work address",
-        "more": "See more"
-    },
-    "detaildoctor": {
-        "overview": "Overview",
-        "titles": "Detail Doctor"
-    },
-    "detailnews": {
-        "createdat": "Created At: ",
-        "updatedat": "Updated At: ",
-        "more": "Read More",
-        "news": "News Health"
-    },
-    "menu": {
-        "dashboard": "Dashboard",
-        "usermanager": "User Management",
-        "doctormanager": "Doctor Management",
-        "planmanager": "Manage the examination plan",
-        "specialtymanager": "Specialty Management",
-        "newsmanager": "News Management",
-        "medicine": "Medicine Management",
-        "patientmanager": "Patient Management",
-        "bookmanager": "Book Management",
-        "roomvideo": "Room Video"
-    },
-    "tableuser": {
-        "title": "User Management",
-        "name": "First and last name",
-        "address": "Address",
-        "phone": "Phone",
-        "choose": "Action",
-        "create": "Create New"
-    },
-    "createuser": {
-        "titles": "Create User",
-        "phone": "Phone Number",
-        "lastname": "Last name",
-        "firstname": "First Name",
-        "address": "Address",
-        "gender": "Gender",
-        "title": "Title",
-        "role": "Role",
-        "password": "Password",
-        "repassword": "Rewrite password",
-        "upload": "Upload Image",
-        "save": "Save",
-        "phderlastname": "Please enter last name including middle name...",
-        "phderfirstname": "Please enter name...",
-        "phderemail": "Please enter your email address...",
-        "phderphonenumber": "Please enter the phone number...",
-        "phderaddress": "Please enter your address",
-        "phderpassword": "Please enter a password...",
-        "phderrepassword": "Please re-enter password..."
-    },
-    "edituser": {
-        "titles": "Edit Information User"
-    },
-    "tablespecialty": {
-        "title": "Specialty Management",
-        "name": "Specialist Name",
-        "daycreate": "Day creation",
-        "dayupdate": "Day update",
-        "choose": "Action",
-        "create": "Create New"
-    },
-    "createspecialty": {
-        "titles": "Create Specialty",
-        "namespecialty": "Specialist Name",
-        "imgspecialty": "Specialty Image",
-        "upload": "Upload Image",
-        "save": "Save",
-        "phderspecialty": "Enter the name of the specialty"
-    },
-    "editspecialty": {
-        "titles": "Edit Information Specialty"
-    },
-    "editnews": {
-        "titles": "Edit Information News"
-    },
-    "tablenews": {
-        "title": "News Management",
-        "name": "News Name",
-        "daycreate": "Day creation",
-        "dayupdate": "Day update",
-        "choose": "Action",
-        "create": "Create New"
-    },
-    "createnews": {
-        "titles": "Create News",
-        "namenews": "News Name",
-        "imgnews": "News Image",
-        "upload": "Upload Image",
-        "save": "Save",
-        "phdernews": "Enter the name of the news"
-    },
-    "tabledoctor": {
-        "title": "Doctor Management",
-        "name": "First and last name",
-        "address": "Address",
-        "phone": "Phone",
-        "choose": "Action",
-        "addinfor": "Add Information"
-    },
-    "addinfordoctor": {
-        "titles": "Information Doctor",
-        "namedoctor": "Doctor Name",
-        "selecdoctor": "Choose Doctor",
-        "namespecialty": "Specialist Name",
-        "selecspecialty": "Choose Specialty",
-        "inforIntroduce": "Introduce Information",
-        "price": "Price",
-        "city": "City",
-        "nameclinic": "Hopitalty Name",
-        "addresswork": "Address Hopitalty",
-        "note": "Note",
-        "upload": "Upload Image",
-        "save": "Save",
-        "phderinforIntro": "Enter referral information...",
-        "phdernameclinic": "Enter the name of the hospital you work for...",
-        "phderaddresswork": "Enter address work...",
-        "phdernote": "Enter the note..."
-    },
-    "addplan": {
-        "titles": "Plan management",
-        "chooseday": "Choose Day",
-        "choosehour": "Choose Hour"
-    },
-    "newcontainer": {
-        "titles": "News Health"
-    },
-    "bookingschedule": {
-        "titles": "Book an appointment",
-        "title1": "Information appointment",
-        "price": "Price",
-        "name": "Last name and first name",
-        "phdername": "Enter your name...",
-        "phone": "Phone Number",
-        "phderphonenumber": "Please enter the phone number...",
-        "phderemail": "Please enter your email address...",
-        "address": "Address",
-        "phderaddress": "Please enter your address",
-        "birthday": "Birthday",
-        "gender": "Gender",
-        "description": "Description Reason",
-        "phderdescription": "Please enter reason...",
-        "save": "Booking",
-        "close": "Close"
-    },
-    "register": {
-        "titles": "Register Form",
-        "save": "Register"
-    },
-    "login": {
-        "titles": "Welcome",
-        "forgotpassword": "Forgot password",
-        "btn": "Login",
-        "titlesad": "Login Form",
-        "phderemail": "Email Address",
-        "phderpassword": "Password",
-        "make": "Make with ❤️ by HealthCare"
-    },
-    "patientManager": {
-        "title": "Patient Manager"
-    },
-    "verifyBooking": {
-        "title": "Successful",
-        "description": "Thank you for coming to Healthcare.",
-        "note": "Please check in and be on time for Doctor's advice"
-    },
-    "precription": {
-        "upload": "Choose a prescription"
-    },
-    "bookmanager": {
-        "title": "Appointment Manager"
-    },
-    "detailbook": {
-        "daybook": "Appointment date",
-        "hourbook": "Appointment hour",
-        "status": "Status",
-        "option": "Option",
-        "statusnotverify": "Status Not Verify"
-    }
+  "navbar": {
+    "homepage": "Home page",
+    "onlinemedica": "Online medical examination",
+    "forum": "Health Forum",
+    "healthnews": "Health News",
+    "contact": "Contact",
+    "register": "Register",
+    "login": "Login",
+    "logout": "Logout",
+    "welcome": "Welcome",
+    "with": "with"
+  },
+  "banner": {
+    "bntitle1": "More than just",
+    "bntitle2": "healthcare",
+    "bncontent": "At HCare, we offer high quality self-pay health and wellbeing services that put you at the centre of your care.",
+    "btn1": "See More",
+    "btn2": "Register"
+  },
+  "footer": {
+    "follow": "Follow HCare at",
+    "titlepolicy": "Policy and terms",
+    "policy1": "Privacy policy",
+    "policy2": "Payment policy"
+  },
+  "section1": {
+    "title1": "Where to find us",
+    "title2": "Online help center",
+    "title3": "Book an appointment",
+    "description1": "Locate the nearest Health Care clinic near you for easy access to a range of healthcare services.",
+    "description2": "Find out the answers to your questions quickly using our intuitive resource centre.",
+    "description3": "Ready to see a clinician? Contact our support team to arrange an appointment."
+  },
+  "section2": {
+    "title1": "Proud to create trust for customers",
+    "title2": "Facilitating access to healthcare",
+    "description1": "At Health Care, we provide out-of-pocket health care. Our self-pay pathway is to fill the gap where people can't access health care services because they can't afford it, they want to be seen instead of waiting, or they live in areas where certain services are not provided.",
+    "description2": "We want all of our customers to be able to say that they feel cared for as individuals and that they feel truly heard and respected. Our friendly support team is available to answer any questions you may have and help you make informed decisions about your medical care. Find out more about the services we offer below."
+  },
+  "section3": {
+    "title": "Specialties",
+    "see": "SEE MORE"
+  },
+  "section4": {
+    "title1": "OUR APPROACH",
+    "title2": "HealthCare for you",
+    "description1": "Healthcare delivery exists to help bridge the gap between private healthcare and the national health service. We pride ourselves on being a leading provider of online care. In these times of growing demand and tight budgets, we know that some services have more to do with personal health than physical health.",
+    "description2": "Our services are designed to give you more options to change the things that matter to you. We strive for excellence and are constantly reviewing and evolving the way we provide you with exceptional service."
+  },
+  "section5": {
+    "title": "Health News"
+  },
+  "section6": {
+    "title1": "Start your journey towards improved healthcare today. ",
+    "title2": "Get in touch with one of our dedicated team.",
+    "button": "Get In Touch"
+  },
+  "section7": {
+    "title": "Team of doctors"
+  },
+  "section8": {
+    "title1": "Reduced Wait Times",
+    "title2": "Additional Services",
+    "title3": "Personal Approach",
+    "description1": "Our self-pay services mean that you see a clinician at a time that suits you - no long waiting lists.",
+    "description2": "Access health and wellbeing services that may not be readily available on the HealthCare.",
+    "description3": "We want you to feel like a VIP. Whatever your needs, at HealthCare, you will be treated as an individual."
+  },
+  "specialtydetail": {
+    "more": "Read more",
+    "hide": "Hide"
+  },
+  "scheduledoctor": {
+    "schedule": "Health schedule",
+    "choose": "Choose",
+    "bookfree": "and free appointment",
+    "noschedule": "No schedule"
+  },
+  "profiledoctor": {
+    "price": "Price:",
+    "workaddress": "Work address",
+    "more": "See more"
+  },
+  "detaildoctor": {
+    "overview": "Overview",
+    "titles": "Detail Doctor"
+  },
+  "detailnews": {
+    "createdat": "Created At: ",
+    "updatedat": "Updated At: ",
+    "more": "Read More",
+    "news": "News Health"
+  },
+  "menu": {
+    "dashboard": "Dashboard",
+    "usermanager": "User Management",
+    "doctormanager": "Doctor Management",
+    "planmanager": "Manage the examination plan",
+    "specialtymanager": "Specialty Management",
+    "newsmanager": "News Management",
+    "medicine": "Medicine Management",
+    "patientmanager": "Patient Management",
+    "bookmanager": "Book Management",
+    "roomvideo": "Room Video"
+  },
+  "tableuser": {
+    "title": "User Management",
+    "name": "First and last name",
+    "address": "Address",
+    "phone": "Phone",
+    "choose": "Action",
+    "create": "Create New"
+  },
+  "createuser": {
+    "titles": "Create User",
+    "phone": "Phone Number",
+    "lastname": "Last name",
+    "firstname": "First Name",
+    "address": "Address",
+    "gender": "Gender",
+    "title": "Title",
+    "role": "Role",
+    "password": "Password",
+    "repassword": "Rewrite password",
+    "upload": "Upload Image",
+    "save": "Save",
+    "phderlastname": "Please enter last name including middle name...",
+    "phderfirstname": "Please enter name...",
+    "phderemail": "Please enter your email address...",
+    "phderphonenumber": "Please enter the phone number...",
+    "phderaddress": "Please enter your address",
+    "phderpassword": "Please enter a password...",
+    "phderrepassword": "Please re-enter password..."
+  },
+  "edituser": {
+    "titles": "Edit Information User"
+  },
+  "tablespecialty": {
+    "title": "Specialty Management",
+    "name": "Specialist Name",
+    "daycreate": "Day creation",
+    "dayupdate": "Day update",
+    "choose": "Action",
+    "create": "Create New"
+  },
+  "createspecialty": {
+    "titles": "Create Specialty",
+    "namespecialty": "Specialist Name",
+    "imgspecialty": "Specialty Image",
+    "upload": "Upload Image",
+    "save": "Save",
+    "phderspecialty": "Enter the name of the specialty"
+  },
+  "editspecialty": {
+    "titles": "Edit Information Specialty"
+  },
+  "editnews": {
+    "titles": "Edit Information News"
+  },
+  "tablenews": {
+    "title": "News Management",
+    "name": "News Name",
+    "daycreate": "Day creation",
+    "dayupdate": "Day update",
+    "choose": "Action",
+    "create": "Create New"
+  },
+  "createnews": {
+    "titles": "Create News",
+    "namenews": "News Name",
+    "imgnews": "News Image",
+    "upload": "Upload Image",
+    "save": "Save",
+    "phdernews": "Enter the name of the news"
+  },
+  "tabledoctor": {
+    "title": "Doctor Management",
+    "name": "First and last name",
+    "address": "Address",
+    "phone": "Phone",
+    "choose": "Action",
+    "addinfor": "Add Information"
+  },
+  "addinfordoctor": {
+    "titles": "Information Doctor",
+    "namedoctor": "Doctor Name",
+    "selecdoctor": "Choose Doctor",
+    "namespecialty": "Specialist Name",
+    "selecspecialty": "Choose Specialty",
+    "inforIntroduce": "Introduce Information",
+    "price": "Price",
+    "city": "City",
+    "nameclinic": "Hopitalty Name",
+    "addresswork": "Address Hopitalty",
+    "note": "Note",
+    "upload": "Upload Image",
+    "save": "Save",
+    "phderinforIntro": "Enter referral information...",
+    "phdernameclinic": "Enter the name of the hospital you work for...",
+    "phderaddresswork": "Enter address work...",
+    "phdernote": "Enter the note..."
+  },
+  "addplan": {
+    "titles": "Plan management",
+    "chooseday": "Choose Day",
+    "choosehour": "Choose Hour"
+  },
+  "newcontainer": {
+    "titles": "News Health"
+  },
+  "bookingschedule": {
+    "titles": "Book an appointment",
+    "title1": "Information appointment",
+    "price": "Price",
+    "name": "Last name and first name",
+    "phdername": "Enter your name...",
+    "phone": "Phone Number",
+    "phderphonenumber": "Please enter the phone number...",
+    "phderemail": "Please enter your email address...",
+    "address": "Address",
+    "phderaddress": "Please enter your address",
+    "birthday": "Birthday",
+    "gender": "Gender",
+    "description": "Description Reason",
+    "phderdescription": "Please enter reason...",
+    "save": "Booking",
+    "close": "Close"
+  },
+  "register": {
+    "titles": "Register Form",
+    "save": "Register"
+  },
+  "login": {
+    "titles": "Welcome",
+    "forgotpassword": "Forgot password",
+    "btn": "Login",
+    "titlesad": "Login Form",
+    "phderemail": "Email Address",
+    "phderpassword": "Password",
+    "make": "Make with ❤️ by HealthCare"
+  },
+  "patientManager": {
+    "title": "Patient Manager"
+  },
+  "verifyBooking": {
+    "title": "Successful",
+    "description": "Thank you for coming to Healthcare.",
+    "note": "Please check in and be on time for Doctor's advice"
+  },
+  "precription": {
+    "upload": "Choose a prescription"
+  },
+  "bookmanager": {
+    "title": "Appointment Manager"
+  },
+  "detailbook": {
+    "daybook": "Appointment date",
+    "hourbook": "Appointment hour",
+    "status": "Status",
+    "option": "Option",
+    "statusnotverify": "Status Not Verify"
+  }
 }

@@ -1,8 +1,6 @@
 import "./NavbarStyle.scss";
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { FormattedMessage } from 'react-intl';
-// import LogoImg from '../../assets/Hcare.svg';
 
 import { useState } from "react";
 import i18n from "../../../../function/i18n/i18n";
