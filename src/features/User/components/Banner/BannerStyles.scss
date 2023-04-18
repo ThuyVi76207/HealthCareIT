@@ -15,10 +15,95 @@
 
         &__left {
             width: 50%;
+
+            .titlebig {
+                font-size: 40px;
+            }
+
+            button {
+                width: 30%;
+            }
         }
 
         &__right {
             width: 50%;
+        }
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .banner {
+        &-container {
+            width: 90%;
+
+
+        }
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .banner {
+        &-container {
+
+            display: flex;
+            flex-direction: column;
+
+            &__left {
+                width: 100%;
+                text-align: center;
+
+                .titlebig {
+                    font-size: 30px;
+                }
+
+                button {
+                    margin-top: 10px;
+
+                }
+            }
+
+            &__right {
+                width: 80%;
+            }
+
+
+
+            // &__left {
+
+            //     .titlebig {
+            //         font-size: 30px;
+            //     }
+
+            //     h3 {
+            //         font-size: 15px;
+            //     }
+
+            //     button {
+            //         margin-top: 10px;
+            //         padding: 10px 25px;
+            //         font-size: 15px;
+            //     }
+            // }
+        }
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .banner {
+
+
+        &-container {
+            &__left {
+
+                button {
+                    width: 40%;
+                }
+            }
+
+
+            &__right {
+                width: 90%;
+            }
         }
     }
 }
