@@ -150,6 +150,9 @@
 
 @media screen and (max-width: 580px) {
     .share-container {
+        margin: 0 !important;
+        padding: 0 10px !important;
+
         .specialty-customize {
 
 
@@ -170,6 +173,7 @@
 
         .slick-slide {
 
+
             .img-sp {
 
                 height: 100px !important;
@@ -179,15 +183,9 @@
     }
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 400px) {
     .share-container {
-        .slick-list {
 
-
-            .slick-track {
-                width: 3725px !important;
-            }
-        }
 
 
 
