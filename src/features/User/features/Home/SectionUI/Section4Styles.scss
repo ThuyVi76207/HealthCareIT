@@ -19,3 +19,23 @@
         }
     }
 }
+
+@media screen and (max-width: 840px) {
+    .section4 {
+
+
+        &-form {
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+
+            &__image {
+                width: 90%;
+            }
+
+            &__content {
+                width: 100%;
+            }
+        }
+    }
+}

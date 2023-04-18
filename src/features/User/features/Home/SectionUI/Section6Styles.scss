@@ -26,3 +26,56 @@
         }
     }
 }
+
+@media screen and (max-width: 1040px) {
+    .section6 {
+
+
+        &-container {
+
+            &__title {
+                width: 90%;
+                font-size: 1.2rem;
+            }
+
+            &__btn {
+                width: 20%;
+
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .section6 {
+        &-container {
+
+            &__title {
+                width: 95%;
+                font-size: 1.2rem;
+            }
+
+            &__btn {
+                width: 25%;
+
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .section6 {
+        &-container {
+
+            &__title {
+                width: 95%;
+                font-size: 1.2rem;
+            }
+
+            &__btn {
+                width: 40%;
+
+            }
+        }
+    }
+}

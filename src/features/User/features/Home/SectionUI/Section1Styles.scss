@@ -21,3 +21,28 @@
         }
     }
 }
+
+@media screen and (max-width: 1040px) {
+    .section1 {
+
+        &-form {
+            width: 95%;
+        }
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .section1 {
+
+        &-form {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .section1 {
+        margin: 0;
+    }
+}
