@@ -62,6 +62,7 @@ function Specialty() {
               );
             })}
           <div className="specialty-customize"></div>
+          <div className="specialty-customize"></div>
         </Slider>
       </div>
     </div>
