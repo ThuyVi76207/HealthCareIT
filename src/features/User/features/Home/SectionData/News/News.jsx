@@ -14,6 +14,39 @@ function News() {
     autoplaySpeed: 5000,
     slidesToShow: 3,
     slidesToScroll: 1,
+
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          dots: true,
+          autoplay: true,
+          autoplaySpeed: 5000,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          dots: true,
+          autoplay: true,
+          autoplaySpeed: 5000,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          dots: true,
+          autoplay: true,
+          autoplaySpeed: 5000,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
     // nextArrow: <SampleNextArrow />,
     // prevArrow: <SamplePrevArrow />
   };
@@ -44,11 +77,11 @@ function News() {
           {listNews.map((item, index) => {
             return (
               <div
-                className="mx-2 cursor-pointer"
+                className=" mx-2 cursor-pointer"
                 key={index}
                 onClick={() => handleViewDetailNews(item)}
               >
-                <div className="bg-white px-4 py-4 h-[400px] transition-[0.5s] hover:transform  hover:scale-[0.95]  overflow-hidden hover:shadow-[0_1px_3px_3px_#ccc3c3] hover:text-[#16917c]">
+                <div className="bg-white news-container__item  transition-[0.5s] hover:transform  hover:scale-[0.95]  overflow-hidden hover:shadow-[0_1px_3px_3px_#ccc3c3] hover:text-[#16917c]">
                   <img className="img-news" src={item.image} alt={index} />
                   <div className="text-center mt-2 font-bold  ">
                     {item.name}
