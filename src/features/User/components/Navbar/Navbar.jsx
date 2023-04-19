@@ -82,7 +82,7 @@ const Navbar = ({ t }) => {
               )}
 
               {userPRofile && userPRofile.isLogin === true ? (
-                <div className="content-item cursor-pointer">
+                <div className="content-item cursor-pointer hide-textb">
                   <i className="fas fa-sign-out-alt"></i>
                   <div className="text-item" onClick={handleLogout}>
                     <b>{t("navbar.logout")}</b>
@@ -101,7 +101,7 @@ const Navbar = ({ t }) => {
 
               {userPRofile && userPRofile.lastName && userPRofile.firstName && (
                 <div className="flex items-center">
-                  <h2 className="text-[#16917c] font-bold text-[18px]">{`${t(
+                  <h2 className="text-[#16917c] font-bold">{`${t(
                     "navbar.welcome"
                   )}, ${language === "vi" ? nameVi : nameEn}`}</h2>
                 </div>
