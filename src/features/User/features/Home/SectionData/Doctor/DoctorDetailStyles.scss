@@ -2,13 +2,31 @@
     &__head {
         background: url('../../../../../../assets/Banner/Banner3.png') #16917c;
         height: 80px;
+
+        &__title {
+            width: 70%;
+        }
     }
 
     &__content {
         width: 70%;
         margin: 50px auto;
 
+        &__chedule {
+            display: flex;
+            margin-top: 2.25rem;
+            gap: 1rem;
 
+            .content-up {
+                width: 60%;
+            }
+
+            .content-down {
+                width: 40%;
+                margin-top: 2.5rem;
+                border-left-width: 1px;
+            }
+        }
 
         .description-doctor li {
             list-style: disc;
@@ -30,5 +48,54 @@
 
 
 
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .doctor-detail {
+        &__head {
+
+
+            &__title {
+                width: 90%;
+            }
+        }
+
+        &__content {
+            width: 90%;
+        }
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .doctor-detail {
+
+
+        &__content {
+            width: 95%;
+
+
+            &__chedule {
+                flex-direction: column;
+                margin-top: 2.25rem;
+                gap: 1rem;
+
+                .content-up {
+                    width: 95%;
+                    margin: 0 auto;
+                }
+
+                .content-down {
+                    width: 95%;
+                    margin: 0 auto;
+
+                    border-left: none;
+                }
+            }
+
+            .description-doctor {
+                padding: 0 15px;
+            }
+        }
     }
 }
