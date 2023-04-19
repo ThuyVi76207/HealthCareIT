@@ -25,5 +25,36 @@
 
     &-container {
         background: rgb(238, 234, 234);
+
+        &__block {
+            width: 70%;
+            margin: 0 auto;
+        }
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .specialty-detail {
+        &-container {
+
+
+            &__block {
+                width: 85%;
+
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .specialty-detail {
+        &-container {
+
+
+            &__block {
+                width: 95%;
+
+            }
+        }
     }
 }

@@ -1,0 +1,13 @@
+.chedule-prof-doctor {
+    margin-left: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    .chedule-prof-doctor {
+        margin-left: 0rem;
+
+        h4 {
+            font-size: 13px;
+        }
+    }
+}
