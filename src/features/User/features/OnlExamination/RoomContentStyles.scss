@@ -1,0 +1,216 @@
+.room-content {
+    &__title {
+        font-size: 30px;
+    }
+
+    &__header {
+        display: flex;
+        gap: 2%;
+        padding: 12px 0;
+        width: 80%;
+    }
+
+    &__container {
+        &__stream {
+            bottom: 15px;
+            right: 15px;
+
+            video {
+                width: 320px;
+                height: 180px;
+            }
+        }
+
+        &__blockvideo {
+            width: 80%;
+            height: 40.25vw;
+            left: 10vw;
+        }
+
+        &__blocknull {
+            width: 80%;
+            height: 40.25vw;
+            left: 10vw;
+        }
+    }
+}
+
+
+@media screen and (max-width: 1040px) {
+    .room-content {
+        &__header {
+
+            width: 90%;
+        }
+
+        &__container {
+            &__stream {
+
+
+                video {
+                    width: 280px;
+                    height: 150px;
+                }
+            }
+
+            &__blockvideo {
+                width: 90%;
+                height: 58.25vw;
+                left: 5vw;
+            }
+
+            &__blocknull {
+                width: 90%;
+                height: 58.25vw;
+                left: 5vw;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .room-content {
+        &__header {
+
+            display: grid;
+            grid-template-columns: 350px 350px;
+
+            gap: 2%;
+
+            button {
+                margin-top: 10px;
+                width: 50%;
+            }
+
+        }
+
+        &__container {
+            &__stream {
+
+
+                video {
+                    width: 280px;
+                    height: 150px;
+                }
+            }
+
+            &__blockvideo {
+                width: 90%;
+                height: 58.25vw;
+                left: 5vw;
+            }
+
+            &__blocknull {
+                width: 90%;
+                height: 58.25vw;
+                left: 5vw;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 678px) {
+    .room-content {
+        &__header {
+            grid-template-columns: auto auto;
+            gap: 0;
+            width: 95%;
+        }
+
+        &__container {
+            &__stream {
+
+                video {
+                    width: 200px;
+                    height: 130px;
+                }
+            }
+
+            &__blockvideo {
+                width: 95%;
+                height: 80.25vw;
+                left: 2.5vw;
+            }
+
+            &__blocknull {
+                width: 95%;
+                height: 80.25vw;
+                left: 2.5vw;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .room-content {
+        &__header {
+            grid-template-columns: auto auto;
+            gap: 0;
+        }
+
+        &__container {
+            &__stream {
+                right: 10px;
+                bottom: 69%;
+
+                video {
+                    width: 150px;
+                    height: 80px;
+                }
+            }
+
+            &__blockvideo {
+                width: 95%;
+                height: 112.25vw;
+                left: 2.5vw;
+            }
+
+            &__blocknull {
+                width: 95%;
+                height: 112.25vw;
+                left: 2.5vw;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .room-content {
+        &__header {
+            grid-template-columns: 100%;
+
+            .name-room {
+                margin-top: 10px;
+            }
+
+            button {
+                width: 50%;
+                margin-top: 10px;
+            }
+        }
+
+        &__container {
+            &__stream {
+                // bottom: 250px;
+
+
+                // video {
+                //     width: px;
+                //     height: 80px;
+                // }
+            }
+
+            &__blockvideo {
+                width: 95%;
+                height: 112.25vw;
+                left: 2.5vw;
+            }
+
+            &__blocknull {
+                width: 95%;
+                height: 112.25vw;
+                left: 2.5vw;
+            }
+        }
+    }
+}
