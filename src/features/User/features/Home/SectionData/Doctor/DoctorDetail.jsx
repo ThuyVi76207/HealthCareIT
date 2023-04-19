@@ -62,7 +62,7 @@ function DoctorDetail({ t }) {
         </div>
 
         <div className="doctor-detail__content">
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4">
             <img
               className="w-[110px] h-[110px] rounded-[50%]"
               src={infoDoctor.image}
