@@ -139,8 +139,8 @@ const Navbar = ({ t }) => {
             }
             id="menuHeader"
           >
-            <div className="header-down">
-              <div className="left-content">
+            <div className="header-down ">
+              <div className="left-content z-50">
                 <div className="child-content">
                   <Link to={"/healthcare"} className="flex items-center">
                     <span className="pr-2">

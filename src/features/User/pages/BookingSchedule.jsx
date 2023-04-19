@@ -21,6 +21,7 @@ import { postPatientBooking, postSendSMS } from "services/userService";
 import { addErrorMessage, addWarningMessage } from "reducers/messageSlice";
 import PaymentMethodSection from "../features/PaymentMenthod/PaymentSection";
 import Loading from "components/Loading/loading";
+import "../features/BookingSchedule/BookingScheduleStyles.scss";
 
 const BookingSchedule = ({ t }) => {
   const navigate = useNavigate();
@@ -298,41 +299,16 @@ const BookingSchedule = ({ t }) => {
     navigate(`/`);
   };
 
-  // const handlePayment = async () => {
-  //     if (!isValidated()) return srollToInput();
-  //     try {
-
-  //         if (paymentMethod === 12) {
-  //             let res = await postPaymentPaypal();
-  //             if (res && res.forwardLink) {
-  //                 navigate(`${res.forwardLink}`)
-  //             }
-  //             console.log('Check paypal', res);
-  //         }
-
-  //     } catch (error) {
-  //         alert("Có lỗi xảy ra vui lòng quay lại sau");
-  //         console.log("Faild to call API paymentMethod paypal", error);
-  //     }
-  //     console.log("Check paymentMethod", paymentMethod)
-  // }
-
   return (
     <MainLayout>
       <Loading loading={loading} />
-      <div>
+      <div className="booking-chedule">
         <div className="bg-[#e6eeee] ">
-          <div className="py-3 flex w-[60%] mx-auto gap-[3%] items-center">
-            <img
-              src={inforDoctor.image}
-              alt={inforDoctor.id}
-              className="w-[100px] h-[100px] rounded-[50%]"
-            />
+          <div className="booking-chedule__header flex mx-auto gap-[3%] items-center">
+            <img src={inforDoctor.image} alt={inforDoctor.id} />
             <div className="leading-6">
-              <h4 className="uppercase text-[15px]">
-                {t("bookingschedule.titles")}
-              </h4>
-              <h2 className="font-bold text-[#16917c] text-[18px]">
+              <h4 className="uppercase">{t("bookingschedule.titles")}</h4>
+              <h2 className="font-bold text-[#16917c]">
                 {language === "vi" ? nameVi : nameEn}
               </h2>
               <p>{date}</p>
@@ -342,7 +318,7 @@ const BookingSchedule = ({ t }) => {
         <h2 className="text-[30px] text-[#16917c] text-center font-bold my-5 uppercase ">
           {t("bookingschedule.title1")}
         </h2>
-        <div className="w-[60%] mx-auto my-3">
+        <div className="booking-chedule__container">
           <div className="flex text-[17px] items-center">
             {!checkIfVerifiedExists(inforDoctor) && (
               <>
@@ -363,8 +339,8 @@ const BookingSchedule = ({ t }) => {
             )}
           </div>
           <form ref={formref}>
-            <div>
-              <div className="grid grid-cols-2 gap-[5%]">
+            <div className="booking-chedule__container__form">
+              <div className="form-up">
                 <CommonInput
                   field={t("bookingschedule.name")}
                   name="name"
@@ -396,7 +372,7 @@ const BookingSchedule = ({ t }) => {
                 error={error.address}
                 required
               />
-              <div className="grid grid-cols-3 gap-[5%] mt-4">
+              <div className="form-down">
                 <PhoneInput
                   field={t("bookingschedule.phone")}
                   name="phoneNumber"
