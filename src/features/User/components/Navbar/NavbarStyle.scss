@@ -201,6 +201,16 @@
                         }
                     }
                 }
+
+                .content-item {
+
+
+                    .text-item {
+                        margin: 5px;
+
+                    }
+
+                }
             }
         }
     }
@@ -213,7 +223,7 @@
 
             .header-up {
                 &__left {
-                    gap: 0rem;
+                    gap: 2px;
                     font-size: 10px;
 
                     h2 {
