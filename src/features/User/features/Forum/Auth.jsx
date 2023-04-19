@@ -1,6 +1,7 @@
 import { auth, provider } from "components/firebase/firebase-config";
 import { signInWithPopup } from "firebase/auth";
 import logoGoogle from "../../../../assets/Logo/logogoogle.webp";
+import "./AuthStyles.scss";
 
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -21,8 +22,8 @@ export const Auth = (props) => {
     }
   };
   return (
-    <div className="relative w-full h-full ">
-      <div className="absolute w-[300px] h-[300px]  mt-[15%] left-[40%]">
+    <div className="relative w-full h-full Auth-page">
+      <div className="Auth-page__container absolute ">
         <div className="shadow-[0_2px_10px_1px_rgba(0,0,0,0.3)] pt-3 pb-6">
           <img
             src={logoGoogle}
@@ -30,7 +31,7 @@ export const Auth = (props) => {
             className="w-[120px] h-[120px] mx-auto my-6"
           />
           <p className="text-center my-3">Sign in with google to continue</p>
-          <div className="bg-[#27284a] w-[60%] mx-auto text-center">
+          <div className="Auth-page__container__btn bg-[#27284a] w-[60%] mx-auto text-center">
             <button className="text-white py-2" onClick={signInWithGoogle}>
               Sign in with google
             </button>
