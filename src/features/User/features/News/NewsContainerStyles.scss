@@ -3,5 +3,62 @@
     &_head {
         background: url('../../../../assets/Banner/Banner3.png') #16917c;
         height: 80px;
+
+        &__title {
+            width: 75%;
+        }
+    }
+
+    &_container {
+        width: 75%;
+        padding: 40px 0;
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .news-list {
+
+        &_head {
+            &__title {
+                width: 85%;
+            }
+        }
+
+        &_container {
+            width: 85%;
+
+        }
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .news-list {
+
+        &_head {
+            &__title {
+                width: 90%;
+            }
+        }
+
+        &_container {
+            width: 90%;
+            padding: 20px 0;
+        }
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .news-list {
+
+        &_head {
+            &__title {
+                width: 95%;
+            }
+        }
+
+        &_container {
+            width: 95%;
+
+        }
     }
 }
