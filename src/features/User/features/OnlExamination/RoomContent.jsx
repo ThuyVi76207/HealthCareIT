@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import * as Peer from "simple-peer";
 import io from "socket.io-client";
+import "./RoomContentStyles.scss";
 
 const socket = io("https://service-healthcare.onrender.com");
 //https://service-healthcare.onrender.com
@@ -181,11 +182,17 @@ const RoomContent = () => {
   };
 
   return (
-    <div className="bg-black h-full absolute w-full">
-      <h2 className="text-white font-bold text-[30px] text-center">
+    <div className="room-content bg-black h-full absolute w-full">
+      <h2 className="room-content__title text-white font-bold text-center">
         Room Online
       </h2>
-      <div className="flex gap-[2%] py-3 w-[80%] mx-auto items-center">
+      <div
+        className={
+          callAccepted && !callEnded
+            ? "hidden"
+            : "room-content__header mx-auto items-center"
+        }
+      >
         {/* <h2 className="text-white">{`IP Room: ${me}`}</h2> */}
         <div>
           <label className="text-[15px] font-bold text-white mr-2">
@@ -201,18 +208,7 @@ const RoomContent = () => {
           ></input>
         </div>
 
-        <CopyToClipboard text={me}>
-          <button
-            onClick={() => setIPRoom(true)}
-            className={`text-white bg-gray-400 p-1 ${
-              ipRoom ? "bg-green-400" : ""
-            }`}
-          >
-            Copy IP Room
-          </button>
-        </CopyToClipboard>
-
-        <div>
+        <div className="name-room">
           <label className="text-[15px] font-bold text-white mr-2">
             Mã phòng:
           </label>
@@ -225,38 +221,42 @@ const RoomContent = () => {
             placeholder="Nhập mã để gọi..."
           ></input>
         </div>
+        <CopyToClipboard text={me}>
+          <button
+            onClick={() => setIPRoom(true)}
+            className={`text-white bg-gray-400 p-1 ${
+              ipRoom ? "bg-green-400" : ""
+            }`}
+          >
+            Copy IP Room
+          </button>
+        </CopyToClipboard>
       </div>
-      <div className="">
-        <div className="z-30 absolute bottom-[15px] right-[15px] cursor-move ">
+      <div className="room-content__container">
+        <div className="room-content__container__stream z-30 absolute cursor-move ">
           {stream && (
             <video
               playsInline
               muted
               ref={myVideo}
               autoPlay
-              className="z-30 w-[100vw] h-[56.25vw] text-white md:w-[320px] md:h-[180px] border-2 border-sky-200 object-cover bg-blue-100 "
+              className="z-30  text-white border-2 border-sky-200 object-cover bg-blue-100 "
             >
               {/* {shareCam === false ? <h2 className="text-white text-center">Your camera is off</h2> : null} */}
             </video>
           )}
-
-          {/* <button variant="contained" color="primary" onClick={hideCam}>
-                        Bật/Tắt Video
-                    </button>
-                    <button variant="contained" color="primary" onClick={onOffAudio}>
-                        Bật/Tắt Tiếng
-                    </button> */}
         </div>
+
         <div className="">
           {callAccepted && !callEnded ? (
             <video
               playsInline
               ref={userVideo}
               autoPlay
-              className="fixed md:left-[10vw] w-[80%] h-[40.25vw] object-cover border-2 border-sky-200"
+              className="room-content__container__blockvideo fixed object-cover border-2 border-sky-200"
             />
           ) : (
-            <div className="md:flex fixed left-[10vw] w-[80%] h-[40.25vw]  animate-pulse bg-gray-700 object-cover border-2 border-sky-200 z-10 text-black flex justify-center items-center text-2xl">
+            <div className="room-content__container__blocknull md:flex fixed animate-pulse bg-gray-700 object-cover border-2 border-sky-200 z-10 text-black flex justify-center items-center text-2xl">
               <h2 className="text-white ">Waiting another user to join...</h2>
             </div>
           )}
@@ -292,6 +292,7 @@ const RoomContent = () => {
           )}
           {/* {idToCall} */}
         </div>
+
         <div
           className="fixed right-9 top-6 z-[1000] max-h-screen overflow-auto "
           role="alert"
