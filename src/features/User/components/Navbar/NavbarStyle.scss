@@ -194,6 +194,12 @@
                     h2 {
                         font-size: 15px;
                     }
+
+                    .hide-textb {
+                        b {
+                            display: none;
+                        }
+                    }
                 }
             }
         }
@@ -214,11 +220,7 @@
                         font-size: 10px;
                     }
 
-                    .hide-textb {
-                        b {
-                            display: none;
-                        }
-                    }
+
                 }
             }
         }
