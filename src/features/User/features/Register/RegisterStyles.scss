@@ -1,0 +1,143 @@
+.register-form {
+    &__title {
+        font-size: 30px;
+        margin: 50px 0;
+    }
+
+    &__container {
+        display: flex;
+        width: 80%;
+        margin: 0 auto;
+
+        &__left {
+            width: 60%;
+
+            .form-up {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10%;
+            }
+
+            .form-down {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 5%;
+                margin-top: 15px;
+            }
+        }
+
+        &__right {
+            width: 40%;
+        }
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .register-form {
+        // &__title {
+        //     font-size: 30px;
+        //     margin: 50px 0;
+        // }
+
+        &__container {
+            width: 90%;
+
+            &__left {
+                width: 70%;
+
+                // .form-up {
+                //     display: grid;
+                //     grid-template-columns: repeat(2, minmax(0, 1fr));
+                //     gap: 10%;
+                // }
+
+                .form-down {
+                    display: grid;
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                    gap: 5%;
+                    margin-top: 15px;
+                }
+            }
+
+            &__right {
+                width: 30%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .register-form {
+        // &__title {
+        //     font-size: 30px;
+        //     margin: 50px 0;
+        // }
+
+        &__container {
+            flex-direction: column;
+            align-items: center;
+
+            &__left {
+                width: 100%;
+
+                // .form-up {
+                //     display: grid;
+                //     grid-template-columns: repeat(2, minmax(0, 1fr));
+                //     gap: 10%;
+                // }
+
+                // .form-down {
+                //     display: grid;
+                //     grid-template-columns: repeat(3, minmax(0, 1fr));
+                //     gap: 5%;
+                //     margin-top: 15px;
+                // }
+            }
+
+            &__right {
+                width: 40%;
+                margin-bottom: 40px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .register-form {
+        // &__title {
+        //     font-size: 30px;
+        //     margin: 50px 0;
+        // }
+
+        &__container {
+
+
+            &__left {
+                width: 100%;
+
+
+
+                .form-up {
+
+                    grid-template-columns: repeat(1, minmax(0, 1fr));
+                    margin-bottom: 100px;
+                }
+
+                .form-down {
+
+                    grid-template-columns: repeat(1, minmax(0, 1fr));
+                    // margin-top: 50px;
+                }
+
+                button {
+                    margin-top: 25px;
+                }
+            }
+
+            // &__right {
+            //     width: 40%;
+            //     margin-bottom: 40px;
+            // }
+        }
+    }
+}
