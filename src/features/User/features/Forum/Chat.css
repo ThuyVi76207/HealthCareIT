@@ -32,6 +32,20 @@
     margin-bottom: 10px;
 }
 
+.message-left {
+    width: 7%;
+}
+
+.message-right {
+    width: 93%;
+}
+
+.message-right>h2 {
+    margin: 6px 16px 0px 16px;
+    font-size: 20px;
+    padding: 0 12px;
+}
+
 .user {
     font-weight: bold;
     margin-right: 10px;
@@ -55,6 +69,31 @@
     border-radius: 5px 0 0 5px;
 }
 
+@media screen and (max-width: 1040px) {
+    .new-message-form {
+
+        width: 70%;
+    }
+
+    .messages {
+        padding: 10px;
+    }
+
+    .message-left {
+        width: 10%;
+    }
+
+    .message-right {
+        width: 90%;
+    }
+
+    .message-right>h2 {
+        margin: 6px 13px 0px 13px;
+        font-size: 18px;
+        padding: 2px 12px;
+    }
+}
+
 @media screen and (max-width: 840px) {
     .new-message-form {
 
@@ -66,10 +105,42 @@
     .header-apps h1 {
         font-size: 18px;
     }
+
+    .message-left {
+        width: 15%;
+    }
+
+    .message-right {
+        width: 85%;
+    }
+
+    .message-right>h2 {
+        margin: 6px 13px 0px 13px;
+        font-size: 15px;
+        padding: 2px 12px;
+    }
 }
 
 @media screen and (max-width: 520px) {
     .header-apps h1 {
         font-size: 15px;
+    }
+
+    .message-left {
+        width: 18%;
+    }
+
+    .message-right {
+        width: 82%;
+    }
+
+    .message-right>h2 {
+        margin: 6px 10px 0px 6px;
+        font-size: 15px;
+        padding: 2px 12px;
+    }
+
+    .messages {
+        padding: 10px 0 5px 10px;
     }
 }
