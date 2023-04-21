@@ -47,7 +47,7 @@ const NavbarForum = (props) => {
 
   useEffect(() => {
     const handleSroll = () => {
-      const isSrollFarFromTop = window.scrollY > 50;
+      const isSrollFarFromTop = window.scrollY > 30;
       // console.log('isSrollFarFromTop', isSrollFarFromTop);
       setActiveSroll(isSrollFarFromTop);
     };
@@ -65,9 +65,9 @@ const NavbarForum = (props) => {
             activeSroll ? "active-scroll" : ""
           }`}
         >
-          <div className="flex items-center w-[50%]">
+          <div className="flex items-center w-[70%]">
             <img
-              className="rounded-[50%] w-[60px] h-[60px] ml-[10%]"
+              className="rounded-[50%] w-[60px] h-[60px]"
               src={getPhotoUrl}
               alt=""
             />
