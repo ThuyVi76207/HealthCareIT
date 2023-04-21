@@ -8,6 +8,10 @@
     &__left {
         width: 35%;
 
+        img {
+            margin-left: 10%;
+        }
+
         .logout-showup {
             display: none;
         }
@@ -79,6 +83,10 @@
 
 
         &__left {
+            img {
+                margin-left: 5%;
+            }
+
             .logout-showup {
                 display: block;
             }
