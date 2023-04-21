@@ -8,8 +8,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "components/firebase/firebase-config";
 import { getAllRoom, postSaveNameRoom } from "services/userService";
 import NavbarForum from "../components/Navbar/NavbarForum";
-import { addErrorMessage, addSuccessMessage } from "reducers/messageSlice";
-import { useDispatch } from "react-redux";
+import "../features/Forum/ForumStyles.scss";
 
 const cookies = new Cookies();
 
@@ -17,6 +16,8 @@ function Forum() {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
   const [room, setRoom] = useState(null);
   const [listRoom, setListRoom] = useState([]);
+
+  const [activeNameRoom, setActiveNameRoom] = useState(false);
 
   const roomInputRef = useRef("room");
 
@@ -59,17 +60,24 @@ function Forum() {
             handleSetRoom={() => setRoom(roomInputRef.current.value)}
           />
           <div className="h-[100px] w-full"></div>
-          <div className="w-full flex">
-            <div className="w-[35%] h-full bg-[#1d176e] bg-opacity-90">
-              <div className="h-[86vh] ">
+          <div className="w-full flex forum-container">
+            <div
+              className={`forum-container__left  h-full bg-[#1d176e] bg-opacity-90
+               ${
+                 activeNameRoom
+                   ? "forum-container_animation-show"
+                   : "forum-container_animation "
+               }`}
+            >
+              <div className="h-[86vh]">
                 <div className="text-center bg-[#1d176e] py-[18px] text-white bg-opacity-70">
                   Danh sách nhóm
                 </div>
-                <ul className="">
+                <ul className="group-name">
                   {listRoom.map((item, index) => (
                     <li
                       key={index}
-                      className="flex text-white items-center gap-4 py-2 px-[20%] hover:bg-[#1d176e] hover:bg-opacity-60 cursor-pointer"
+                      className="flex text-white items-center gap-4 py-2  hover:bg-[#1d176e] hover:bg-opacity-60 cursor-pointer"
                       onClick={() => setRoom(item.name)}
                     >
                       <i className="text-[25px] pt-1">
@@ -81,7 +89,17 @@ function Forum() {
                 </ul>
               </div>
             </div>
-            <div className="w-[65%]">{room ? <Chat room={room} /> : null}</div>
+            <div
+              onClick={() => setActiveNameRoom(!activeNameRoom)}
+              className="humbager"
+            >
+              <i className="text-[28px] bg-[#deaa31] text-white pt-1 pl-2 rounded-r-[10px]">
+                <ion-icon name="play-outline"></ion-icon>
+              </i>
+            </div>
+            <div className="forum-container__right">
+              {room ? <Chat room={room} /> : null}
+            </div>
           </div>
           {/* {room ? <Chat room={room} /> : null} */}
 
