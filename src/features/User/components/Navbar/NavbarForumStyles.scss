@@ -47,8 +47,9 @@
         position: fixed;
         height: 120px !important;
         padding-top: 30px;
-        transition: height 0.2s ease-in;
         box-shadow: 1px 2px 3px gray;
+        transition: box-shadow 0.2s ease-in;
+
     }
 
     .navbar-forum {
