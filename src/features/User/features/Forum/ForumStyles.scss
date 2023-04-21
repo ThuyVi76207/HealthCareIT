@@ -120,11 +120,9 @@
 }
 
 @media screen and (max-width: 400px) {
-    .humbager {
-
-        top: 18%;
-
-
-
+    .forum-container {
+        &_animation-show {
+            top: 17%;
+        }
     }
 }
