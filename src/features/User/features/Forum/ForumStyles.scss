@@ -121,8 +121,13 @@
 
 @media screen and (max-width: 400px) {
     .forum-container {
+        &_animation {
+
+            top: 18%;
+        }
+
         &_animation-show {
-            top: 17%;
+            top: 18%;
         }
     }
 }
