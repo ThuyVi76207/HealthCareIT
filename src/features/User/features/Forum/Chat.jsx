@@ -63,7 +63,7 @@ const Chat = (props) => {
             return (
               <div className="message w-[100%]" key={index}>
                 {/* <span className="user">{message.user}</span> */}
-                <div className="w-[7%]">
+                <div className="message-left ">
                   <img
                     className="w-[50px] h-[50px] rounded-[50%]"
                     src={message.photo}
@@ -71,8 +71,8 @@ const Chat = (props) => {
                   />
                   <p className="text-[13px] text-gray-500">{message.user}</p>
                 </div>
-                <div className="w-[93%]">
-                  <h2 className="mx-4 mt-3 text-[20px] text-gray-600 bg-[#f5f5f5] px-3 rounded-[10px] border-b-2 border-[#1d155e]">
+                <div className="message-right">
+                  <h2 className=" text-gray-600 bg-[#f5f5f5] rounded-[10px] border-b-2 border-[#1d155e]">
                     {message.text}
                   </h2>
                 </div>
