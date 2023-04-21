@@ -41,6 +41,7 @@
 .new-message-form {
     display: flex;
     padding: 10px;
+    width: 65%;
 }
 
 .new-message-input {
@@ -52,4 +53,23 @@
     color: #333;
     padding: 10px;
     border-radius: 5px 0 0 5px;
+}
+
+@media screen and (max-width: 840px) {
+    .new-message-form {
+
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 678px) {
+    .header-apps h1 {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .header-apps h1 {
+        font-size: 15px;
+    }
 }

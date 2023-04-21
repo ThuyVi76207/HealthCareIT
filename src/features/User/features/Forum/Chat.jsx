@@ -82,7 +82,7 @@ const Chat = (props) => {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="new-message-form bg-white border-2 border-[#1d155e] fixed w-[65%] bottom-0 right-0"
+          className="new-message-form bg-white border-2 border-[#1d155e] fixed bottom-0 right-0"
         >
           <input
             className="new-message-input"
