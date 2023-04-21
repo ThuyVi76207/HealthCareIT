@@ -46,10 +46,10 @@
 @media screen and (max-width: 840px) {
     .active-scroll {
         position: fixed;
-        height: 120px !important;
+        height: 135px !important;
         padding-top: 30px;
         box-shadow: 1px 2px 3px gray;
-        transition: box-shadow 0.2s ease-in;
+        transition: position 1s ease-in;
 
     }
 

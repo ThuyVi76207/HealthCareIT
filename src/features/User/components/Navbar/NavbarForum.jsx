@@ -47,7 +47,7 @@ const NavbarForum = (props) => {
 
   useEffect(() => {
     const handleSroll = () => {
-      const isSrollFarFromTop = window.scrollY > 30;
+      const isSrollFarFromTop = window.scrollY > 50;
       // console.log('isSrollFarFromTop', isSrollFarFromTop);
       setActiveSroll(isSrollFarFromTop);
     };
