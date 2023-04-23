@@ -45,10 +45,10 @@ const RoomContent = () => {
           const peer = new Peer({ initiator: true, stream });
           peer.on("open", (id) => setIdToCall(id));
           setStream(stream);
+          callUser(idToCall);
         })
         .catch(console.error);
     }
-    callUser(idToCall);
   };
 
   useEffect(() => {
