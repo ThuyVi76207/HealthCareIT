@@ -35,7 +35,7 @@ const RoomContent = () => {
           myVideo.current.srcObject
             .getTracks()
             .forEach((t) => (t.enabled = !t.enabled));
-          setStream(stream);
+          // setStream(stream);
           setIsCameraOn(!isCameraOn);
         });
     } else {
