@@ -30,7 +30,7 @@ const RoomContent = () => {
   const toggleCamera = () => {
     if (myVideo.current.srcObject) {
       navigator.mediaDevices
-        .getUserMedia({ video: shareCam, audio: true })
+        .getUserMedia({ video: isCameraOn, audio: true })
         .then((stream) => {
           myVideo.current.srcObject
             .getTracks()
