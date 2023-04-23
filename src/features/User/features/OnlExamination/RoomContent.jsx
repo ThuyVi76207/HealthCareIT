@@ -30,7 +30,7 @@ const RoomContent = () => {
   const toggleCamera = () => {
     if (isCameraOn) {
       setIsCameraOn(false);
-      myVideo.current?.srcObject.getTracks().forEach((track) => track.stop());
+      myVideo.current.srcObject.getTracks().forEach((track) => track.stop());
 
       // navigator.getUserMedia({ video: false }, (stream) => {
       //   myVideo.current.srcObject = stream;
@@ -38,17 +38,17 @@ const RoomContent = () => {
       // });
     } else {
       navigator.mediaDevices
-        .getUserMedia({ video: true })
+        .getUserMedia({ video: true, audio: true })
         .then((stream) => {
           myVideo.current.srcObject = stream;
           setIsCameraOn(true);
           const peer = new Peer({ initiator: true, stream });
           peer.on("open", (id) => setIdToCall(id));
           setStream(stream);
-          callUser(idToCall);
         })
         .catch(console.error);
     }
+    callUser(idToCall);
   };
 
   useEffect(() => {
@@ -287,7 +287,7 @@ const RoomContent = () => {
           )}
         </div>
         <div className="fixed z-40 flex items-center justify-center w-[100vw] md:w-[33.33333vw] md:left-[33.333333vw] bottom-[20px]">
-          {isCameraOn ? <StartShareWebcamButton /> : <StopShareWebcamButton />}
+          {isCameraOn ? <StopShareWebcamButton /> : <StartShareWebcamButton />}
           {callAccepted && !callEnded ? (
             <div
               onClick={leaveCall}
