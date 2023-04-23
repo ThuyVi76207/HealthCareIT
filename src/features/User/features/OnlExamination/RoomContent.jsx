@@ -36,6 +36,7 @@ const RoomContent = () => {
             .getTracks()
             .forEach((t) => (t.enabled = !t.enabled));
           setStream(stream);
+          setIsCameraOn(!isCameraOn);
         });
     } else {
       if (isCameraOn) {
