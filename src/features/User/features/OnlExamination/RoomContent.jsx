@@ -6,6 +6,7 @@ import "./RoomContentStyles.scss";
 
 const socket = io("https://service-healthcare.onrender.com");
 //https://service-healthcare.onrender.com
+//http://localhost:7777/socket.io
 const RoomContent = () => {
   const [me, setMe] = useState("");
   const [stream, setStream] = useState();
@@ -20,9 +21,28 @@ const RoomContent = () => {
   const [shareCam, setShareCam] = useState(true);
   const [audio, setAudio] = useState(true);
 
+  const [isCameraOn, setIsCameraOn] = useState(false);
+
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
+
+  const toggleCamera = () => {
+    if (isCameraOn) {
+      setIsCameraOn(false);
+      myVideo.current.srcObject.getTracks().forEach((track) => track.stop());
+    } else {
+      navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then((stream) => {
+          myVideo.current.srcObject = stream;
+          setIsCameraOn(true);
+          const peer = new Peer({ initiator: true, stream });
+          peer.on("open", (id) => setIdToCall(id));
+        })
+        .catch(console.error);
+    }
+  };
 
   useEffect(() => {
     const getUserMedia = async () => {
@@ -53,33 +73,31 @@ const RoomContent = () => {
       setCallerSignal(data.signal);
     });
 
-    socket.on("hideCam", hideCam);
+    socket.on("hideCam", toggleCamera);
     //  socket.on("onOffAudio", onOffAudio)
   }, []);
 
-  const hideCam = () => {
-    setShareCam(!shareCam);
-    if (myVideo.current.srcObject) {
-      navigator.mediaDevices
-        .getUserMedia({ video: shareCam, audio: true })
-        .then((stream) => {
-          myVideo.current.srcObject
-            .getTracks()
-            .forEach((t) => (t.enabled = !t.enabled));
-          setStream(stream);
-        });
-    } else {
-      navigator.mediaDevices
-        .getUserMedia({ video: true, audio: true })
-        .then((stream) => {
-          myVideo.current.srcObject = stream;
-          stream.getTracks().forEach((t) => (t.enabled = true));
-          setStream(stream);
-        });
-    }
-
-    // myVideo.current.srcObject.getVideoTracks().forEach((track) => track.stop()) t.enabled = !t.enabled;
-  };
+  // const hideCam = () => {
+  //   setShareCam(!shareCam);
+  //   if (myVideo.current.srcObject) {
+  //     navigator.mediaDevices
+  //       .getUserMedia({ video: shareCam, audio: true })
+  //       .then((stream) => {
+  //         myVideo.current.srcObject
+  //           .getTracks()
+  //           .forEach((t) => (t.enabled = !t.enabled));
+  //         setStream(stream);
+  //       });
+  //   } else {
+  //     navigator.mediaDevices
+  //       .getUserMedia({ video: true, audio: true })
+  //       .then((stream) => {
+  //         myVideo.current.srcObject = stream;
+  //         stream.getTracks().forEach((t) => (t.enabled = true));
+  //         setStream(stream);
+  //       });
+  //   }
+  // };
 
   // Nút này hơi sai sai nên để sau nha :))))
   const onOffAudio = () => {
@@ -150,7 +168,7 @@ const RoomContent = () => {
   const StopShareWebcamButton = () => {
     return (
       <div
-        onClick={hideCam}
+        onClick={toggleCamera}
         className="w-16 h-16 flex items-center justify-center mx-auto rounded-full bg-cyan-500 hover:bg-cyan-600 hover:cursor-pointer mx-4"
       >
         <svg
@@ -167,7 +185,7 @@ const RoomContent = () => {
   const StartShareWebcamButton = () => {
     return (
       <div
-        onClick={hideCam}
+        onClick={toggleCamera}
         className="w-16 h-16 flex items-center justify-center mx-auto rounded-full bg-cyan-500 hover:bg-cyan-600 hover:cursor-pointer mx-4"
       >
         <svg
