@@ -28,27 +28,38 @@ const RoomContent = () => {
   const connectionRef = useRef();
 
   const toggleCamera = () => {
-    if (isCameraOn) {
-      setIsCameraOn(false);
-      myVideo.current.srcObject.getTracks().forEach((track) => track.stop());
-
-      // navigator.getUserMedia({ video: false }, (stream) => {
-      //   myVideo.current.srcObject = stream;
-      //   setStream(stream);
-      // });
-    } else {
+    if (myVideo.current.srcObject) {
       navigator.mediaDevices
-        .getUserMedia({ video: true, audio: true })
+        .getUserMedia({ video: shareCam, audio: true })
         .then((stream) => {
-          myVideo.current.srcObject = stream;
-          setIsCameraOn(true);
-          const peer = new Peer({ initiator: true, stream });
-          peer.on("open", (id) => setIdToCall(id));
+          myVideo.current.srcObject
+            .getTracks()
+            .forEach((t) => (t.enabled = !t.enabled));
           setStream(stream);
-        })
-        .catch(console.error);
+        });
+    } else {
+      if (isCameraOn) {
+        setIsCameraOn(false);
+        myVideo.current.srcObject.getTracks().forEach((track) => track.stop());
+
+        // navigator.getUserMedia({ video: false }, (stream) => {
+        //   myVideo.current.srcObject = stream;
+        //   setStream(stream);
+        // });
+      } else {
+        navigator.mediaDevices
+          .getUserMedia({ video: true, audio: true })
+          .then((stream) => {
+            myVideo.current.srcObject = stream;
+            setIsCameraOn(true);
+            const peer = new Peer({ initiator: true, stream });
+            peer.on("open", (id) => setIdToCall(id));
+            setStream(stream);
+          })
+          .catch(console.error);
+      }
+      callUser(idToCall);
     }
-    callUser(idToCall);
   };
 
   useEffect(() => {
