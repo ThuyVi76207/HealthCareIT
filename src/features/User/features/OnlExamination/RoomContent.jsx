@@ -39,10 +39,11 @@ const RoomContent = () => {
           setIsCameraOn(true);
           const peer = new Peer({ initiator: true, stream });
           peer.on("open", (id) => setIdToCall(id));
-          callUser(idToCall);
+          setStream(stream);
         })
         .catch(console.error);
     }
+    callUser(idToCall);
   };
 
   useEffect(() => {
