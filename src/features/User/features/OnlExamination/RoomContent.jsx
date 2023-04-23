@@ -28,7 +28,7 @@ const RoomContent = () => {
   const connectionRef = useRef();
 
   const toggleCamera = () => {
-    if (myVideo.current.srcObject) {
+    if (myVideo.current.srcObject && shareCam === true) {
       navigator.mediaDevices
         .getUserMedia({ video: isCameraOn, audio: true })
         .then((stream) => {
@@ -59,7 +59,6 @@ const RoomContent = () => {
           })
           .catch(console.error);
       }
-      callUser(idToCall);
     }
   };
 
@@ -153,6 +152,7 @@ const RoomContent = () => {
       peer.signal(signal);
     });
     connectionRef.current = peer;
+    setShareCam(true);
   };
 
   const stopStream = async () => {
