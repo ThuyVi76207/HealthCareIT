@@ -31,6 +31,11 @@ const RoomContent = () => {
     if (isCameraOn) {
       setIsCameraOn(false);
       myVideo.current.srcObject.getTracks().forEach((track) => track.stop());
+
+      navigator.getUserMedia({ video: false }, (stream) => {
+        myVideo.current.srcObject = stream;
+        setStream(stream);
+      });
     } else {
       navigator.mediaDevices
         .getUserMedia({ video: true })
