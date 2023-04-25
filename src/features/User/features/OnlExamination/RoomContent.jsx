@@ -18,7 +18,7 @@ const RoomContent = () => {
   const [callEnded, setCallEnded] = useState(false);
   const [name, setName] = useState("");
   const [ipRoom, setIPRoom] = useState(false);
-  const [shareCam, setShareCam] = useState(false);
+  const [shareCam, setShareCam] = useState(true);
   const [audio, setAudio] = useState(true);
 
   const [isCameraOn, setIsCameraOn] = useState(false);
@@ -152,7 +152,6 @@ const RoomContent = () => {
       peer.signal(signal);
     });
     connectionRef.current = peer;
-    setShareCam(true);
   };
 
   const stopStream = async () => {
