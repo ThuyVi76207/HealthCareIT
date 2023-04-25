@@ -27,40 +27,40 @@ const RoomContent = () => {
   const userVideo = useRef();
   const connectionRef = useRef();
 
-  const toggleCamera = () => {
-    if (myVideo.current.srcObject && shareCam === true) {
-      navigator.mediaDevices
-        .getUserMedia({ video: isCameraOn, audio: true })
-        .then((stream) => {
-          myVideo.current.srcObject
-            .getTracks()
-            .forEach((t) => (t.enabled = !t.enabled));
-          // setStream(stream);
-          setIsCameraOn(!isCameraOn);
-        });
-    } else {
-      if (isCameraOn) {
-        setIsCameraOn(false);
-        myVideo.current.srcObject.getTracks().forEach((track) => track.stop());
+  // const toggleCamera = () => {
+  //   if (myVideo.current.srcObject && shareCam === true) {
+  //     navigator.mediaDevices
+  //       .getUserMedia({ video: isCameraOn, audio: true })
+  //       .then((stream) => {
+  //         myVideo.current.srcObject
+  //           .getTracks()
+  //           .forEach((t) => (t.enabled = !t.enabled));
+  //         // setStream(stream);
+  //         setIsCameraOn(!isCameraOn);
+  //       });
+  //   } else {
+  //     if (isCameraOn) {
+  //       setIsCameraOn(false);
+  //       myVideo.current.srcObject.getTracks().forEach((track) => track.stop());
 
-        // navigator.getUserMedia({ video: false }, (stream) => {
-        //   myVideo.current.srcObject = stream;
-        //   setStream(stream);
-        // });
-      } else {
-        navigator.mediaDevices
-          .getUserMedia({ video: true, audio: true })
-          .then((stream) => {
-            myVideo.current.srcObject = stream;
-            setIsCameraOn(true);
-            const peer = new Peer({ initiator: true, stream });
-            peer.on("open", (id) => setIdToCall(id));
-            setStream(stream);
-          })
-          .catch(console.error);
-      }
-    }
-  };
+  //       // navigator.getUserMedia({ video: false }, (stream) => {
+  //       //   myVideo.current.srcObject = stream;
+  //       //   setStream(stream);
+  //       // });
+  //     } else {
+  //       navigator.mediaDevices
+  //         .getUserMedia({ video: true, audio: true })
+  //         .then((stream) => {
+  //           myVideo.current.srcObject = stream;
+  //           setIsCameraOn(true);
+  //           const peer = new Peer({ initiator: true, stream });
+  //           peer.on("open", (id) => setIdToCall(id));
+  //           setStream(stream);
+  //         })
+  //         .catch(console.error);
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
     const getUserMedia = async () => {
@@ -91,31 +91,31 @@ const RoomContent = () => {
       setCallerSignal(data.signal);
     });
 
-    socket.on("hideCam", toggleCamera);
+    socket.on("hideCam", hideCam);
     //  socket.on("onOffAudio", onOffAudio)
   }, []);
 
-  // const hideCam = () => {
-  //   setShareCam(!shareCam);
-  //   if (myVideo.current.srcObject) {
-  //     navigator.mediaDevices
-  //       .getUserMedia({ video: shareCam, audio: true })
-  //       .then((stream) => {
-  //         myVideo.current.srcObject
-  //           .getTracks()
-  //           .forEach((t) => (t.enabled = !t.enabled));
-  //         setStream(stream);
-  //       });
-  //   } else {
-  //     navigator.mediaDevices
-  //       .getUserMedia({ video: true, audio: true })
-  //       .then((stream) => {
-  //         myVideo.current.srcObject = stream;
-  //         stream.getTracks().forEach((t) => (t.enabled = true));
-  //         setStream(stream);
-  //       });
-  //   }
-  // };
+  const hideCam = () => {
+    setShareCam(!shareCam);
+    if (myVideo.current.srcObject) {
+      navigator.mediaDevices
+        .getUserMedia({ video: shareCam, audio: true })
+        .then((stream) => {
+          myVideo.current.srcObject
+            .getTracks()
+            .forEach((t) => (t.enabled = !t.enabled));
+          setStream(stream);
+        });
+    } else {
+      navigator.mediaDevices
+        .getUserMedia({ video: true, audio: true })
+        .then((stream) => {
+          myVideo.current.srcObject = stream;
+          stream.getTracks().forEach((t) => (t.enabled = true));
+          setStream(stream);
+        });
+    }
+  };
 
   // Nút này hơi sai sai nên để sau nha :))))
   const onOffAudio = () => {
@@ -187,7 +187,7 @@ const RoomContent = () => {
   const StopShareWebcamButton = () => {
     return (
       <div
-        onClick={toggleCamera}
+        onClick={hideCam}
         className="w-16 h-16 flex items-center justify-center mx-auto rounded-full bg-cyan-500 hover:bg-cyan-600 hover:cursor-pointer mx-4"
       >
         <svg
@@ -204,7 +204,7 @@ const RoomContent = () => {
   const StartShareWebcamButton = () => {
     return (
       <div
-        onClick={toggleCamera}
+        onClick={hideCam}
         className="w-16 h-16 flex items-center justify-center mx-auto rounded-full bg-cyan-500 hover:bg-cyan-600 hover:cursor-pointer mx-4"
       >
         <svg
