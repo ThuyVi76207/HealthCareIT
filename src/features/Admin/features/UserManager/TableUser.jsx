@@ -79,7 +79,7 @@ const TableUser = ({ t }) => {
     }
   };
 
-  console.log("Check list user", listUsers);
+  //   console.log("Check list user", listUsers);
 
   const handleEditUser = (user) => {
     dispatch(addInfor(user));
