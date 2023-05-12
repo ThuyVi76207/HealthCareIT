@@ -1,28 +1,29 @@
-import { configureStore } from '@reduxjs/toolkit';
-import userReducer from 'reducers/userSlice';
-import messageReducer from 'reducers/messageSlice';
-import editcommonReducer from 'reducers/editcommonSlice';
-import timeworkReducer from 'reducers/timeworkSlice';
-import inforDoctorReducer from 'reducers/inforDoctorSlice';
-import profileuserReducer from 'reducers/profileuserSlice';
-import dialogModalReducer from 'reducers/modal/dialogModalSlice';
-import sendModalReducer from 'reducers/modal/sendModalSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "reducers/userSlice";
+import messageReducer from "reducers/messageSlice";
+import editcommonReducer from "reducers/editcommonSlice";
+import timeworkReducer from "reducers/timeworkSlice";
+import inforDoctorReducer from "reducers/inforDoctorSlice";
+import profileuserReducer from "reducers/profileuserSlice";
+import dialogModalReducer from "reducers/modal/dialogModalSlice";
+import sendModalReducer from "reducers/modal/sendModalSlice";
+import activeBarReducer from "reducers/activeBarSlice";
 //tao store
 
 const rootReducer = {
-    user: userReducer,
-    messages: messageReducer,
-    editcommon: editcommonReducer,
-    timework: timeworkReducer,
-    inforDoctor: inforDoctorReducer,
-    profileuser: profileuserReducer,
-    dialogModal: dialogModalReducer,
-    sendModal: sendModalReducer,
-
-}
+  user: userReducer,
+  messages: messageReducer,
+  editcommon: editcommonReducer,
+  timework: timeworkReducer,
+  inforDoctor: inforDoctorReducer,
+  profileuser: profileuserReducer,
+  dialogModal: dialogModalReducer,
+  sendModal: sendModalReducer,
+  activeBar: activeBarReducer,
+};
 
 const store = configureStore({
-    reducer: rootReducer,
+  reducer: rootReducer,
 });
 
 export default store;

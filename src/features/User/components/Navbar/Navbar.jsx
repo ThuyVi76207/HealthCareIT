@@ -8,6 +8,7 @@ import { withNamespaces } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { addLanguage } from "reducers/userSlice";
 import { use } from "i18next";
+import { setActiveBarMode } from "reducers/activeBarSlice";
 
 const Navbar = ({ t }) => {
   const dispatch = useDispatch();
@@ -52,6 +53,14 @@ const Navbar = ({ t }) => {
     localStorage.clear();
     navigate("/healthcare/login/user");
   };
+
+  useEffect(() => {
+    if (activeSroll) {
+      dispatch(setActiveBarMode(false));
+    } else {
+      dispatch(setActiveBarMode(acticeBar));
+    }
+  }, [acticeBar, activeSroll]);
 
   return (
     <div className="navbar-common">

@@ -2,8 +2,10 @@ import { useRef } from "react";
 import emailjs from "emailjs-com";
 
 import "./ContactContentStyles.scss";
+import { useSelector } from "react-redux";
 
 const ContactContent = () => {
+  const { activebar } = useSelector((state) => state.activeBar) || {};
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -18,9 +20,15 @@ const ContactContent = () => {
 
     e.target.reset();
   };
+
+  // console.log("check active abr ", activebar);
   return (
     <section id="contact" className="bg-contact">
-      <div className="bg-contact-body">
+      <div
+        className={`bg-contact-body ${
+          activebar === true ? "bg-contact-body-activebar" : ""
+        }`}
+      >
         {/* <div className="contact-title">Contact Information</div> */}
         <div className="container contact_container">
           <div className="contact_options">
