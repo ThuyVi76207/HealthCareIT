@@ -90,20 +90,22 @@ const ScheduleDoctor = ({ id, price, t, profile }) => {
   // console.log("Check time work", timeWork)
   console.log("Check price", price);
 
-  const handleScheduleDoctor = async (time) => {
-    console.log("Check time work", time);
+  const handleScheduleDoctor = async (timedata) => {
+    console.log("Check time work", timedata);
     console.log("Check profile", profile);
 
-    localStorage.setItem("timework", JSON.stringify(time));
+    localStorage.setItem("timework", JSON.stringify(timedata));
     localStorage.setItem("profiledoctor", JSON.stringify(profile));
-    dispatch(addInforTime(time));
+    dispatch(addInforTime(timedata));
     dispatch(addInforDoctor(profile));
 
     let data = {
-      date: time.date,
+      date: timedata.date,
       doctorId: profile.id,
-      timeType: time.timeType,
+      timeType: timedata.timeType,
     };
+
+    console.log("Check data time", data);
 
     try {
       let resCheck = await postCheckBookingAlready(data);
