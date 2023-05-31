@@ -1,19 +1,17 @@
-
 const getUrlDynamic = (roleId) => {
-    let userUrl;
+  let userUrl;
+  if (roleId && roleId === "R0") {
+    userUrl = "super-admin";
+  } else if (roleId && roleId === "R1") {
+    userUrl = "admin";
+  } else if (roleId && roleId === "R2") {
+    userUrl = "doctor";
+  } else if (roleId && roleId === "R4") {
+    userUrl = "healthstaff";
+  } else {
+    userUrl = "user";
+  }
+  return userUrl;
+};
 
-    if (roleId && roleId === 'R1') {
-        userUrl = 'admin';
-    } else if (roleId && roleId === 'R2') {
-        userUrl = 'doctor';
-    } else if (roleId && roleId === 'R4') {
-        userUrl = 'healthstaff';
-    } else {
-        userUrl = 'user'
-    }
-    return userUrl;
-}
-
-export {
-    getUrlDynamic,
-}
+export { getUrlDynamic };
