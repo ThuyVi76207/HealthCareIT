@@ -100,8 +100,8 @@ const ScheduleDoctor = ({ id, price, t, profile }) => {
     dispatch(addInforDoctor(profile));
 
     let data = {
-      doctorId: profile.id,
       date: time.date,
+      doctorId: profile.id,
       timeType: time.timeType,
     };
 
