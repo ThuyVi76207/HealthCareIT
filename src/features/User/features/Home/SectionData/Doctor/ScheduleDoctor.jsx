@@ -2,7 +2,10 @@ import moment from "moment";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "moment/locale/vi";
-import { getScheduleDoctorByDate } from "services/userService";
+import {
+  getScheduleDoctorByDate,
+  postCheckBookingAlready,
+} from "services/userService";
 import { withNamespaces } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { addInforTime } from "reducers/timeworkSlice";
@@ -87,7 +90,7 @@ const ScheduleDoctor = ({ id, price, t, profile }) => {
   // console.log("Check time work", timeWork)
   console.log("Check price", price);
 
-  const handleScheduleDoctor = (time) => {
+  const handleScheduleDoctor = async (time) => {
     console.log("Check time work", time);
     console.log("Check profile", profile);
 
@@ -95,6 +98,20 @@ const ScheduleDoctor = ({ id, price, t, profile }) => {
     localStorage.setItem("profiledoctor", JSON.stringify(profile));
     dispatch(addInforTime(time));
     dispatch(addInforDoctor(profile));
+
+    let data = {
+      doctorId: profile.id,
+      date: time.date,
+      timeType: time.timeType,
+    };
+
+    try {
+      let resCheck = await postCheckBookingAlready(data);
+      console.log("Chekc result", resCheck);
+    } catch (error) {
+      console.log("Faild API check booking already", error);
+    }
+
     // navigate(
     //   `/healthcare/booking-schedule/${time.date}/${time.timeType}/?price=${price}`
     // );
