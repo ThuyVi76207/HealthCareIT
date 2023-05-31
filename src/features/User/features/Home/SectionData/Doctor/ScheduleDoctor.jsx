@@ -89,14 +89,15 @@ const ScheduleDoctor = ({ id, price, t, profile }) => {
 
   const handleScheduleDoctor = (time) => {
     console.log("Check time work", time);
+    console.log("Check profile", profile);
 
     localStorage.setItem("timework", JSON.stringify(time));
     localStorage.setItem("profiledoctor", JSON.stringify(profile));
     dispatch(addInforTime(time));
     dispatch(addInforDoctor(profile));
-    navigate(
-      `/healthcare/booking-schedule/${time.date}/${time.timeType}/?price=${price}`
-    );
+    // navigate(
+    //   `/healthcare/booking-schedule/${time.date}/${time.timeType}/?price=${price}`
+    // );
   };
 
   return (

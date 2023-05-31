@@ -64,6 +64,12 @@ const postSendRoomID = (data) => {
 const getBookingInfo = () => {
   return axiosClient.get(`/api/get-booking-info`);
 };
+
+//Check Booking Already
+const postCheckBookingAlready = (data) => {
+  return axiosClient.post(`/api/check-booking-already`, data);
+};
+
 //SMS
 const postSendSMS = (data) => {
   return axiosClient.post(`/api/sendSMS`, data);
@@ -117,4 +123,5 @@ export {
   getAllRoom,
   postPaymentVNPay,
   postReturnPaymentVNPay,
+  postCheckBookingAlready,
 };
