@@ -359,23 +359,13 @@ const BookingSchedule = ({ t }) => {
                   required
                 />
                 <CommonInput
-                  field={t("bookingschedule.lastname")}
+                  field={t("bookingschedule.firstname")}
                   name="firstname"
                   value={firstname}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder={t("bookingschedule.phderfrsname")}
                   maxLength={50}
                   error={error.firstname}
-                  required
-                />
-                <EmailInput
-                  field="Email"
-                  name="email"
-                  email={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={t("bookingschedule.phderemail")}
-                  maxLength={50}
-                  error={error.email}
                   required
                 />
               </div>
@@ -387,6 +377,16 @@ const BookingSchedule = ({ t }) => {
                 placeholder={t("bookingschedule.phderaddress")}
                 maxLength={100}
                 error={error.address}
+                required
+              />
+              <EmailInput
+                field="Email"
+                name="email"
+                email={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={t("bookingschedule.phderemail")}
+                maxLength={50}
+                error={error.email}
                 required
               />
               <div className="form-down">
