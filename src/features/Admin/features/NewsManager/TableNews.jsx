@@ -35,7 +35,7 @@ const TableNews = ({ t }) => {
         doctorId: userProfile.id,
       };
       try {
-        if (userProfile.roleId === "R2" && userProfile.roleId === "R0") {
+        if (userProfile.roleId === "R2" && userProfile.roleId === "R4") {
           let res = await filterNewsByDoctorId(data);
           if (res && res.errCode === 0) {
             setListNews(res.data);
