@@ -111,7 +111,6 @@ const ScheduleDoctor = ({ id, price, t, profile }) => {
     try {
       let resCheck = await postCheckBookingAlready(data);
       if (resCheck && resCheck.errCode === 2) {
-        console.log("Chekc result", resCheck);
         dispatch(
           addWarningMessage({
             title: "Khung giờ không trống",
@@ -120,10 +119,11 @@ const ScheduleDoctor = ({ id, price, t, profile }) => {
         );
       } else {
         console.log("Check log");
-        // navigate(
-        //   `/healthcare/booking-schedule/${timedata.date}/${timedata.timeType}/?price=${price}`
-        // );
+        navigate(
+          `/healthcare/booking-schedule/${timedata.date}/${timedata.timeType}/?price=${price}`
+        );
       }
+      console.log("Chekc result", resCheck);
     } catch (error) {
       console.log("Faild API check booking already", error);
       alert("Đã có lỗi xảy ra!! Vui lòng thử lại sau");
