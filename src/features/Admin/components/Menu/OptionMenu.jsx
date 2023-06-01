@@ -34,22 +34,22 @@ export const superAdminMenu = [
   {
     icon: "fitness-outline",
     name: "menu.doctormanager",
-    link: "/manager/system/admin/doctormanager",
+    link: "/manager/system/superadmin/doctormanager",
   },
   {
     icon: "layers-outline",
     name: "menu.specialtymanager",
-    link: "/manager/system/admin/specialtymanager",
+    link: "/manager/system/superadmin/specialtymanager",
   },
   {
     icon: "newspaper-outline",
     name: "menu.newsmanager",
-    link: "/manager/system/admin/newsmanager",
+    link: "/manager/system/superadmin/newsmanager",
   },
   {
     icon: "time-outline",
     name: "menu.planmanager",
-    link: "/manager/system/admin/planmanager",
+    link: "/manager/system/superadmin/planmanager",
   },
 ];
 
