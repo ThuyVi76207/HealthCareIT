@@ -120,9 +120,9 @@ const ScheduleDoctor = ({ id, price, t, profile }) => {
         );
       } else {
         console.log("Check log");
-        // navigate(
-        //   `/healthcare/booking-schedule/${timedata.date}/${timedata.timeType}/?price=${price}`
-        // );
+        navigate(
+          `/healthcare/booking-schedule/${timedata.date}/${timedata.timeType}/?price=${price}`
+        );
       }
     } catch (error) {
       console.log("Faild API check booking already", error);
