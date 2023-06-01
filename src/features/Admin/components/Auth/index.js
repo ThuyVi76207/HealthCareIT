@@ -1,7 +1,7 @@
 const getUrlDynamic = (roleId) => {
   let userUrl;
   if (roleId && roleId === "R0") {
-    userUrl = "super-admin";
+    userUrl = "superadmin";
   } else if (roleId && roleId === "R1") {
     userUrl = "admin";
   } else if (roleId && roleId === "R2") {
