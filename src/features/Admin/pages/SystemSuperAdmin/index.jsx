@@ -9,7 +9,7 @@ import PlanManager from "../PlanManager";
 import SpecialtyManager from "../SpecialtyManager";
 import UserManager from "../UserManager";
 
-function SystemAdmin() {
+function SystemSuperAdmin() {
   return (
     <>
       <Routes>
@@ -71,4 +71,4 @@ function SystemAdmin() {
   );
 }
 
-export default SystemAdmin;
+export default SystemSuperAdmin;
