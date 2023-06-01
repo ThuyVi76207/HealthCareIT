@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { addInforTime } from "reducers/timeworkSlice";
 import { addInforDoctor } from "reducers/inforDoctorSlice";
 import "./SheduleDoctorStyles.scss";
+import { addWarningMessage } from "reducers/messageSlice";
 
 const ScheduleDoctor = ({ id, price, t, profile }) => {
   const dispatch = useDispatch();
@@ -109,14 +110,23 @@ const ScheduleDoctor = ({ id, price, t, profile }) => {
 
     try {
       let resCheck = await postCheckBookingAlready(data);
-      console.log("Chekc result", resCheck);
+      if (resCheck && resCheck.errCode === 2) {
+        console.log("Chekc result", resCheck);
+        dispatch(
+          addWarningMessage({
+            title: "Khung giờ không trống",
+            content: "Vui lòng chọn khung giờ khác!!",
+          })
+        );
+      } else {
+        navigate(
+          `/healthcare/booking-schedule/${timedata.date}/${timedata.timeType}/?price=${price}`
+        );
+      }
     } catch (error) {
       console.log("Faild API check booking already", error);
+      alert("Đã có lỗi xảy ra!! Vui lòng thử lại sau");
     }
-
-    // navigate(
-    //   `/healthcare/booking-schedule/${time.date}/${time.timeType}/?price=${price}`
-    // );
   };
 
   return (
