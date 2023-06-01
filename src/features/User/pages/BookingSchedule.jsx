@@ -370,16 +370,6 @@ const BookingSchedule = ({ t }) => {
                 />
               </div>
               <div className="form-up">
-                <CommonInput
-                  field={t("bookingschedule.address")}
-                  name="address"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  placeholder={t("bookingschedule.phderaddress")}
-                  maxLength={100}
-                  error={error.address}
-                  required
-                />
                 <EmailInput
                   field="Email"
                   name="email"
@@ -388,6 +378,16 @@ const BookingSchedule = ({ t }) => {
                   placeholder={t("bookingschedule.phderemail")}
                   maxLength={50}
                   error={error.email}
+                  required
+                />
+                <CommonInput
+                  field={t("bookingschedule.address")}
+                  name="address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder={t("bookingschedule.phderaddress")}
+                  maxLength={100}
+                  error={error.address}
                   required
                 />
               </div>
