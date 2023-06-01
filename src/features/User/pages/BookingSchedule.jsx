@@ -369,26 +369,29 @@ const BookingSchedule = ({ t }) => {
                   required
                 />
               </div>
-              <CommonInput
-                field={t("bookingschedule.address")}
-                name="address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                placeholder={t("bookingschedule.phderaddress")}
-                maxLength={100}
-                error={error.address}
-                required
-              />
-              <EmailInput
-                field="Email"
-                name="email"
-                email={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={t("bookingschedule.phderemail")}
-                maxLength={50}
-                error={error.email}
-                required
-              />
+              <div className="form-up">
+                <CommonInput
+                  field={t("bookingschedule.address")}
+                  name="address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder={t("bookingschedule.phderaddress")}
+                  maxLength={100}
+                  error={error.address}
+                  required
+                />
+                <EmailInput
+                  field="Email"
+                  name="email"
+                  email={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={t("bookingschedule.phderemail")}
+                  maxLength={50}
+                  error={error.email}
+                  required
+                />
+              </div>
+
               <div className="form-down">
                 <PhoneInput
                   field={t("bookingschedule.phone")}
