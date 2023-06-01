@@ -37,7 +37,8 @@ const BookingSchedule = ({ t }) => {
   const { language } = useSelector((state) => state.user) || {};
   const [date, setDate] = useState("");
 
-  const [name, setName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [firstname, setFirstName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -48,7 +49,8 @@ const BookingSchedule = ({ t }) => {
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
-    name: "",
+    lastname: "",
+    firstname: "",
     phoneNumber: "",
     email: "",
     address: "",
@@ -68,9 +70,13 @@ const BookingSchedule = ({ t }) => {
   const isValidated = () => {
     let validated = true;
     let _error = {};
-    if (name === "") {
+    if (lastname === "") {
       validated = false;
-      _error.name = "Vui lòng nhập họ và tên";
+      _error.name = "Vui lòng nhập họ và tên lót";
+    }
+    if (firstname === "") {
+      validated = false;
+      _error.name = "Vui lòng nhập tên";
     }
     if (phoneNumber === "") {
       validated = false;
@@ -229,7 +235,8 @@ const BookingSchedule = ({ t }) => {
     let numberPhone = `+84${+phoneNumber}`;
     console.log("check numberPhone: ", numberPhone);
     let data = {
-      fullName: name,
+      firstName: firstname,
+      lastName: lastname,
       phoneNumber: numberPhone,
       email: email,
       address: address,
@@ -342,13 +349,23 @@ const BookingSchedule = ({ t }) => {
             <div className="booking-chedule__container__form">
               <div className="form-up">
                 <CommonInput
-                  field={t("bookingschedule.name")}
-                  name="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder={t("bookingschedule.phdername")}
+                  field={t("bookingschedule.lastname")}
+                  name="lastname"
+                  value={lastname}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder={t("bookingschedule.phderlastname")}
                   maxLength={50}
-                  error={error.name}
+                  error={error.lastname}
+                  required
+                />
+                <CommonInput
+                  field={t("bookingschedule.lastname")}
+                  name="firstname"
+                  value={firstname}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder={t("bookingschedule.phderfrsname")}
+                  maxLength={50}
+                  error={error.firstname}
                   required
                 />
                 <EmailInput
