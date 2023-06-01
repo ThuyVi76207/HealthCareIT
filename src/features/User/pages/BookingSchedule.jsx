@@ -369,7 +369,7 @@ const BookingSchedule = ({ t }) => {
                   required
                 />
               </div>
-              <div className="form-up">
+              <div className="form-up mt-4">
                 <EmailInput
                   field="Email"
                   name="email"
