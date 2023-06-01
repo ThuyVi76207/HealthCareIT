@@ -1,19 +1,18 @@
 import AddEditInforDoctor from "features/Admin/features/DoctorManager/AddEditInforDoctor";
 import CreateEditNews from "features/Admin/features/NewsManager/CreateEditNews";
 import CreateEditSpecialty from "features/Admin/features/SpecialtyManager/CreateEditSpecialty";
-import CreateEditUser from "features/Admin/features/UserManager/CreateEditUser";
+
 import { Route, Routes } from "react-router-dom";
 import DoctorManager from "../DoctorManager";
 import NewsManager from "../NewsManager";
 import PlanManager from "../PlanManager";
 import SpecialtyManager from "../SpecialtyManager";
-import UserManager from "../UserManager";
 
 function SystemAdmin() {
   return (
     <>
       <Routes>
-        <Route exact path="/usermanager" element={<UserManager />}></Route>
+        {/* <Route exact path="/usermanager" element={<UserManager />}></Route>
         <Route
           exact
           path="/usermanager/create"
@@ -23,7 +22,7 @@ function SystemAdmin() {
           exact
           path="/usermanager/edit/:id"
           element={<CreateEditUser />}
-        ></Route>
+        ></Route> */}
 
         <Route exact path="/doctormanager" element={<DoctorManager />}></Route>
         <Route

@@ -1,9 +1,9 @@
 export const adminMenu = [
-  {
-    icon: "grid-outline",
-    name: "menu.usermanager",
-    link: "/manager/system/admin/usermanager",
-  },
+  // {
+  //   icon: "grid-outline",
+  //   name: "menu.usermanager",
+  //   link: "/manager/system/admin/usermanager",
+  // },
   {
     icon: "fitness-outline",
     name: "menu.doctormanager",
