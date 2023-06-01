@@ -72,11 +72,11 @@ const BookingSchedule = ({ t }) => {
     let _error = {};
     if (lastname === "") {
       validated = false;
-      _error.name = "Vui lòng nhập họ và tên lót";
+      _error.lastname = "Vui lòng nhập họ và tên lót";
     }
     if (firstname === "") {
       validated = false;
-      _error.name = "Vui lòng nhập tên";
+      _error.firstname = "Vui lòng nhập tên";
     }
     if (phoneNumber === "") {
       validated = false;
