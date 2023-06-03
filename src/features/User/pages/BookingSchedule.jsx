@@ -233,7 +233,7 @@ const BookingSchedule = ({ t }) => {
     let timeString = buildTimeBooking(timeSchedule);
     let doctorName = buidDoctorName(timeSchedule);
     let numberPhone = `+84${+phoneNumber}`;
-    console.log("check numberPhone: ", numberPhone);
+    // console.log("check numberPhone: ", numberPhone);
 
     let data = {
       firstName: firstname,
@@ -250,11 +250,11 @@ const BookingSchedule = ({ t }) => {
       language: language,
       timeString: timeString,
       doctorName: doctorName,
-      price: BigInt(parseInt(price)),
+      price: parseInt(price),
     };
 
     setLoading(true);
-    console.log("Check price0", BigInt(parseInt(price)))
+    
   
 
     try {
