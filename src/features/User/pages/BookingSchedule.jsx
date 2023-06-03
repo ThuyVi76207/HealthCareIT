@@ -250,11 +250,11 @@ const BookingSchedule = ({ t }) => {
       language: language,
       timeString: timeString,
       doctorName: doctorName,
-      price: price,
+      price: parseInt(price),
     };
 
     setLoading(true);
-    console.log("Check price: ", parseInt(price));
+  
 
     // try {
     //   let res = await postPatientBooking(data);
