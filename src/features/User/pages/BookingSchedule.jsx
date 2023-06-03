@@ -254,7 +254,7 @@ const BookingSchedule = ({ t }) => {
     };
 
     setLoading(true);
-    console.log("Check price: ", price);
+    console.log("Check price: ", parseInt(price));
 
     // try {
     //   let res = await postPatientBooking(data);
