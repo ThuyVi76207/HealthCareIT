@@ -254,6 +254,7 @@ const BookingSchedule = ({ t }) => {
     };
 
     setLoading(true);
+    console.log("Check price0", BigInt(parseInt(price)))
   
 
     try {
