@@ -233,7 +233,7 @@ const BookingSchedule = ({ t }) => {
     let timeString = buildTimeBooking(timeSchedule);
     let doctorName = buidDoctorName(timeSchedule);
     let numberPhone = `+84${+phoneNumber}`;
-    console.log("check numberPhone: ", numberPhone);
+    // console.log("check numberPhone: ", numberPhone);
 
     let data = {
       firstName: firstname,
