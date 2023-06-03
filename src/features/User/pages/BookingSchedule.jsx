@@ -249,6 +249,7 @@ const BookingSchedule = ({ t }) => {
       language: language,
       timeString: timeString,
       doctorName: doctorName,
+      price: price,
     };
 
     setLoading(true);
