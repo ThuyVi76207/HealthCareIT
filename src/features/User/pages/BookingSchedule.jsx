@@ -250,11 +250,11 @@ const BookingSchedule = ({ t }) => {
       language: language,
       timeString: timeString,
       doctorName: doctorName,
-      price: BigInt(parseInt(price)),
+      price: parseInt(price),
     };
 
     setLoading(true);
-    console.log("Check price0", BigInt(parseInt(price)))
+    
   
 
     try {
