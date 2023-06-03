@@ -256,53 +256,53 @@ const BookingSchedule = ({ t }) => {
     setLoading(true);
   
 
-    // try {
-    //   let res = await postPatientBooking(data);
-    //   console.log(res);
-    //   setLoading(true);
+    try {
+      let res = await postPatientBooking(data);
+      console.log(res);
+      setLoading(true);
 
-    //   if (res && res.errCode === 0) {
-    //     try {
-    //       await postSendSMS({
-    //         phoneNumber: numberPhone,
-    //       });
+      if (res && res.errCode === 0) {
+        try {
+          await postSendSMS({
+            phoneNumber: numberPhone,
+          });
 
-    //       if (paymentMethod === 12 || paymentMethod === 10) {
-    //         setLoading(false);
-    //         localStorage.setItem("paymentMethod", `${paymentMethod}`);
-    //         announceVerify();
-    //       }
-    //     } catch (error) {
-    //       dispatch(
-    //         addErrorMessage({
-    //           title: "Đã có lỗi xảy ra",
-    //           content: "Vui lòng thử lại sau!!!",
-    //         })
-    //       );
-    //       setLoading(false);
-    //       console.log("Faild post API payment paypal ", error);
-    //     }
-    //   } else if (res && res.errCode === 2) {
-    //     dispatch(
-    //       addWarningMessage({
-    //         title: "Đặt lịch không thành công",
-    //         content: "Khung giờ không trống!!! Vui lòng chọn khung giờ khác!!",
-    //       })
-    //     );
-    //     srollToInput();
-    //   }
-    //   setLoading(false);
-    //   console.log("Check booking successful", res);
-    // } catch (error) {
-    //   dispatch(
-    //     addErrorMessage({
-    //       title: "Đã có lỗi xảy ra",
-    //       content: "Vui lòng thử lại sau!!!",
-    //     })
-    //   );
-    //   setLoading(false);
-    //   console.log("Faild API a book apointment", error);
-    // }
+          if (paymentMethod === 12 || paymentMethod === 10) {
+            setLoading(false);
+            localStorage.setItem("paymentMethod", `${paymentMethod}`);
+            announceVerify();
+          }
+        } catch (error) {
+          dispatch(
+            addErrorMessage({
+              title: "Đã có lỗi xảy ra",
+              content: "Vui lòng thử lại sau!!!",
+            })
+          );
+          setLoading(false);
+          console.log("Faild post API payment paypal ", error);
+        }
+      } else if (res && res.errCode === 2) {
+        dispatch(
+          addWarningMessage({
+            title: "Đặt lịch không thành công",
+            content: "Khung giờ không trống!!! Vui lòng chọn khung giờ khác!!",
+          })
+        );
+        srollToInput();
+      }
+      setLoading(false);
+      console.log("Check booking successful", res);
+    } catch (error) {
+      dispatch(
+        addErrorMessage({
+          title: "Đã có lỗi xảy ra",
+          content: "Vui lòng thử lại sau!!!",
+        })
+      );
+      setLoading(false);
+      console.log("Faild API a book apointment", error);
+    }
   };
 
   const handleClose = () => {
