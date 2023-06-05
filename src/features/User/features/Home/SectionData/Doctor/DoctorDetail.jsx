@@ -71,12 +71,12 @@ function DoctorDetail({ t }) {
       <div className="doctor-detail">
         <div className="doctor-detail__head flex items-center">
           <div className="doctor-detail__head__title  mx-auto flex items-center">
-            <i className="text-[30px] text-[#fff] mt-1 mr-1">
+            {/* <i className="text-[30px] text-[#fff] mt-1 mr-1">
               <ion-icon name="arrow-forward-outline"></ion-icon>
             </i>
             <h2 className="uppercase text-[22px] text-[#fff] font-bold">
               {t("detaildoctor.titles")}
-            </h2>
+            </h2> */}
           </div>
         </div>
 
