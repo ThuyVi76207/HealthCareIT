@@ -130,7 +130,7 @@
     "phderemail": "Please enter your email address...",
     "phderphonenumber": "Please enter the phone number...",
     "phderaddress": "Please enter your address",
-    "phderpassword": "Please enter a password...",
+    "phderpassword": "More than 8 characters including letters, numbers",
     "phderrepassword": "Please re-enter password..."
   },
   "edituser": {
@@ -239,7 +239,7 @@
     "btn": "Login",
     "titlesad": "Login Form",
     "phderemail": "Email Address",
-    "phderpassword": "Password",
+    "phderpassword": "More than 8 characters including letters, numbers",
     "make": "Make with ❤️ by HealthCare"
   },
   "patientManager": {

@@ -13,6 +13,10 @@ function DoctorDetail({ t }) {
   const { id } = useParams();
   const { language } = useSelector((state) => state.user) || {};
 
+  const stars = Array(5).fill(0);
+  const [currentStar, setCurrentStar] = useState(0);
+  const [hoverStar, setHoverStar] = useState(undefined);
+
   useEffect(() => {
     const printinfoDoctor = async () => {
       try {
@@ -21,6 +25,7 @@ function DoctorDetail({ t }) {
           setInfoDoctor(resDetail.data);
         }
       } catch (error) {
+        alert("Có lỗi xảy ra vui lòng quay lại sau!!");
         console.log("Failed to get details doctor", error);
       }
     };
@@ -47,6 +52,20 @@ function DoctorDetail({ t }) {
     priceEn = parseInt(infoDoctor.Doctor_Infor.priceTypeData.value_En);
   }
 
+  //Rating
+  const handleClick = (value) => {
+    setCurrentStar(value);
+  };
+
+  const handleMouseOver = (value) => {
+    setHoverStar(value);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverStar(undefined);
+  };
+
+  console.log("Check star rating", currentStar);
   return (
     <MainLayout>
       <div className="doctor-detail">
@@ -146,6 +165,50 @@ function DoctorDetail({ t }) {
                   }}
                 ></div>
               )}
+          </div>
+        </div>
+        <div className="border-t border-gray-300 bg-[#f9f9f9]">
+          <div className="w-[70%] mx-auto py-2">
+            <h2 className="text-[20px] font-bold my-4">
+              Phản hồi của bệnh nhân sau khi khám
+            </h2>
+            <div>
+              {stars.map((_, index) => {
+                return (
+                  <i
+                    key={index}
+                    className={`text-[24px] mr-[10px] cursor-pointer ${
+                      (hoverStar || currentStar) > index
+                        ? "text-orange-400"
+                        : "text-gray-500"
+                    }`}
+                    onClick={() => handleClick(index + 1)}
+                    onMouseOver={() => handleMouseOver(index + 1)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <ion-icon name="star-outline"></ion-icon>
+                  </i>
+                );
+              })}
+            </div>
+
+            <div className="w-[65%] mb-4">
+              <label className="font-bold text-[20px] inline-block">
+                Bình luận
+              </label>
+              <span className="text-red-600">*</span>
+              <textarea
+                className=" form-control block mt-2 w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300
+                                                 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                rows="4"
+                // onChange={(e) => setDescription(e.target.value)}
+                // value={description}
+              ></textarea>
+            </div>
+
+            <button className="bg-gray-300 hover:bg-orange-400 py-1 px-6 rounded-[5px] text-[18px] text-gray-500 hover:text-black font-semibold ">
+              Đăng
+            </button>
           </div>
         </div>
       </div>
