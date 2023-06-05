@@ -130,7 +130,7 @@
     "phderemail": "Vui lòng nhập địa chỉ email...",
     "phderphonenumber": "Vui lòng nhập số điện thoại...",
     "phderaddress": "Vui lòng nhập địa chỉ",
-    "phderpassword": "Vui lòng nhập mật khẩu...",
+    "phderpassword": "Trên 8 ký tự gồm chữ, số",
     "phderrepassword": "Vui lòng nhập lại mật khẩu..."
   },
   "edituser": {
