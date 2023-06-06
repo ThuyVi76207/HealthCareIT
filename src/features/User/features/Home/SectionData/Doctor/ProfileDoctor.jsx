@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { getProfileDoctorById } from "services/userService";
 import "./ProfileDoctorStyles.scss";
 import ScheduleDoctor from "./ScheduleDoctor";
+import { Link } from "react-router-dom";
 
 const ProfileDoctor = ({ id, t }) => {
   const [profileDoctorId, setProfileDoctorId] = useState({});
@@ -60,7 +61,12 @@ const ProfileDoctor = ({ id, t }) => {
       <div className="card-profile__left">
         <div className="prof-left">
           <img className="rounded-[50%]" src={profileDoctorId.image} alt="" />
-          <button className="text-[#16917c]">{t("profiledoctor.more")}</button>
+          <Link to={`/healthcare/detail-doctor/${profileDoctorId.id}`}>
+            {" "}
+            <button className="text-[#16917c]">
+              {t("profiledoctor.more")}
+            </button>
+          </Link>
         </div>
         <div className="prof-right">
           <h2 className="text-[#16917c] font-bold my-1">
