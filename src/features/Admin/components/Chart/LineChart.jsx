@@ -1,6 +1,5 @@
 import { Line } from "react-chartjs-2";
 
-// import "./LineChartStyles.scss";
 import {
   Chart as ChartJS,
   Title,
@@ -14,7 +13,7 @@ import {
   LineController,
   LineElement,
 } from "chart.js";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 ChartJS.register(
   Tooltip,

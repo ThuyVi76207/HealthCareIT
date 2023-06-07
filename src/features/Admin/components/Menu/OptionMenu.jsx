@@ -56,6 +56,11 @@ export const superAdminMenu = [
     name: "menu.planmanager",
     link: "/manager/system/superadmin/planmanager",
   },
+  {
+    icon: "bar-chart-outline",
+    name: "menu.statistics",
+    link: "/manager/system/admin/statistics-booking",
+  },
 ];
 
 export const doctorMenu = [
