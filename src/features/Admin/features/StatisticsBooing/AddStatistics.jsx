@@ -34,20 +34,21 @@ const AddStatistics = ({ t }) => {
     formRef.current.scrollIntoView();
   };
 
-  useEffect(() => {
-    const postStatisticsBooking = async () => {
-      if (!isValidated()) return srollToInput();
-      let data = {
-        doctorId: listDoctor.id,
-        year: selectYear,
-      };
-      try {
-        let res = await statisticsBookingDoctor(data);
-        console.log("Check res statisticsBookingDoctor", res);
-      } catch (error) {}
+  const postStatisticsBooking = async () => {
+    if (!isValidated()) return srollToInput();
+    let data = {
+      doctorId: listDoctor.id,
+      year: selectYear,
     };
+    try {
+      let res = await statisticsBookingDoctor(data);
+      console.log("Check res statisticsBookingDoctor", res);
+    } catch (error) {}
+  };
+
+  const handleStatisticsOnClick = () => {
     postStatisticsBooking();
-  }, []);
+  };
 
   useEffect(() => {
     const getListDoctor = async () => {
@@ -145,6 +146,13 @@ const AddStatistics = ({ t }) => {
           </div>
         </div>
       </form>
+      <button
+        onClick={handleStatisticsOnClick}
+        className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-6 mx-12  rounded-[5px]"
+      >
+        Submit
+      </button>
+
       {/* <LineChart /> */}
     </div>
   );
