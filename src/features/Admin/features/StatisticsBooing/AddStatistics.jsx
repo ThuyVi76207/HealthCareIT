@@ -40,6 +40,7 @@ const AddStatistics = ({ t }) => {
       doctorId: listDoctor.id,
       year: selectYear,
     };
+    console.log("Check data", data);
     try {
       let res = await statisticsBookingDoctor(data);
       console.log("Check res statisticsBookingDoctor", res);
