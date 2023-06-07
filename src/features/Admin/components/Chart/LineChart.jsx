@@ -172,14 +172,14 @@ const LineChart = ({ listCost }) => {
               ticks: {
                 callback: function (value) {
                   return (
-                    value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,") +
+                    value.toFixed(0).replace(/\d(?=(\d{3})+\.)/g, "$&,") +
                     " vnd"
                   );
                 },
                 // forces step size to be 50 units
                 stepSize: 300000,
                 font: {
-                  size: 20,
+                  size: 15,
                 },
               },
               // min: 140,
