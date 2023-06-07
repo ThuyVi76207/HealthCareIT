@@ -99,6 +99,12 @@ const deleteMultipleBooking = (list) => {
   });
 };
 
+//
+
+const statisticsBookingDoctor = (data) => {
+  return axiosClient.post(`/api/statistics-booking-each-doctor`, data);
+};
+
 export {
   getAllUsers,
   createNewUserService,
@@ -119,4 +125,5 @@ export {
   deleteOneBooking,
   deleteMultipleBooking,
   filterNewsByDoctorId,
+  statisticsBookingDoctor,
 };
