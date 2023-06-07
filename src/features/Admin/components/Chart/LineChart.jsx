@@ -54,6 +54,14 @@ const LineChart = ({ listCost }) => {
     return listMounth;
   };
 
+  const costLabel = () => {
+    let listCost = [];
+    for (let i = 0; i < listCost.length; i++) {
+      listCost.push(listCost[i].total);
+    }
+    return listCost;
+  };
+
   console.log("Check for", mounthLabel());
 
   const [data, setData] = useState({
@@ -62,7 +70,7 @@ const LineChart = ({ listCost }) => {
       datasets: [
         {
           // label: "First Dataset",
-          data: [150, 148, 180, 245, 190, 220, 230],
+          data: costLabel(),
           backgroundColor: "#16917c",
           //   borderColor: "rgba(255, 138, 72, 1)",
           color: "Grey",
