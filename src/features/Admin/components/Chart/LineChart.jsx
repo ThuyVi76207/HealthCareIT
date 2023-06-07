@@ -172,7 +172,7 @@ const LineChart = ({ listCost }) => {
               ticks: {
                 callback: function (value) {
                   return (
-                    value.toFixed(0).replace(/\d(?=(\d{3})+\.)/g, "$&,") +
+                    value.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, "$&,") +
                     " vnd"
                   );
                 },
