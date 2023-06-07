@@ -55,11 +55,11 @@ const LineChart = ({ listCost }) => {
   };
 
   const costLabel = () => {
-    let listCost = [];
+    let listCostLabel = [];
     for (let i = 0; i < listCost.length; i++) {
-      listCost.push(listCost[i].total);
+      listCostLabel.push(listCost[i].total);
     }
-    return listCost;
+    return listCostLabel;
   };
 
   console.log("Check for", costLabel());
