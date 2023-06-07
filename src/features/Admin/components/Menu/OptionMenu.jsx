@@ -24,6 +24,11 @@ export const adminMenu = [
     name: "menu.planmanager",
     link: "/manager/system/admin/planmanager",
   },
+  {
+    icon: "bar-chart-outline",
+    name: "menu.statistics",
+    link: "/manager/system/admin/statistics-booking",
+  },
 ];
 export const superAdminMenu = [
   {
@@ -68,6 +73,11 @@ export const doctorMenu = [
     icon: "pulse-outline",
     name: "menu.patientmanager",
     link: "/manager/system/doctor/patientmanager",
+  },
+  {
+    icon: "bar-chart-outline",
+    name: "menu.statistics",
+    link: "/manager/system/doctor/statistics-booking",
   },
 ];
 export const healthStaffMenu = [
