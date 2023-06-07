@@ -171,7 +171,7 @@ const LineChart = ({ listCost }) => {
             y: {
               ticks: {
                 callback: function (value) {
-                  return value + "vnd";
+                  return value.toFixed(2) + " vnd";
                 },
                 // forces step size to be 50 units
                 stepSize: 300000,
