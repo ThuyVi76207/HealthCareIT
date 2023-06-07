@@ -174,7 +174,7 @@ const LineChart = ({ listCost }) => {
                   return value + "vnd";
                 },
                 // forces step size to be 50 units
-                stepSize: 40,
+                stepSize: 300000,
                 font: {
                   size: 10,
                 },
