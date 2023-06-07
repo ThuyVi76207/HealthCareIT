@@ -51,7 +51,7 @@ const AddStatistics = ({ t }) => {
     if (!isValidated()) return srollToInput();
     let data = {
       doctorId: selectedDoctor,
-      year: selectYear,
+      year: +selectYear,
     };
     console.log("Check data", data);
     try {
@@ -96,6 +96,7 @@ const AddStatistics = ({ t }) => {
     };
     setListYear(year(2022));
   }, []);
+
   console.log(selectYear);
   return (
     <div className="p-6">

@@ -48,6 +48,7 @@ const LineChart = ({ listCost }) => {
     "Tháng 11",
     "Tháng 12",
   ];
+
   useEffect(() => {
     const mounthLabel = () => {
       let listMounth = [];
