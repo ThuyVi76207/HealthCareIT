@@ -30,6 +30,8 @@ ChartJS.register(
 );
 const LineChart = ({ listCost }) => {
   console.log("Check list cost", listCost);
+  const [listTotal, setListTotal] = useState([]);
+  const [listMounths, setMounths] = useState([]);
 
   const labels = [
     "Tháng 1",
@@ -45,32 +47,38 @@ const LineChart = ({ listCost }) => {
     "Tháng 11",
     "Tháng 12",
   ];
+  useEffect(() => {
+    const mounthLabel = () => {
+      let listMounth = [];
+      for (let i = 0; i < listCost.length; i++) {
+        listMounth.push(labels[i]);
+      }
+      setMounths(listMounth);
+    };
 
-  const mounthLabel = () => {
-    let listMounth = [];
-    for (let i = 0; i < listCost.length; i++) {
-      listMounth.push(labels[i]);
-    }
-    return listMounth;
-  };
+    mounthLabel();
 
-  const costLabel = () => {
-    let listCostLabel = [];
-    for (let i = 0; i < listCost.length; i++) {
-      listCostLabel.push(listCost[i].total);
-    }
-    return listCostLabel;
-  };
+    const costLabel = () => {
+      let listCostLabel = [];
+      for (let i = 0; i < listCost.length; i++) {
+        listCostLabel.push(listCost[i].total);
+      }
+      setListTotal(listCostLabel);
+    };
 
-  console.log("Check for", costLabel());
+    costLabel();
+  }, [listCost]);
+
+  console.log("Check for", listMounths);
+  console.log("Check for", listTotal);
 
   const [data, setData] = useState({
     data: {
-      labels: mounthLabel(),
+      labels: listMounths,
       datasets: [
         {
           // label: "First Dataset",
-          data: costLabel(),
+          data: listTotal,
           backgroundColor: "#16917c",
           //   borderColor: "rgba(255, 138, 72, 1)",
           color: "Grey",
