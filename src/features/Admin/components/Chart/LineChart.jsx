@@ -62,7 +62,7 @@ const LineChart = ({ listCost }) => {
     return listCost;
   };
 
-  console.log("Check for", mounthLabel());
+  console.log("Check for", costLabel());
 
   const [data, setData] = useState({
     data: {
