@@ -43,8 +43,13 @@ const AddStatistics = ({ t }) => {
     console.log("Check data", data);
     try {
       let res = await statisticsBookingDoctor(data);
-      console.log("Check res statisticsBookingDoctor", res);
-    } catch (error) {}
+      if (res && res.errCode === 0) {
+        setListCost(res.monthlyStats);
+        console.log("Check res statisticsBookingDoctor", res);
+      }
+    } catch (error) {
+      console.log("Faild API error", error);
+    }
   };
 
   const handleStatisticsOnClick = () => {
@@ -149,12 +154,12 @@ const AddStatistics = ({ t }) => {
       </form>
       <button
         onClick={handleStatisticsOnClick}
-        className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-6 mx-12  rounded-[5px]"
+        className="bg-[#003985] text-white text-[16px] font-medium px-3 py-2 mb-5 mt-2 mx-12  rounded-[5px]"
       >
-        Submit
+        Thống kê
       </button>
 
-      {/* <LineChart /> */}
+      <LineChart listCost={listCost} />
     </div>
   );
 };

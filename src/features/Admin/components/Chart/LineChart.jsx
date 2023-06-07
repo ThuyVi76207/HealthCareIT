@@ -13,7 +13,7 @@ import {
   LineController,
   LineElement,
 } from "chart.js";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 ChartJS.register(
   Tooltip,
@@ -28,7 +28,34 @@ ChartJS.register(
 
   Title
 );
-const LineChart = () => {
+const LineChart = ({ listCost }) => {
+  console.log("Check list cost", listCost);
+  const labelsRef = useRef([]);
+  const labels = [
+    "Tháng 1",
+    "Tháng 2",
+    "Tháng 3",
+    "Tháng 4",
+    "Tháng 5",
+    "Tháng 6",
+    "Tháng 7",
+    "Tháng 8",
+    "Tháng 9",
+    "Tháng 10",
+    "Tháng 11",
+    "Tháng 12",
+  ];
+
+  useEffect(() => {
+    const mounthLabel = () => {
+      for (let i = 0; i < listCost.length; i++) {
+        // labelsRef.current.push(labels)
+        console.log("check label", labels[i]);
+      }
+    };
+    mounthLabel();
+  }, []);
+
   const [data, setData] = useState({
     data: {
       labels: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "CN"],
