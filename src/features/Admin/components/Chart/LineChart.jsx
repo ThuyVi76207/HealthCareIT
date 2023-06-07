@@ -92,7 +92,7 @@ const LineChart = ({ listCost }) => {
         y: {
           ticks: {
             callback: function (value) {
-              return value + "tr";
+              return value + "vnd";
             },
             // forces step size to be 50 units
             stepSize: 40,
@@ -100,8 +100,8 @@ const LineChart = ({ listCost }) => {
               size: 10,
             },
           },
-          min: 140,
-          max: 260,
+          // min: 140,
+          // max: 260,
         },
         x: {
           ticks: {
