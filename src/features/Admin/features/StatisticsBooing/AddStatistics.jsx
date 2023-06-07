@@ -37,7 +37,7 @@ const AddStatistics = ({ t }) => {
   const postStatisticsBooking = async () => {
     if (!isValidated()) return srollToInput();
     let data = {
-      doctorId: listDoctor.id,
+      doctorId: selectedDoctor,
       year: selectYear,
     };
     console.log("Check data", data);
