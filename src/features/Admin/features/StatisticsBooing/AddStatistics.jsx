@@ -15,6 +15,8 @@ const AddStatistics = ({ t }) => {
   const [listYear, setListYear] = useState([]);
   const [selectYear, setSelectYear] = useState(new Date().getFullYear());
 
+  const [useProf, setUseProf] = useState();
+
   const [error, setError] = useState({
     selectedDoctor: "",
   });
@@ -29,6 +31,17 @@ const AddStatistics = ({ t }) => {
     setError(_error);
     return validated;
   };
+
+  useEffect(() => {
+    const userProfile = JSON.parse(localStorage.getItem("R2"));
+    if (userProfile == null) {
+      return;
+    } else {
+      setUseProf(userProfile);
+      setIsDoctor(true);
+      setSelectedDoctor(userProfile.id);
+    }
+  }, []);
 
   const srollToInput = () => {
     formRef.current.scrollIntoView();
@@ -94,12 +107,13 @@ const AddStatistics = ({ t }) => {
               {t("addinfordoctor.namedoctor")}
             </label>
             <span className="text-red-600">*</span>
-            {isDoctor ? null : (
-              // <h2>
-              //   {language === "vi"
-              //     ? `${useProf.lastName} ${useProf.firstName}`
-              //     : `${useProf.firstName} ${useProf.lastName}`}
-              // </h2>
+            {isDoctor ? (
+              <h2>
+                {language === "vi"
+                  ? `${useProf.lastName} ${useProf.firstName}`
+                  : `${useProf.firstName} ${useProf.lastName}`}
+              </h2>
+            ) : (
               <select
                 onChange={(e) => setSelectedDoctor(e.target.value)}
                 value={selectedDoctor}
@@ -154,7 +168,7 @@ const AddStatistics = ({ t }) => {
       </form>
       <button
         onClick={handleStatisticsOnClick}
-        className="bg-[#003985] text-white text-[16px] font-medium px-3 py-2 mb-5 mt-2 mx-12  rounded-[5px]"
+        className="bg-[#003985] text-white text-[16px] font-medium px-3 py-2 mb-7 mt-2 mx-12  rounded-[5px]"
       >
         Thống kê
       </button>
