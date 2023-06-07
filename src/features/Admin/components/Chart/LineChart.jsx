@@ -188,7 +188,7 @@ const LineChart = ({ listCost }) => {
             x: {
               ticks: {
                 font: {
-                  size: 10,
+                  size: 15,
                 },
               },
               grid: {
