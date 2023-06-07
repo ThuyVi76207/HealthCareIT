@@ -30,7 +30,7 @@ ChartJS.register(
 );
 const LineChart = ({ listCost }) => {
   console.log("Check list cost", listCost);
-  const labelsRef = useRef([]);
+
   const labels = [
     "Tháng 1",
     "Tháng 2",
@@ -46,19 +46,19 @@ const LineChart = ({ listCost }) => {
     "Tháng 12",
   ];
 
-  useEffect(() => {
-    const mounthLabel = () => {
-      for (let i = 0; i < listCost.length; i++) {
-        // labelsRef.current.push(labels)
-        console.log("check label", labels[i]);
-      }
-    };
-    mounthLabel();
-  }, []);
+  const mounthLabel = () => {
+    let listMounth = [];
+    for (let i = 0; i < listCost.length; i++) {
+      listMounth.push(labels[i]);
+    }
+    return listMounth;
+  };
+
+  console.log("Check for", mounthLabel());
 
   const [data, setData] = useState({
     data: {
-      labels: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "CN"],
+      labels: mounthLabel(),
       datasets: [
         {
           // label: "First Dataset",
