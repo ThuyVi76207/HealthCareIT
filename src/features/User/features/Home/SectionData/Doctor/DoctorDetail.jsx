@@ -74,15 +74,22 @@ function DoctorDetail({ t }) {
 
   const handleCreateCommentOnclick = () => {
     if (userProfile && userProfile.isLogin === true) {
-      // handleCreateComment();
-      console.log("sussecss");
+      handleCreateComment();
+      // console.log("sussecss");
     } else {
       navigate(`/healthcare/login/user`);
     }
   };
 
   const handleCreateComment = async () => {
-    let data = {};
+    let data = {
+      userName: userProfile.lastName + " " + userProfile.firstName,
+      patientId: userProfile.id,
+      commentData: comment,
+      rating: currentStar,
+      doctorId: infoDoctor.id,
+      image: null,
+    };
     try {
       let res = await createComment(data);
       console.log("Check comment", res);
