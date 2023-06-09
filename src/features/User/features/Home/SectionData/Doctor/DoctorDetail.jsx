@@ -232,7 +232,10 @@ function DoctorDetail({ t }) {
               ></textarea>
             </div>
 
-            <button className="bg-gray-300 hover:bg-orange-400 py-1 px-6 rounded-[5px] text-[18px] text-gray-500 hover:text-black font-semibold ">
+            <button
+              onClick={handleCreateCommentOnclick}
+              className="bg-gray-300 hover:bg-orange-400 py-1 px-6 rounded-[5px] text-[18px] text-gray-500 hover:text-black font-semibold "
+            >
               Đăng
             </button>
           </div>
