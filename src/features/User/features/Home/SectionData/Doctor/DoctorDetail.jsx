@@ -3,8 +3,8 @@ import { getFormattedPriceUSD, getFormattedPriceVND } from "function/formater";
 import React, { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getDetailInforDoctor } from "services/userService";
+import { useNavigate, useParams } from "react-router-dom";
+import { createComment, getDetailInforDoctor } from "services/userService";
 import "./DoctorDetailStyles.scss";
 import ScheduleDoctor from "./ScheduleDoctor";
 
@@ -16,6 +16,13 @@ function DoctorDetail({ t }) {
   const stars = Array(5).fill(0);
   const [currentStar, setCurrentStar] = useState(0);
   const [hoverStar, setHoverStar] = useState(undefined);
+
+  const [comment, setComment] = useState("");
+
+  const rolID = sessionStorage.getItem("role");
+  const userProfile = JSON.parse(localStorage.getItem(`${rolID}`));
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const printinfoDoctor = async () => {
@@ -65,7 +72,26 @@ function DoctorDetail({ t }) {
     setHoverStar(undefined);
   };
 
-  console.log("Check star rating", currentStar);
+  const handleCreateCommentOnclick = () => {
+    if (userProfile && userProfile.isLogin === true) {
+      // handleCreateComment();
+      console.log("sussecss");
+    } else {
+      navigate(`/healthcare/login/user`);
+    }
+  };
+
+  const handleCreateComment = async () => {
+    let data = {};
+    try {
+      let res = await createComment(data);
+      console.log("Check comment", res);
+    } catch (error) {
+      console.log("Failed to create comment", error);
+    }
+  };
+
+  console.log("Check star rating and comment", currentStar, comment);
   return (
     <MainLayout>
       <div className="doctor-detail">
@@ -201,8 +227,8 @@ function DoctorDetail({ t }) {
                 className=" form-control block mt-2 w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300
                                                 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 rows="4"
-                // onChange={(e) => setDescription(e.target.value)}
-                // value={description}
+                onChange={(e) => setComment(e.target.value)}
+                value={comment}
               ></textarea>
             </div>
 

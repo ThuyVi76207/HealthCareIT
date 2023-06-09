@@ -99,6 +99,11 @@ const getAllRoom = () => {
   return axiosClient.get(`/api/get-all-room`);
 };
 
+//Comment
+const createComment = (data) => {
+  return axiosClient.post(`/api/create-comment`, data);
+};
+
 export {
   getAllSpecialty,
   getTopDoctorHomeService,
@@ -124,4 +129,5 @@ export {
   postPaymentVNPay,
   postReturnPaymentVNPay,
   postCheckBookingAlready,
+  createComment,
 };
