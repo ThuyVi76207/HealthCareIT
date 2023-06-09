@@ -24,6 +24,27 @@ function DoctorDetail({ t }) {
 
   const navigate = useNavigate();
 
+  const [error, setError] = useState({
+    comment: "",
+    currentStar: 0,
+  });
+
+  const isValidated = () => {
+    let validated = true;
+    let _error = {};
+    if (comment === "") {
+      validated = false;
+      _error.comment = "Vui lòng nhập bình luận";
+    }
+    if (currentStar === 0) {
+      validated = false;
+      _error.currentStar = "Vui lòng đánh giá sao";
+    }
+
+    setError(_error);
+    return validated;
+  };
+
   useEffect(() => {
     const printinfoDoctor = async () => {
       try {
