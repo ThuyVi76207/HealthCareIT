@@ -266,6 +266,11 @@
     "statusnotverify": "Chưa xác nhận"
   },
   "listcomment": {
-    "title": "Quản lý bình luận"
+    "title": "Quản lý bình luận",
+    "name": "Tên người dùng",
+    "daycreate": "Ngày tạo",
+    "commentdata": "Bình luận",
+    "rating": "Đánh giá",
+    "choose": "Tùy chọn"
   }
 }

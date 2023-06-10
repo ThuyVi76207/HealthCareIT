@@ -266,6 +266,11 @@
     "statusnotverify": "Status Not Verify"
   },
   "listcomment": {
-    "title": "Comment Manager"
+    "title": "Comment Manager",
+    "name": "User Name",
+    "daycreate": "Day creation",
+    "commentdata": "Comment",
+    "rating": "Rating",
+    "choose": "Option"
   }
 }
