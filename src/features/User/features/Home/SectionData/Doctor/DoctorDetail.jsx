@@ -189,11 +189,11 @@ function DoctorDetail({ t }) {
       for (let i = 0; i < listRating.length; i++) {
         total += listRating[i];
       }
+      totalRatingRef.current = total / listRating.length;
     }
 
-    totalRatingRef.current = total;
     console.log("Chec k, ", listRating);
-    console.log("Check total rating", totalRatingRef);
+    console.log("Check total rating", total, totalRatingRef.current);
   }, [listComment]);
 
   return (
