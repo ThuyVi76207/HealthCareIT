@@ -105,7 +105,10 @@ const createComment = (data) => {
 };
 
 const getAllCommentByDoctor = (data) => {
-  return axiosClient.get(`/api/getAllCommentByDoctorId`, data);
+  return axiosClient.get(
+    `/api/getAllCommentByDoctorId?limit=${data.limit}&doctorId=${data.doctorId}`,
+    data
+  );
 };
 
 export {
