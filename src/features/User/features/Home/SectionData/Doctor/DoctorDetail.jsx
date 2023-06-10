@@ -146,7 +146,7 @@ function DoctorDetail({ t }) {
   useEffect(() => {
     const getListComment = async () => {
       let data = {
-        limitInput: null,
+        limit: null,
         doctorId: infoDoctor.id,
       };
       try {
