@@ -104,6 +104,10 @@ const createComment = (data) => {
   return axiosClient.post(`/api/create-comment`, data);
 };
 
+const getAllCommentByDoctor = (data) => {
+  return axiosClient.get(`/api/getAllCommentByDoctorId`, data);
+};
+
 export {
   getAllSpecialty,
   getTopDoctorHomeService,
@@ -130,4 +134,5 @@ export {
   postReturnPaymentVNPay,
   postCheckBookingAlready,
   createComment,
+  getAllCommentByDoctor,
 };
