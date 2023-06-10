@@ -347,7 +347,7 @@ function DoctorDetail({ t }) {
                             <i
                               key={index}
                               className={`text-[24px] mr-[10px] cursor-pointer ${
-                                (hoverStar || currentStar) > index
+                                item.rating > index
                                   ? "text-orange-400"
                                   : "text-gray-500"
                               }`}
