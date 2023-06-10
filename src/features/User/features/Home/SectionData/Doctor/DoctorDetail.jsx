@@ -246,6 +246,9 @@ function DoctorDetail({ t }) {
                   </i>
                 );
               })}
+              {error.currentStar && (
+                <span className="text-red-600">{error.currentStar}</span>
+              )}
             </div>
 
             <div className="w-[65%] mb-4">
