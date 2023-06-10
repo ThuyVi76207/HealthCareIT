@@ -3,17 +3,26 @@ import { convertDateToDateTime } from "function/formater";
 
 import { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addErrorMessage,
+  addSuccessMessage,
+  addWarningMessage,
+} from "reducers/messageSlice";
 import { getAllDoctors } from "services/adminService";
-import { getAllCommentByDoctor } from "services/userService";
+import { deleteComment, getAllCommentByDoctor } from "services/userService";
 
 const ListComment = ({ t }) => {
+  const dispatch = useDispatch();
+
   const [listComment, setListComment] = useState([]);
   const [listDoctor, setListDoctor] = useState([]);
   const [selectedDoctor, setSelectedDoctor] = useState(0);
   const { language } = useSelector((state) => state.user) || {};
   const [loading, setLoading] = useState(false);
   const stars = Array(5).fill(0);
+
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     const getListDoctor = async () => {
@@ -54,6 +63,41 @@ const ListComment = ({ t }) => {
     };
     getListComment();
   }, [selectedDoctor]);
+
+  const handleDeleteComment = async (id) => {
+    setLoading(true);
+    try {
+      let res = await deleteComment(id);
+      console.log("Check deleted comment", res);
+      if (res && res.errCode === 0) {
+        dispatch(
+          addSuccessMessage({
+            title: "Xóa thành công",
+            content: "Đã xóa thành công bình luận!!!",
+          })
+        );
+
+        setReload(!reload);
+      } else if (res && res.errCode === 2) {
+        dispatch(
+          addWarningMessage({
+            title: "Xóa không thành công",
+            content: "Vui lòng kiểm tra lại!!!",
+          })
+        );
+      }
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      dispatch(
+        addErrorMessage({
+          title: "Đã có lỗi xảy ra",
+          content: "Vui lòng thử lại sau!!!",
+        })
+      );
+      console.error("Faild api delete specialty", err);
+    }
+  };
   return (
     <div>
       <Loading loading={loading} />
@@ -129,7 +173,7 @@ const ListComment = ({ t }) => {
                       </button>
                       <button
                         className="hover:text-red-600"
-                        // onClick={() => handleDeleteNews(item)}
+                        onClick={() => handleDeleteComment(item.id)}
                       >
                         <i className="fas fa-trash"></i>
                       </button>
