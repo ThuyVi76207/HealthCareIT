@@ -264,5 +264,8 @@
     "status": "Trạng thái",
     "option": "Tùy chọn",
     "statusnotverify": "Chưa xác nhận"
+  },
+  "listcomment": {
+    "title": "Quản lý bình luận"
   }
 }
