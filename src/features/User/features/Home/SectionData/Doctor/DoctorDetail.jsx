@@ -158,7 +158,7 @@ function DoctorDetail({ t }) {
       }
     };
     getListComment();
-  }, []);
+  }, [infoDoctor.id]);
   return (
     <MainLayout>
       <div className="doctor-detail">
