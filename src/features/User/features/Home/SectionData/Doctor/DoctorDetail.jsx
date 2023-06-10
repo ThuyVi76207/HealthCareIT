@@ -95,7 +95,9 @@ function DoctorDetail({ t }) {
 
   const handleCreateCommentOnclick = () => {
     if (userProfile && userProfile.isLogin === true) {
-      handleCreateComment();
+      if (isValidated() === true) {
+        handleCreateComment();
+      }
       // console.log("sussecss");
     } else {
       navigate(`/healthcare/login/user`);
@@ -251,9 +253,12 @@ function DoctorDetail({ t }) {
                 Bình luận
               </label>
               <span className="text-red-600">*</span>
+              {error.comment && (
+                <span className="text-red-600">{error.comment}</span>
+              )}
               <textarea
-                className=" form-control block mt-2 w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300
-                                                rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                className="form-control block mt-2 w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300
+                          rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 rows="4"
                 onChange={(e) => setComment(e.target.value)}
                 value={comment}
