@@ -4,7 +4,11 @@ import React, { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { createComment, getDetailInforDoctor } from "services/userService";
+import {
+  createComment,
+  getAllCommentByDoctor,
+  getDetailInforDoctor,
+} from "services/userService";
 import "./DoctorDetailStyles.scss";
 import ScheduleDoctor from "./ScheduleDoctor";
 import { addErrorMessage, addSuccessMessage } from "reducers/messageSlice";
@@ -136,6 +140,22 @@ function DoctorDetail({ t }) {
   };
 
   console.log("Check star rating and comment", currentStar, comment);
+
+  useEffect(() => {
+    const getListComment = async () => {
+      let data = {
+        limitInput: null,
+        doctorId: infoDoctor.id,
+      };
+      try {
+        let res = await getAllCommentByDoctor(data);
+        console.log("Check list comment", res);
+      } catch (error) {
+        console.log("Faild get list comment", error);
+      }
+    };
+    getListComment();
+  }, []);
   return (
     <MainLayout>
       <div className="doctor-detail">
@@ -287,6 +307,9 @@ function DoctorDetail({ t }) {
               {loading ? <LoadingSpinner2 loading={loading} /> : ""}
             </button>
           </div>
+        </div>
+        <div className="border-t border-gray-300 bg-[#f9f9f9]">
+          <div className="w-[70%] mx-auto py-2"></div>
         </div>
       </div>
     </MainLayout>
