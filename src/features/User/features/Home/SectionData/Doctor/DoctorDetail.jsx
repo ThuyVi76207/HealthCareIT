@@ -4,7 +4,7 @@ import {
   getFormattedPriceUSD,
   getFormattedPriceVND,
 } from "function/formater";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -38,6 +38,7 @@ function DoctorDetail({ t }) {
 
   const [listComment, setListComment] = useState([]);
   const [reload, setReload] = useState(false);
+  const totalRatingRef = useRef();
 
   const [error, setError] = useState({
     comment: "",
@@ -175,6 +176,26 @@ function DoctorDetail({ t }) {
     getListComment();
   }, [reload, infoDoctor.id]);
 
+  useEffect(() => {
+    if (!listComment && listComment.length === 0) return;
+
+    let listRating = [];
+    let total;
+    for (let i = 0; i < listComment.length; i++) {
+      listRating.push(listComment[i].rating);
+    }
+
+    if (listRating.length > 0) {
+      for (let i = 0; i < listRating.length; i++) {
+        total += listRating[i];
+      }
+    }
+
+    totalRatingRef.current = total;
+
+    console.log("Check total rating", totalRatingRef);
+  }, [listComment]);
+
   return (
     <MainLayout>
       <div className="doctor-detail">
@@ -209,6 +230,7 @@ function DoctorDetail({ t }) {
                 )}
             </div>
           </div>
+
           <div className="doctor-detail__content__chedule">
             <div className="content-up">
               <ScheduleDoctor
@@ -257,6 +279,10 @@ function DoctorDetail({ t }) {
                   )}
               </div>
             </div>
+          </div>
+
+          <div>
+            <h2>Đánh giá:</h2> <span></span>
           </div>
 
           <div className="description-doctor mt-7">
