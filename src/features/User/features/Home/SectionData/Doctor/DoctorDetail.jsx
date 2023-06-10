@@ -121,6 +121,8 @@ function DoctorDetail({ t }) {
       let res = await createComment(data);
       if (res && res.errCode === 0) {
         console.log("Check comment", res);
+        setComment("");
+        setCurrentStar(0);
         dispatch(
           addSuccessMessage({
             title: "Bình luận thành công",
