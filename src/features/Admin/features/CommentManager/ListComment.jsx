@@ -1,4 +1,6 @@
 import Loading from "components/Loading/loading";
+import { convertDateToDateTime } from "function/formater";
+
 import { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -11,15 +13,18 @@ const ListComment = ({ t }) => {
   const [selectedDoctor, setSelectedDoctor] = useState(0);
   const { language } = useSelector((state) => state.user) || {};
   const [loading, setLoading] = useState(false);
+  const stars = Array(5).fill(0);
 
   useEffect(() => {
     const getListDoctor = async () => {
+      setLoading(true);
       try {
         let res = await getAllDoctors();
         if (res && res.errCode === 0) {
           console.log("Check list doctor", res.data);
           setListDoctor(res.data);
         }
+        setLoading(false);
       } catch (error) {
         console.log("Faild to get list of Doctor", error);
       }
@@ -32,13 +37,19 @@ const ListComment = ({ t }) => {
       limit: "",
       doctorId: selectedDoctor,
     };
+    setLoading(true);
     console.log("Check data", data);
     const getListComment = async () => {
       try {
         let res = await getAllCommentByDoctor(data);
-        console.log("Check commentData", res);
+        if (res && res.errCode === 0) {
+          console.log("Check commentData", res);
+          setListComment(res.data);
+        }
+        setLoading(false);
       } catch (error) {
         console.log("Failed to get list comment", error);
+        setLoading(false);
       }
     };
     getListComment();
@@ -46,7 +57,7 @@ const ListComment = ({ t }) => {
   return (
     <div>
       <Loading loading={loading} />
-      <div className="w-[30%] mt-6 ">
+      <div className="w-[30%] my-8 ">
         <select
           onChange={(e) => setSelectedDoctor(e.target.value)}
           value={selectedDoctor}
@@ -77,38 +88,55 @@ const ListComment = ({ t }) => {
           <tbody>
             <tr className="uppercase">
               <th>STT</th>
-              <th>{t("tablenews.name")}</th>
-              <th>{t("tablenews.daycreate")}</th>
-              <th>{t("tablenews.dayupdate")}</th>
-              <th>{t("tablenews.choose")}</th>
+              <th>{t("listcomment.name")}</th>
+              <th>{t("listcomment.daycreate")}</th>
+              <th>{t("listcomment.commentdata")}</th>
+              <th>{t("listcomment.rating")}</th>
+              <th>{t("listcomment.choose")}</th>
             </tr>
 
-            {/* {listnews &&
-              listnews.length > 0 &&
-              listnews.map((item, index) => {
+            {listComment &&
+              listComment.length > 0 &&
+              listComment.map((item, index) => {
                 return (
                   <tr key={index}>
                     <td>{index + 1}</td>
-                    <td>{item.name}</td>
+                    <td>{item.userName}</td>
                     <td>{convertDateToDateTime(item.createdAt)}</td>
-                    <td>{convertDateToDateTime(item.updatedAt)}</td>
+                    <td>{item.commentData}</td>
+                    <td>
+                      {stars.map((_, index) => {
+                        return (
+                          <i
+                            key={index}
+                            className={`text-[20px] mr-[10px] cursor-pointer ${
+                              item.rating > index
+                                ? "text-orange-400"
+                                : "text-gray-500"
+                            }`}
+                          >
+                            <ion-icon name="star-outline"></ion-icon>
+                          </i>
+                        );
+                      })}
+                    </td>
                     <td className="text-center">
                       <button
                         className="mr-2 hover:text-orange-400"
-                        onClick={() => handleEditNews(item)}
+                        // onClick={() => handleEditNews(item)}
                       >
                         <i className="fas fa-pencil-alt"></i>
                       </button>
                       <button
                         className="hover:text-red-600"
-                        onClick={() => handleDeleteNews(item)}
+                        // onClick={() => handleDeleteNews(item)}
                       >
                         <i className="fas fa-trash"></i>
                       </button>
                     </td>
                   </tr>
                 );
-              })} */}
+              })}
           </tbody>
         </table>
       </div>
