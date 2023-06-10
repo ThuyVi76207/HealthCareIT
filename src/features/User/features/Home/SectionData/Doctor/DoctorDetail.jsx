@@ -278,8 +278,8 @@ function DoctorDetail({ t }) {
             </div>
           </div>
 
-          <div className="flex items-center">
-            <h2>Đánh giá: </h2>
+          <div className="flex items-center gap-[5px]">
+            <h2 className="text-[18px]">Đánh giá: </h2>
             {stars.map((_, index) => {
               return (
                 <i
