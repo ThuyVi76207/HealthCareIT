@@ -177,7 +177,6 @@ function DoctorDetail({ t }) {
   }, [reload, infoDoctor.id]);
 
   useEffect(() => {
-    setLoading(true);
     if (listComment.length === 0) return;
 
     let listRating = [];
@@ -192,7 +191,7 @@ function DoctorDetail({ t }) {
       }
       totalRatingRef.current = total / listRating.length;
     }
-    setLoading(false);
+
     console.log("Chec k, ", listRating);
     console.log("Check total rating", total, totalRatingRef.current);
   }, [listComment]);
@@ -283,25 +282,21 @@ function DoctorDetail({ t }) {
           </div>
 
           <div>
-            <h2>Đánh giá: </h2>
-            {loading ? (
-              <LoadingSpinner2 loading={loading} />
-            ) : (
-              stars.map((_, index) => {
-                return (
-                  <i
-                    key={index}
-                    className={`text-[24px] mr-[10px] cursor-pointer inline-block${
-                      totalRatingRef.current > index
-                        ? "text-orange-400"
-                        : "text-gray-500"
-                    }`}
-                  >
-                    <ion-icon name="star-outline"></ion-icon>
-                  </i>
-                );
-              })
-            )}
+            <span>Đánh giá: </span>
+            {stars.map((_, index) => {
+              return (
+                <i
+                  key={index}
+                  className={`text-[24px] mr-[10px] cursor-pointer inline-block ${
+                    totalRatingRef.current > index
+                      ? "text-orange-400"
+                      : "text-gray-500"
+                  }`}
+                >
+                  <ion-icon name="star-outline"></ion-icon>
+                </i>
+              );
+            })}
           </div>
 
           <div className="description-doctor mt-7">
