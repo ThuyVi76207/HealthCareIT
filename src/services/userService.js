@@ -119,6 +119,10 @@ const deleteComment = (id) => {
   });
 };
 
+const editComment = (data) => {
+  return axiosClient.put(`/api/update-comment`, data);
+};
+
 export {
   getAllSpecialty,
   getTopDoctorHomeService,
@@ -147,4 +151,5 @@ export {
   createComment,
   getAllCommentByDoctor,
   deleteComment,
+  editComment,
 };
