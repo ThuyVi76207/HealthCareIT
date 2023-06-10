@@ -144,6 +144,7 @@ function DoctorDetail({ t }) {
   console.log("Check star rating and comment", currentStar, comment);
 
   useEffect(() => {
+    if (!infoDoctor.id) return;
     const getListComment = async () => {
       let data = {
         limit: "5",
