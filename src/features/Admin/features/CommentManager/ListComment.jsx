@@ -1,12 +1,9 @@
 import Loading from "components/Loading/loading";
-import { getUrlDynamic } from "features/Admin/components/Auth";
 import { convertDateToDateTime } from "function/formater";
 
 import { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { addInfor } from "reducers/editcommonSlice";
 import {
   addErrorMessage,
   addSuccessMessage,
@@ -17,7 +14,6 @@ import { deleteComment, getAllCommentByDoctor } from "services/userService";
 
 const ListComment = ({ t }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [listComment, setListComment] = useState([]);
   const [listDoctor, setListDoctor] = useState([]);
@@ -27,8 +23,6 @@ const ListComment = ({ t }) => {
   const stars = Array(5).fill(0);
 
   const [reload, setReload] = useState(false);
-  const rolID = sessionStorage.getItem("role");
-  const userProfile = JSON.parse(localStorage.getItem(`${rolID}`));
 
   useEffect(() => {
     const getListDoctor = async () => {
@@ -105,11 +99,11 @@ const ListComment = ({ t }) => {
     }
   };
 
-  const handleEditComment = (user) => {
-    dispatch(addInfor(user));
-    let userUrl = getUrlDynamic(userProfile.roleId);
-    navigate(`/manager/system/${userUrl}/comment-manager/edit/${user.id}`);
-  };
+  //   const handleEditComment = (user) => {
+  //     dispatch(addInfor(user));
+  //     let userUrl = getUrlDynamic(userProfile.roleId);
+  //     navigate(`/manager/system/${userUrl}/comment-manager/edit/${user.id}`);
+  //   };
   return (
     <div>
       <Loading loading={loading} />
