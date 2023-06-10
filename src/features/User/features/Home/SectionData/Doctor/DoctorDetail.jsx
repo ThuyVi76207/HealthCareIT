@@ -282,7 +282,21 @@ function DoctorDetail({ t }) {
           </div>
 
           <div>
-            <h2>Đánh giá:</h2> <span>{totalRatingRef.current.tofix(2)}</span>
+            <h2>Đánh giá: </h2> <span>{totalRatingRef.current.toFixed(1)}</span>
+            {stars.map((_, index) => {
+              return (
+                <i
+                  key={index}
+                  className={`text-[24px] mr-[10px] cursor-pointer ${
+                    totalRatingRef.current > index
+                      ? "text-orange-400"
+                      : "text-gray-500"
+                  }`}
+                >
+                  <ion-icon name="star-outline"></ion-icon>
+                </i>
+              );
+            })}
           </div>
 
           <div className="description-doctor mt-7">
