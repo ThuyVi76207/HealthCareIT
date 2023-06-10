@@ -1,5 +1,9 @@
 import MainLayout from "features/User/layouts/MainLayout";
-import { getFormattedPriceUSD, getFormattedPriceVND } from "function/formater";
+import {
+  convertDateToDateTime,
+  getFormattedPriceUSD,
+  getFormattedPriceVND,
+} from "function/formater";
 import React, { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,6 +35,8 @@ function DoctorDetail({ t }) {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  const [listComment, setListComment] = useState([]);
 
   const [error, setError] = useState({
     comment: "",
@@ -155,7 +161,11 @@ function DoctorDetail({ t }) {
 
       try {
         let res = await getAllCommentByDoctor(data);
-        console.log("Check list comment", res);
+
+        if (res && res.errCode === 0) {
+          console.log("Check list comment", res);
+          setListComment(res.data);
+        }
       } catch (error) {
         console.log("Faild get list comment", error);
       }
@@ -312,10 +322,19 @@ function DoctorDetail({ t }) {
               Đăng
               {loading ? <LoadingSpinner2 loading={loading} /> : ""}
             </button>
+
+            <div className="border-t border-t-gray-400">
+              <div className="flex items-center">
+                <h2 className="text-[18px] font-medium">
+                  {listComment.userName}
+                </h2>
+                <p className="ml-4 text-gray-400">
+                  {convertDateToDateTime(listComment.createdAt)}
+                </p>
+              </div>
+              <p>{listComment.commentData}</p>
+            </div>
           </div>
-        </div>
-        <div className="border-t border-gray-300 bg-[#f9f9f9]">
-          <div className="w-[70%] mx-auto py-2"></div>
         </div>
       </div>
     </MainLayout>
