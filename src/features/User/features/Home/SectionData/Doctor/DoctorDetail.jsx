@@ -334,7 +334,7 @@ function DoctorDetail({ t }) {
                       key={index}
                     >
                       <div className="flex items-center">
-                        <h2 className="text-[18px] font-medium">
+                        <h2 className="text-[18px] font-medium text-[#16917c]">
                           {item.userName}
                         </h2>
                         <p className="ml-4 text-gray-400">
