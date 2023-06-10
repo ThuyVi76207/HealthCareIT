@@ -9,6 +9,7 @@ import PlanManager from "../PlanManager";
 import SpecialtyManager from "../SpecialtyManager";
 import UserManager from "../UserManager";
 import StatisticsBooking from "../StatisticsBooking";
+import CommentManager from "../CommentManager";
 
 function SystemSuperAdmin() {
   return (
@@ -72,6 +73,11 @@ function SystemSuperAdmin() {
           exact
           path="/statistics-booking"
           element={<StatisticsBooking />}
+        ></Route>
+        <Route
+          exact
+          path="/comment-manager"
+          element={<CommentManager />}
         ></Route>
       </Routes>
     </>

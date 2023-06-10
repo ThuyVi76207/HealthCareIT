@@ -66,6 +66,11 @@ export const superAdminMenu = [
     name: "menu.statistics",
     link: "/manager/system/admin/statistics-booking",
   },
+  {
+    icon: "chatbox-ellipses-outline",
+    name: "menu.commentmanager",
+    link: "/manager/system/admin/comment-manager",
+  },
 ];
 
 export const doctorMenu = [

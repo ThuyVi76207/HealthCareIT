@@ -177,12 +177,12 @@ const ListComment = ({ t }) => {
                       })}
                     </td>
                     <td className="text-center">
-                      <button
+                      {/* <button
                         className="mr-2 hover:text-orange-400"
                         onClick={() => handleEditComment(item)}
                       >
                         <i className="fas fa-pencil-alt"></i>
-                      </button>
+                      </button> */}
                       <button
                         className="hover:text-red-600"
                         onClick={() => handleDeleteComment(item.id)}

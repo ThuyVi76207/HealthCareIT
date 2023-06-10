@@ -9,7 +9,6 @@ import PlanManager from "../PlanManager";
 import SpecialtyManager from "../SpecialtyManager";
 import StatisticsBooking from "../StatisticsBooking";
 import CommentManager from "../CommentManager";
-import EditComment from "features/Admin/features/CommentManager/EditComment";
 
 function SystemAdmin() {
   return (
@@ -80,11 +79,11 @@ function SystemAdmin() {
           path="/comment-manager"
           element={<CommentManager />}
         ></Route>
-        <Route
+        {/* <Route
           exact
           path="/comment-manager/edit/:id"
           element={<EditComment />}
-        ></Route>
+        ></Route> */}
       </Routes>
     </>
   );
