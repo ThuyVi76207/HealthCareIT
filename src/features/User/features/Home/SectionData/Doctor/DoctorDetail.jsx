@@ -146,9 +146,10 @@ function DoctorDetail({ t }) {
   useEffect(() => {
     const getListComment = async () => {
       let data = {
-        limit: 10,
+        limit: "",
         doctorId: infoDoctor.id,
       };
+
       try {
         let res = await getAllCommentByDoctor(data);
         console.log("Check list comment", res);
