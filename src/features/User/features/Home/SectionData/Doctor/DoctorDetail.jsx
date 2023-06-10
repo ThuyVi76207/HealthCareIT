@@ -38,6 +38,7 @@ function DoctorDetail({ t }) {
   const navigate = useNavigate();
 
   const [listComment, setListComment] = useState([]);
+  const [reload, setReload] = useState(false);
 
   const [error, setError] = useState({
     comment: "",
@@ -130,6 +131,7 @@ function DoctorDetail({ t }) {
         console.log("Check comment", res);
         setComment("");
         setCurrentStar(0);
+        setReload(true);
         dispatch(
           addSuccessMessage({
             title: "Bình luận thành công",
@@ -172,7 +174,7 @@ function DoctorDetail({ t }) {
       }
     };
     getListComment();
-  }, [infoDoctor.id]);
+  }, [reload, infoDoctor.id]);
 
   return (
     <MainLayout>
