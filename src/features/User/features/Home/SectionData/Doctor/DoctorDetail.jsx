@@ -324,12 +324,15 @@ function DoctorDetail({ t }) {
               Đăng
               {loading ? <LoadingSpinner2 loading={loading} /> : ""}
             </button>
-            <>
+            <div className="my-[20px]">
               {listComment &&
                 listComment.length > 0 &&
                 listComment.map((item, index) => {
                   return (
-                    <div className="border-t border-t-gray-400" key={index}>
+                    <div
+                      className="border-t border-t-gray-400 py-[10px]"
+                      key={index}
+                    >
                       <div className="flex items-center">
                         <h2 className="text-[18px] font-medium">
                           {item.userName}
@@ -338,11 +341,13 @@ function DoctorDetail({ t }) {
                           {convertDateToDateTime(item.createdAt)}
                         </p>
                       </div>
-                      <p>{item.commentData}</p>
+                      <p className="text-[15px] mt-[5px] font-light">
+                        {item.commentData}
+                      </p>
                     </div>
                   );
                 })}
-            </>
+            </div>
           </div>
         </div>
       </div>
