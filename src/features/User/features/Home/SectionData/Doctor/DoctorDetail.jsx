@@ -282,7 +282,7 @@ function DoctorDetail({ t }) {
           </div>
 
           <div>
-            <h2>Đánh giá: </h2> <span>{totalRatingRef.current.toFixed(1)}</span>
+            <h2>Đánh giá: </h2> <span>{totalRatingRef.current}</span>
             {stars.map((_, index) => {
               return (
                 <i
