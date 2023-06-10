@@ -2,11 +2,13 @@ import MainLayout from "features/User/layouts/MainLayout";
 import { getFormattedPriceUSD, getFormattedPriceVND } from "function/formater";
 import React, { useEffect, useState } from "react";
 import { withNamespaces } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { createComment, getDetailInforDoctor } from "services/userService";
 import "./DoctorDetailStyles.scss";
 import ScheduleDoctor from "./ScheduleDoctor";
+import { addErrorMessage, addSuccessMessage } from "reducers/messageSlice";
+import LoadingSpinner2 from "components/Loading/LoadingSpinner2";
 
 function DoctorDetail({ t }) {
   const [infoDoctor, setInfoDoctor] = useState({});
@@ -21,6 +23,8 @@ function DoctorDetail({ t }) {
 
   const rolID = sessionStorage.getItem("role");
   const userProfile = JSON.parse(localStorage.getItem(`${rolID}`));
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -108,10 +112,25 @@ function DoctorDetail({ t }) {
       doctorId: infoDoctor.id,
       image: null,
     };
+    setLoading(true);
     try {
       let res = await createComment(data);
-      console.log("Check comment", res);
+      if (res && res.errCode === 0) {
+        console.log("Check comment", res);
+        dispatch(
+          addSuccessMessage({
+            title: "Bình luận thành công",
+            content: "Bình luận của bạn đã được đăng",
+          })
+        );
+      }
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
+      addErrorMessage({
+        title: "Đã có lỗi xảy ra",
+        content: "Vui lòng thử lại sau!!!",
+      });
       console.log("Failed to create comment", error);
     }
   };
@@ -265,6 +284,7 @@ function DoctorDetail({ t }) {
               className="bg-gray-300 hover:bg-orange-400 py-1 px-6 rounded-[5px] text-[18px] text-gray-500 hover:text-black font-semibold "
             >
               Đăng
+              {loading ? <LoadingSpinner2 loading={loading} /> : ""}
             </button>
           </div>
         </div>

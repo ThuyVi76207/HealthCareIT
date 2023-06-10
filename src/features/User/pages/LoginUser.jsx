@@ -16,6 +16,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import "../features/Login/LoginUserStyles.scss";
+import Loading from "components/Loading/loading";
 
 const LoginUser = ({ t }) => {
   const dispatch = useDispatch();
@@ -123,6 +124,7 @@ const LoginUser = ({ t }) => {
 
   return (
     <div className="relative login-user">
+      <Loading loading={loading} />
       <div className=" login-container  rounded-[10px] absolute shadow-[0_2px_10px_1px_rgba(0,0,0,0.3)] z-10">
         <img
           className="absolute rounded-[10px] h-full -z-10"
