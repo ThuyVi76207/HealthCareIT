@@ -111,6 +111,14 @@ const getAllCommentByDoctor = (data) => {
   );
 };
 
+const deleteComment = (id) => {
+  return axiosClient.delete(`/api/delete-comment`, {
+    data: {
+      id: id,
+    },
+  });
+};
+
 export {
   getAllSpecialty,
   getTopDoctorHomeService,
@@ -138,4 +146,5 @@ export {
   postCheckBookingAlready,
   createComment,
   getAllCommentByDoctor,
+  deleteComment,
 };
