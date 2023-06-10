@@ -341,6 +341,22 @@ function DoctorDetail({ t }) {
                           {convertDateToDateTime(item.createdAt)}
                         </p>
                       </div>
+                      <div>
+                        {stars.map((_, index) => {
+                          return (
+                            <i
+                              key={index}
+                              className={`text-[24px] mr-[10px] cursor-pointer ${
+                                item.rating > index
+                                  ? "text-orange-400"
+                                  : "text-gray-500"
+                              }`}
+                            >
+                              <ion-icon name="star-outline"></ion-icon>
+                            </i>
+                          );
+                        })}
+                      </div>
                       <p className="text-[15px] mt-[5px] font-light">
                         {item.commentData}
                       </p>
