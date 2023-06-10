@@ -38,7 +38,7 @@ function DoctorDetail({ t }) {
 
   const [listComment, setListComment] = useState([]);
   const [reload, setReload] = useState(false);
-  const totalRatingRef = useRef();
+  const [totalCurrent, setTotalCurrent] = useState(0);
 
   const [error, setError] = useState({
     comment: "",
@@ -189,11 +189,8 @@ function DoctorDetail({ t }) {
       for (let i = 0; i < listRating.length; i++) {
         total += listRating[i];
       }
-      totalRatingRef.current = total / listRating.length;
+      setTotalCurrent(total / listRating.length);
     }
-
-    console.log("Chec k, ", listRating);
-    console.log("Check total rating", total, totalRatingRef.current);
   }, [listComment]);
 
   return (
@@ -281,16 +278,14 @@ function DoctorDetail({ t }) {
             </div>
           </div>
 
-          <div>
-            <span>Đánh giá: </span>
+          <div className="flex items-center">
+            <h2>Đánh giá: </h2>
             {stars.map((_, index) => {
               return (
                 <i
                   key={index}
                   className={`text-[24px] mr-[10px] cursor-pointer inline-block ${
-                    totalRatingRef.current > index
-                      ? "text-orange-400"
-                      : "text-gray-500"
+                    totalCurrent > index ? "text-orange-400" : "text-gray-500"
                   }`}
                 >
                   <ion-icon name="star-outline"></ion-icon>
