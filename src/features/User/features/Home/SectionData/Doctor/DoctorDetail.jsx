@@ -180,7 +180,7 @@ function DoctorDetail({ t }) {
     if (listComment.length === 0) return;
 
     let listRating = [];
-    let total;
+    let total = 0;
     for (let i = 0; i < listComment.length; i++) {
       listRating.push(listComment[i].rating);
     }
