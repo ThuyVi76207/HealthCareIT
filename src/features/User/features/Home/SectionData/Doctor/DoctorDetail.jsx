@@ -17,7 +17,6 @@ import "./DoctorDetailStyles.scss";
 import ScheduleDoctor from "./ScheduleDoctor";
 import { addErrorMessage, addSuccessMessage } from "reducers/messageSlice";
 import LoadingSpinner2 from "components/Loading/LoadingSpinner2";
-import { list } from "postcss";
 
 function DoctorDetail({ t }) {
   const [infoDoctor, setInfoDoctor] = useState({});

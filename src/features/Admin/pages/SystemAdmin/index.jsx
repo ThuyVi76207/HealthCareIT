@@ -8,6 +8,7 @@ import NewsManager from "../NewsManager";
 import PlanManager from "../PlanManager";
 import SpecialtyManager from "../SpecialtyManager";
 import StatisticsBooking from "../StatisticsBooking";
+import CommentManager from "../CommentManager";
 
 function SystemAdmin() {
   return (
@@ -71,6 +72,12 @@ function SystemAdmin() {
           exact
           path="/statistics-booking"
           element={<StatisticsBooking />}
+        ></Route>
+
+        <Route
+          exact
+          path="/comment-manager"
+          element={<CommentManager />}
         ></Route>
       </Routes>
     </>

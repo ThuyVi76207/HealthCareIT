@@ -103,7 +103,8 @@
     "patientmanager": "Quản lý bệnh nhân",
     "bookmanager": "Quản lý lịch đặt",
     "roomvideo": "Phòng trực tuyến",
-    "statistics": "Thống kê"
+    "statistics": "Thống kê",
+    "commentmanager": "Quản lý bình luận"
   },
   "tableuser": {
     "title": "Quản lý người dùng",
