@@ -26,7 +26,6 @@ function DoctorDetail({ t }) {
 
   const [error, setError] = useState({
     comment: "",
-    currentStar: 0,
   });
 
   const isValidated = () => {
@@ -35,10 +34,6 @@ function DoctorDetail({ t }) {
     if (comment === "") {
       validated = false;
       _error.comment = "Vui lòng nhập bình luận";
-    }
-    if (currentStar === 0) {
-      validated = false;
-      _error.currentStar = "Vui lòng đánh giá sao";
     }
 
     setError(_error);
@@ -109,7 +104,7 @@ function DoctorDetail({ t }) {
       userName: userProfile.lastName + " " + userProfile.firstName,
       patientId: userProfile.id,
       commentData: comment,
-      rating: currentStar,
+      rating: currentStar === 0 ? +5 : currentStar,
       doctorId: infoDoctor.id,
       image: null,
     };
@@ -246,9 +241,6 @@ function DoctorDetail({ t }) {
                   </i>
                 );
               })}
-              {error.currentStar && (
-                <span className="text-red-600">{error.currentStar}</span>
-              )}
             </div>
 
             <div className="w-[65%] mb-4">
