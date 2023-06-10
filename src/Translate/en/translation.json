@@ -103,7 +103,8 @@
     "patientmanager": "Patient Management",
     "bookmanager": "Book Management",
     "roomvideo": "Room Video",
-    "statistics": "Statistics Booking"
+    "statistics": "Statistics Booking",
+    "commentmanager": "Comment Manager"
   },
   "tableuser": {
     "title": "User Management",
