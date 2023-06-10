@@ -282,7 +282,7 @@ function DoctorDetail({ t }) {
           </div>
 
           <div>
-            <h2>Đánh giá:</h2> <span></span>
+            <h2>Đánh giá:</h2> <span>{totalRatingRef.current.tofix(2)}</span>
           </div>
 
           <div className="description-doctor mt-7">
