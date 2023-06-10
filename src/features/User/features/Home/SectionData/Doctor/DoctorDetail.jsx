@@ -177,6 +177,7 @@ function DoctorDetail({ t }) {
   }, [reload, infoDoctor.id]);
 
   useEffect(() => {
+    setLoading(true);
     if (listComment.length === 0) return;
 
     let listRating = [];
@@ -191,7 +192,7 @@ function DoctorDetail({ t }) {
       }
       totalRatingRef.current = total / listRating.length;
     }
-
+    setLoading(false);
     console.log("Chec k, ", listRating);
     console.log("Check total rating", total, totalRatingRef.current);
   }, [listComment]);
