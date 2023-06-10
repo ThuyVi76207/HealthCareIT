@@ -264,5 +264,8 @@
     "status": "Status",
     "option": "Option",
     "statusnotverify": "Status Not Verify"
+  },
+  "listcomment": {
+    "title": "Comment Manager"
   }
 }
