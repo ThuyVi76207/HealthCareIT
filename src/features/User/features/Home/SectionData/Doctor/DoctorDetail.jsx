@@ -150,6 +150,8 @@ function DoctorDetail({ t }) {
         doctorId: infoDoctor.id,
       };
 
+      console.log("check data", data);
+
       try {
         let res = await getAllCommentByDoctor(data);
         console.log("Check list comment", res);
