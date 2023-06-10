@@ -17,6 +17,7 @@ import "./DoctorDetailStyles.scss";
 import ScheduleDoctor from "./ScheduleDoctor";
 import { addErrorMessage, addSuccessMessage } from "reducers/messageSlice";
 import LoadingSpinner2 from "components/Loading/LoadingSpinner2";
+import { list } from "postcss";
 
 function DoctorDetail({ t }) {
   const [infoDoctor, setInfoDoctor] = useState({});
@@ -172,6 +173,7 @@ function DoctorDetail({ t }) {
     };
     getListComment();
   }, [infoDoctor.id]);
+
   return (
     <MainLayout>
       <div className="doctor-detail">
@@ -322,18 +324,25 @@ function DoctorDetail({ t }) {
               Đăng
               {loading ? <LoadingSpinner2 loading={loading} /> : ""}
             </button>
-
-            <div className="border-t border-t-gray-400">
-              <div className="flex items-center">
-                <h2 className="text-[18px] font-medium">
-                  {listComment.userName}
-                </h2>
-                <p className="ml-4 text-gray-400">
-                  {convertDateToDateTime(listComment.createdAt)}
-                </p>
-              </div>
-              <p>{listComment.commentData}</p>
-            </div>
+            <>
+              {listComment &&
+                listComment.length > 0 &&
+                listComment.map((item, index) => {
+                  return (
+                    <div className="border-t border-t-gray-400" key={index}>
+                      <div className="flex items-center">
+                        <h2 className="text-[18px] font-medium">
+                          {item.userName}
+                        </h2>
+                        <p className="ml-4 text-gray-400">
+                          {convertDateToDateTime(item.createdAt)}
+                        </p>
+                      </div>
+                      <p>{item.commentData}</p>
+                    </div>
+                  );
+                })}
+            </>
           </div>
         </div>
       </div>
