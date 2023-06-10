@@ -147,7 +147,7 @@ function DoctorDetail({ t }) {
     if (!infoDoctor.id) return;
     const getListComment = async () => {
       let data = {
-        limit: "5",
+        limit: "",
         doctorId: infoDoctor.id,
       };
 
