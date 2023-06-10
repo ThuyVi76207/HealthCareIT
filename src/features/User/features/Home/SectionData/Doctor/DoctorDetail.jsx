@@ -283,20 +283,24 @@ function DoctorDetail({ t }) {
 
           <div>
             <h2>Đánh giá: </h2>
-            {stars.map((_, index) => {
-              return (
-                <i
-                  key={index}
-                  className={`text-[24px] mr-[10px] cursor-pointer ${
-                    totalRatingRef.current > index
-                      ? "text-orange-400"
-                      : "text-gray-500"
-                  }`}
-                >
-                  <ion-icon name="star-outline"></ion-icon>
-                </i>
-              );
-            })}
+            {loading ? (
+              <LoadingSpinner2 loading={loading} />
+            ) : (
+              stars.map((_, index) => {
+                return (
+                  <i
+                    key={index}
+                    className={`text-[24px] mr-[10px] cursor-pointer inline-block${
+                      totalRatingRef.current > index
+                        ? "text-orange-400"
+                        : "text-gray-500"
+                    }`}
+                  >
+                    <ion-icon name="star-outline"></ion-icon>
+                  </i>
+                );
+              })
+            )}
           </div>
 
           <div className="description-doctor mt-7">
