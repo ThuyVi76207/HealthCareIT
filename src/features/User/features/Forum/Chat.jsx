@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import {
+  Timestamp,
   addDoc,
   collection,
+  deleteDoc,
   onSnapshot,
   orderBy,
   query,
   serverTimestamp,
   where,
 } from "firebase/firestore";
+
 import { auth, db } from "components/firebase/firebase-config";
 
 import "./Chat.css";
@@ -18,6 +21,53 @@ const Chat = (props) => {
   const [messages, setMessages] = useState([]);
 
   const messageRef = collection(db, "messages");
+
+  // useEffect(() => {
+  //   https.onRequest(async (req, res) => {
+  //     const date = new Date();
+  //     date.setDate(date.getDate() - 30); // substracting 30 days
+
+  //     const querySnapshot = await admin
+  //       .firestore()
+  //       .collection("messages")
+  //       .where("createdAt", "<", Timestamp.fromDate(date))
+  //       .get();
+
+  //     const batch = firestore().batch();
+  //     querySnapshot.forEach((doc) => {
+  //       batch.delete(doc.ref);
+  //     });
+
+  //     await batch
+  //       .commit()
+  //       .then(() => {
+  //         res.send(`Successfully deleted documents from collectionName`);
+  //       })
+  //       .catch((error) => {
+  //         res.send(`Error deleting documents from collectionName: ${error}`);
+  //       });
+  //   });
+  // }, []);
+
+  useEffect(() => {
+    const date = new Date();
+    date.setDate(date.getDate() - 30); // substracting 30 days
+
+    const querySnapshot = query(
+      messageRef,
+      where("createdAt", "<", Timestamp.fromDate(date))
+    );
+
+    const unscribe = onSnapshot(querySnapshot, (snapshot) => {
+      let message = [];
+      snapshot.forEach((doc) => {
+        deleteDoc(doc.ref);
+      });
+      setMessages(message);
+    });
+
+    return () => unscribe();
+  }, []);
 
   useEffect(() => {
     const queryMessage = query(
