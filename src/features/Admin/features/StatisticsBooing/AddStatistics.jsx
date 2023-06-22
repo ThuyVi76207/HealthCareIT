@@ -56,6 +56,7 @@ const AddStatistics = ({ t }) => {
     console.log("Check data", data);
     try {
       let res = await statisticsBookingDoctor(data);
+      console.log("Check list AddStatistics", res);
       if (res && res.errCode === 0) {
         setListCost(res.monthlyStats);
         console.log("Check res statisticsBookingDoctor", res);
@@ -73,7 +74,7 @@ const AddStatistics = ({ t }) => {
     const getListDoctor = async () => {
       try {
         let res = await getAllDoctors();
-        console.log("Check list AddStatistics", res);
+
         if (res && res.errCode === 0) {
           console.log("Check list doctor", res.data);
           setListDoctor(res.data);
