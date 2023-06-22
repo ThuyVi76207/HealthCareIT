@@ -60,6 +60,8 @@ const AddStatistics = ({ t }) => {
       if (res && res.errCode === 0) {
         setListCost(res.monthlyStats);
         console.log("Check res statisticsBookingDoctor", res);
+      } else if (res && res.errCode === 2) {
+        alert("Không có lịch đặt để thống kê");
       }
     } catch (error) {
       console.log("Faild API error", error);
