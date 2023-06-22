@@ -73,6 +73,7 @@ const AddStatistics = ({ t }) => {
     const getListDoctor = async () => {
       try {
         let res = await getAllDoctors();
+        console.log("Check list AddStatistics", res);
         if (res && res.errCode === 0) {
           console.log("Check list doctor", res.data);
           setListDoctor(res.data);
