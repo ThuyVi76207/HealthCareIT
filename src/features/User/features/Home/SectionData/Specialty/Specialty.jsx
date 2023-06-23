@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
+import loadingAPI from "assets/Loading/LoadingAPI.gif";
 
 import { getAllSpecialty } from "services/userService";
 import "./SpecialtyStyles.scss";
@@ -75,6 +76,9 @@ function Specialty() {
   return (
     <div className="section-specialty">
       <div className="share-container">
+        {listSpecialty.length === 0 && (
+          <img className="w-[365px] mx-auto" src={loadingAPI} alt="loading" />
+        )}
         <Slider {...settings}>
           {listSpecialty &&
             listSpecialty.length > 0 &&

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import { getAllNews } from "services/userService";
 import "./NewsStyles.scss";
+import loadingAPI from "assets/Loading/LoadingAPI.gif";
 
 function News() {
   const [listNews, setListNews] = useState([]);
@@ -73,6 +74,9 @@ function News() {
   return (
     <div className="section-news">
       <div className="news-container">
+        {listNews.length === 0 && (
+          <img className="w-[365px] mx-auto" src={loadingAPI} alt="loading" />
+        )}
         <Slider {...settings}>
           {listNews.map((item, index) => {
             return (

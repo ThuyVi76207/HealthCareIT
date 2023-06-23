@@ -5,6 +5,7 @@ import { getTopDoctorHomeService } from "services/userService";
 import { Buffer } from "buffer";
 import "./DoctorStyles.scss";
 import { useNavigate } from "react-router-dom";
+import loadingAPI from "assets/Loading/LoadingAPI.gif";
 
 function Doctor() {
   const [listTopDoctor, setListTopDoctor] = useState([]);
@@ -75,6 +76,9 @@ function Doctor() {
     <div className="section-doctor">
       <div className="share-container">
         <div className="doctor-body"></div>
+        {listTopDoctor.length === 0 && (
+          <img className="w-[365px] mx-auto" src={loadingAPI} alt="loading" />
+        )}
         <Slider {...settings}>
           {listTopDoctor &&
             listTopDoctor.length > 0 &&
