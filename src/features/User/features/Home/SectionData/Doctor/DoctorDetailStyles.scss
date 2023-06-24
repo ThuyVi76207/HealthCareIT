@@ -49,6 +49,10 @@
 
 
     }
+
+    .comment-container {
+        width: 70%;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -64,7 +68,13 @@
         &__content {
             width: 90%;
         }
+
+        .comment-container {
+            width: 90%;
+        }
     }
+
+
 }
 
 @media screen and (max-width: 520px) {
@@ -96,6 +106,10 @@
             .description-doctor {
                 padding: 0 15px;
             }
+        }
+
+        .comment-container {
+            width: 95%;
         }
     }
 }

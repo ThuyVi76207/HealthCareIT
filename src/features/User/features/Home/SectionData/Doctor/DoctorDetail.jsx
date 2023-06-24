@@ -312,7 +312,7 @@ function DoctorDetail({ t }) {
           </div>
         </div>
         <div className="border-t border-gray-300 bg-[#f9f9f9]">
-          <div className="w-[70%] mx-auto py-2">
+          <div className="comment-container mx-auto py-2">
             <h2 className="text-[20px] font-bold my-4">
               Phản hồi của bệnh nhân sau khi khám
             </h2>
