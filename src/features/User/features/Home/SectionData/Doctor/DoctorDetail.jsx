@@ -336,7 +336,7 @@ function DoctorDetail({ t }) {
               })}
             </div>
 
-            <div className="w-[65%] mb-4">
+            <div className="box-comment mb-4">
               <label className="font-bold text-[20px] inline-block">
                 Bình luận
               </label>
