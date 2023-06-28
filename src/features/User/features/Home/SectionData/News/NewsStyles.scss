@@ -131,6 +131,12 @@
         .news-container {
             margin: 0px 25px;
 
+            &_body .line-box {
+
+                width: 80%;
+
+            }
+
             &__item {
 
                 height: 350px;
