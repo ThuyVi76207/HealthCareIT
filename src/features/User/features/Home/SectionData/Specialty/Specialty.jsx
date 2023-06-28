@@ -77,7 +77,17 @@ function Specialty() {
     <div className="section-specialty">
       <div className="share-container">
         {listSpecialty.length === 0 && (
-          <img className="w-[365px] mx-auto" src={loadingAPI} alt="loading" />
+          // <img className="w-[365px] mx-auto" src={loadingAPI} alt="loading" />
+          <div className="container-loading">
+            <div className="container-loading_text">
+              <h1>Loading...</h1>
+            </div>
+            <div className="container-loading_body">
+              <div className="line-box">
+                <div className="line"></div>
+              </div>
+            </div>
+          </div>
         )}
         <Slider {...settings}>
           {listSpecialty &&
