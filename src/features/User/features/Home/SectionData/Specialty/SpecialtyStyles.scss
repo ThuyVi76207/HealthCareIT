@@ -8,6 +8,43 @@
         display: flex;
         flex-direction: column;
 
+        .container-loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            &_text {
+                color: #27284a;
+                font-size: 20px;
+                font-weight: 700;
+                letter-spacing: 2px;
+            }
+
+            &_body {
+                width: 100%;
+                height: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &_body .line-box {
+                padding: 1px;
+                width: 40%;
+                height: 25px;
+                border: 2px solid #27284a;
+                border-radius: 20px;
+            }
+
+            &_body .line-box .line {
+                height: 20px;
+                border-radius: 20px;
+                background: #16917c;
+                animation: loading 3s forwards cubic-bezier(0, 0, 0, 0);
+            }
+        }
+
 
         .specialty-customize {
             cursor: pointer;
@@ -88,6 +125,16 @@
             margin-left: auto;
             margin-right: auto;
         }
+    }
+}
+
+@keyframes loading {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
     }
 }
 
