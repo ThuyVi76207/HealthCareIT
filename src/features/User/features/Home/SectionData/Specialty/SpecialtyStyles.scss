@@ -164,6 +164,7 @@
 
 @media screen and (max-width: 840px) {
     .share-container {
+
         .specialty-customize {
 
 
@@ -199,6 +200,12 @@
     .share-container {
         margin: 0 !important;
         padding: 0 10px !important;
+
+        &_body .line-box {
+
+            width: 80%;
+
+        }
 
         .specialty-customize {
 
