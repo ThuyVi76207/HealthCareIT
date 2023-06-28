@@ -75,7 +75,17 @@ function News() {
     <div className="section-news">
       <div className="news-container">
         {listNews.length === 0 && (
-          <img className="w-[365px] mx-auto" src={loadingAPI} alt="loading" />
+          // <img className="w-[365px] mx-auto" src={loadingAPI} alt="loading" />
+          <div className="container-loading">
+            <div className="container-loading_text">
+              <h1>Loading...</h1>
+            </div>
+            <div className="container-loading_body">
+              <div className="line-box">
+                <div className="line"></div>
+              </div>
+            </div>
+          </div>
         )}
         <Slider {...settings}>
           {listNews.map((item, index) => {
