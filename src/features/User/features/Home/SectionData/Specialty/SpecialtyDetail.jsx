@@ -1,12 +1,12 @@
-import MainLayout from "features/User/layouts/MainLayout";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getAllSpecialtyById, getSettingService } from "services/userService";
-import "./SpecialtyDetailStyles.scss";
-import { Buffer } from "buffer";
-import { withNamespaces } from "react-i18next";
-import { useSelector } from "react-redux";
-import ProfileDoctor from "../Doctor/ProfileDoctor";
+import MainLayout from 'features/User/layouts/MainLayout';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getAllSpecialtyById, getSettingService } from 'services/userService';
+import './SpecialtyDetailStyles.scss';
+import { Buffer } from 'buffer';
+import { withNamespaces } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import ProfileDoctor from '../Doctor/ProfileDoctor';
 
 function SpecialtyDetail({ t }) {
   const { id } = useParams(); // get id param
@@ -16,7 +16,7 @@ function SpecialtyDetail({ t }) {
   const [listDoctorId, setListDoctorId] = useState([]);
   const [overflowHide, setOverflowHide] = useState(true);
   const { language } = useSelector((state) => state.user) || {};
-  const [selectedProvince, setSelectedProvince] = useState("ALL");
+  const [selectedProvince, setSelectedProvince] = useState('ALL');
 
   useEffect(() => {
     const printSpecialtyID = async () => {
@@ -30,7 +30,8 @@ function SpecialtyDetail({ t }) {
 
         setListDoctorId(res.data.doctorSpecialty);
       } catch (err) {
-        console.log("Failed to get specialty with id", err);
+        alert('Failed to get specialty with id');
+        // console.log("Failed to get specialty with id", err);
       }
     };
 
@@ -40,35 +41,36 @@ function SpecialtyDetail({ t }) {
   useEffect(() => {
     const printProvince = async () => {
       try {
-        const resProvince = await getSettingService("PROVINCE");
+        const resProvince = await getSettingService('PROVINCE');
         // console.log('Province', resProvince.data);
 
         //Push ALL - Toan quoc vao vi tri dau tien cua mang
         let dataProvince = resProvince.data;
         dataProvince.unshift({
           createAt: null,
-          keyMap: "ALL",
-          type: "PROVINCE",
-          value_En: "ALL",
-          value_Vi: "Toàn quốc",
+          keyMap: 'ALL',
+          type: 'PROVINCE',
+          value_En: 'ALL',
+          value_Vi: 'Toàn quốc',
         });
 
         setListProvinces(dataProvince);
       } catch (err) {
-        console.log("Failed to get province", err);
+        alert('Failed to get province');
+        // console.log('Failed to get province', err);
       }
     };
 
     printProvince();
   }, []);
 
-  console.log("Province", listProvinces);
+  // console.log('Province', listProvinces);
 
   // console.log('Check specialty id', obSpecialty)
 
-  let imageBase64 = "";
+  let imageBase64 = '';
   if (obSpecialty.image) {
-    imageBase64 = Buffer.from(obSpecialty.image, "base64").toString("binary");
+    imageBase64 = Buffer.from(obSpecialty.image, 'base64').toString('binary');
   }
 
   // console.log('Check doctor id', listDoctorId)
@@ -79,10 +81,10 @@ function SpecialtyDetail({ t }) {
         <div
           style={{ backgroundImage: `url(${imageBase64})` }}
           className={`specialty-detail-header ${
-            overflowHide ? "h-[15rem] overflow-hidden" : ""
+            overflowHide ? 'h-[15rem] overflow-hidden' : ''
           }`}
         >
-          <div className={`header ${overflowHide ? "h-[15rem]" : ""}`}>
+          <div className={`header ${overflowHide ? 'h-[15rem]' : ''}`}>
             <div className="w-[70%] mx-auto">
               <h2 className="text-[20px] font-bold my-2">{obSpecialty.name}</h2>
               <div
@@ -100,7 +102,7 @@ function SpecialtyDetail({ t }) {
               className="text-[#16917c]"
               onClick={() => setOverflowHide(false)}
             >
-              {t("specialtydetail.more")}
+              {t('specialtydetail.more')}
             </button>
           </div>
         ) : (
@@ -109,7 +111,7 @@ function SpecialtyDetail({ t }) {
               className="text-[#16917c]"
               onClick={() => setOverflowHide(true)}
             >
-              {t("specialtydetail.hide")}
+              {t('specialtydetail.hide')}
             </button>
           </div>
         )}
@@ -125,7 +127,7 @@ function SpecialtyDetail({ t }) {
                   listProvinces.map((item, index) => {
                     return (
                       <option key={index} value={item.keyMap}>
-                        {language === "vi" ? item.value_Vi : item.value_En}
+                        {language === 'vi' ? item.value_Vi : item.value_En}
                       </option>
                     );
                   })}

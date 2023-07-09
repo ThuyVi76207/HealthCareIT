@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Slider from "react-slick";
-import { getAllNews } from "services/userService";
-import "./NewsStyles.scss";
-import loadingAPI from "assets/Loading/LoadingAPI.gif";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Slider from 'react-slick';
+import { getAllNews } from 'services/userService';
+import './NewsStyles.scss';
+import loadingAPI from 'assets/Loading/LoadingAPI.gif';
 
 function News() {
   const [listNews, setListNews] = useState([]);
@@ -55,10 +55,11 @@ function News() {
   useEffect(() => {
     const printAllNews = async () => {
       try {
-        const res = await getAllNews("5");
+        const res = await getAllNews('5');
         setListNews(res.data);
       } catch (err) {
-        console.log("Failed to get all news", err);
+        alert('Failed to get all news');
+        // console.log("Failed to get all news", err);
       }
     };
     printAllNews();
@@ -67,7 +68,7 @@ function News() {
   // console.log('Check list News', listNews);
 
   const handleViewDetailNews = (item) => {
-    console.log("Check News id", item);
+    // console.log('Check News id', item);
     navigate(`/healthcare/detail-news/${item.id}`);
   };
 

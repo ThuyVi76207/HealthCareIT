@@ -1,4 +1,4 @@
-import { Line } from "react-chartjs-2";
+import { Line } from 'react-chartjs-2';
 
 import {
   Chart as ChartJS,
@@ -12,8 +12,8 @@ import {
   Filler,
   LineController,
   LineElement,
-} from "chart.js";
-import { useEffect, useState } from "react";
+} from 'chart.js';
+import { useEffect, useState } from 'react';
 
 ChartJS.register(
   Tooltip,
@@ -29,23 +29,23 @@ ChartJS.register(
   Title
 );
 const LineChart = ({ listCost }) => {
-  console.log("Check list cost", listCost);
+  // console.log("Check list cost", listCost);
   const [listTotal, setListTotal] = useState([]);
   const [listMounths, setMounths] = useState([]);
 
   const labels = [
-    "Tháng 1",
-    "Tháng 2",
-    "Tháng 3",
-    "Tháng 4",
-    "Tháng 5",
-    "Tháng 6",
-    "Tháng 7",
-    "Tháng 8",
-    "Tháng 9",
-    "Tháng 10",
-    "Tháng 11",
-    "Tháng 12",
+    'Tháng 1',
+    'Tháng 2',
+    'Tháng 3',
+    'Tháng 4',
+    'Tháng 5',
+    'Tháng 6',
+    'Tháng 7',
+    'Tháng 8',
+    'Tháng 9',
+    'Tháng 10',
+    'Tháng 11',
+    'Tháng 12',
   ];
 
   useEffect(() => {
@@ -70,8 +70,8 @@ const LineChart = ({ listCost }) => {
     costLabel();
   }, [listCost]);
 
-  console.log("Check for", listMounths);
-  console.log("Check for", listTotal);
+  // console.log('Check for', listMounths);
+  // console.log('Check for', listTotal);
 
   const data = {
     labels: listMounths,
@@ -79,16 +79,16 @@ const LineChart = ({ listCost }) => {
       {
         // label: "First Dataset",
         data: listTotal,
-        backgroundColor: "#16917c",
+        backgroundColor: '#16917c',
         //   borderColor: "rgba(255, 138, 72, 1)",
-        color: "Grey",
+        color: 'Grey',
         tension: 0.4,
         fill: true,
-        borderJoinStyle: "bevel",
+        borderJoinStyle: 'bevel',
         //   showLine: false, //To hide line
-        pointBackgroundColor: "#27284a",
-        pointBorderColor: "#27284a",
-        pointStyle: "circle",
+        pointBackgroundColor: '#27284a',
+        pointBorderColor: '#27284a',
+        pointStyle: 'circle',
         pointRadius: 4,
       },
     ],
@@ -107,8 +107,8 @@ const LineChart = ({ listCost }) => {
               ticks: {
                 callback: function (value) {
                   return (
-                    value.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, "$&,") +
-                    " vnd"
+                    value.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,') +
+                    ' vnd'
                   );
                 },
                 // forces step size to be 50 units

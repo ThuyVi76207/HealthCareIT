@@ -1,9 +1,9 @@
-import { auth, provider } from "components/firebase/firebase-config";
-import { signInWithPopup } from "firebase/auth";
-import logoGoogle from "../../../../assets/Logo/logogoogle.webp";
-import "./AuthStyles.scss";
+import { auth, provider } from 'components/firebase/firebase-config';
+import { signInWithPopup } from 'firebase/auth';
+import logoGoogle from '../../../../assets/Logo/logogoogle.webp';
+import './AuthStyles.scss';
 
-import Cookies from "universal-cookie";
+import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 export const Auth = (props) => {
@@ -12,13 +12,14 @@ export const Auth = (props) => {
   const signInWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      cookies.set("auth-token", result.user.refreshToken);
-      cookies.set("get-name", result.user.displayName);
-      cookies.set("get-photo-url", result.user.photoURL);
-      console.log(result);
+      cookies.set('auth-token', result.user.refreshToken);
+      cookies.set('get-name', result.user.displayName);
+      cookies.set('get-photo-url', result.user.photoURL);
+      // console.log(result);
       setIsAuth(true);
     } catch (error) {
-      console.log(error);
+      alert('Error');
+      // console.log(error);
     }
   };
   return (

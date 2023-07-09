@@ -1,22 +1,22 @@
-import { useEffect, useRef, useState } from "react";
-import CopyToClipboard from "react-copy-to-clipboard";
-import * as Peer from "simple-peer";
-import io from "socket.io-client";
-import "./RoomContentStyles.scss";
+import { useEffect, useRef, useState } from 'react';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import * as Peer from 'simple-peer';
+import io from 'socket.io-client';
+import './RoomContentStyles.scss';
 
-const socket = io("https://service-healthcare.onrender.com");
+const socket = io('https://service-healthcare.onrender.com');
 //https://service-healthcare.onrender.com
 //http://localhost:7777/socket.io
 const RoomContent = () => {
-  const [me, setMe] = useState("");
+  const [me, setMe] = useState('');
   const [stream, setStream] = useState();
   const [receivingCall, setReceivingCall] = useState(false);
-  const [caller, setCaller] = useState("");
+  const [caller, setCaller] = useState('');
   const [callerSignal, setCallerSignal] = useState();
   const [callAccepted, setCallAccepted] = useState(false);
-  const [idToCall, setIdToCall] = useState("");
+  const [idToCall, setIdToCall] = useState('');
   const [callEnded, setCallEnded] = useState(false);
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [ipRoom, setIPRoom] = useState(false);
   const [shareCam, setShareCam] = useState(true);
   const [audio, setAudio] = useState(true);
@@ -71,7 +71,7 @@ const RoomContent = () => {
       if (myVideo.current) myVideo.current.srcObject = stream;
       if (stream) {
         setStream(stream);
-        console.log("Check streamer ", stream);
+        // console.log("Check streamer ", stream);
 
         // stream = streams
       }
@@ -79,19 +79,19 @@ const RoomContent = () => {
 
     getUserMedia();
 
-    socket.on("me", (id) => {
+    socket.on('me', (id) => {
       //IP room
       setMe(id);
     });
 
-    socket.on("callUser", (data) => {
+    socket.on('callUser', (data) => {
       setReceivingCall(true);
       setCaller(data.from);
       setName(data.name);
       setCallerSignal(data.signal);
     });
 
-    socket.on("hideCam", hideCam);
+    socket.on('hideCam', hideCam);
     //  socket.on("onOffAudio", onOffAudio)
   }, []);
 
@@ -136,18 +136,18 @@ const RoomContent = () => {
       stream: stream,
     });
 
-    peer.on("signal", (data) => {
-      socket.emit("callUser", {
+    peer.on('signal', (data) => {
+      socket.emit('callUser', {
         userToCall: id,
         signalData: data,
         from: me,
         name: name,
       });
     });
-    peer.on("stream", (stream) => {
+    peer.on('stream', (stream) => {
       userVideo.current.srcObject = stream;
     });
-    socket.on("callAccepted", (signal) => {
+    socket.on('callAccepted', (signal) => {
       setCallAccepted(true);
       peer.signal(signal);
     });
@@ -166,10 +166,10 @@ const RoomContent = () => {
       trickle: false,
       stream: stream,
     });
-    peer.on("signal", (data) => {
-      socket.emit("answerCall", { signal: data, to: caller });
+    peer.on('signal', (data) => {
+      socket.emit('answerCall', { signal: data, to: caller });
     });
-    peer.on("stream", (stream) => {
+    peer.on('stream', (stream) => {
       userVideo.current.srcObject = stream;
     });
 
@@ -225,8 +225,8 @@ const RoomContent = () => {
       <div
         className={
           callAccepted && !callEnded
-            ? "hidden"
-            : "room-content__header mx-auto items-center"
+            ? 'hidden'
+            : 'room-content__header mx-auto items-center'
         }
       >
         {/* <h2 className="text-white">{`IP Room: ${me}`}</h2> */}
@@ -261,7 +261,7 @@ const RoomContent = () => {
           <button
             onClick={() => setIPRoom(true)}
             className={`text-white bg-gray-400 p-1 ${
-              ipRoom ? "bg-green-400" : ""
+              ipRoom ? 'bg-green-400' : ''
             }`}
           >
             Copy IP Room

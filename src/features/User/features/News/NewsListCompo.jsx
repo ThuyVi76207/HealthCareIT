@@ -1,9 +1,9 @@
-import Loading from "components/Loading/loading";
-import { useEffect, useState } from "react";
-import { withNamespaces } from "react-i18next";
-import { getAllNews } from "services/userService";
-import NewsCard from "./NewsCard";
-import "./NewsContainerStyles.scss";
+import Loading from 'components/Loading/loading';
+import { useEffect, useState } from 'react';
+import { withNamespaces } from 'react-i18next';
+import { getAllNews } from 'services/userService';
+import NewsCard from './NewsCard';
+import './NewsContainerStyles.scss';
 
 const NewsListCompo = ({ t }) => {
   const [newsList, setNewsList] = useState([]);
@@ -13,21 +13,22 @@ const NewsListCompo = ({ t }) => {
     setLoading(true);
     const printNewsList = async () => {
       try {
-        let res = await getAllNews("");
+        let res = await getAllNews('');
         if (res && res.errCode === 0) {
           setNewsList(res.data);
           setLoading(false);
         }
       } catch (err) {
         setLoading(true);
-        console.log("Failed to print news list", err);
+        alert('Failed to print news list');
+        // console.log("Failed to print news list", err);
       }
     };
 
     printNewsList();
   }, []);
 
-  console.log("Check news list", newsList);
+  // console.log('Check news list', newsList);
 
   return (
     <div className="news-list">
@@ -39,7 +40,7 @@ const NewsListCompo = ({ t }) => {
             <ion-icon name="arrow-forward-outline"></ion-icon>
           </i>
           <h2 className="uppercase text-[22px] text-[#fff] font-bold">
-            {t("newcontainer.titles")}
+            {t('newcontainer.titles')}
           </h2>
         </div>
       </div>

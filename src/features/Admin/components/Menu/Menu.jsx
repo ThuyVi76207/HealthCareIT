@@ -1,20 +1,20 @@
-import logo from "assets/Logo/Hcare-white.svg";
-import { USER_ROLES } from "constants";
-import { useEffect, useState } from "react";
-import { withNamespaces } from "react-i18next";
-import { Link } from "react-router-dom";
+import logo from 'assets/Logo/Hcare-white.svg';
+import { USER_ROLES } from 'constants';
+import { useEffect, useState } from 'react';
+import { withNamespaces } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import {
   adminMenu,
   doctorMenu,
   healthStaffMenu,
   superAdminMenu,
-} from "./OptionMenu";
+} from './OptionMenu';
 
 const Menu = ({ t }) => {
-  const rolID = sessionStorage.getItem("role");
+  const rolID = sessionStorage.getItem('role');
   const profileuser = JSON.parse(localStorage.getItem(`${rolID}`));
 
-  console.log("check profile login", profileuser);
+  // console.log("check profile login", profileuser);
 
   const [menuUrl, setMenuUrl] = useState([]);
   useEffect(() => {
@@ -40,7 +40,7 @@ const Menu = ({ t }) => {
     }
   }, [profileuser]);
 
-  console.log("Check menuURl", menuUrl);
+  // console.log('Check menuURl', menuUrl);
   // let icon = `grid-outline`;
 
   return (
@@ -70,12 +70,12 @@ const Menu = ({ t }) => {
               <a
                 href="/manager/room-video"
                 className="flex items-center w-full"
-                target={"_blank"}
+                target={'_blank'}
               >
                 <i className="mt-1 mr-4">
                   <ion-icon name="videocam-outline"></ion-icon>
                 </i>
-                <h2>{t("menu.roomvideo")}</h2>
+                <h2>{t('menu.roomvideo')}</h2>
               </a>
             </li>
           )}

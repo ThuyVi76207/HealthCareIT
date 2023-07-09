@@ -1,11 +1,11 @@
-import Loading from "components/Loading/loading";
-import EmailInput from "features/Admin/components/Input/EmailInput";
-import { isValidEmail } from "function/formater";
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addSuccessMessage } from "reducers/messageSlice";
-import { postSendPrescription } from "services/userService";
-import { removeModal } from "../../reducers/modal/dialogModalSlice";
+import Loading from 'components/Loading/loading';
+import EmailInput from 'features/Admin/components/Input/EmailInput';
+import { isValidEmail } from 'function/formater';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addSuccessMessage } from 'reducers/messageSlice';
+import { postSendPrescription } from 'services/userService';
+import { removeModal } from '../../reducers/modal/dialogModalSlice';
 function DialogModal() {
   const dispatch = useDispatch();
   const { language } = useSelector((state) => state.user) || {};
@@ -13,11 +13,11 @@ function DialogModal() {
     useSelector((state) => state.dialogModal) || {};
   // console.log(patient)
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   // console.log("Check patient", patient.patientData.email)
   const [showImg, setShowImg] = useState();
   const [error, setError] = useState({
-    email: "",
+    email: '',
   });
   const [loading, setLoading] = useState(false);
 
@@ -28,12 +28,12 @@ function DialogModal() {
   const isValidated = () => {
     let validated = true;
     let _error = {};
-    if (email === "") {
+    if (email === '') {
       validated = false;
-      _error.email = "Vui lòng nhập email";
+      _error.email = 'Vui lòng nhập email';
     } else if (!isValidEmail(email)) {
       validated = false;
-      _error.email = "Email không hợp lệ";
+      _error.email = 'Email không hợp lệ';
     }
 
     setError(_error);
@@ -66,15 +66,15 @@ function DialogModal() {
         setLoading(false);
         dispatch(
           addSuccessMessage({
-            title: "Xác nhận thành công",
-            content: "Đã khám bệnh nhân!!!!",
+            title: 'Xác nhận thành công',
+            content: 'Đã khám bệnh nhân!!!!',
           })
         );
         window.location.reload();
       }
     } catch (error) {
-      alert("Đã có lỗi xảy ra vui lòng thử lại sau!!!");
-      console.log("Faild to get API send prescription");
+      alert('Đã có lỗi xảy ra vui lòng thử lại sau!!!');
+      // console.log("Faild to get API send prescription");
     }
     handleCloseModal();
   };
@@ -146,7 +146,7 @@ function DialogModal() {
                 name="email"
                 email={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder={"Nhập email người nhận"}
+                placeholder={'Nhập email người nhận'}
                 maxLength={50}
                 error={error.email}
                 required

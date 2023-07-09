@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Slider from "react-slick";
-import loadingAPI from "assets/Loading/LoadingAPI.gif";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Slider from 'react-slick';
+import loadingAPI from 'assets/Loading/LoadingAPI.gif';
 
-import { getAllSpecialty } from "services/userService";
-import "./SpecialtyStyles.scss";
+import { getAllSpecialty } from 'services/userService';
+import './SpecialtyStyles.scss';
 
 // SpecialtyHome.prototype = {
 
@@ -60,7 +60,8 @@ function Specialty() {
         // console.log(res);
         setListSpecialty(res.data);
       } catch (error) {
-        console.log("Failed to get list Specialty: ", error);
+        alert('Failed to get list Specialty');
+        // console.log("Failed to get list Specialty: ", error);
       }
     };
     printAllSpecialty();

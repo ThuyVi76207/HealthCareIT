@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react";
-import { withNamespaces } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteUserService, getAllUsers } from "services/adminService";
-import "features/Admin/components/StylesCommon/TableManagerStyles.scss";
+import { useEffect, useState } from 'react';
+import { withNamespaces } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteUserService, getAllUsers } from 'services/adminService';
+import 'features/Admin/components/StylesCommon/TableManagerStyles.scss';
 import {
   addErrorMessage,
   addSuccessMessage,
   addWarningMessage,
-} from "reducers/messageSlice";
-import Loading from "components/Loading/loading";
+} from 'reducers/messageSlice';
+import Loading from 'components/Loading/loading';
 
-import { useNavigate } from "react-router-dom";
-import { addInfor } from "reducers/editcommonSlice";
-import { getUrlDynamic } from "features/Admin/components/Auth";
-import { ROLE_OPTIONS } from "constants";
+import { useNavigate } from 'react-router-dom';
+import { addInfor } from 'reducers/editcommonSlice';
+import { getUrlDynamic } from 'features/Admin/components/Auth';
+import { ROLE_OPTIONS } from 'constants';
 
 const TableUser = ({ t }) => {
   const { language } = useSelector((state) => state.user) || {};
 
-  const rolID = sessionStorage.getItem("role");
+  const rolID = sessionStorage.getItem('role');
   const userProfile = JSON.parse(localStorage.getItem(`${rolID}`));
 
   const dispatch = useDispatch();
@@ -32,13 +32,14 @@ const TableUser = ({ t }) => {
     setLoading(true);
     const printUser = async () => {
       try {
-        const resUser = await getAllUsers("ALL");
+        const resUser = await getAllUsers('ALL');
         if (resUser && resUser.errCode === 0) {
           setLoading(false);
           setListUsers(resUser.users);
         }
       } catch (error) {
-        console.log("Faild get API get all user", error);
+        alert('Faild get API get all user');
+        // console.log("Faild get API get all user", error);
       }
     };
 
@@ -52,16 +53,16 @@ const TableUser = ({ t }) => {
       if (res && res.errCode === 0) {
         dispatch(
           addSuccessMessage({
-            title: "Xóa thành công",
-            content: "Đã xóa thành công người dùng!!!",
+            title: 'Xóa thành công',
+            content: 'Đã xóa thành công người dùng!!!',
           })
         );
         setReload(!reload);
       } else if (res && res.errCode === 2) {
         dispatch(
           addWarningMessage({
-            title: "Xóa không thành công",
-            content: "Vui lòng kiểm tra lại!!!",
+            title: 'Xóa không thành công',
+            content: 'Vui lòng kiểm tra lại!!!',
           })
         );
       }
@@ -71,11 +72,12 @@ const TableUser = ({ t }) => {
       setLoading(false);
       dispatch(
         addErrorMessage({
-          title: "Đã có lỗi xảy ra",
-          content: "Vui lòng thử lại sau!!!",
+          title: 'Đã có lỗi xảy ra',
+          content: 'Vui lòng thử lại sau!!!',
         })
       );
-      console.log("Faild api delete user", error);
+      alert('Faild api delete user');
+      // console.log('Faild api delete user', error);
     }
   };
 
@@ -94,12 +96,12 @@ const TableUser = ({ t }) => {
         <tbody>
           <tr className="uppercase">
             <th>STT</th>
-            <th>{t("tableuser.name")}</th>
+            <th>{t('tableuser.name')}</th>
             <th>Email</th>
-            <th>{t("tableuser.address")}</th>
-            <th>{t("tableuser.phone")}</th>
+            <th>{t('tableuser.address')}</th>
+            <th>{t('tableuser.phone')}</th>
             <th>Vai trò</th>
-            <th>{t("tableuser.choose")}</th>
+            <th>{t('tableuser.choose')}</th>
           </tr>
           {listUsers &&
             listUsers.length > 0 &&
@@ -109,7 +111,7 @@ const TableUser = ({ t }) => {
               return (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{language === "vi" ? nameVi : nameEn}</td>
+                  <td>{language === 'vi' ? nameVi : nameEn}</td>
                   <td>{item.email}</td>
                   <td className="w-[25%] overflow-hidden">{item.address}</td>
                   <td>{item.phonenumber}</td>
@@ -117,10 +119,10 @@ const TableUser = ({ t }) => {
                     {ROLE_OPTIONS.map((i, ind) => {
                       return i.value === item.roleId ? (
                         <p key={ind}>
-                          {language === "vi" ? i.label.vi : i.label.en}
+                          {language === 'vi' ? i.label.vi : i.label.en}
                         </p>
                       ) : (
-                        ""
+                        ''
                       );
                     })}
                   </td>

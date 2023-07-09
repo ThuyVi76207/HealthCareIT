@@ -1,28 +1,28 @@
-import ManagerLayout from "features/Admin/layouts/ManagerLayout";
+import ManagerLayout from 'features/Admin/layouts/ManagerLayout';
 import {
   isPasswordStrength,
   isValidEmail,
   isValidPhoneNumber,
-} from "function/formater";
-import { useMemo, useRef, useState } from "react";
-import { withNamespaces } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+} from 'function/formater';
+import { useMemo, useRef, useState } from 'react';
+import { withNamespaces } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addErrorMessage,
   addSuccessMessage,
   addWarningMessage,
-} from "reducers/messageSlice";
-import { createNewUserService, editUserService } from "services/adminService";
-import { TITLE_OPTIONS } from "constants";
-import { ROLE_OPTIONS } from "constants";
-import { GENDER_OPTIONS } from "constants";
-import CommonInput from "features/Admin/components/Input/CommonInput";
-import EmailInput from "features/Admin/components/Input/EmailInput";
-import PhoneInput from "features/Admin/components/Input/PhoneInput";
-import PasswordInput from "features/Admin/components/Input/PasswordInput";
-import Loading from "components/Loading/loading";
-import { Buffer } from "buffer";
-import { useNavigate, useParams } from "react-router-dom";
+} from 'reducers/messageSlice';
+import { createNewUserService, editUserService } from 'services/adminService';
+import { TITLE_OPTIONS } from 'constants';
+import { ROLE_OPTIONS } from 'constants';
+import { GENDER_OPTIONS } from 'constants';
+import CommonInput from 'features/Admin/components/Input/CommonInput';
+import EmailInput from 'features/Admin/components/Input/EmailInput';
+import PhoneInput from 'features/Admin/components/Input/PhoneInput';
+import PasswordInput from 'features/Admin/components/Input/PasswordInput';
+import Loading from 'components/Loading/loading';
+import { Buffer } from 'buffer';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const CreateEditUser = ({ t }) => {
   const formRef = useRef(null);
@@ -38,31 +38,31 @@ const CreateEditUser = ({ t }) => {
   // console.log("Check your user", useredit);
 
   const [error, setError] = useState({
-    lastName: "",
-    firstName: "",
-    email: "",
-    phoneNumber: "",
-    selectedGender: "",
-    address: "",
-    selectedTitle: "",
-    selectedRole: "",
-    password: "",
-    rePassword: "",
+    lastName: '',
+    firstName: '',
+    email: '',
+    phoneNumber: '',
+    selectedGender: '',
+    address: '',
+    selectedTitle: '',
+    selectedRole: '',
+    password: '',
+    rePassword: '',
   });
 
-  const [lastName, setLastName] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
-  const [selectedGender, setSelectedGender] = useState("M");
+  const [lastName, setLastName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [address, setAddress] = useState('');
+  const [selectedGender, setSelectedGender] = useState('M');
   // const [optionGenders, setOptionGenders] = useState(GENDER_OPTIONS);
-  const [selectedTitle, setSelectedTitle] = useState("P0");
+  const [selectedTitle, setSelectedTitle] = useState('P0');
   // const [optionTitle, setOptionTitle] = useState(TITLE_OPTIONS);
-  const [selectedRole, setSelectedRole] = useState("R1");
+  const [selectedRole, setSelectedRole] = useState('R1');
   // const [optionRole, setOptionRole] = useState(ROLE_OPTIONS);
-  const [password, setPassword] = useState("");
-  const [rePassword, setRePassword] = useState("");
+  const [password, setPassword] = useState('');
+  const [rePassword, setRePassword] = useState('');
   const [showImg, setShowImg] = useState();
 
   const [loading, setLoading] = useState(false);
@@ -70,59 +70,59 @@ const CreateEditUser = ({ t }) => {
   const isValidated = () => {
     let validated = true;
     let _error = {};
-    if (lastName === "") {
+    if (lastName === '') {
       validated = false;
-      _error.lastName = "Vui lòng nhập họ";
+      _error.lastName = 'Vui lòng nhập họ';
     }
-    if (firstName === "") {
+    if (firstName === '') {
       validated = false;
-      _error.firstName = "Vui lòng nhập tên";
+      _error.firstName = 'Vui lòng nhập tên';
     }
-    if (email === "") {
+    if (email === '') {
       validated = false;
-      _error.email = "Vui lòng nhập email";
+      _error.email = 'Vui lòng nhập email';
     } else if (!isValidEmail(email)) {
       validated = false;
-      _error.email = "Email không hợp lệ";
+      _error.email = 'Email không hợp lệ';
     }
-    if (phoneNumber === "") {
+    if (phoneNumber === '') {
       validated = false;
-      _error.phoneNumber = "Vui lòng nhập số điện thoại";
+      _error.phoneNumber = 'Vui lòng nhập số điện thoại';
     } else if (!isValidPhoneNumber(phoneNumber)) {
       validated = false;
-      _error.phoneNumber = "Số điện thoại không hợp lệ";
+      _error.phoneNumber = 'Số điện thoại không hợp lệ';
     }
-    if (selectedGender === "") {
+    if (selectedGender === '') {
       validated = false;
-      _error.selectedGender = "Vui lòng chọn giới tính";
+      _error.selectedGender = 'Vui lòng chọn giới tính';
     }
-    if (address === "") {
+    if (address === '') {
       validated = false;
-      _error.address = "Vui lòng nhập địa chỉ";
+      _error.address = 'Vui lòng nhập địa chỉ';
     }
-    if (selectedTitle === "") {
+    if (selectedTitle === '') {
       validated = false;
-      _error.selectedTitle = "Vui lòng chọn chức danh";
+      _error.selectedTitle = 'Vui lòng chọn chức danh';
     }
-    if (selectedRole === "") {
+    if (selectedRole === '') {
       validated = false;
-      _error.selectedRole = "Vui lòng chọn vai trò";
+      _error.selectedRole = 'Vui lòng chọn vai trò';
     }
-    if (password === "") {
+    if (password === '') {
       validated = false;
-      _error.password = "Vui lòng nhập mật khẩu";
+      _error.password = 'Vui lòng nhập mật khẩu';
     } else if (!isPasswordStrength(password)) {
       validated = false;
       _error.password =
-        "Mật khẩu phải có đủ 8 ký tự bao gồm chữ thường, in hoa và số";
+        'Mật khẩu phải có đủ 8 ký tự bao gồm chữ thường, in hoa và số';
     }
 
-    if (rePassword === "") {
+    if (rePassword === '') {
       validated = false;
-      _error.rePassword = "Vui lòng nhập mật khẩu";
+      _error.rePassword = 'Vui lòng nhập mật khẩu';
     } else if (rePassword !== password) {
       validated = false;
-      _error.rePassword = "Vui lòng nhập lại mật khẩu, mật khẩu không đúng";
+      _error.rePassword = 'Vui lòng nhập lại mật khẩu, mật khẩu không đúng';
     }
 
     setError(_error);
@@ -161,13 +161,13 @@ const CreateEditUser = ({ t }) => {
     createNewUser();
   };
   const handleResetForm = () => {
-    setLastName("");
-    setFirstName("");
-    setEmail("");
-    setPassword("");
-    setRePassword("");
-    setPhoneNumber("");
-    setAddress("");
+    setLastName('');
+    setFirstName('');
+    setEmail('');
+    setPassword('');
+    setRePassword('');
+    setPhoneNumber('');
+    setAddress('');
     setShowImg();
   };
   const createNewUser = async () => {
@@ -193,16 +193,16 @@ const CreateEditUser = ({ t }) => {
       if (res && res.errCode === 0) {
         dispatch(
           addSuccessMessage({
-            title: "Tạo thành công",
-            content: "Thêm thành công tài khoản người dùng",
+            title: 'Tạo thành công',
+            content: 'Thêm thành công tài khoản người dùng',
           })
         );
         srollToInput();
       } else if (res && res.errCode === 1) {
         dispatch(
           addWarningMessage({
-            title: "Tài khoản đã tồn tại",
-            content: "Vui lòng nhập email mới!!!",
+            title: 'Tài khoản đã tồn tại',
+            content: 'Vui lòng nhập email mới!!!',
           })
         );
         srollToInput();
@@ -212,19 +212,20 @@ const CreateEditUser = ({ t }) => {
     } catch (error) {
       dispatch(
         addErrorMessage({
-          title: "Đã có lỗi xảy ra",
-          content: "Vui lòng thử lại sau!!!",
+          title: 'Đã có lỗi xảy ra',
+          content: 'Vui lòng thử lại sau!!!',
         })
       );
       setLoading(false);
-      console.log("Error create a new user", error);
+      alert('Error create a new user');
+      // console.log("Error create a new user", error);
     }
   };
 
   useMemo(() => {
     if (isAddMode) return;
 
-    let imageBase64 = Buffer.from(useredit.image, "base64").toString("binary");
+    let imageBase64 = Buffer.from(useredit.image, 'base64').toString('binary');
 
     setLastName(useredit.lastName);
     setFirstName(useredit.firstName);
@@ -272,19 +273,19 @@ const CreateEditUser = ({ t }) => {
     setLoading(true);
     try {
       let res = await editUserService(data);
-      console.log("Check results edit", res);
+      // console.log('Check results edit', res);
       if (res && res.errCode === 0) {
         dispatch(
           addSuccessMessage({
-            title: "Lưu thành công",
-            content: "Sửa thành công thông tin tài khoản người dùng",
+            title: 'Lưu thành công',
+            content: 'Sửa thành công thông tin tài khoản người dùng',
           })
         );
       } else if (res && res.errCode === 2) {
         dispatch(
           addWarningMessage({
-            title: "Tài khoản không tồn tại",
-            content: "Vui lòng kiểm tra lại!!!",
+            title: 'Tài khoản không tồn tại',
+            content: 'Vui lòng kiểm tra lại!!!',
           })
         );
         srollToInput();
@@ -294,12 +295,12 @@ const CreateEditUser = ({ t }) => {
     } catch (err) {
       dispatch(
         addErrorMessage({
-          title: "Đã có lỗi xảy ra",
-          content: "Vui lòng thử lại sau!!!",
+          title: 'Đã có lỗi xảy ra',
+          content: 'Vui lòng thử lại sau!!!',
         })
       );
       setLoading(false);
-      console.log("Faild to edit user", err);
+      // console.log('Faild to edit user', err);
     }
   };
 
@@ -307,26 +308,26 @@ const CreateEditUser = ({ t }) => {
     <ManagerLayout>
       <Loading loading={loading} />
       <h2 className="text-center text-[25px] font-bold py-12">{`${
-        isAddMode ? t("createuser.titles") : t("edituser.titles")
+        isAddMode ? t('createuser.titles') : t('edituser.titles')
       }`}</h2>
       <form ref={formRef}>
         <div className="px-12 grid grid-cols-2 gap-[10%]">
           <CommonInput
-            field={t("createuser.lastname")}
+            field={t('createuser.lastname')}
             name="lastName"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            placeholder={t("createuser.phderlastname")}
+            placeholder={t('createuser.phderlastname')}
             maxLength={50}
             error={error.lastName}
             required
           />
           <CommonInput
-            field={t("createuser.firstname")}
+            field={t('createuser.firstname')}
             name="firstName"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder={t("createuser.phderfirstname")}
+            placeholder={t('createuser.phderfirstname')}
             maxLength={50}
             error={error.firstName}
             required
@@ -336,17 +337,17 @@ const CreateEditUser = ({ t }) => {
             name="email"
             email={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder={t("createuser.phderemail")}
+            placeholder={t('createuser.phderemail')}
             maxLength={50}
             error={error.email}
             required
           />
           <PhoneInput
-            field={t("createuser.phone")}
+            field={t('createuser.phone')}
             name="phoneNumber"
             phoneNumber={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            placeholder={t("createuser.phderphonenumber")}
+            placeholder={t('createuser.phderphonenumber')}
             maxLength={50}
             error={error.phoneNumber}
             required
@@ -356,7 +357,7 @@ const CreateEditUser = ({ t }) => {
         <div className="px-12 flex gap-[10%] mt-7">
           <div className="mb-4 w-[20%]">
             <label className="font-bold text-[20px]">
-              {t("createuser.gender")}
+              {t('createuser.gender')}
             </label>
             <span className="text-red-600">*</span>
             <select
@@ -372,7 +373,7 @@ const CreateEditUser = ({ t }) => {
                   key={option.value}
                   // selected={option.value === selectedGender}
                 >
-                  {language === "vi" ? option.label.vi : option.label.en}
+                  {language === 'vi' ? option.label.vi : option.label.en}
                 </option>
               ))}
             </select>
@@ -382,11 +383,11 @@ const CreateEditUser = ({ t }) => {
           </div>
           <div className="w-[70%]">
             <CommonInput
-              field={t("createuser.address")}
+              field={t('createuser.address')}
               name="address"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              placeholder={t("createuser.phderaddress")}
+              placeholder={t('createuser.phderaddress')}
               maxLength={100}
               error={error.address}
               required
@@ -397,7 +398,7 @@ const CreateEditUser = ({ t }) => {
         <div className="px-12 grid grid-cols-2 gap-[10%] pt-4">
           <div className="mb-4">
             <label className="font-bold text-[20px]">
-              {t("createuser.title")}
+              {t('createuser.title')}
             </label>
             <span className="text-red-600">*</span>
             <select
@@ -413,7 +414,7 @@ const CreateEditUser = ({ t }) => {
                   key={option.value}
                   // selected={option.value === selectedTitle}
                 >
-                  {language === "vi" ? option.label.vi : option.label.en}
+                  {language === 'vi' ? option.label.vi : option.label.en}
                 </option>
               ))}
             </select>
@@ -424,7 +425,7 @@ const CreateEditUser = ({ t }) => {
 
           <div className="mb-4">
             <label className="font-bold text-[20px]">
-              {t("createuser.role")}
+              {t('createuser.role')}
             </label>
             <span className="text-red-600">*</span>
             <select
@@ -440,7 +441,7 @@ const CreateEditUser = ({ t }) => {
                   key={option.value}
                   // selected={option.value === selectedRole}
                 >
-                  {language === "vi" ? option.label.vi : option.label.en}
+                  {language === 'vi' ? option.label.vi : option.label.en}
                 </option>
               ))}
             </select>
@@ -452,20 +453,20 @@ const CreateEditUser = ({ t }) => {
 
         <div className="px-12 grid grid-cols-2 gap-[10%]">
           <PasswordInput
-            field={t("createuser.password")}
+            field={t('createuser.password')}
             name="password"
             password={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder={t("createuser.phderpassword")}
+            placeholder={t('createuser.phderpassword')}
             error={error.password}
             required
           />
           <PasswordInput
-            field={t("createuser.repassword")}
+            field={t('createuser.repassword')}
             name="repassword"
             password={rePassword}
             onChange={(e) => setRePassword(e.target.value)}
-            placeholder={t("createuser.phderrepassword")}
+            placeholder={t('createuser.phderrepassword')}
             error={error.rePassword}
             required
           />
@@ -480,7 +481,7 @@ const CreateEditUser = ({ t }) => {
             <i className="mr-2 text-[15px]">
               <ion-icon name="cloud-upload-outline"></ion-icon>
             </i>
-            {t("createuser.upload")}
+            {t('createuser.upload')}
             <input
               className="opacity-0 absolute w-full h-full top-0 left-0"
               type="file"
@@ -499,14 +500,14 @@ const CreateEditUser = ({ t }) => {
           onClick={handleCreateUserOnClick}
           className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2 mx-12  rounded-[5px]"
         >
-          {t("createuser.save")}
+          {t('createuser.save')}
         </button>
       ) : (
         <button
           onClick={handleEditUser}
           className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2 mx-12  rounded-[5px]"
         >
-          {t("createuser.save")}
+          {t('createuser.save')}
         </button>
       )}
     </ManagerLayout>

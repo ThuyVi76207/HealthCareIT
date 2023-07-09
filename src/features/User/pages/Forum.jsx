@@ -1,32 +1,32 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Auth } from "../features/Forum/Auth";
+import React, { useEffect, useRef, useState } from 'react';
+import { Auth } from '../features/Forum/Auth';
 
-import Cookies from "universal-cookie";
-import Chat from "../features/Forum/Chat";
+import Cookies from 'universal-cookie';
+import Chat from '../features/Forum/Chat';
 
-import { signOut } from "firebase/auth";
-import { auth } from "components/firebase/firebase-config";
-import { getAllRoom, postSaveNameRoom } from "services/userService";
-import NavbarForum from "../components/Navbar/NavbarForum";
-import "../features/Forum/ForumStyles.scss";
+import { signOut } from 'firebase/auth';
+import { auth } from 'components/firebase/firebase-config';
+import { getAllRoom, postSaveNameRoom } from 'services/userService';
+import NavbarForum from '../components/Navbar/NavbarForum';
+import '../features/Forum/ForumStyles.scss';
 
 const cookies = new Cookies();
 
 function Forum() {
-  const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
+  const [isAuth, setIsAuth] = useState(cookies.get('auth-token'));
   const [room, setRoom] = useState(null);
   const [listRoom, setListRoom] = useState([]);
 
   const [activeNameRoom, setActiveNameRoom] = useState(false);
 
-  const roomInputRef = useRef("room");
+  const roomInputRef = useRef('room');
 
-  const getNameUser = cookies.get("get-name");
-  const getPhotoUrl = cookies.get("get-photo-url");
+  const getNameUser = cookies.get('get-name');
+  const getPhotoUrl = cookies.get('get-photo-url');
 
   const signUserOut = async () => {
     await signOut(auth);
-    cookies.remove("auth-token");
+    cookies.remove('auth-token');
     setIsAuth(false);
     setRoom(null);
   };
@@ -39,13 +39,14 @@ function Forum() {
           setListRoom(res.data);
         }
       } catch (error) {
-        console.log("Faild to get all room", error);
+        alert('Faild to get all room');
+        // console.log("Faild to get all room", error);
       }
     };
 
     getAllListRoom();
   }, []);
-  console.log("Check list room", listRoom);
+  // console.log('Check list room', listRoom);
   return (
     <>
       {!isAuth ? (
@@ -65,8 +66,8 @@ function Forum() {
               className={`forum-container__left  h-full bg-[#1d176e] bg-opacity-90
                ${
                  activeNameRoom
-                   ? "forum-container_animation-show"
-                   : "forum-container_animation "
+                   ? 'forum-container_animation-show'
+                   : 'forum-container_animation '
                }`}
             >
               <div className="h-[86vh]">

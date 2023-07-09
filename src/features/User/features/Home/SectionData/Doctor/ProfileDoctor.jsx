@@ -1,11 +1,11 @@
-import { getFormattedPriceUSD, getFormattedPriceVND } from "function/formater";
-import React, { useEffect, useState } from "react";
-import { withNamespaces } from "react-i18next";
-import { useSelector } from "react-redux";
-import { getProfileDoctorById } from "services/userService";
-import "./ProfileDoctorStyles.scss";
-import ScheduleDoctor from "./ScheduleDoctor";
-import { Link } from "react-router-dom";
+import { getFormattedPriceUSD, getFormattedPriceVND } from 'function/formater';
+import React, { useEffect, useState } from 'react';
+import { withNamespaces } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getProfileDoctorById } from 'services/userService';
+import './ProfileDoctorStyles.scss';
+import ScheduleDoctor from './ScheduleDoctor';
+import { Link } from 'react-router-dom';
 
 const ProfileDoctor = ({ id, t }) => {
   const [profileDoctorId, setProfileDoctorId] = useState({});
@@ -15,25 +15,26 @@ const ProfileDoctor = ({ id, t }) => {
     const printProfileDoctor = async () => {
       try {
         const resProfile = await getProfileDoctorById(id);
-        console.log("Check profile", resProfile.data);
+        // console.log("Check profile", resProfile.data);
         setProfileDoctorId(resProfile.data);
       } catch (err) {
-        console.log("Failed to get profile doctor", err);
+        alert('Failed to get profile doctor');
+        // console.log("Failed to get profile doctor", err);
       }
     };
 
     printProfileDoctor();
   }, [id]);
 
-  let nameVi = "",
-    nameEn = "";
+  let nameVi = '',
+    nameEn = '';
   if (profileDoctorId && profileDoctorId.positionData) {
     nameVi = `${profileDoctorId.positionData.value_Vi}, ${profileDoctorId.lastName} ${profileDoctorId.firstName}`;
     nameEn = `${profileDoctorId.positionData.value_En}, ${profileDoctorId.firstName} ${profileDoctorId.lastName}`;
   }
 
-  let locationVI = "",
-    locationEn = "";
+  let locationVI = '',
+    locationEn = '';
   if (
     profileDoctorId &&
     profileDoctorId.Doctor_Infor &&
@@ -62,15 +63,15 @@ const ProfileDoctor = ({ id, t }) => {
         <div className="prof-left">
           <img className="rounded-[50%]" src={profileDoctorId.image} alt="" />
           <Link to={`/healthcare/detail-doctor/${profileDoctorId.id}`}>
-            {" "}
+            {' '}
             <button className="text-[#16917c]">
-              {t("profiledoctor.more")}
+              {t('profiledoctor.more')}
             </button>
           </Link>
         </div>
         <div className="prof-right">
           <h2 className="text-[#16917c] font-bold my-1">
-            {language === "vi" ? nameVi : nameEn}
+            {language === 'vi' ? nameVi : nameEn}
           </h2>
           {profileDoctorId &&
             profileDoctorId.Markdown &&
@@ -79,14 +80,14 @@ const ProfileDoctor = ({ id, t }) => {
             )}
           <div className="my-2 flex">
             <i className="fas fa-map-marker-alt item-icon mr-1"></i>
-            <p>{language === "vi" ? locationVI : locationEn}</p>
+            <p>{language === 'vi' ? locationVI : locationEn}</p>
           </div>
         </div>
       </div>
       <div className="card-profile__right">
         <ScheduleDoctor
           id={id}
-          price={language === "vi" ? priceVI : priceEn}
+          price={language === 'vi' ? priceVI : priceEn}
           profile={profileDoctorId}
         />
         <div className="chedule-prof mt-2 flex items-center">
@@ -94,9 +95,9 @@ const ProfileDoctor = ({ id, t }) => {
             <ion-icon name="cash-outline"></ion-icon>
           </i>
           <h4 className="uppercase font-bold mr-1">
-            {t("profiledoctor.price")}
+            {t('profiledoctor.price')}
           </h4>
-          {language === "vi" ? (
+          {language === 'vi' ? (
             <span>{getFormattedPriceVND(priceVI)}</span>
           ) : (
             <span>{getFormattedPriceUSD(priceEn)}</span>
@@ -108,7 +109,7 @@ const ProfileDoctor = ({ id, t }) => {
               <ion-icon name="medkit-outline"></ion-icon>
             </i>
             <h4 className="text-[15px] font-bold uppercase mt-1">
-              {t("profiledoctor.workaddress")}
+              {t('profiledoctor.workaddress')}
             </h4>
           </div>
 

@@ -1,8 +1,8 @@
-import LineChart from "features/Admin/components/Chart/LineChart";
-import { useEffect, useRef, useState } from "react";
-import { withNamespaces } from "react-i18next";
-import { useSelector } from "react-redux";
-import { getAllDoctors, statisticsBookingDoctor } from "services/adminService";
+import LineChart from 'features/Admin/components/Chart/LineChart';
+import { useEffect, useRef, useState } from 'react';
+import { withNamespaces } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getAllDoctors, statisticsBookingDoctor } from 'services/adminService';
 
 const AddStatistics = ({ t }) => {
   const formRef = useRef(null);
@@ -18,7 +18,7 @@ const AddStatistics = ({ t }) => {
   const [useProf, setUseProf] = useState();
 
   const [error, setError] = useState({
-    selectedDoctor: "",
+    selectedDoctor: '',
   });
   const isValidated = () => {
     let validated = true;
@@ -26,14 +26,14 @@ const AddStatistics = ({ t }) => {
 
     if (selectedDoctor === 0) {
       validated = false;
-      _error.selectedDoctor = "Vui lòng chọn bác sĩ";
+      _error.selectedDoctor = 'Vui lòng chọn bác sĩ';
     }
     setError(_error);
     return validated;
   };
 
   useEffect(() => {
-    const userProfile = JSON.parse(localStorage.getItem("R2"));
+    const userProfile = JSON.parse(localStorage.getItem('R2'));
     if (userProfile == null) {
       return;
     } else {
@@ -53,18 +53,19 @@ const AddStatistics = ({ t }) => {
       doctorId: selectedDoctor,
       year: +selectYear,
     };
-    console.log("Check data", data);
+    // console.log("Check data", data);
     try {
       let res = await statisticsBookingDoctor(data);
-      console.log("Check list AddStatistics", res);
+      // console.log('Check list AddStatistics', res);
       if (res && res.errCode === 0) {
         setListCost(res.monthlyStats);
-        console.log("Check res statisticsBookingDoctor", res);
+        // console.log('Check res statisticsBookingDoctor', res);
       } else if (res && res.errCode === 2) {
-        alert("Không có lịch đặt để thống kê");
+        alert('Không có lịch đặt để thống kê');
       }
     } catch (error) {
-      console.log("Faild API error", error);
+      alert('Faild API error');
+      // console.log('Faild API error', error);
     }
   };
 
@@ -78,11 +79,12 @@ const AddStatistics = ({ t }) => {
         let res = await getAllDoctors();
 
         if (res && res.errCode === 0) {
-          console.log("Check list doctor", res.data);
+          // console.log('Check list doctor', res.data);
           setListDoctor(res.data);
         }
       } catch (error) {
-        console.log("Faild to get list of Doctor", error);
+        alert('Faild to get list of Doctor');
+        // console.log('Faild to get list of Doctor', error);
       }
     };
     getListDoctor();
@@ -101,7 +103,7 @@ const AddStatistics = ({ t }) => {
     setListYear(year(2022));
   }, []);
 
-  console.log(selectYear);
+  // console.log(selectYear);
   return (
     <div className="p-6">
       <h2 className="text-center text-[25px] font-bold py-6">Thống kê</h2>
@@ -109,12 +111,12 @@ const AddStatistics = ({ t }) => {
         <div className="px-12 grid grid-cols-2 gap-[10%]">
           <div className="mb-4">
             <label className="font-bold text-[20px]">
-              {t("addinfordoctor.namedoctor")}
+              {t('addinfordoctor.namedoctor')}
             </label>
             <span className="text-red-600">*</span>
             {isDoctor ? (
               <h2>
-                {language === "vi"
+                {language === 'vi'
                   ? `${useProf.lastName} ${useProf.firstName}`
                   : `${useProf.firstName} ${useProf.lastName}`}
               </h2>
@@ -125,7 +127,7 @@ const AddStatistics = ({ t }) => {
                 className="w-full rounded-[4px] px-2 border-b-2 border-[#003985] placeholder-shown:border-gray-500 focus:outline-none h-[40px]"
               >
                 <option value={0}>{`--- ${t(
-                  "addinfordoctor.selecdoctor"
+                  'addinfordoctor.selecdoctor'
                 )} ---`}</option>
                 {listDoctor.map((option) => {
                   let nameDoctorVi, nameDoctorEn;
@@ -137,7 +139,7 @@ const AddStatistics = ({ t }) => {
                       key={option.id}
                       // selected={option.value === selectedRole}
                     >
-                      {language === "vi" ? nameDoctorVi : nameDoctorEn}
+                      {language === 'vi' ? nameDoctorVi : nameDoctorEn}
                     </option>
                   );
                 })}
