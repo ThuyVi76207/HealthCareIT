@@ -1,13 +1,13 @@
-import MainLayout from "features/User/layouts/MainLayout";
-import { convertDateToDateTime } from "function/formater";
-import { useState } from "react";
-import { useEffect } from "react";
-import { withNamespaces } from "react-i18next";
-import { useParams } from "react-router-dom";
-import { getAllNewsById } from "services/userService";
-import "./NewsDetailStyles.scss";
-import { Buffer } from "buffer";
-import Loading from "components/Loading/loading";
+import MainLayout from 'features/User/layouts/MainLayout';
+import { convertDateToDateTime } from 'function/formater';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { withNamespaces } from 'react-i18next';
+import { useParams } from 'react-router-dom';
+import { getAllNewsById } from 'services/userService';
+import './NewsDetailStyles.scss';
+import { Buffer } from 'buffer';
+import Loading from 'components/Loading/loading';
 // import LoadingSpinner from 'components/Loading/LoadingSpinner';
 
 const NewsDetail = ({ t }) => {
@@ -32,7 +32,8 @@ const NewsDetail = ({ t }) => {
         }
       } catch (error) {
         setLoading(true);
-        console.log("Failed to get API detail news", error);
+        alert('Failed to get API detail news');
+        // console.log("Failed to get API detail news", error);
       }
     };
 
@@ -64,10 +65,10 @@ const NewsDetail = ({ t }) => {
   //     }
   // }, [dataListNews])
 
-  let imageBase64 = "";
+  let imageBase64 = '';
   if (dataDetailNews.image) {
-    imageBase64 = Buffer.from(dataDetailNews.image, "base64").toString(
-      "binary"
+    imageBase64 = Buffer.from(dataDetailNews.image, 'base64').toString(
+      'binary'
     );
   }
   let createDate = convertDateToDateTime(dataDetailNews.createdAt);
@@ -90,7 +91,7 @@ const NewsDetail = ({ t }) => {
             <ion-icon name="home-outline"></ion-icon>
           </i>
           /
-          <h2 className="text-[#16917c] font-medium">{t("detailnews.news")}</h2>
+          <h2 className="text-[#16917c] font-medium">{t('detailnews.news')}</h2>
         </div>
         <div className="news-detail">
           <div className="flex justify-center news-pad">
@@ -99,9 +100,9 @@ const NewsDetail = ({ t }) => {
                 <div>
                   <h2 className="title-new">{dataDetailNews.name}</h2>
                   <div className="flex mt-2 text-gray-400 new-time">
-                    {t("detailnews.createdat")}
+                    {t('detailnews.createdat')}
                     <p className="px-2">{createDate}</p>
-                    {t("detailnews.updatedat")}
+                    {t('detailnews.updatedat')}
                     <p className="px-2">{updateDate}</p>
                   </div>
 

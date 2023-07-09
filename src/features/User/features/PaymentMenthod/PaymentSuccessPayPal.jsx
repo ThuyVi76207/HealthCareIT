@@ -1,19 +1,19 @@
-import { useEffect } from "react";
-import { successPay } from "services/userService";
-import { getFormattedPriceUSD } from "function/formater";
+import { useEffect } from 'react';
+import { successPay } from 'services/userService';
+import { getFormattedPriceUSD } from 'function/formater';
 
 const PaymentSuccessPayPal = () => {
   // let url = window.location
   let urlParam = new URLSearchParams(window.location.search);
-  console.log("Check url", urlParam);
-  let PayerID = urlParam.get("PayerID");
-  let paymentId = urlParam.get("paymentId");
+  // console.log("Check url", urlParam);
+  let PayerID = urlParam.get('PayerID');
+  let paymentId = urlParam.get('paymentId');
   // console.log('payerid', PayerID);
   // console.log('paymentid', paymentId);
 
-  const tokenID = localStorage.getItem("tokenID");
-  const doctorId = localStorage.getItem("doctorId");
-  const price = localStorage.getItem("price");
+  const tokenID = localStorage.getItem('tokenID');
+  const doctorId = localStorage.getItem('doctorId');
+  const price = localStorage.getItem('price');
 
   const priceToUsd = parseInt(price) / 23580;
   const priceFormat = getFormattedPriceUSD(priceToUsd).slice(1);
@@ -32,7 +32,7 @@ const PaymentSuccessPayPal = () => {
           priceFormat: priceFormat.toString(),
         });
       } catch (error) {
-        alert("Đã có lỗi xảy ra");
+        alert('Đã có lỗi xảy ra');
       }
     };
 

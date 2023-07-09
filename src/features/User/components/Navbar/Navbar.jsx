@@ -1,14 +1,14 @@
-import "./NavbarStyle.scss";
-import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import './NavbarStyle.scss';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { useState } from "react";
-import i18n from "../../../../function/i18n/i18n";
-import { withNamespaces } from "react-i18next";
-import { useDispatch } from "react-redux";
-import { addLanguage } from "reducers/userSlice";
-import { use } from "i18next";
-import { setActiveBarMode } from "reducers/activeBarSlice";
+import { useState } from 'react';
+import i18n from '../../../../function/i18n/i18n';
+import { withNamespaces } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { addLanguage } from 'reducers/userSlice';
+import { use } from 'i18next';
+import { setActiveBarMode } from 'reducers/activeBarSlice';
 
 const Navbar = ({ t }) => {
   const dispatch = useDispatch();
@@ -16,12 +16,12 @@ const Navbar = ({ t }) => {
 
   const [acticeBar, setActiveBar] = useState(false);
 
-  const rolID = sessionStorage.getItem("role");
+  const rolID = sessionStorage.getItem('role');
   const userPRofile = JSON.parse(localStorage.getItem(`${rolID}`));
 
-  console.log("Check if user login", userPRofile);
+  // console.log("Check if user login", userPRofile);
 
-  const [language, setLanguage] = useState("vi");
+  const [language, setLanguage] = useState('vi');
 
   const [activeSroll, setActiveSroll] = useState(false);
   useEffect(() => {
@@ -30,8 +30,8 @@ const Navbar = ({ t }) => {
       // console.log('isSrollFarFromTop', isSrollFarFromTop);
       setActiveSroll(isSrollFarFromTop);
     };
-    window.addEventListener("scroll", handleSroll);
-    return () => window.removeEventListener("scroll", handleSroll);
+    window.addEventListener('scroll', handleSroll);
+    return () => window.removeEventListener('scroll', handleSroll);
   }, []);
 
   //changeLanguage
@@ -51,7 +51,7 @@ const Navbar = ({ t }) => {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate("/healthcare/login/user");
+    navigate('/healthcare/login/user');
   };
 
   useEffect(() => {
@@ -84,7 +84,7 @@ const Navbar = ({ t }) => {
                   <i className="fa fa-registered"></i>
                   <div className="text-item">
                     <a href="/healthcare/register">
-                      <b>{t("navbar.register")}</b>
+                      <b>{t('navbar.register')}</b>
                     </a>
                   </div>
                 </div>
@@ -97,15 +97,15 @@ const Navbar = ({ t }) => {
                 >
                   <i className="fas fa-sign-out-alt"></i>
                   <div className="text-item">
-                    <b>{t("navbar.logout")}</b>
+                    <b>{t('navbar.logout')}</b>
                   </div>
                 </div>
               ) : (
                 <div className="content-item">
                   <i className="fa fa-user"></i>
                   <div className="text-item">
-                    <Link to={"/healthcare/login/user"}>
-                      <b>{t("navbar.login")}</b>
+                    <Link to={'/healthcare/login/user'}>
+                      <b>{t('navbar.login')}</b>
                     </Link>
                   </div>
                 </div>
@@ -114,8 +114,8 @@ const Navbar = ({ t }) => {
               {userPRofile && userPRofile.lastName && userPRofile.firstName && (
                 <div className="flex items-center">
                   <h2 className="text-[#16917c] font-bold">{`${t(
-                    "navbar.welcome"
-                  )}, ${language === "vi" ? nameVi : nameEn}`}</h2>
+                    'navbar.welcome'
+                  )}, ${language === 'vi' ? nameVi : nameEn}`}</h2>
                 </div>
               )}
             </div>
@@ -124,8 +124,8 @@ const Navbar = ({ t }) => {
         {activeSroll && <div className="h-[50px]"></div>}
         <div
           className={`${
-            activeSroll ? "navbar-repon navbar-repon__active " : "navbar-repon"
-          } ${acticeBar ? "" : "navbar-repon_hight"}`}
+            activeSroll ? 'navbar-repon navbar-repon__active ' : 'navbar-repon'
+          } ${acticeBar ? '' : 'navbar-repon_hight'}`}
         >
           <div className="hamburger" onClick={() => setActiveBar(!acticeBar)}>
             <img className="h-[3.125rem]" src="/logo/Hcare.svg" alt="" />
@@ -143,46 +143,46 @@ const Navbar = ({ t }) => {
           <div
             className={
               acticeBar
-                ? "navbar-down navbar-down_animation-show"
-                : "navbar-down navbar-down_animation"
+                ? 'navbar-down navbar-down_animation-show'
+                : 'navbar-down navbar-down_animation'
             }
             id="menuHeader"
           >
             <div className="header-down ">
               <div className="left-content z-50">
                 <div className="child-content">
-                  <Link to={"/healthcare"} className="flex items-center">
+                  <Link to={'/healthcare'} className="flex items-center">
                     <span className="pr-2">
                       <ion-icon name="home-outline"></ion-icon>
                     </span>
-                    <b>{t("navbar.homepage")}</b>
+                    <b>{t('navbar.homepage')}</b>
                   </Link>
                 </div>
                 <div className="child-content">
                   {/* <Link to={"/healthcare/online-examination"}></Link> */}
-                  <a href={"/healthcare/online-examination"}>
-                    <b>{t("navbar.onlinemedica")}</b>
+                  <a href={'/healthcare/online-examination'}>
+                    <b>{t('navbar.onlinemedica')}</b>
                   </a>
                 </div>
                 <div className="child-content">
-                  <Link to={"/healthcare/forum"}>
-                    <b>{t("navbar.forum")}</b>
+                  <Link to={'/healthcare/forum'}>
+                    <b>{t('navbar.forum')}</b>
                   </Link>
                 </div>
                 <div className="child-content">
                   <Link
                     to={
                       userPRofile && userPRofile.isLogin === true
-                        ? "/healthcare/news"
-                        : "/healthcare/login/user"
+                        ? '/healthcare/news'
+                        : '/healthcare/login/user'
                     }
                   >
-                    <b>{t("navbar.healthnews")}</b>
+                    <b>{t('navbar.healthnews')}</b>
                   </Link>
                 </div>
                 <div className="child-content">
-                  <Link to={"/healthcare/contact"}>
-                    <b>{t("navbar.contact")}</b>
+                  <Link to={'/healthcare/contact'}>
+                    <b>{t('navbar.contact')}</b>
                   </Link>
                 </div>
               </div>
@@ -193,18 +193,18 @@ const Navbar = ({ t }) => {
 
                 <div
                   className={`cursor-pointer hover:text-orange-400 ${
-                    language === "vi" ? "text-orange-400" : "text-black"
+                    language === 'vi' ? 'text-orange-400' : 'text-black'
                   }`}
                 >
-                  <span onClick={() => changeLanguage("vi")}>VN</span>
+                  <span onClick={() => changeLanguage('vi')}>VN</span>
                 </div>
                 <div className="mx-1">/</div>
                 <div
                   className={`cursor-pointer hover:text-blue-500 ${
-                    language === "en" ? "text-blue-600" : "text-black"
+                    language === 'en' ? 'text-blue-600' : 'text-black'
                   }`}
                 >
-                  <span onClick={() => changeLanguage("en")}>EN</span>
+                  <span onClick={() => changeLanguage('en')}>EN</span>
                 </div>
               </div>
             </div>

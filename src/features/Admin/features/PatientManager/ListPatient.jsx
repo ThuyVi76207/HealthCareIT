@@ -1,21 +1,21 @@
-import Loading from "components/Loading/loading";
-import { useEffect, useState } from "react";
-import { withNamespaces } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { addSuccessModal } from "reducers/modal/dialogModalSlice";
-import { addSuccessSendModal } from "reducers/modal/sendModalSlice";
-import { getAllPatientDoctor } from "services/adminService";
-import ScheduleCommon from "../PlanManager/ScheduleCommon";
+import Loading from 'components/Loading/loading';
+import { useEffect, useState } from 'react';
+import { withNamespaces } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { addSuccessModal } from 'reducers/modal/dialogModalSlice';
+import { addSuccessSendModal } from 'reducers/modal/sendModalSlice';
+import { getAllPatientDoctor } from 'services/adminService';
+import ScheduleCommon from '../PlanManager/ScheduleCommon';
 
 const ListPatient = ({ t }) => {
   const { language } = useSelector((state) => state.user) || {};
   const dispatch = useDispatch();
 
   const [dateStartContract, setDateStartContract] = useState(
-    new Date().toISOString().split("T")[0]
+    new Date().toISOString().split('T')[0]
   );
 
-  const rolID = sessionStorage.getItem("role");
+  const rolID = sessionStorage.getItem('role');
   const profile = JSON.parse(localStorage.getItem(`${rolID}`));
 
   let id = profile.id;
@@ -40,8 +40,8 @@ const ListPatient = ({ t }) => {
         }
       } catch (error) {
         setLoading(false);
-        alert("Có lỗi xảy ra vui lòng thử lại sau!!!");
-        console.log("Faild to get API patient", error);
+        alert('Có lỗi xảy ra vui lòng thử lại sau!!!');
+        // console.log("Faild to get API patient", error);
       }
     };
 
@@ -51,8 +51,8 @@ const ListPatient = ({ t }) => {
   const handleSendPrescription = (patient) => {
     dispatch(
       addSuccessModal({
-        title: "GỬI TOA THUỐC",
-        rightButtonText: "XÁC NHẬN",
+        title: 'GỬI TOA THUỐC',
+        rightButtonText: 'XÁC NHẬN',
         patient: patient,
       })
     );
@@ -61,8 +61,8 @@ const ListPatient = ({ t }) => {
   const handleSendIDRom = (patient) => {
     dispatch(
       addSuccessSendModal({
-        title: "GỬI MÃ PHÒNG",
-        rightButtonText: "GỬi",
+        title: 'GỬI MÃ PHÒNG',
+        rightButtonText: 'GỬi',
         patient: patient,
       })
     );
@@ -73,7 +73,7 @@ const ListPatient = ({ t }) => {
       <Loading loading={loading} />
       <div className="grid grid-cols-3">
         <ScheduleCommon
-          field={t("addplan.chooseday")}
+          field={t('addplan.chooseday')}
           onChange={(e) => setDateStartContract(e.target.value)}
           date={dateStartContract}
         />
@@ -97,7 +97,7 @@ const ListPatient = ({ t }) => {
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>
-                    {language === "vi"
+                    {language === 'vi'
                       ? item.timeTypeDataPatient.value_Vi
                       : item.timeTypeDataPatient.value_En}
                   </td>

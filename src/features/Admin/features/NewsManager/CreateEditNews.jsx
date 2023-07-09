@@ -1,56 +1,56 @@
-import CommonInput from "features/Admin/components/Input/CommonInput";
-import { useMemo, useRef, useState } from "react";
-import { withNamespaces } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import CommonInput from 'features/Admin/components/Input/CommonInput';
+import { useMemo, useRef, useState } from 'react';
+import { withNamespaces } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addErrorMessage,
   addSuccessMessage,
   addWarningMessage,
-} from "reducers/messageSlice";
-import { createNews, editNewsService } from "services/adminService";
-import MarkdownIt from "markdown-it";
-import MdEditor from "react-markdown-editor-lite";
-import ManagerLayout from "features/Admin/layouts/ManagerLayout";
-import { useNavigate, useParams } from "react-router-dom";
-import { getUrlDynamic } from "features/Admin/components/Auth";
+} from 'reducers/messageSlice';
+import { createNews, editNewsService } from 'services/adminService';
+import MarkdownIt from 'markdown-it';
+import MdEditor from 'react-markdown-editor-lite';
+import ManagerLayout from 'features/Admin/layouts/ManagerLayout';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getUrlDynamic } from 'features/Admin/components/Auth';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 const CreateEditNews = ({ t }) => {
-  const rolID = sessionStorage.getItem("role");
+  const rolID = sessionStorage.getItem('role');
   const profileuser = JSON.parse(localStorage.getItem(`${rolID}`));
   const { id } = useParams();
   const isAddMode = !id;
-  console.log("Check mode", isAddMode);
+  // console.log("Check mode", isAddMode);
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const editnews = useSelector((state) => state.editcommon) || {};
-  console.log("Check your edit news", editnews);
+  // console.log("Check your edit news", editnews);
   const formref = useRef(null);
 
-  const [nameNews, setNameNews] = useState("");
+  const [nameNews, setNameNews] = useState('');
   const [imgNews, setImgNews] = useState();
-  const [descriptionMarkdown, setDescriptionMarkdown] = useState("");
-  const [descriptionHTML, setDescriptionHTML] = useState("");
+  const [descriptionMarkdown, setDescriptionMarkdown] = useState('');
+  const [descriptionHTML, setDescriptionHTML] = useState('');
   const [loading, setLoading] = useState(false);
 
   const [error, setError] = useState({
-    nameNews: "",
-    descriptionMarkdown: "",
+    nameNews: '',
+    descriptionMarkdown: '',
   });
 
   const isValidated = () => {
     let validated = true;
     let _error = {};
 
-    if (nameNews === "") {
+    if (nameNews === '') {
       validated = false;
-      _error.nameNews = "Vui lòng nhập tên bài đăng";
+      _error.nameNews = 'Vui lòng nhập tên bài đăng';
     }
-    if (descriptionMarkdown === "") {
+    if (descriptionMarkdown === '') {
       validated = false;
-      _error.descriptionMarkdown = "Vui lòng nhập mô tả bài đăng";
+      _error.descriptionMarkdown = 'Vui lòng nhập mô tả bài đăng';
     }
 
     setError(_error);
@@ -81,8 +81,8 @@ const CreateEditNews = ({ t }) => {
   };
 
   const handleResetForm = () => {
-    setNameNews("");
-    setDescriptionMarkdown("");
+    setNameNews('');
+    setDescriptionMarkdown('');
     setImgNews();
   };
 
@@ -110,20 +110,20 @@ const CreateEditNews = ({ t }) => {
 
     try {
       let res = await createNews(data);
-      console.log("Check created news", res);
+      // console.log('Check created news', res);
       if (res && res.errCode === 0) {
         dispatch(
           addSuccessMessage({
-            title: "Tạo thành công",
-            content: "Thêm bài đăng thành công!!!",
+            title: 'Tạo thành công',
+            content: 'Thêm bài đăng thành công!!!',
           })
         );
         srollToInput();
       } else if (res && res.errCode === 1) {
         dispatch(
           addWarningMessage({
-            title: "Tạo không thành công",
-            content: "Vui lòng thêm ảnh bài đăng!!!",
+            title: 'Tạo không thành công',
+            content: 'Vui lòng thêm ảnh bài đăng!!!',
           })
         );
         srollToInput();
@@ -134,12 +134,12 @@ const CreateEditNews = ({ t }) => {
     } catch (error) {
       dispatch(
         addErrorMessage({
-          title: "Đã có lỗi xảy ra",
-          content: "Vui lòng thử lại sau!!!",
+          title: 'Đã có lỗi xảy ra',
+          content: 'Vui lòng thử lại sau!!!',
         })
       );
       setLoading(false);
-      console.log("Faild to create a news: ", error);
+      // console.log('Faild to create a news: ', error);
     }
   };
 
@@ -175,20 +175,20 @@ const CreateEditNews = ({ t }) => {
     setLoading(true);
     try {
       let res = await editNewsService(data);
-      console.log("Check results edit", res);
+      // console.log('Check results edit', res);
       if (res && res.errCode === 0) {
         dispatch(
           addSuccessMessage({
-            title: "Lưu thành công",
-            content: "Sửa thành công thông tin bài đăng",
+            title: 'Lưu thành công',
+            content: 'Sửa thành công thông tin bài đăng',
           })
         );
         srollToInput();
       } else if (res && res.errCode === 2) {
         dispatch(
           addWarningMessage({
-            title: "Bài đăng không tồn tại",
-            content: "Vui lòng kiểm tra lại!!!",
+            title: 'Bài đăng không tồn tại',
+            content: 'Vui lòng kiểm tra lại!!!',
           })
         );
         srollToInput();
@@ -199,36 +199,36 @@ const CreateEditNews = ({ t }) => {
     } catch (err) {
       dispatch(
         addErrorMessage({
-          title: "Đã có lỗi xảy ra",
-          content: "Vui lòng thử lại sau!!!",
+          title: 'Đã có lỗi xảy ra',
+          content: 'Vui lòng thử lại sau!!!',
         })
       );
       setLoading(false);
-      console.log("Faild to edit user", err);
+      // console.log('Faild to edit user', err);
     }
   };
 
   return (
     <ManagerLayout>
       <h2 className="text-center text-[25px] font-bold py-8">{`${
-        isAddMode ? t("createnews.titles") : t("editnews.titles")
+        isAddMode ? t('createnews.titles') : t('editnews.titles')
       }`}</h2>
       <form ref={formref}>
         <div className="px-12">
           <div className="w-[30%] my-4">
             <CommonInput
-              field={t("createnews.namenews")}
+              field={t('createnews.namenews')}
               name="news"
               value={nameNews}
               onChange={(e) => setNameNews(e.target.value)}
-              placeholder={t("createnews.phdernews")}
+              placeholder={t('createnews.phdernews')}
               maxLength={100}
               error={error.nameNews}
               required
             />
           </div>
           <h2 className="text-[20px] font-bold mb-2">
-            {t("createnews.imgnews")}
+            {t('createnews.imgnews')}
           </h2>
           <div className="mt-2 mb-4">
             <button
@@ -239,7 +239,7 @@ const CreateEditNews = ({ t }) => {
               <i className="mr-2 text-[15px]">
                 <ion-icon name="cloud-upload-outline"></ion-icon>
               </i>
-              {t("createnews.upload")}
+              {t('createnews.upload')}
               <input
                 className="opacity-0 absolute w-full h-full top-0 left-0"
                 type="file"
@@ -256,7 +256,7 @@ const CreateEditNews = ({ t }) => {
               <p className="text-red-600">{error.descriptionMarkdown}</p>
             )}
             <MdEditor
-              style={{ height: "500px", width: "100%" }}
+              style={{ height: '500px', width: '100%' }}
               renderHTML={(text) => mdParser.render(text)}
               onChange={handleEditorChange}
               value={descriptionMarkdown}
@@ -269,14 +269,14 @@ const CreateEditNews = ({ t }) => {
           onClick={handleCreateNewsOnClick}
           className="bg-[#003985] ml-12 text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2  rounded-[5px]"
         >
-          {t("createnews.save")}
+          {t('createnews.save')}
         </button>
       ) : (
         <button
           onClick={handleEditNews}
           className="bg-[#003985] ml-12 text-white text-[18px] font-medium px-4 py-2 mb-5 mt-2  rounded-[5px]"
         >
-          {t("createnews.save")}
+          {t('createnews.save')}
         </button>
       )}
     </ManagerLayout>

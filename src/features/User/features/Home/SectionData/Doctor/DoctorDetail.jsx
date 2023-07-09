@@ -1,22 +1,22 @@
-import MainLayout from "features/User/layouts/MainLayout";
+import MainLayout from 'features/User/layouts/MainLayout';
 import {
   convertDateToDateTime,
   getFormattedPriceUSD,
   getFormattedPriceVND,
-} from "function/formater";
-import React, { useEffect, useRef, useState } from "react";
-import { withNamespaces } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+} from 'function/formater';
+import React, { useEffect, useRef, useState } from 'react';
+import { withNamespaces } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   createComment,
   getAllCommentByDoctor,
   getDetailInforDoctor,
-} from "services/userService";
-import "./DoctorDetailStyles.scss";
-import ScheduleDoctor from "./ScheduleDoctor";
-import { addErrorMessage, addSuccessMessage } from "reducers/messageSlice";
-import LoadingSpinner2 from "components/Loading/LoadingSpinner2";
+} from 'services/userService';
+import './DoctorDetailStyles.scss';
+import ScheduleDoctor from './ScheduleDoctor';
+import { addErrorMessage, addSuccessMessage } from 'reducers/messageSlice';
+import LoadingSpinner2 from 'components/Loading/LoadingSpinner2';
 
 function DoctorDetail({ t }) {
   const [infoDoctor, setInfoDoctor] = useState({});
@@ -27,9 +27,9 @@ function DoctorDetail({ t }) {
   const [currentStar, setCurrentStar] = useState(0);
   const [hoverStar, setHoverStar] = useState(undefined);
 
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
 
-  const rolID = sessionStorage.getItem("role");
+  const rolID = sessionStorage.getItem('role');
   const userProfile = JSON.parse(localStorage.getItem(`${rolID}`));
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -41,15 +41,15 @@ function DoctorDetail({ t }) {
   const [totalCurrent, setTotalCurrent] = useState(0);
 
   const [error, setError] = useState({
-    comment: "",
+    comment: '',
   });
 
   const isValidated = () => {
     let validated = true;
     let _error = {};
-    if (comment === "") {
+    if (comment === '') {
       validated = false;
-      _error.comment = "Vui lòng nhập bình luận";
+      _error.comment = 'Vui lòng nhập bình luận';
     }
 
     setError(_error);
@@ -64,18 +64,18 @@ function DoctorDetail({ t }) {
           setInfoDoctor(resDetail.data);
         }
       } catch (error) {
-        alert("Có lỗi xảy ra vui lòng quay lại sau!!");
-        console.log("Failed to get details doctor", error);
+        alert('Có lỗi xảy ra vui lòng quay lại sau!!');
+        // console.log("Failed to get details doctor", error);
       }
     };
 
     printinfoDoctor();
   }, [id]);
 
-  console.log("Check detail doctor", infoDoctor);
+  // console.log('Check detail doctor', infoDoctor);
 
-  let nameVi = "",
-    nameEn = "";
+  let nameVi = '',
+    nameEn = '';
   if (infoDoctor && infoDoctor.positionData) {
     nameVi = `${infoDoctor.positionData.value_Vi} ${infoDoctor.lastName} ${infoDoctor.firstName}`;
     nameEn = `${infoDoctor.positionData.value_En} ${infoDoctor.firstName} ${infoDoctor.lastName}`;
@@ -117,7 +117,7 @@ function DoctorDetail({ t }) {
 
   const handleCreateComment = async () => {
     let data = {
-      userName: userProfile.lastName + " " + userProfile.firstName,
+      userName: userProfile.lastName + ' ' + userProfile.firstName,
       patientId: userProfile.id,
       commentData: comment,
       rating: currentStar === 0 ? +5 : currentStar,
@@ -128,14 +128,14 @@ function DoctorDetail({ t }) {
     try {
       let res = await createComment(data);
       if (res && res.errCode === 0) {
-        console.log("Check comment", res);
-        setComment("");
+        // console.log('Check comment', res);
+        setComment('');
         setCurrentStar(0);
         setReload(true);
         dispatch(
           addSuccessMessage({
-            title: "Bình luận thành công",
-            content: "Bình luận của bạn đã được đăng",
+            title: 'Bình luận thành công',
+            content: 'Bình luận của bạn đã được đăng',
           })
         );
       }
@@ -143,34 +143,35 @@ function DoctorDetail({ t }) {
     } catch (error) {
       setLoading(false);
       addErrorMessage({
-        title: "Đã có lỗi xảy ra",
-        content: "Vui lòng thử lại sau!!!",
+        title: 'Đã có lỗi xảy ra',
+        content: 'Vui lòng thử lại sau!!!',
       });
-      console.log("Failed to create comment", error);
+      // console.log('Failed to create comment', error);
     }
   };
 
-  console.log("Check star rating and comment", currentStar, comment);
+  // console.log('Check star rating and comment', currentStar, comment);
 
   useEffect(() => {
     if (!infoDoctor.id) return;
     const getListComment = async () => {
       let data = {
-        limit: "",
+        limit: '',
         doctorId: infoDoctor.id,
       };
 
-      console.log("check data", data);
+      // console.log('check data', data);
 
       try {
         let res = await getAllCommentByDoctor(data);
 
         if (res && res.errCode === 0) {
-          console.log("Check list comment", res);
+          // console.log('Check list comment', res);
           setListComment(res.data);
         }
       } catch (error) {
-        console.log("Faild get list comment", error);
+        alert('Faild get list comment');
+        // console.log('Faild get list comment', error);
       }
     };
     getListComment();
@@ -216,7 +217,7 @@ function DoctorDetail({ t }) {
             />
             <div className="w-[70%]">
               <h2 className="uppercase text-[25px] text-[#16917c] font-bold">
-                {language === "vi" ? nameVi : nameEn}
+                {language === 'vi' ? nameVi : nameEn}
               </h2>
               {infoDoctor &&
                 infoDoctor.Markdown &&
@@ -232,7 +233,7 @@ function DoctorDetail({ t }) {
             <div className="content-up">
               <ScheduleDoctor
                 id={id}
-                price={language === "vi" ? priceVI : priceEn}
+                price={language === 'vi' ? priceVI : priceEn}
                 profile={infoDoctor}
               />
             </div>
@@ -243,9 +244,9 @@ function DoctorDetail({ t }) {
                   <ion-icon name="cash-outline"></ion-icon>
                 </i>
                 <h4 className="uppercase text-[15px] font-bold mr-1">
-                  {t("profiledoctor.price")}
+                  {t('profiledoctor.price')}
                 </h4>
-                {language === "vi" ? (
+                {language === 'vi' ? (
                   <span>{getFormattedPriceVND(priceVI)}</span>
                 ) : (
                   <span>{getFormattedPriceUSD(priceEn)}</span>
@@ -257,7 +258,7 @@ function DoctorDetail({ t }) {
                     <ion-icon name="medkit-outline"></ion-icon>
                   </i>
                   <h4 className="text-[15px] font-bold uppercase mt-1">
-                    {t("profiledoctor.workaddress")}
+                    {t('profiledoctor.workaddress')}
                   </h4>
                 </div>
                 <div>
@@ -285,7 +286,7 @@ function DoctorDetail({ t }) {
                 <i
                   key={index}
                   className={`text-[24px] mr-[10px] cursor-pointer inline-block ${
-                    totalCurrent > index ? "text-orange-400" : "text-gray-500"
+                    totalCurrent > index ? 'text-orange-400' : 'text-gray-500'
                   }`}
                 >
                   <ion-icon name="star-outline"></ion-icon>
@@ -297,7 +298,7 @@ function DoctorDetail({ t }) {
           <div className="description-doctor mt-7">
             <div className="title_doctor">
               <h2 className="text-[22px] font-extrabold uppercase">
-                {t("detaildoctor.overview")}
+                {t('detaildoctor.overview')}
               </h2>
             </div>
             {infoDoctor &&
@@ -323,8 +324,8 @@ function DoctorDetail({ t }) {
                     key={index}
                     className={`text-[24px] mr-[10px] cursor-pointer ${
                       (hoverStar || currentStar) > index
-                        ? "text-orange-400"
-                        : "text-gray-500"
+                        ? 'text-orange-400'
+                        : 'text-gray-500'
                     }`}
                     onClick={() => handleClick(index + 1)}
                     onMouseOver={() => handleMouseOver(index + 1)}
@@ -358,7 +359,7 @@ function DoctorDetail({ t }) {
               className="bg-gray-300 hover:bg-orange-400 py-1 px-6 rounded-[5px] text-[18px] text-gray-500 hover:text-black font-semibold "
             >
               Đăng
-              {loading ? <LoadingSpinner2 loading={loading} /> : ""}
+              {loading ? <LoadingSpinner2 loading={loading} /> : ''}
             </button>
             <div className="my-[20px]">
               {listComment &&
@@ -384,8 +385,8 @@ function DoctorDetail({ t }) {
                               key={index}
                               className={`text-[24px] mr-[10px] cursor-pointer ${
                                 item.rating > index
-                                  ? "text-orange-400"
-                                  : "text-gray-500"
+                                  ? 'text-orange-400'
+                                  : 'text-gray-500'
                               }`}
                             >
                               <ion-icon name="star-outline"></ion-icon>

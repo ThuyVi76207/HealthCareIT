@@ -1,16 +1,16 @@
-import Loading from "components/Loading/loading";
-import { convertDateToDateTime } from "function/formater";
+import Loading from 'components/Loading/loading';
+import { convertDateToDateTime } from 'function/formater';
 
-import { useEffect, useState } from "react";
-import { withNamespaces } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from 'react';
+import { withNamespaces } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addErrorMessage,
   addSuccessMessage,
   addWarningMessage,
-} from "reducers/messageSlice";
-import { getAllDoctors } from "services/adminService";
-import { deleteComment, getAllCommentByDoctor } from "services/userService";
+} from 'reducers/messageSlice';
+import { getAllDoctors } from 'services/adminService';
+import { deleteComment, getAllCommentByDoctor } from 'services/userService';
 
 const ListComment = ({ t }) => {
   const dispatch = useDispatch();
@@ -30,12 +30,13 @@ const ListComment = ({ t }) => {
       try {
         let res = await getAllDoctors();
         if (res && res.errCode === 0) {
-          console.log("Check list doctor", res.data);
+          // console.log("Check list doctor", res.data);
           setListDoctor(res.data);
         }
         setLoading(false);
       } catch (error) {
-        console.log("Faild to get list of Doctor", error);
+        alert('Faild to get list of Doctor');
+        // console.log('Faild to get list of Doctor', error);
       }
     };
     getListDoctor();
@@ -43,21 +44,22 @@ const ListComment = ({ t }) => {
 
   useEffect(() => {
     let data = {
-      limit: "",
+      limit: '',
       doctorId: selectedDoctor,
     };
     setLoading(true);
-    console.log("Check data", data);
+    // console.log('Check data', data);
     const getListComment = async () => {
       try {
         let res = await getAllCommentByDoctor(data);
         if (res && res.errCode === 0) {
-          console.log("Check commentData", res);
+          // console.log('Check commentData', res);
           setListComment(res.data);
         }
         setLoading(false);
       } catch (error) {
-        console.log("Failed to get list comment", error);
+        alert('Failed to get list comment');
+        // console.log('Failed to get list comment', error);
         setLoading(false);
       }
     };
@@ -68,12 +70,12 @@ const ListComment = ({ t }) => {
     setLoading(true);
     try {
       let res = await deleteComment(id);
-      console.log("Check deleted comment", res);
+      // console.log('Check deleted comment', res);
       if (res && res.errCode === 0) {
         dispatch(
           addSuccessMessage({
-            title: "Xóa thành công",
-            content: "Đã xóa thành công bình luận!!!",
+            title: 'Xóa thành công',
+            content: 'Đã xóa thành công bình luận!!!',
           })
         );
 
@@ -81,8 +83,8 @@ const ListComment = ({ t }) => {
       } else if (res && res.errCode === 2) {
         dispatch(
           addWarningMessage({
-            title: "Xóa không thành công",
-            content: "Vui lòng kiểm tra lại!!!",
+            title: 'Xóa không thành công',
+            content: 'Vui lòng kiểm tra lại!!!',
           })
         );
       }
@@ -91,11 +93,11 @@ const ListComment = ({ t }) => {
       setLoading(false);
       dispatch(
         addErrorMessage({
-          title: "Đã có lỗi xảy ra",
-          content: "Vui lòng thử lại sau!!!",
+          title: 'Đã có lỗi xảy ra',
+          content: 'Vui lòng thử lại sau!!!',
         })
       );
-      console.error("Faild api delete specialty", err);
+      console.error('Faild api delete specialty', err);
     }
   };
 
@@ -114,7 +116,7 @@ const ListComment = ({ t }) => {
           className="w-full rounded-[4px] px-2 border border-[#003985] placeholder-shown:border-gray-500 focus:outline-none h-[40px]"
         >
           <option value={0}>{`--- ${t(
-            "addinfordoctor.selecdoctor"
+            'addinfordoctor.selecdoctor'
           )} ---`}</option>
           {listDoctor.map((option) => {
             let nameDoctorVi, nameDoctorEn;
@@ -126,7 +128,7 @@ const ListComment = ({ t }) => {
                 key={option.id}
                 // selected={option.value === selectedRole}
               >
-                {language === "vi" ? nameDoctorVi : nameDoctorEn}
+                {language === 'vi' ? nameDoctorVi : nameDoctorEn}
               </option>
             );
           })}
@@ -138,11 +140,11 @@ const ListComment = ({ t }) => {
           <tbody>
             <tr className="uppercase">
               <th>STT</th>
-              <th>{t("listcomment.name")}</th>
-              <th>{t("listcomment.daycreate")}</th>
-              <th>{t("listcomment.commentdata")}</th>
-              <th>{t("listcomment.rating")}</th>
-              <th>{t("listcomment.choose")}</th>
+              <th>{t('listcomment.name')}</th>
+              <th>{t('listcomment.daycreate')}</th>
+              <th>{t('listcomment.commentdata')}</th>
+              <th>{t('listcomment.rating')}</th>
+              <th>{t('listcomment.choose')}</th>
             </tr>
 
             {listComment &&
@@ -161,8 +163,8 @@ const ListComment = ({ t }) => {
                             key={index}
                             className={`text-[20px] mr-[10px] cursor-pointer ${
                               item.rating > index
-                                ? "text-orange-400"
-                                : "text-gray-500"
+                                ? 'text-orange-400'
+                                : 'text-gray-500'
                             }`}
                           >
                             <ion-icon name="star-outline"></ion-icon>

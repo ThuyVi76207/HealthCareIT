@@ -1,8 +1,8 @@
-import { useDispatch } from "react-redux";
-import { addErrorMessage, addSuccessMessage } from "reducers/messageSlice";
-import { postSaveNameRoom } from "services/userService";
-import "./NavbarForumStyles.scss";
-import { useEffect, useState } from "react";
+import { useDispatch } from 'react-redux';
+import { addErrorMessage, addSuccessMessage } from 'reducers/messageSlice';
+import { postSaveNameRoom } from 'services/userService';
+import './NavbarForumStyles.scss';
+import { useEffect, useState } from 'react';
 
 const NavbarForum = (props) => {
   const dispatch = useDispatch();
@@ -21,22 +21,22 @@ const NavbarForum = (props) => {
       if (res && res.errCode === 0) {
         dispatch(
           addSuccessMessage({
-            title: "Thành công",
-            content: "Tạo phòng chat thành công",
+            title: 'Thành công',
+            content: 'Tạo phòng chat thành công',
           })
         );
       } else {
         dispatch(
           addErrorMessage({
-            title: "Đã có lỗi xảy ra",
-            content: "Vui lòng thử lại sau!!!",
+            title: 'Đã có lỗi xảy ra',
+            content: 'Vui lòng thử lại sau!!!',
           })
         );
       }
-      console.log("Check result", res);
+      // console.log('Check result', res);
     } catch (error) {
-      alert("Đã có lỗi xảy ra. Vui lòng thử lại sau!!!");
-      console.log("Faild to api save name room error: ", error);
+      alert('Đã có lỗi xảy ra. Vui lòng thử lại sau!!!');
+      // console.log("Faild to api save name room error: ", error);
     }
   };
 
@@ -51,8 +51,8 @@ const NavbarForum = (props) => {
       // console.log('isSrollFarFromTop', isSrollFarFromTop);
       setActiveSroll(isSrollFarFromTop);
     };
-    window.addEventListener("scroll", handleSroll);
-    return () => window.removeEventListener("scroll", handleSroll);
+    window.addEventListener('scroll', handleSroll);
+    return () => window.removeEventListener('scroll', handleSroll);
   }, []);
 
   return (
@@ -62,7 +62,7 @@ const NavbarForum = (props) => {
       >
         <div
           className={`navbar-forum__left flex items-center justify-between h-full bg-[#1d155e] ${
-            activeSroll ? "active-scroll" : ""
+            activeSroll ? 'active-scroll' : ''
           }`}
         >
           <div className="flex items-center w-[70%]">

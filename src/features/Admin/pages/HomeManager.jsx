@@ -1,18 +1,18 @@
-import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import { getUrlDynamic } from "../components/Auth";
-import DenyUser from "./DenyUser";
-import SystemAdmin from "./SystemAdmin";
-import SystemDoctor from "./SystemDoctor";
-import SystemHealthcareStaff from "./SystemHealthcareStaff";
-import SystemSuperAdmin from "./SystemSuperAdmin";
+import React from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { getUrlDynamic } from '../components/Auth';
+import DenyUser from './DenyUser';
+import SystemAdmin from './SystemAdmin';
+import SystemDoctor from './SystemDoctor';
+import SystemHealthcareStaff from './SystemHealthcareStaff';
+import SystemSuperAdmin from './SystemSuperAdmin';
 
 const HomeManager = () => {
-  const rolID = sessionStorage.getItem("role");
+  const rolID = sessionStorage.getItem('role');
   const userProfile = JSON.parse(localStorage.getItem(`${rolID}`));
 
-  console.log("Check roleID ", rolID);
-  console.log("Check userProfile ", userProfile);
+  // console.log("Check roleID ", rolID);
+  // console.log("Check userProfile ", userProfile);
 
   let userUrl = getUrlDynamic(userProfile.roleId);
 

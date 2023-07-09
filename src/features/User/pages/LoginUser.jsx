@@ -1,53 +1,53 @@
-import React, { useRef, useState } from "react";
-import bgLogin from "assets/Login/bg.svg";
-import wave from "assets/Login/wave.png";
-import avatar from "assets/Login/avatar.svg";
-import EmailInput from "features/Admin/components/Input/EmailInput";
-import { withNamespaces } from "react-i18next";
-import { isPasswordStrength, isValidEmail } from "function/formater";
-import PasswordInput from "features/Admin/components/Input/PasswordInput";
-import { handleLoginApi } from "services/userService";
-import { useDispatch } from "react-redux";
+import React, { useRef, useState } from 'react';
+import bgLogin from 'assets/Login/bg.svg';
+import wave from 'assets/Login/wave.png';
+import avatar from 'assets/Login/avatar.svg';
+import EmailInput from 'features/Admin/components/Input/EmailInput';
+import { withNamespaces } from 'react-i18next';
+import { isPasswordStrength, isValidEmail } from 'function/formater';
+import PasswordInput from 'features/Admin/components/Input/PasswordInput';
+import { handleLoginApi } from 'services/userService';
+import { useDispatch } from 'react-redux';
 import {
   addErrorMessage,
   addSuccessMessage,
   addWarningMessage,
-} from "reducers/messageSlice";
-import { useNavigate } from "react-router-dom";
+} from 'reducers/messageSlice';
+import { useNavigate } from 'react-router-dom';
 
-import "../features/Login/LoginUserStyles.scss";
-import Loading from "components/Loading/loading";
+import '../features/Login/LoginUserStyles.scss';
+import Loading from 'components/Loading/loading';
 
 const LoginUser = ({ t }) => {
   const dispatch = useDispatch();
   const formRef = useRef(null);
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const [loading, setLoading] = useState(false);
 
   const isValidated = () => {
     let validated = true;
     let _error = {};
-    if (email === "") {
+    if (email === '') {
       validated = false;
-      _error.email = "Vui lòng nhập email";
+      _error.email = 'Vui lòng nhập email';
     } else if (!isValidEmail(email)) {
       validated = false;
-      _error.email = "Email không hợp lệ";
+      _error.email = 'Email không hợp lệ';
     }
-    if (password === "") {
+    if (password === '') {
       validated = false;
-      _error.password = "Vui lòng nhập mật khẩu";
+      _error.password = 'Vui lòng nhập mật khẩu';
     } else if (!isPasswordStrength(password)) {
       validated = false;
       _error.password =
-        "Mật khẩu phải có đủ 8 ký tự bao gồm chữ thường, in hoa và số";
+        'Mật khẩu phải có đủ 8 ký tự bao gồm chữ thường, in hoa và số';
     }
 
     setError(_error);
@@ -75,35 +75,35 @@ const LoginUser = ({ t }) => {
         let user = { ...profiles, isLogin: true };
         dispatch(
           addSuccessMessage({
-            title: "Đăng nhập thành công",
-            content: "Chào mừng bạn đến với HealthCare",
+            title: 'Đăng nhập thành công',
+            content: 'Chào mừng bạn đến với HealthCare',
           })
         );
-        sessionStorage.setItem("role", `${res.user.roleId}`);
+        sessionStorage.setItem('role', `${res.user.roleId}`);
         localStorage.setItem(`${profiles.roleId}`, JSON.stringify(user));
         // dispatch(addProfileUser(res.user));
         navigate(`/`);
       } else if (res && res.errCode === 1) {
         dispatch(
           addWarningMessage({
-            title: "Email không tồn tại",
-            content: "Vui lòng kiểm tra lại!!!",
+            title: 'Email không tồn tại',
+            content: 'Vui lòng kiểm tra lại!!!',
           })
         );
         srollToInput();
       } else if (res && res.errCode === 2) {
         dispatch(
           addWarningMessage({
-            title: "Không tìm thấy user",
-            content: "Vui lòng kiểm tra lại!!!",
+            title: 'Không tìm thấy user',
+            content: 'Vui lòng kiểm tra lại!!!',
           })
         );
         srollToInput();
       } else if (res && res.errCode === 3) {
         dispatch(
           addWarningMessage({
-            title: "Mật khẩu không đúng",
-            content: "Vui lòng kiểm tra lại!!!",
+            title: 'Mật khẩu không đúng',
+            content: 'Vui lòng kiểm tra lại!!!',
           })
         );
         srollToInput();
@@ -113,12 +113,12 @@ const LoginUser = ({ t }) => {
     } catch (err) {
       dispatch(
         addErrorMessage({
-          title: "Đã có lỗi xảy ra",
-          content: "Vui lòng thử lại sau!!!",
+          title: 'Đã có lỗi xảy ra',
+          content: 'Vui lòng thử lại sau!!!',
         })
       );
       setLoading(false);
-      console.log("Faild to login user", err);
+      // console.log("Faild to login user", err);
     }
   };
 
@@ -140,29 +140,29 @@ const LoginUser = ({ t }) => {
               <form ref={formRef}>
                 <img src={avatar} alt="avatar" />
                 <h2 className="uppercase text-[2.9rem] font-bold text-[#333] text-center">
-                  {t("login.titles")}
+                  {t('login.titles')}
                 </h2>
                 <EmailInput
                   field="Email"
                   name="email"
                   email={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder={t("createuser.phderemail")}
+                  placeholder={t('createuser.phderemail')}
                   maxLength={50}
                   error={error.email}
                   required
                 />
                 <PasswordInput
-                  field={t("createuser.password")}
+                  field={t('createuser.password')}
                   name="password"
                   password={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder={t("createuser.phderpassword")}
+                  placeholder={t('createuser.phderpassword')}
                   error={error.password}
                   required
                 />
                 <a href="/" className="text-right text-gray-500">
-                  {t("login.forgotpassword")} ?
+                  {t('login.forgotpassword')} ?
                 </a>
               </form>
               <div className="flex justify-center">
@@ -170,7 +170,7 @@ const LoginUser = ({ t }) => {
                   onClick={handleLoginOnClick}
                   className="bg-[#16917c] rounded-[50px] text-white"
                 >
-                  {t("login.btn")}
+                  {t('login.btn')}
                 </button>
               </div>
             </div>

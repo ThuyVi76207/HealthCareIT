@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import Slider from "react-slick";
-import { getTopDoctorHomeService } from "services/userService";
-import { Buffer } from "buffer";
-import "./DoctorStyles.scss";
-import { useNavigate } from "react-router-dom";
-import loadingAPI from "assets/Loading/LoadingAPI.gif";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import Slider from 'react-slick';
+import { getTopDoctorHomeService } from 'services/userService';
+import { Buffer } from 'buffer';
+import './DoctorStyles.scss';
+import { useNavigate } from 'react-router-dom';
+import loadingAPI from 'assets/Loading/LoadingAPI.gif';
 
 function Doctor() {
   const [listTopDoctor, setListTopDoctor] = useState([]);
@@ -56,16 +56,17 @@ function Doctor() {
   useEffect(() => {
     const printTopDoctorHome = async () => {
       try {
-        const res = await getTopDoctorHomeService("10");
+        const res = await getTopDoctorHomeService('10');
         setListTopDoctor(res.data);
       } catch (err) {
-        console.log("Failed get top doctor home page", err);
+        alert('Failed get top doctor home page');
+        // console.log("Failed get top doctor home page", err);
       }
     };
     printTopDoctorHome();
   }, []);
 
-  console.log("Top doctor home page", listTopDoctor);
+  // console.log('Top doctor home page', listTopDoctor);
 
   const handleViewDetailDoctor = (item) => {
     const urlDetailDoctor = `/healthcare/detail-doctor/${item.id}`;
@@ -93,10 +94,10 @@ function Doctor() {
           {listTopDoctor &&
             listTopDoctor.length > 0 &&
             listTopDoctor.map((item, index) => {
-              let imageBase64 = "";
+              let imageBase64 = '';
               if (item.image) {
-                imageBase64 = Buffer.from(item.image, "base64").toString(
-                  "binary"
+                imageBase64 = Buffer.from(item.image, 'base64').toString(
+                  'binary'
                 );
               }
 
@@ -112,17 +113,17 @@ function Doctor() {
                 >
                   <img
                     className="doctor-image mx-auto mt-3"
-                    style={{ height: "170px", width: "170px" }}
+                    style={{ height: '170px', width: '170px' }}
                     src={imageBase64}
                     alt={index}
                   />
                   <h2 className="text-[20px] font-bold text-center mt-4">
-                    {language === "vi"
+                    {language === 'vi'
                       ? item.positionData.value_Vi
                       : item.positionData.value_En}
                   </h2>
                   <div className="text-doctor">
-                    <b>{language === "vi" ? nameVi : nameEn}</b>
+                    <b>{language === 'vi' ? nameVi : nameEn}</b>
                   </div>
                 </div>
               );

@@ -1,25 +1,25 @@
-import { useEffect, useState } from "react";
-import { getAllNews } from "services/userService";
-import "features/Admin/components/StylesCommon/TableManagerStyles.scss";
-import { withNamespaces } from "react-i18next";
-import { convertDateToDateTime } from "function/formater";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from 'react';
+import { getAllNews } from 'services/userService';
+import 'features/Admin/components/StylesCommon/TableManagerStyles.scss';
+import { withNamespaces } from 'react-i18next';
+import { convertDateToDateTime } from 'function/formater';
+import { useDispatch } from 'react-redux';
 import {
   addErrorMessage,
   addSuccessMessage,
   addWarningMessage,
-} from "reducers/messageSlice";
-import { deleteNewsService, filterNewsByDoctorId } from "services/adminService";
-import Loading from "components/Loading/loading";
-import { useNavigate } from "react-router-dom";
-import { addInfor } from "reducers/editcommonSlice";
-import { getUrlDynamic } from "features/Admin/components/Auth";
+} from 'reducers/messageSlice';
+import { deleteNewsService, filterNewsByDoctorId } from 'services/adminService';
+import Loading from 'components/Loading/loading';
+import { useNavigate } from 'react-router-dom';
+import { addInfor } from 'reducers/editcommonSlice';
+import { getUrlDynamic } from 'features/Admin/components/Auth';
 
 const TableNews = ({ t }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const rolID = sessionStorage.getItem("role");
+  const rolID = sessionStorage.getItem('role');
   const userProfile = JSON.parse(localStorage.getItem(`${rolID}`));
 
   const [listnews, setListNews] = useState([]);
@@ -29,13 +29,13 @@ const TableNews = ({ t }) => {
   useEffect(() => {
     setLoading(true);
     const printNewsAll = async () => {
-      console.log("Check roole id", userProfile.roleId);
+      // console.log("Check roole id", userProfile.roleId);
       let data = {
-        limit: "5",
+        limit: '5',
         doctorId: userProfile.id,
       };
       try {
-        if (userProfile.roleId === "R2" || userProfile.roleId === "R4") {
+        if (userProfile.roleId === 'R2' || userProfile.roleId === 'R4') {
           let res = await filterNewsByDoctorId(data);
           if (res && res.errCode === 0) {
             setListNews(res.data);
@@ -43,7 +43,7 @@ const TableNews = ({ t }) => {
           }
           // console.log("Check result filter", res);
         } else {
-          let res = await getAllNews("");
+          let res = await getAllNews('');
           if (res && res.errCode === 0) {
             // console.log('Check api news: ', res.data);
             setListNews(res.data);
@@ -52,7 +52,8 @@ const TableNews = ({ t }) => {
         }
       } catch (error) {
         setLoading(false);
-        console.log("Faild to print API all news error: ", error);
+        alert('Faild to print API all news error');
+        // console.log('Faild to print API all news error: ', error);
       }
     };
 
@@ -66,16 +67,16 @@ const TableNews = ({ t }) => {
       if (res && res.errCode === 0) {
         dispatch(
           addSuccessMessage({
-            title: "Xóa thành công",
-            content: "Đã xóa thành công bài đăng!!!",
+            title: 'Xóa thành công',
+            content: 'Đã xóa thành công bài đăng!!!',
           })
         );
         setReload(!reload);
       } else if (res && res.errCode === 2) {
         dispatch(
           addWarningMessage({
-            title: "Xóa không thành công",
-            content: "Vui lòng kiểm tra lại!!!",
+            title: 'Xóa không thành công',
+            content: 'Vui lòng kiểm tra lại!!!',
           })
         );
       }
@@ -84,11 +85,11 @@ const TableNews = ({ t }) => {
       setLoading(false);
       dispatch(
         addErrorMessage({
-          title: "Đã có lỗi xảy ra",
-          content: "Vui lòng thử lại sau!!!",
+          title: 'Đã có lỗi xảy ra',
+          content: 'Vui lòng thử lại sau!!!',
         })
       );
-      console.error("Faild api delete specialty", err);
+      console.error('Faild api delete specialty', err);
     }
   };
 
@@ -105,10 +106,10 @@ const TableNews = ({ t }) => {
         <tbody>
           <tr className="uppercase">
             <th>STT</th>
-            <th>{t("tablenews.name")}</th>
-            <th>{t("tablenews.daycreate")}</th>
-            <th>{t("tablenews.dayupdate")}</th>
-            <th>{t("tablenews.choose")}</th>
+            <th>{t('tablenews.name')}</th>
+            <th>{t('tablenews.daycreate')}</th>
+            <th>{t('tablenews.dayupdate')}</th>
+            <th>{t('tablenews.choose')}</th>
           </tr>
 
           {listnews &&

@@ -1,24 +1,24 @@
-import moment from "moment";
-import { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import "moment/locale/vi";
+import moment from 'moment';
+import { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import 'moment/locale/vi';
 import {
   getScheduleDoctorByDate,
   postCheckBookingAlready,
-} from "services/userService";
-import { withNamespaces } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import { addInforTime } from "reducers/timeworkSlice";
-import { addInforDoctor } from "reducers/inforDoctorSlice";
-import "./SheduleDoctorStyles.scss";
-import { addWarningMessage } from "reducers/messageSlice";
+} from 'services/userService';
+import { withNamespaces } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { addInforTime } from 'reducers/timeworkSlice';
+import { addInforDoctor } from 'reducers/inforDoctorSlice';
+import './SheduleDoctorStyles.scss';
+import { addWarningMessage } from 'reducers/messageSlice';
 
 const ScheduleDoctor = ({ id, price, t, profile }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { language } = useSelector((state) => state.user) || {};
-  console.log("language", language);
+  // console.log("language", language);
   const [scheduleDoctor, setScheduleDoctor] = useState([]);
   const [timeWork, setTimeWork] = useState([]);
   const [selectedDate, setSelectedDate] = useState(0);
@@ -31,31 +31,31 @@ const ScheduleDoctor = ({ id, price, t, profile }) => {
     let allDays = [];
     for (let i = 0; i < 7; i++) {
       let object = {};
-      if (language === "en") {
+      if (language === 'en') {
         if (i === 0) {
-          let ddMM = moment(new Date()).format("DD/MM");
+          let ddMM = moment(new Date()).format('DD/MM');
           let today = `Today - ${ddMM}`;
           object.label = today;
         } else {
           let labelEn = moment(new Date())
-            .add(i, "days")
-            .locale("en")
-            .format("ddd - DD/MM");
+            .add(i, 'days')
+            .locale('en')
+            .format('ddd - DD/MM');
           object.label = labelEn;
         }
       } else {
         if (i === 0) {
-          let ddMM = moment(new Date()).format("DD/MM");
+          let ddMM = moment(new Date()).format('DD/MM');
           let today = `Hôm nay - ${ddMM}`;
           object.label = today;
         } else {
           let labelVi = moment(new Date())
-            .add(i, "days")
-            .format("dddd - DD/MM"); // dddd: Thứ - DD:Ngày/MM:Tháng
+            .add(i, 'days')
+            .format('dddd - DD/MM'); // dddd: Thứ - DD:Ngày/MM:Tháng
           object.label = capitalizeFirstLetter(labelVi);
         }
       }
-      object.value = moment(new Date()).add(i, "days").startOf("day").valueOf();
+      object.value = moment(new Date()).add(i, 'days').startOf('day').valueOf();
       allDays.push(object);
     }
     // console.log("Check all day", allDays);
@@ -82,21 +82,22 @@ const ScheduleDoctor = ({ id, price, t, profile }) => {
           // console.log('check get days', resSchedule.data);
         }
       } catch (err) {
-        console.log("Failed to print schedule", err);
+        alert('Failed to print schedule');
+        // console.log('Failed to print schedule', err);
       }
     };
     printScheduleDoctor();
   }, [id, language, selectedDate, getArrDays]);
 
   // console.log("Check time work", timeWork)
-  console.log("Check price", price);
+  // console.log('Check price', price);
 
   const handleScheduleDoctor = async (timedata) => {
-    console.log("Check time work", timedata);
-    console.log("Check profile", profile);
+    // console.log('Check time work', timedata);
+    // console.log('Check profile', profile);
 
-    localStorage.setItem("timework", JSON.stringify(timedata));
-    localStorage.setItem("profiledoctor", JSON.stringify(profile));
+    localStorage.setItem('timework', JSON.stringify(timedata));
+    localStorage.setItem('profiledoctor', JSON.stringify(profile));
     dispatch(addInforTime(timedata));
     dispatch(addInforDoctor(profile));
 
@@ -106,27 +107,27 @@ const ScheduleDoctor = ({ id, price, t, profile }) => {
       timeType: timedata.timeType,
     };
 
-    console.log("Check data time", data);
+    // console.log('Check data time', data);
 
     try {
       let resCheck = await postCheckBookingAlready(data);
       if (resCheck && resCheck.errCode === 2) {
         dispatch(
           addWarningMessage({
-            title: "Khung giờ không trống",
-            content: "Vui lòng chọn khung giờ khác!!",
+            title: 'Khung giờ không trống',
+            content: 'Vui lòng chọn khung giờ khác!!',
           })
         );
       } else {
-        console.log("Check log");
+        // console.log('Check log');
         navigate(
           `/healthcare/booking-schedule/${timedata.date}/${timedata.timeType}/?price=${price}`
         );
       }
-      console.log("Chekc result", resCheck);
+      // console.log('Chekc result', resCheck);
     } catch (error) {
-      console.log("Faild API check booking already", error);
-      alert("Đã có lỗi xảy ra!! Vui lòng thử lại sau");
+      // console.log('Faild API check booking already', error);
+      alert('Đã có lỗi xảy ra!! Vui lòng thử lại sau');
     }
   };
 
@@ -151,7 +152,7 @@ const ScheduleDoctor = ({ id, price, t, profile }) => {
           <ion-icon name="calendar-outline"></ion-icon>
         </i>
         <h4 className="uppercase text-[15px]">
-          {t("scheduledoctor.schedule")}
+          {t('scheduledoctor.schedule')}
         </h4>
       </div>
       <div className="ml-2 mt-2">
@@ -160,16 +161,16 @@ const ScheduleDoctor = ({ id, price, t, profile }) => {
             <div>
               {timeWork.map((item, index) => {
                 let timeDisplay =
-                  language === "vi"
+                  language === 'vi'
                     ? item.timeTypeData.value_Vi
                     : item.timeTypeData.value_En;
                 return (
                   <button
                     key={index}
                     className={`mr-2 mb-2 bg-slate-200 hover:bg-yellow-300 ${
-                      language === "vi"
-                        ? "min-w-[110px] py-2 "
-                        : "min-w-[150px] py-3"
+                      language === 'vi'
+                        ? 'min-w-[110px] py-2 '
+                        : 'min-w-[150px] py-3'
                     }`}
                     onClick={() => handleScheduleDoctor(item)}
                   >
@@ -179,14 +180,14 @@ const ScheduleDoctor = ({ id, price, t, profile }) => {
               })}
             </div>
             <div className="border-b border-b-[#d4d3d3] pb-1">
-              <span>{t("scheduledoctor.choose")}</span>{" "}
-              <i className="far fa-hand-point-up"></i>{" "}
-              <span>{t("scheduledoctor.bookfree")}</span>
+              <span>{t('scheduledoctor.choose')}</span>{' '}
+              <i className="far fa-hand-point-up"></i>{' '}
+              <span>{t('scheduledoctor.bookfree')}</span>
             </div>
           </div>
         ) : (
           <h3 className="text-gray-400 border-b border-b-[#d4d3d3] pb-1">
-            {t("scheduledoctor.noschedule")}
+            {t('scheduledoctor.noschedule')}
           </h3>
         )}
       </div>

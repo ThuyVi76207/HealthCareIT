@@ -1,28 +1,28 @@
-import React, { useRef, useState } from "react";
-import MainLayout from "../layouts/MainLayout";
-import RegisterImg from "assets/Register/register.svg";
-import CommonInput from "features/Admin/components/Input/CommonInput";
-import { withNamespaces } from "react-i18next";
+import React, { useRef, useState } from 'react';
+import MainLayout from '../layouts/MainLayout';
+import RegisterImg from 'assets/Register/register.svg';
+import CommonInput from 'features/Admin/components/Input/CommonInput';
+import { withNamespaces } from 'react-i18next';
 import {
   isPasswordStrength,
   isValidEmail,
   isValidPhoneNumber,
-} from "function/formater";
-import EmailInput from "features/Admin/components/Input/EmailInput";
-import PhoneInput from "features/Admin/components/Input/PhoneInput";
-import { GENDER_OPTIONS } from "constants";
-import { useDispatch, useSelector } from "react-redux";
-import PasswordInput from "features/Admin/components/Input/PasswordInput";
-import { postRegister } from "services/userService";
+} from 'function/formater';
+import EmailInput from 'features/Admin/components/Input/EmailInput';
+import PhoneInput from 'features/Admin/components/Input/PhoneInput';
+import { GENDER_OPTIONS } from 'constants';
+import { useDispatch, useSelector } from 'react-redux';
+import PasswordInput from 'features/Admin/components/Input/PasswordInput';
+import { postRegister } from 'services/userService';
 import {
   addErrorMessage,
   addSuccessMessage,
   addWarningMessage,
-} from "reducers/messageSlice";
-import Loading from "components/Loading/loading";
-import { useNavigate } from "react-router-dom";
+} from 'reducers/messageSlice';
+import Loading from 'components/Loading/loading';
+import { useNavigate } from 'react-router-dom';
 
-import "../features/Register/RegisterStyles.scss";
+import '../features/Register/RegisterStyles.scss';
 
 const Register = ({ t }) => {
   const navigate = useNavigate();
@@ -30,69 +30,69 @@ const Register = ({ t }) => {
   const formRef = useRef(null);
   const { language } = useSelector((state) => state.user) || {};
 
-  const [lastName, setLastName] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [selectedGender, setSelectedGender] = useState("M");
-  const [password, setPassword] = useState("");
-  const [rePassword, setRePassword] = useState("");
+  const [lastName, setLastName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [selectedGender, setSelectedGender] = useState('M');
+  const [password, setPassword] = useState('');
+  const [rePassword, setRePassword] = useState('');
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
-    lastName: "",
-    firstName: "",
-    email: "",
-    phoneNumber: "",
-    selectedGender: "",
-    password: "",
-    rePassword: "",
+    lastName: '',
+    firstName: '',
+    email: '',
+    phoneNumber: '',
+    selectedGender: '',
+    password: '',
+    rePassword: '',
   });
 
   const isValidated = () => {
     let validated = true;
     let _error = {};
-    if (lastName === "") {
+    if (lastName === '') {
       validated = false;
-      _error.lastName = "Vui lòng nhập họ";
+      _error.lastName = 'Vui lòng nhập họ';
     }
-    if (firstName === "") {
+    if (firstName === '') {
       validated = false;
-      _error.firstName = "Vui lòng nhập tên";
+      _error.firstName = 'Vui lòng nhập tên';
     }
-    if (email === "") {
+    if (email === '') {
       validated = false;
-      _error.email = "Vui lòng nhập email";
+      _error.email = 'Vui lòng nhập email';
     } else if (!isValidEmail(email)) {
       validated = false;
-      _error.email = "Email không hợp lệ";
+      _error.email = 'Email không hợp lệ';
     }
-    if (phoneNumber === "") {
+    if (phoneNumber === '') {
       validated = false;
-      _error.phoneNumber = "Vui lòng nhập số điện thoại";
+      _error.phoneNumber = 'Vui lòng nhập số điện thoại';
     } else if (!isValidPhoneNumber(phoneNumber)) {
       validated = false;
-      _error.phoneNumber = "Số điện thoại không hợp lệ";
+      _error.phoneNumber = 'Số điện thoại không hợp lệ';
     }
-    if (selectedGender === "") {
+    if (selectedGender === '') {
       validated = false;
-      _error.selectedGender = "Vui lòng chọn giới tính";
+      _error.selectedGender = 'Vui lòng chọn giới tính';
     }
-    if (password === "") {
+    if (password === '') {
       validated = false;
-      _error.password = "Vui lòng nhập mật khẩu";
+      _error.password = 'Vui lòng nhập mật khẩu';
     } else if (!isPasswordStrength(password)) {
       validated = false;
       _error.password =
-        "Mật khẩu phải có đủ 8 ký tự bao gồm chữ thường, in hoa và số";
+        'Mật khẩu phải có đủ 8 ký tự bao gồm chữ thường, in hoa và số';
     }
 
-    if (rePassword === "") {
+    if (rePassword === '') {
       validated = false;
-      _error.rePassword = "Vui lòng nhập mật khẩu";
+      _error.rePassword = 'Vui lòng nhập mật khẩu';
     } else if (rePassword !== password) {
       validated = false;
-      _error.rePassword = "Vui lòng nhập lại mật khẩu, mật khẩu không đúng";
+      _error.rePassword = 'Vui lòng nhập lại mật khẩu, mật khẩu không đúng';
     }
 
     setError(_error);
@@ -128,16 +128,16 @@ const Register = ({ t }) => {
       if (res && res.errCode === 0) {
         dispatch(
           addSuccessMessage({
-            title: "Đăng ký thành công",
-            content: "Thêm thành công tài khoản người dùng",
+            title: 'Đăng ký thành công',
+            content: 'Thêm thành công tài khoản người dùng',
           })
         );
         srollToInput();
       } else if (res && res.errCode === 1) {
         dispatch(
           addWarningMessage({
-            title: "Tài khoản đã tồn tại",
-            content: "Vui lòng nhập email mới!!!",
+            title: 'Tài khoản đã tồn tại',
+            content: 'Vui lòng nhập email mới!!!',
           })
         );
         srollToInput();
@@ -148,12 +148,12 @@ const Register = ({ t }) => {
     } catch (error) {
       dispatch(
         addErrorMessage({
-          title: "Đã có lỗi xảy ra",
-          content: "Vui lòng thử lại sau!!!",
+          title: 'Đã có lỗi xảy ra',
+          content: 'Vui lòng thử lại sau!!!',
         })
       );
       setLoading(false);
-      console.log("Faild to register", error);
+      // console.log("Faild to register", error);
     }
   };
   return (
@@ -161,28 +161,28 @@ const Register = ({ t }) => {
       <Loading loading={loading} />
       <div className="register-form">
         <h2 className="register-form__title  font-bold text-[#16917c] text-center">
-          {t("register.titles")}
+          {t('register.titles')}
         </h2>
         <div className="register-form__container">
           <div className=" register-form__container__left">
             <form ref={formRef}>
               <div className="form-up ">
                 <CommonInput
-                  field={t("createuser.lastname")}
+                  field={t('createuser.lastname')}
                   name="lastName"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  placeholder={t("createuser.phderlastname")}
+                  placeholder={t('createuser.phderlastname')}
                   maxLength={50}
                   error={error.lastName}
                   required
                 />
                 <CommonInput
-                  field={t("createuser.firstname")}
+                  field={t('createuser.firstname')}
                   name="firstName"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  placeholder={t("createuser.phderfirstname")}
+                  placeholder={t('createuser.phderfirstname')}
                   maxLength={50}
                   error={error.firstName}
                   required
@@ -192,17 +192,17 @@ const Register = ({ t }) => {
                   name="email"
                   email={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder={t("createuser.phderemail")}
+                  placeholder={t('createuser.phderemail')}
                   maxLength={50}
                   error={error.email}
                   required
                 />
                 <PhoneInput
-                  field={t("createuser.phone")}
+                  field={t('createuser.phone')}
                   name="phoneNumber"
                   phoneNumber={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
-                  placeholder={t("createuser.phderphonenumber")}
+                  placeholder={t('createuser.phderphonenumber')}
                   maxLength={50}
                   error={error.phoneNumber}
                   required
@@ -211,7 +211,7 @@ const Register = ({ t }) => {
               <div className="form-down">
                 <div className="mb-4">
                   <label className="font-bold text-[20px]">
-                    {t("createuser.gender")}
+                    {t('createuser.gender')}
                   </label>
                   <span className="text-red-600">*</span>
                   <select
@@ -227,7 +227,7 @@ const Register = ({ t }) => {
                         key={option.value}
                         // selected={option.value === selectedGender}
                       >
-                        {language === "vi" ? option.label.vi : option.label.en}
+                        {language === 'vi' ? option.label.vi : option.label.en}
                       </option>
                     ))}
                   </select>
@@ -236,20 +236,20 @@ const Register = ({ t }) => {
                   )}
                 </div>
                 <PasswordInput
-                  field={t("createuser.password")}
+                  field={t('createuser.password')}
                   name="password"
                   password={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder={t("createuser.phderpassword")}
+                  placeholder={t('createuser.phderpassword')}
                   error={error.password}
                   required
                 />
                 <PasswordInput
-                  field={t("createuser.repassword")}
+                  field={t('createuser.repassword')}
                   name="repassword"
                   password={rePassword}
                   onChange={(e) => setRePassword(e.target.value)}
-                  placeholder={t("createuser.phderrepassword")}
+                  placeholder={t('createuser.phderrepassword')}
                   error={error.rePassword}
                   required
                 />
@@ -260,7 +260,7 @@ const Register = ({ t }) => {
               onClick={handleRegisterOnClick}
               className="bg-[#003985] text-white text-[18px] font-medium px-4 py-2 mb-5 mt-3 rounded-[5px]"
             >
-              {t("register.save")}
+              {t('register.save')}
             </button>
           </div>
           <div className="register-form__container__right">
