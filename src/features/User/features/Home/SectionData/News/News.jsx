@@ -79,7 +79,7 @@ function News() {
           // <img className="w-[365px] mx-auto" src={loadingAPI} alt="loading" />
           <div className="container-loading">
             <div className="container-loading_text">
-              <h1>vui lòng chờ trong giây lát...</h1>
+              <h1>Vui lòng chờ trong giây lát...</h1>
             </div>
             <div className="container-loading_body">
               <div className="line-box">
